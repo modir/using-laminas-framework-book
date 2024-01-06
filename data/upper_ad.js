@@ -1,5 +1,5 @@
 ﻿<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Using Zend Framework 3 Book - Chapter - Adaptive -->
+<!-- Using Laminas Framework Book - Chapter - Adaptive -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-3933778336056438"

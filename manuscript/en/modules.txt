@@ -1,14 +1,14 @@
 # Creating a New Module {#modules}
 
-When your website grows in size, you can benefit from using Zend Framework 3 feature called *modules*.
+When your website grows in size, you can benefit from using Laminas Framework feature called *modules*.
 Modular applications consist of pieces that have relatively few dependencies on each other. This allows
-to install or remove modules on demand. In this chapter you will learn what is a ZF3 module, when 
+to install or remove modules on demand. In this chapter you will learn what is a Laminas module, when
 to create a new module and how to create it.
 
 ## When to Create a New Module?
 
-A module is an *autonomous* and *reusable* unit of your application. By default your application has 
-the single *Application* module. And it is normal to put your models, views and controllers in 
+A module is an *autonomous* and *reusable* unit of your application. By default your application has
+the single *Application* module. And it is normal to put your models, views and controllers in
 this module, especially in a simple website.
 
 I> A module can contain models, views, controllers and assets. Module classes typically live in a separate
@@ -18,20 +18,20 @@ I> controllers, controller plugins, services, view helpers and so on.
 You may need to create a new module when any of the following is true:
 
   * If your website is relatively large and dividing it into pieces would make it easier to maintain.
-    For example, you can introduce the *Admin* module and put your backend functionality into that module. 
-  * If the functionality you are implementing is autonomous (has no or few dependencies on other 
-    modules of your application. For example, the Blog functionality in theory can be 
-    separated in another module, because it does not depend on the rest of the application, but 
+    For example, you can introduce the *Admin* module and put your backend functionality into that module.
+  * If the functionality you are implementing is autonomous (has no or few dependencies on other
+    modules of your application. For example, the Blog functionality in theory can be
+    separated in another module, because it does not depend on the rest of the application, but
     the application depends on it.
-  * If a module can be separated from your application and concurrently used in another project. 
-    For example the Blog module can be reused in another project without changes (only 
+  * If a module can be separated from your application and concurrently used in another project.
+    For example the Blog module can be reused in another project without changes (only
     its configuration may require changes).
 
-In any case, real life is complex, and you should be guided by the intuition when it seems that it 
-is necessary to create a new module. If you think that separating a functionality into a module gives 
+In any case, real life is complex, and you should be guided by the intuition when it seems that it
+is necessary to create a new module. If you think that separating a functionality into a module gives
 you some significant benefits, create the module.
 
-At the same time, you should not create a huge number of almost empty modules, it 
+At the same time, you should not create a huge number of almost empty modules, it
 is better to combine related functionality in a single module.
 
 ## How to Create a New Module?
@@ -41,17 +41,17 @@ module from *APP_DIR/module* directory (such as *Application* module), removing 
 models and views, and renaming the existing namespace into your module name in every source file. This may be rather
 boring.
 
-The second way is downloading an empty *skeleton module* from the official Zend Framework repository on GitHub.
-You can find this repository by [this link](https://github.com/zendframework/ZendSkeletonModule).
+The second way is downloading an empty *skeleton module* from the official Laminas Framework repository on GitHub.
+You can find this repository by [this link](https://github.com/laminas/LaminasSkeletonModule).
 You can clone the code or download the code as a ZIP archive (recommended).
 
 For example, in Linux, use the following commands to download the skeleton module:
 
 ~~~
 cd ~
-wget https://github.com/zendframework/ZendSkeletonModule/archive/master.zip
+wget https://github.com/laminas/LaminasSkeletonModule/archive/master.zip
 unzip master.zip
-cp ZendSkeletonModule-master APP_DIR/module/ZendSkeletonModule
+cp LaminasSkeletonModule-master APP_DIR/module/LaminasSkeletonModule
 ~~~
 
 The commands above download the source of the skeleton module to your home directory, unpack the archive
@@ -59,10 +59,10 @@ and copy the files to your website's `module` directory.
 
 Let's look at the structure of the skeleton module (see figure 14.1):
 
-![Figure 14.1. Skeleton module directory structure](images/modules/skeleton_module_directory.png)   
+![Figure 14.1. Skeleton module directory structure](images/modules/skeleton_module_directory.png)
 
 As you can see, we have a typical directory structure we are already familiar with:
- 
+
   * `config` subdirectory contains `module.config.php` file which is the configuration file for this module.
   * `src` subdirectory is a directory containing module's source files:
     * `Controller` subdirectory contains a sample controller class.
@@ -81,13 +81,13 @@ Once you have chosen the name for the module, you should rename the directory co
 the command below will rename the module into `Admin`:
 
 ~~~
-mv ZendSkeletonModule Admin
+mv LaminasSkeletonModule Admin
 ~~~
 
 Next, you should rename the `SkeletonController.php` into something more descriptive. Don't forget to rename subdirectories
 of `view` directory to reflect the name of the controller.
 
-Finally, walk through configuration and source files of the controller and make sure you renamed the namespace `ZendSkeletonModule`
+Finally, walk through configuration and source files of the controller and make sure you renamed the namespace `LaminasSkeletonModule`
 to the name of your module (this is required to ensure your classes will be found by PHP class autoloader).
 
 ### Enabling Class Autoloading
@@ -120,7 +120,7 @@ modify the `module.config.php` file and register your routes, services, controll
 
 ### Enabling the Module
 
-To let ZF3 know about the new module and let it load it on app start up, do not forget to enable your new module in your 
+To let Laminas know about the new module and let it load it on app start up, do not forget to enable your new module in your
 *APP_DIR/config/modules.config.php* file as follows:
 
 ~~~
@@ -133,8 +133,8 @@ return [
 ## Module.php File & Event Listening
 
 The `Module.php` file located inside of module's source directory is some kind of module *entry point*.
-The `Module` class defined in this file is loaded by `Zend\ModuleManager` component when it loads all application 
-modules. 
+The `Module` class defined in this file is loaded by `Laminas\ModuleManager` component when it loads all application
+modules.
 
 One useful thing you can do with this class is *registering to events*. If you remember from the [Website Operation](#operation)
 chapter, the application has several life stages represented by events. You may write an event listener function (or class) and
@@ -144,18 +144,18 @@ do something useful.
 Q> **Why would I want to register an event listener?**
 Q>
 Q> Here are several practical applications of event listening that you may find useful:
-Q>  
+Q>
 Q>   * Listen to *Route* event to force the use of HTTPS secure connection.
 Q>   * When your website is in maintenance mode, listen to *Route* event to catch all requests and redirect user to the single page.
 Q>   * Listen to *Dispatch* event to redirect a user to a different page. For example, if user is not authenticated, redirect him to the login page.
 Q>   * Listen to *Dispatch* event to override the default layout template for all controllers belonging to the module.
 Q>   * Listen to *Dispatch Error* event to log and/or report any exception or error happening in your website.
-Q>   * Listen to *Render* event to modify the content of the resulting web page.  
+Q>   * Listen to *Render* event to modify the content of the resulting web page.
 
 There are two ways to register an event listener within the `Module` class: either with the help of `Module`'s `init()` method or with the
 help of its `onBootstrap()` method. The difference between `init()` method and `onBootstrap()` method is that the `init()` method is called
 earlier than `onBootstrap()`, before all other modules are initialized; while `onBootstrap()` is called once all modules are initialized.
-In the following examples, we use `init()` method. 
+In the following examples, we use `init()` method.
 
 ### Example 1. Switching Layout Template
 
@@ -167,23 +167,23 @@ set a different layout template for *all* controllers of the module:
 <?php
 namespace YourCompanyModule;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
-    // The "init" method is called on application start-up and 
+    // The "init" method is called on application start-up and
     // allows to register an event listener.
     public function init(ModuleManager $manager)
     {
         // Get event manager.
         $eventManager = $manager->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
-        // Register the event listener method. 
-        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', 
+        // Register the event listener method.
+        $sharedEventManager->attach(__NAMESPACE__, 'dispatch',
                                     [$this, 'onDispatch'], 100);
     }
-    
+
     // Event listener method.
     public function onDispatch(MvcEvent $event)
     {
@@ -193,21 +193,21 @@ class Module
         $controllerClass = get_class($controller);
         // Get module name of the controller.
         $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-           
+
         // Switch layout only for controllers belonging to our module.
         if ($moduleNamespace == __NAMESPACE__) {
             $viewModel = $event->getViewModel();
-            $viewModel->setTemplate('layout/layout2');  
-        }        
+            $viewModel->setTemplate('layout/layout2');
+        }
     }
-    
+
     // ...
 }
 ~~~
 
 In the code above, we add the `init()` method to the `Module` class. In that method, we register an event listener (line 17)
-with the help of `attach()` method provided by the `Zend\EventManager\SharedEventManager` class. The `attach()` method
-takes four arguments: the ID of the emitting component, the event name ("dispatch"), the event listener method (the `onDispatch()` 
+with the help of `attach()` method provided by the `Laminas\EventManager\SharedEventManager` class. The `attach()` method
+takes four arguments: the ID of the emitting component, the event name ("dispatch"), the event listener method (the `onDispatch()`
 method of the current class), and the priority (100)).
 
 The `onDispatch()` method is called on the Dispatch event. In this method, we check (line 32) if the HTTP request is
@@ -223,23 +223,23 @@ with all of your web pages:
 <?php
 namespace YourCompanyModule;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
-    // The "init" method is called on application start-up and 
+    // The "init" method is called on application start-up and
     // allows to register an event listener.
     public function init(ModuleManager $manager)
     {
         // Get event manager.
         $eventManager = $manager->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
-        // Register the event listener method. 
-        $sharedEventManager->attach(__NAMESPACE__, 'route', 
+        // Register the event listener method.
+        $sharedEventManager->attach(__NAMESPACE__, 'route',
                                     [$this, 'onRoute'], 100);
     }
-    
+
     // Event listener method.
     public function onRoute(MvcEvent $event)
     {
@@ -247,7 +247,7 @@ class Module
             // Do not execute HTTPS redirect in console mode.
             return;
         }
-        
+
         // Get request URI
         $uri = $event->getRequest()->getUri();
         $scheme = $uri->getScheme();
@@ -262,7 +262,7 @@ class Module
             return $response;
         }
     }
-    
+
     // ...
 }
 ~~~
@@ -278,7 +278,7 @@ If the scheme is not HTTPS, we redirect the user to the same URL, but with HTTPS
 ### Example 3. Reporting All Exceptions in Your Website
 
 With this technique, you can easily track all exceptions happening in your website. Reporting
-exceptions and errors is an important thing, because it allows to make your website more stable, 
+exceptions and errors is an important thing, because it allows to make your website more stable,
 secure and improve user experience.
 
 {line-numbers=on,lang=php}
@@ -286,25 +286,25 @@ secure and improve user experience.
 <?php
 namespace YourCompanyModule;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
-    // The "init" method is called on application start-up and 
+    // The "init" method is called on application start-up and
     // allows to register an event listener.
     public function init(ModuleManager $manager)
     {
         // Get event manager.
         $eventManager = $manager->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
-        // Register the event listener method. 
+        // Register the event listener method.
         $sharedEventManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH_ERROR,
                                     [$this, 'onError'], 100);
-        $sharedEventManager->attach(__NAMESPACE__, MvcEvent::EVENT_RENDER_ERROR, 
+        $sharedEventManager->attach(__NAMESPACE__, MvcEvent::EVENT_RENDER_ERROR,
                                     [$this, 'onError'], 100);
     }
-    
+
     // Event listener method.
     public function onError(MvcEvent $event)
     {
@@ -318,11 +318,11 @@ class Module
         }
         $errorMessage = $event->getError();
         $controllerName = $event->getController();
-        
+
         // Prepare email message.
         $to = 'admin@yourdomain.com';
         $subject = 'Your Website Exception';
-        
+
         $body = '';
         if(isset($_SERVER['REQUEST_URI'])) {
             $body .= "Request URI: " . $_SERVER['REQUEST_URI'] . "\n\n";
@@ -335,23 +335,23 @@ class Module
             $body .= "Line: $line\n";
             $body .= "Stack trace:\n\n" . $stackTrace;
         }
-        
+
         $body = str_replace("\n", "<br>", $body);
-        
+
         // Send an email about the error.
         mail($to, $subject, $body);
     }
-    
+
     // ...
 }
-~~~ 
+~~~
 
-In the code above, we register an event listener that will be called on every Dispatch Error 
+In the code above, we register an event listener that will be called on every Dispatch Error
 (route mismatch or an exception) and Renderer Error. Inside the `onError()` listener method,
 we extract some information about the exception/error and send it as an email message to the
 address of your choice.
 
-## Registering the Module as a Composer Package 
+## Registering the Module as a Composer Package
 
 If you are writing a reusable module that you plan to make publicly available, you may want to publish the code of your module
 on GitHub and register it on [Packagist.org](http://packagist.org) catalogue as a Composer-installable package.
@@ -363,17 +363,17 @@ and `package` placeholders with your company and package names, respectively):
 ~~~
 php composer.phar require vendor/package
 ~~~
-  
+
 Composer will download and install your module to the `vendor` directory, so you will be able to use it as any third-party
-module.  
-  
+module.
+
 ## Summary
 
-In this chapter, you have learned of the concept *modules* in Zend Framework 3. A module is an *autonomous* and 
+In this chapter, you have learned of the concept *modules* in Laminas Framework. A module is an *autonomous* and
 *reusable* unit of your application. You may create a new module when your website becomes large and when the functionality
-has very few dependencies on other parts of your application. 
+has very few dependencies on other parts of your application.
 
-Every ZF3 module has an entry point class called `Module`. You may use that class to register an event listener.
+Every Laminas module has an entry point class called `Module`. You may use that class to register an event listener.
 Event listeners are useful, for example, when you want to change the default layout template for the entire module,
 or to tweak the default content of a web page.
 

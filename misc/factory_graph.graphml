@@ -20,7 +20,7 @@
           <y:Geometry height="99.0" width="209.0" x="327.0" y="162.0"/>
           <y:Fill color="#CCCCCC" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="43.203125" modelName="custom" textColor="#000000" visible="true" width="150.7265625" x="29.13671875" y="27.8984375">Element, Fieldset or 
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="43.203125" modelName="custom" textColor="#000000" visible="true" width="150.7265625" x="29.13671875" y="27.8984375">Element, Fieldset or
 array specification
 <y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -72,7 +72,7 @@ array specification
           <y:Geometry height="99.0" width="250.60000000000014" x="566.0" y="278.20000000000005"/>
           <y:Fill color="#CCCCCC" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="custom" textColor="#000000" visible="true" width="226.3671875" x="12.116406250000068" y="18.09765625">Use Zend\Form\Factory class
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="custom" textColor="#000000" visible="true" width="226.3671875" x="12.116406250000068" y="18.09765625">Use Laminas\Form\Factory class
 for instantiating and configuring
 the element<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>

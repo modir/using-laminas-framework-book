@@ -8,9 +8,9 @@ y una fila de la tabla es mapeada a una instancia de la clase entidad. Si somos 
 revisar el [Apéndice D. Introducción a Doctrine](#doctrine-intro) para una información introductorio sobre la
 arquitectura de la biblioteca Doctrine.
 
-I> Doctrine es una biblioteca de terceros, no es parte de Zend Framework 3. Hablamos sobre Doctrine
+I> Doctrine es una biblioteca de terceros, no es parte de Laminas Framework. Hablamos sobre Doctrine
 I> en este libro porque provee una manera fácil de usar base de datos a nuestro aplicación
-I> web basada en ZF3.
+I> web basada en Laminas.
 
 Componentes tratados en este capítulo:
 
@@ -19,9 +19,9 @@ Componentes tratados en este capítulo:
 |--------------------------------|---------------------------------------------------------------|
 | `Doctrine\ORM`                 | Implementa un Mapeo objeto-relacional.                        |
 |--------------------------------|---------------------------------------------------------------|
-| `DoctrineORMModule`            | Fácil integración de Doctrine ORM con ZF3.                    |
+| `DoctrineORMModule`            | Fácil integración de Doctrine ORM con Laminas.                    |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Paginator`               | Soporte para la paginación.                                   |
+| `Laminas\Paginator`               | Soporte para la paginación.                                   |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Usar el ejemplo Blog del GitHub
@@ -43,7 +43,7 @@ Para ver las pantallas de ejemplo del sitio web podemos ver la figura 12.1 y 12.
 
 ![Figure 12.2. Blog admin page](../en/images/doctrine/blog_admin_page.png)
 
-Para descargar la aplicación *Blog* podemos visitar [esta página](https://github.com/olegkrivtsov/using-zf3-book-samples)
+Para descargar la aplicación *Blog* podemos visitar [esta página](https://github.com/olegkrivtsov/using-laminas-book-samples)
 y hacer clic en el botón *Clone or Download* para descargar el código en un archivo ZIP.
 Cuando la descarga esta lista desempaquetamos el archivo en algún directorio.
 
@@ -51,7 +51,7 @@ Luego navegamos hasta el directorio `blog` que contiene el código fuente de la 
 
 {line-numbers=off,lang=text}
 ~~~
-/using-zf3-book-samples
+/using-laminas-book-samples
   /blog
   ...
 ~~~
@@ -234,14 +234,14 @@ Vamos a llenar las tablas que hemos creado con datos de ejemplo:
 
 {line-numbers=off, lang=text}
 ~~~
-INSERT INTO tag(`name`) VALUES('ZF3');
+INSERT INTO tag(`name`) VALUES('Laminas');
 INSERT INTO tag(`name`) VALUES('book');
 INSERT INTO tag(`name`) VALUES('magento');
 INSERT INTO tag(`name`) VALUES('bootstrap');
 
 INSERT INTO post(`title`, `content`, `status`, `date_created`) VALUES(
-   'A Free Book about Zend Framework',
-   'I''m pleased to announce that now you can read my new book "Using Zend Framework 3" absolutely for free! Moreover, the book is an open-source project hosted on GitHub, so you are encouraged to contribute.',
+   'A Free Book about Laminas Framework',
+   'I''m pleased to announce that now you can read my new book "Using Laminas Framework" absolutely for free! Moreover, the book is an open-source project hosted on GitHub, so you are encouraged to contribute.',
    2, '2016-08-09 18:49');
 
 INSERT INTO post(`title`, `content`, `status`, `date_created`) VALUES(
@@ -328,20 +328,20 @@ T> Además, consideremos usar las *migraciones de base de datos* para crear el e
 T> de base de datos. Para información adicional sobre migraciones podemos revisar el
 T> capítulo [Migración de Base de Datos](#migrations).
 
-## Integrando Doctrine ORM con Zend Framework 3
+## Integrando Doctrine ORM con Laminas Framework
 
-Para una fácil integración con Zend Framework 3 el proyecto Doctrine provee los siguientes
-componentes (que de hecho son modules de ZF3);
+Para una fácil integración con Laminas Framework el proyecto Doctrine provee los siguientes
+componentes (que de hecho son modules de Laminas);
 
-  * [DoctrineModule](https://github.com/doctrine/DoctrineORMModule) es un modulo de ZF3 que
+  * [DoctrineModule](https://github.com/doctrine/DoctrineORMModule) es un modulo de Laminas que
     provee la funcionalidad básica de Doctrine que necesita el componente ORM.
 
   * [DoctrineORMModule](https://github.com/doctrine/DoctrineORMModule) integra el Mapeo
-    objeto-relacional (ORM) de Doctrine con Zend Framework 3.
+    objeto-relacional (ORM) de Doctrine con Laminas Framework.
 
 Cada uno de estos componentes de Doctrine es distribuido como un paquete instalable de Composer
 y esta registrado en el catalogo [Packagist.org](https://packagist.org/). Esta es una manera
-muy parecida a la que Zend Framework 3 usa para instalar sus componentes.
+muy parecida a la que Laminas Framework usa para instalar sus componentes.
 
 Como los paquetes de Composer pueden depender de otros paquetes es suficiente declarar la
 dependencia sobre *DoctrineModule*. Este paquete depende de *DoctrineModule* y de otros
@@ -423,12 +423,12 @@ return [
 );
 ~~~
 
-Las lineas de arriba le dicen a ZF3 que debe cargar los módulos *DoctrineModule*
+Las lineas de arriba le dicen a Laminas que debe cargar los módulos *DoctrineModule*
 y *DoctrineORMModule* al inicio de la aplicación.
 
 ### Visión General de la Configuración de Doctrine
 
-Para usar Doctrine con nuestra aplicación web basada en ZF3 tenemos que proveer
+Para usar Doctrine con nuestra aplicación web basada en Laminas tenemos que proveer
 su configuración. La configuración le dice a Doctrine que base de datos están presentes,
 como conectar una base de datos (que base de datos, controlador, servidor, nombre de
 usuario y contraseña usar), donde están ubicadas las clases-entidad y como extraer
@@ -482,7 +482,7 @@ I> este un tema avanzado y no es cubierto en este libro.
 ### Sobrescribir la Configuración por Defecto de Doctrine
 
 Como ya sabemos a partir del capítulo [Operación del Sitio Web](#operation) la
-configuración de una aplicación web basada en ZF3 se divide generalmente en dos
+configuración de una aplicación web basada en Laminas se divide generalmente en dos
 categorías: configuración general de la aplicación y configuración específica del
 modulo.
 
@@ -498,7 +498,7 @@ modulo.
     *config* de este módulo. Por ejemplo, este archivo es apropiado para guardar la
     configuración de ubicación de las entidades.
 
-Cuando un sitio web basado en ZF3 carga su configuración se mezclan todas las
+Cuando un sitio web basado en Laminas carga su configuración se mezclan todas las
 configuraciones dentro de un solo gran arreglo para formar el "árbol" final de
 configuración de Doctrine.
 
@@ -1385,7 +1385,7 @@ I> `Doctrine\ORM` y se usa para recuperar entidades de nuestros repositorios usa
 I> un criterio de búsqueda y, además, guarda entidades en la base de datos.
 
 El `EntityManager` se registra como un servicio en el administrador de servicios
-de Zend Framework 3. Desde nuestra clase factory recuperamos el `EntityManager` del
+de Laminas Framework. Desde nuestra clase factory recuperamos el `EntityManager` del
 administrador de servicios de la siguiente manera (si necesitamos una conexión
 diferente a la `orm_default`, solamente reemplazamos `orm_default` con el nombre
 de la conexión a la base de datos adecuada):
@@ -1434,7 +1434,7 @@ entidad `Post` y como guardarla en la base de datos:
 ~~~
 // Create new Post entity.
 $post = new Post();
-$post->setTitle('Top 10+ Books about Zend Framework 3');
+$post->setTitle('Top 10+ Books about Laminas Framework');
 $post->setContent('Post body goes here');
 $post->setStatus(Post::STATUS_PUBLISHED);
 $currentDate = date('Y-m-d H:i:s');
@@ -1570,8 +1570,8 @@ clase de tipo controlador `IndexController` de la siguiente manera:
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use Application\Entity\Post;
 
 class IndexController extends AbstractActionController
@@ -1625,7 +1625,7 @@ el directorio fuente del módulo. Colocamos el siguiente código en el archivo:
 namespace Application\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Controller\IndexController;
 
 /**
@@ -1726,8 +1726,8 @@ Colocamos el siguiente contenido dentro del archivo:
 
 namespace Application\Form;
 
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
 use Application\Entity\Post;
 
 /**
@@ -1882,7 +1882,7 @@ class PostForm extends Form
                     ],
                 ],
             ]);
-            
+
         $inputFilter->add([
                 'name' => 'status',
                 'required' => true,
@@ -1900,7 +1900,7 @@ class PostForm extends Form
 ~~~
 
 Como podemos ver en el código de arriba la clase `PostForm` define un formulario
-de ZF3 con título, contenido, etiquetas y un campo para el estado, además, de un
+de Laminas con título, contenido, etiquetas y un campo para el estado, además, de un
 botón *Submit*.
 
 I> Como explicamos el funcionamiento de los formularios en capítulos previos aquí
@@ -1929,7 +1929,7 @@ namespace Application\Service;
 use Application\Entity\Post;
 use Application\Entity\Comment;
 use Application\Entity\Tag;
-use Zend\Filter\StaticFilter;
+use Laminas\Filter\StaticFilter;
 
 // The PostManager service is responsible for adding new posts.
 class PostManager
@@ -2025,7 +2025,7 @@ directorio fuente del módulo. Y colocamos el siguiente contenido dentro del arc
 namespace Application\Service\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\PostManager;
 
 /**
@@ -2152,7 +2152,7 @@ de tipo factory agregando el archivo *PostControllerFactory.php* dentro de la ca
 namespace Application\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\PostManager;
 use Application\Controller\PostController;
 
@@ -2684,8 +2684,8 @@ de la carpeta fuente del módulo. Colocamos el siguiente código dentro del arch
 <?php
 namespace Application\Form;
 
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * This form is used to collect comment data.
@@ -3490,26 +3490,26 @@ un objeto `Query` de Doctrine como entrada y, además, provee varios métodos pa
 traer los resultados paginados (no discutiremos sobre estos métodos aquí por simplicidad).
 Sin embargo, el módulo Doctrine ORM no provee ningún ayudante de vista (view helpers)
 para generar el widget de paginación. Por esta razón usaremos la función de paginación
-provista por Zend Framework 3.
+provista por Laminas Framework.
 
-I> Aunque planeamos usar el componente paginador de ZF3 usaremos internamente el
-I> paginador de Doctrine ORM para consumir los datos. El paginador de ZF3 será solo
+I> Aunque planeamos usar el componente paginador de Laminas usaremos internamente el
+I> paginador de Doctrine ORM para consumir los datos. El paginador de Laminas será solo
 I> un envoltorio para el paginador de Doctrine ORM.
 
-### El Paginador de ZF3
+### El Paginador de Laminas
 
-En Zend Framework 3 la paginación se implementa en el componente *Zend\Paginator*.
+En Laminas Framework la paginación se implementa en el componente *Laminas\Paginator*.
 Si no tenemos instalador este componente lo podemos instalar con el siguiente
 comando:
 
 ```
-php composer.phar require zendframework/zend-paginator
+php composer.phar require laminas/laminas-paginator
 ```
 
-El componente *Zend\Paginator* provee la clase `Paginator`. Sus métodos más útiles
+El componente *Laminas\Paginator* provee la clase `Paginator`. Sus métodos más útiles
 se muestran en la tabla 12.6:
 
-{title="Table 12.6. Métodos de la Clase Paginator de ZF3"}
+{title="Table 12.6. Métodos de la Clase Paginator de Laminas"}
 |------------------------------------|----------------------------------------------------|
 | *Método*                           | *Descripción*                                      |
 |------------------------------------|----------------------------------------------------|
@@ -3530,7 +3530,7 @@ La clase `Paginator` es muy genérica y no conoce los datos del modelo subyacent
 por lo que necesitaremos un adaptador que provea los datos al paginador. El módulo
 *DoctrineORMModule* provee este adaptador (la clase `DoctrineORMModule\Paginator\Adapter\DoctrinePaginator`)
 que podemos usar para traer los datos desde el paginador ORM y pasarlos al paginador
-de ZF3.
+de Laminas.
 
 Por ejemplo, asumiendo que tenemos un `Query` con un DQL que selecciona todas las
 publicaciones. Para paginar estos resultados podemos usar el siguiente código:
@@ -3540,9 +3540,9 @@ publicaciones. Para paginar estos resultados podemos usar el siguiente código:
 <?php
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-use Zend\Paginator\Paginator;
+use Laminas\Paginator\Paginator;
 
-// Create ZF3 paginator.
+// Create Laminas paginator.
 $adapter = new DoctrineAdapter(new ORMPaginator($query, false));
 $paginator = new Paginator($adapter);
 
@@ -3630,7 +3630,7 @@ namespace Application\Controller;
 // Add aliases for paginator classes
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-use Zend\Paginator\Paginator;
+use Laminas\Paginator\Paginator;
 // ...
 
 class IndexController extends AbstractActionController
@@ -3746,7 +3746,7 @@ el siguiente código dentro del archivo:
 ~~~
 
 La plantilla de vista parcial será usada por el ayudante de vista (view helper)
-de ZF3 para visualizar el widget de paginación. Como podemos ver, esta plantilla de
+de Laminas para visualizar el widget de paginación. Como podemos ver, esta plantilla de
 vista parcial toma varias variables como entrada (`$pageCount`, `pagesInRange`,
 `$current`, `$previous`, `$next`, `$route`) que se usan para controlar como el
 widget se verá.
@@ -3768,7 +3768,7 @@ El ayudante de vista `PaginationControl` acepta cuantro argumentos:
     el controlador en el contenedor de variables `ViewModel`
   * El argumento "Sliding" es el estilo para la paginación. Para información adicional
     sobre las estilos de paginación disponibles vamos a revisar la documentación
-    de Zend Framework.
+    de Laminas Framework.
   * El argumento "application/partial/paginator" es el nombre de la plantilla de
     vista parcial que contiene las etiquetas para el widget de paginación.
   * El cuarto argumento se usa para pasar parámetros a la plantilla de vista parcial.
@@ -3789,7 +3789,7 @@ T> el uso del complemento de jQuery [DataTables](https://datatables.net/) or [Bo
 
 ## Resumen
 
-Doctrine no es parte de Zend Framework 3 pero explicamos como usarlo en este libro
+Doctrine no es parte de Laminas Framework pero explicamos como usarlo en este libro
 porque él provee una manera fácil de acceder a una base de datos y proveer objetos
 persistentes para nuestra aplicación.
 

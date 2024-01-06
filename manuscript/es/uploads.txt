@@ -6,18 +6,18 @@ y la codificación de transferencia de contenido binario. Luego construiremos un
 ejemplo completamente funcional de una Galería de Imágenes mostrando como subir
 imágenes a un servidor web.
 
-Los componentes ZF3 cubiertos en este capítulo son:
+Los componentes Laminas cubiertos en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Form`                   | Contiene las clases base para modelos de formulario.          |
+| @`Laminas\Form`                   | Contiene las clases base para modelos de formulario.          |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Filter`                 | Contiene varias clases filtro.                                |
+| @`Laminas\Filter`                 | Contiene varias clases filtro.                                |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Validator`               | Implementa varias clases validadoras.                        |
+| @`Laminas\Validator`               | Implementa varias clases validadoras.                        |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\InputFilter`            | Implementa un contenedor para filtros y validadores.          |
+| @`Laminas\InputFilter`            | Implementa un contenedor para filtros y validadores.          |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Sobre la subida de archivos por HTTP
@@ -212,10 +212,10 @@ exitosa, la función regresará `true`. Si ocurre algún error (por ejemplo, si
 los permisos de la carpeta no son suficientes para guardar el archivo) se regresará
 el booleano `false`.
 
-## Acceder a los archivos subidos con ZF3
+## Acceder a los archivos subidos con Laminas
 
 En nuestra clase controlador generalmente no nos comunicamos con el arreglo
-`$_FILES` directamente, en su lugar usamos la clase @`Request`[Zend\Http\Request]
+`$_FILES` directamente, en su lugar usamos la clase @`Request`[Laminas\Http\Request]
 o el complemento para controladores @`Params`, como se muestra en el código más abajo:
 
 {line-numbers=on, lang=php}
@@ -240,7 +240,7 @@ class IndexController extends AbstractActionController
 ~~~
 
 En la línea 9 del código de arriba usamos el método `getRequest()` de la clase
-controlador para acceder al objeto @`Request`[Zend\Http\Request] y el método `getFiles()` del
+controlador para acceder al objeto @`Request`[Laminas\Http\Request] y el método `getFiles()` del
 objeto *request* para recuperar la información de todos los archivos subidos.
 
 En la línea 12, hacemos lo mismo pero con el complemento para controladores @`Params`.
@@ -252,10 +252,10 @@ Si lo necesitamos, podemos extraer la información de un solo archivo. En la lí
 que queremos recuperar. Este recupera una sola entrada de tipo *file* del arreglo
 super-global `$_FILES`.
 
-## Subida de archivos y el Modelo de Formulario de ZF3
+## Subida de archivos y el Modelo de Formulario de Laminas
 
 Para agregar la capacidad de subir archivos a nuestro modelo de formulario,
-necesitamos agregar un elemento de la clase @`Zend\Form\Element\File` de la
+necesitamos agregar un elemento de la clase @`Laminas\Form\Element\File` de la
 siguiente manera:
 
 {line-numbers=on, lang=php}
@@ -276,9 +276,9 @@ siguiente manera:
 ~~~
 
 En el código de arriba, llamamos al método `add()` que provee la clase base
-@`Form`[Zend\Form\Form] y le pasamos un arreglo de configuración que describe el elemento.
+@`Form`[Laminas\Form\Form] y le pasamos un arreglo de configuración que describe el elemento.
 La llave `type` del arreglo (línea 5) debe ser el nombre de la clase
-@`Zend\Form\Element\File` o su alias «file».
+@`Laminas\Form\Element\File` o su alias «file».
 
 ## Validar la Subida de Archivos
 
@@ -298,9 +298,9 @@ otro dato del formulario. Por ejemplo, podríamos necesitar revisar:
 
   * Si el número total de archivos subidos no excede algún límite.
 
-Para hacer este tipo de revisiones ZF3 provee un número de validadores de archivo
+Para hacer este tipo de revisiones Laminas provee un número de validadores de archivo
 útiles (listado en la tabla 10.1). Estas clases validadoras pertenecen al componente
-`Zend\Validator` y están en el espacio de nombres @`Zend\Validator\File`[Zend\Validator].
+`Laminas\Validator` y están en el espacio de nombres @`Laminas\Validator\File`[Laminas\Validator].
 
 {title="Tabla 10.1. Validadores estándares de archivos"}
 |---------------------|------------------|---------------------------------------------------------------|
@@ -348,7 +348,7 @@ Para hacer este tipo de revisiones ZF3 provee un número de validadores de archi
 |---------------------|------------------|---------------------------------------------------------------|
 | @`IsCompressed`     | `FileIsCompressed` | Revisa si el archivo está empacado (ZIP, TAR, etc.)         |
 |---------------------|------------------|---------------------------------------------------------------|
-| @`Hash`[Zend\Validator\File\Hash]| `FileHash`       | Revisa si el contenido del archivo coincide con uno o varios  |
+| @`Hash`[Laminas\Validator\File\Hash]| `FileHash`       | Revisa si el contenido del archivo coincide con uno o varios  |
 |                                  |                  | *hash*.                                                       |
 |---------------------|------------------|---------------------------------------------------------------|
 | @`Crc32`            | `FileCrc32`      | Revisa que el contenido del archivo tiene la suma de          |
@@ -375,7 +375,7 @@ dividir aproximadamente en los siguientes grupos:
          MD5, SHA-1, CRC32, etc.
 
 T> Debemos notar que como los validadores de archivo están en el espacio de
-T> nombres @`Zend\Validator\File`[Zend\Validator], su alias (que usamos cuando creamos un validador
+T> nombres @`Laminas\Validator\File`[Laminas\Validator], su alias (que usamos cuando creamos un validador
 T> con una fábrica) comienza con el prefijo `File`. Por ejemplo, el validador
 T> @`IsImage` tiene el alias `FileIsImage`.
 
@@ -384,9 +384,9 @@ una *Galería de Imágenes* de ejemplo luego en este capítulo.
 
 ## Filtros de archivos subidos
 
-Zend Framework 3 provee varios filtros que «transforman» los campos del archivo.
+Laminas Framework provee varios filtros que «transforman» los campos del archivo.
 Estas clases de filtro (listadas en la tabla 10.2) pertenecen al componente
-@`Zend\Filter` y están en el espacio de nombres @`Zend\Filter\File`[Zend\Filter].
+@`Laminas\Filter` y están en el espacio de nombres @`Laminas\Filter\File`[Laminas\Filter].
 
 {title="Tabla 10.2. Filtros de Archivo Estándar"}
 |-----------------|---------------|---------------------------------------------------------------|
@@ -397,9 +397,9 @@ Estas clases de filtro (listadas en la tabla 10.2) pertenecen al componente
 | @`RenameUpload` | `FileRenameUpload` | Cambia el nombre o mueve el archivo cargado con          |
 |                 |                    | revisiones de seguridad.                                 |
 |-----------------|---------------|---------------------------------------------------------------|
-| @`Encrypt`[Zend\Filter\File\Encrypt]| `FileEncrypt` | Cifra un archivo dado y guarda el contenido del archivo cifrado.|
+| @`Encrypt`[Laminas\Filter\File\Encrypt]| `FileEncrypt` | Cifra un archivo dado y guarda el contenido del archivo cifrado.|
 |-----------------|---------------|---------------------------------------------------------------|
-| @`Decrypt`[Zend\Filter\File\Decrypt]| `FileDecrypt` | Descifra un archivo dado y guarda el contenido del archivo descifrado.|
+| @`Decrypt`[Laminas\Filter\File\Decrypt]| `FileDecrypt` | Descifra un archivo dado y guarda el contenido del archivo descifrado.|
 |-----------------|---------------|---------------------------------------------------------------|
 | @`LowerCase`    | `FileLowerCase`| Convierte el contenido del archivo a letras minúsculas.      |
 |-----------------|---------------|---------------------------------------------------------------|
@@ -414,11 +414,11 @@ De la tabla se puede ver que los filtros se pueden dividir en los siguientes gru
   * Filtros para convertir el texto de los archivos a mayúsculas y minúsculas.
 
 T> Nótese que como los filtros de archivo están en el espacio de nombres
-T> @`Zend\Filter\File`[Zend\Filter], su alias (el que usamos cuando creamos un filtro con una
+T> @`Laminas\Filter\File`[Laminas\Filter], su alias (el que usamos cuando creamos un filtro con una
 T> fábrica) comienza con el prefijo `File`. Por ejemplo, el filtro @`RenameUpload`
 T> tiene el alias `FileRenameUpload`.
 
-Los filtros @`Encrypt`[Zend\Filter\File\Encrypt] y @`Decrypt`[Zend\Filter\File\Decrypt]
+Los filtros @`Encrypt`[Laminas\Filter\File\Encrypt] y @`Decrypt`[Laminas\Filter\File\Decrypt]
 permiten aplicar varios algoritmos de cifrado
 y descifrado a los archivos cargados (el algoritmo concreto se añade especificando
 un adaptador determinado). Los filtros @`LowerCase` y @`UpperCase` son útiles para
@@ -443,9 +443,9 @@ en una *Galería de Imágenes* de ejemplo.
 
 Como podemos recordar, los filtros y validadores que están asociados a un modelo
 de formulario se guardan generalmente en el contenedor
-@`InputFilter`[Zend\InputFilter\InputFilter] que consiste
-de *entradas* (una entrada se representa generalmente con la clase @`Input`[Zend\InputFilter\Input] que
-pertenece al espacio de nombres @`Zend\InputFilter`). Con los campos comunes de
+@`InputFilter`[Laminas\InputFilter\InputFilter] que consiste
+de *entradas* (una entrada se representa generalmente con la clase @`Input`[Laminas\InputFilter\Input] que
+pertenece al espacio de nombres @`Laminas\InputFilter`). Con los campos comunes de
 un formulario, los filtros se ejecutan *antes* que los validadores y los
 validadores se ejecutan *después* de los filtros.
 
@@ -458,7 +458,7 @@ Sin embargo, con los archivos subidos existen algunas importantes diferencias:
 ### FileInput
 
 Para almacenar las reglas de validación para los archivos que se suben debemos
-usar la clase `FileInput` en lugar de la acostumbrada clase @`Input`[Zend\InputFilter\Input].
+usar la clase `FileInput` en lugar de la acostumbrada clase @`Input`[Laminas\InputFilter\Input].
 
 En nuestro método privado `addInputFilter()` del modelo de formulario, agregamos
 las reglas de validación para la entrada del archivo de la siguiente manera:
@@ -466,7 +466,7 @@ las reglas de validación para la entrada del archivo de la siguiente manera:
 {line-numbers=on, lang=php}
 ~~~
     $inputFilter->add([
-        'type'     => 'Zend\InputFilter\FileInput',
+        'type'     => 'Laminas\InputFilter\FileInput',
         'name'     => 'file',  // Element's name.
         'required' => true,    // Whether the field is required.
         'filters'  => [        // Filters.
@@ -478,22 +478,22 @@ las reglas de validación para la entrada del archivo de la siguiente manera:
     ]);
 ~~~
 
-Arriba, colocamos la llave «type» (línea 2) con el nombre de la clase @`Zend\InputFilter\FileInput`
+Arriba, colocamos la llave «type» (línea 2) con el nombre de la clase @`Laminas\InputFilter\FileInput`
 como valor. El resto de llaves es análogo a las que usamos antes cuando agregamos
 reglas de validación para el modelo de formulario.
 
 El comportamiento de la clase @`FileInput` es diferente del comportamiento de la
-clase @`Input`[Zend\InputFilter\Input] en los siguientes aspectos:
+clase @`Input`[Laminas\InputFilter\Input] en los siguientes aspectos:
 
  1. Ella espera que los datos que se le pasan como entrada estén en el formato del
     arreglo `$_FILES` (un arreglo con las llaves `tmp_name`, `error`, `type`, etc).
 
- 2. Un validador @`Zend\Validator\File\Upload` se inserta automáticamente en la
+ 2. Un validador @`Laminas\Validator\File\Upload` se inserta automáticamente en la
     cadena de validación de entradas antes de todos los otros validadores.
 
  3. Los validadores insertados en la cadena de validación de entradas se ejecutan
     *antes* que los filtros insertados en la cadena de filtros. Este comportamiento
-    es opuesto al de la clase @`Input`[Zend\InputFilter\Input].
+    es opuesto al de la clase @`Input`[Laminas\InputFilter\Input].
 
 ### Ejecutar los Validadores antes que los Filtros
 
@@ -536,7 +536,7 @@ Sin embargo es importante entender lo que sucede en cada uno de estos pasos.
 I> Nótese que con la clase para entradas @`FileInput` los filtros asociados solo
 I> se ejecutan si se llama al método `getData()`.
 
-Cuando usamos ambas clases para entradas, @`Input`[Zend\InputFilter\Input] y @`FileInput`, en nuestro
+Cuando usamos ambas clases para entradas, @`Input`[Laminas\InputFilter\Input] y @`FileInput`, en nuestro
 filtro de entradas de formulario (que es el caso común), los filtros aún se
 ejecutan primero para las entradas comunes pero los validadores se ejecutan
 primero para las entradas de archivo.
@@ -631,7 +631,7 @@ I> filtros.
 
 ## Ejemplo: Galería de Imágenes
 
-Para mostrar como cargar archivos con Zend Framework 3, crearemos
+Para mostrar como cargar archivos con Laminas Framework, crearemos
 una Galería de Imágenes que consistirá de dos páginas web: la página de carga
 de imágenes permite cargar una imagen (figura 10.2) y la página de galería
 contiene la lista de las imágenes subidas (figura 10.3).
@@ -680,7 +680,7 @@ está dentro de la carpeta fuente del módulo:
 <?php
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 // This form is used for uploading an image file.
 class ImageForm extends Form
@@ -735,7 +735,7 @@ queremos llamar la atención del lector que en la línea 19 colocamos el valor
 formulario use codificación binaria para sus datos.
 
 T> En realidad, colocar explícitamente el atributo «enctype» en el constructor
-T> del formulario es opcional, porque la clase @`Zend\Form\Element\File` asigna
+T> del formulario es opcional, porque la clase @`Laminas\Form\Element\File` asigna
 T> este atributo cuando se llama al método del formulario `prepare()`.
 
 ### Agregar Reglas de Validación al Modelo ImageForm
@@ -761,7 +761,7 @@ Para agregar reglas de validación al formulario modificamos el código de la cl
 <?php
 namespace Application\Form;
 
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 // This form is used for uploading an image file.
 class ImageForm extends Form
@@ -785,7 +785,7 @@ class ImageForm extends Form
 
         // Add validation rules for the "file" field.
         $inputFilter->add([
-                'type'     => 'Zend\InputFilter\FileInput',
+                'type'     => 'Laminas\InputFilter\FileInput',
                 'name'     => 'file',
                 'required' => true,
                 'validators' => [
@@ -1138,8 +1138,8 @@ de código dentro de archivo:
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use Application\Form\ImageForm;
 
 // This controller is designed for managing image file uploads.
@@ -1505,13 +1505,13 @@ regresa la ruta a un archivo temporal que contiene la imagen miniatura.
 Luego, traemos la información sobre el archivo de imagen (su tipo MIME y tamaño)
 con el método `getImageFileInfo()` del servicio `ImageManager` (línea 24).
 
-Finalmente creamos el objeto @`Response`[Zend\Http\PhpEnvironment\Response],
+Finalmente creamos el objeto @`Response`[Laminas\Http\PhpEnvironment\Response],
 llenaremos su encabezado con la información
 de la imagen, colocaremos en su contenido los datos del archivo de imagen
-(líneas 32-45) y regresamos el objeto @`Response`[Zend\Http\PhpEnvironment\Response]
+(líneas 32-45) y regresamos el objeto @`Response`[Laminas\Http\PhpEnvironment\Response]
 desde la acción del controlador (línea 53).
 
-I> Nótese que al retornar el objeto @`Response`[Zend\Http\PhpEnvironment\Response]
+I> Nótese que al retornar el objeto @`Response`[Laminas\Http\PhpEnvironment\Response]
 I> se desactiva la impresión por
 I> defecto de la plantilla de vista para este método de acción. Por esta razón
 I> no creamos un archivo de plantilla de vista *file.phtml*.
@@ -1532,7 +1532,7 @@ Creamos el archivo `ImageControllerFactory.php` dentro de la subcarpeta
 namespace Application\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\ImageManager;
 use Application\Controller\ImageController;
 
@@ -1555,7 +1555,7 @@ class ImageControllerFactory implements FactoryInterface
 
 #### Registrar el ImageController
 
-Para que ZF3 conozca la existencia de nuestro controlador `ImageController` lo
+Para que Laminas conozca la existencia de nuestro controlador `ImageController` lo
 registramos en el archivo de configuración *module.config.php*.
 
 {line-numbers=off, lang=php}
@@ -1654,5 +1654,5 @@ T> *Form Demo* que se añade a este libro.
 
 La subida de archivos es una característica estándar de los formularios HTML.
 La subida de archivos se logra cambiando la codificación de contenido al tipo
-de codificación binaria. Zend Framework 3 nos provee de funcionalidades convenientes
+de codificación binaria. Laminas Framework nos provee de funcionalidades convenientes
 para subir archivos y validar los archivos subidos.

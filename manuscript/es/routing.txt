@@ -1,19 +1,19 @@
 ﻿# Routing {#routing}
 
 Cuando un usuario del sitio escribe una URL en el navegador web, la petición HTTP
-se envía finalmente a una acción en un controlador de nuestro sitio web basado en ZF3.
-En este capítulo aprenderemos como una aplicación basada en ZF3 hace corresponder
+se envía finalmente a una acción en un controlador de nuestro sitio web basado en Laminas.
+En este capítulo aprenderemos como una aplicación basada en Laminas hace corresponder
 una URL a una acción de nuestro controlador. La correspondencia se logra con la ayuda
-del routing. El routing se implementa como una parte del componente `Zend\Router`.
+del routing. El routing se implementa como una parte del componente `Laminas\Router`.
 
-ZF3 components covered in this chapter:
+Laminas components covered in this chapter:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Router`                  | Implementa el soporte para routing.                           |
+| `Laminas\Router`                  | Implementa el soporte para routing.                           |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Barcode`                 | Componente auxiliar que implementa código de barras.          |
+| `Laminas\Barcode`                 | Componente auxiliar que implementa código de barras.          |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Estructura de la URL
@@ -49,7 +49,7 @@ el carácter espacio se reemplaza por '%20').
 ## Tipos de rutas
 
 El *routing* es un mecanismo que permite hacer una correspondencia entre peticiones
-HTTP y acciones en el controlador. Con el routing ZF3 conoce cuales de los métodos
+HTTP y acciones en el controlador. Con el routing Laminas conoce cuales de los métodos
 del controlador ejecutar como resultad de la petición. Por ejemplo, podemos hacer
 corresponder la URL "http://localhost/" con el método `IndexController::indexAction()`
 y la URL "http://localhost/about" con el método `IndexController::aboutAction()`.
@@ -57,8 +57,8 @@ y la URL "http://localhost/about" con el método `IndexController::aboutAction()
 I> Nosotros definimos la correspondencia entre las URL y el controlador con la ayuda
 I> de *routes*.
 
-Existen varios tipos de rutas provistas por Zend Framework 3 (ver la tabla 5.1).
-Estos tipos de rutas se implementan como clases en el namespace `Zend\Router\Http`.
+Existen varios tipos de rutas provistas por Laminas Framework (ver la tabla 5.1).
+Estos tipos de rutas se implementan como clases en el namespace `Laminas\Router\Http`.
 
 {title="Table 5.1. Route Types"}
 |--------------------------------|---------------------------------------------------------------|
@@ -159,7 +159,7 @@ parte y así sucesivamente hasta el final de la cadena URL.
 ## Configuración del Routing
 
 Típicamente no creamos al pila de rutas (o árbol) nosotros mismos en su lugar le damos
-las instrucciones a ZF3 sobre como hacer esto.
+las instrucciones a Laminas sobre como hacer esto.
 
 La configuración del routing para un módulo se guarda en el archivo de configuración
 *module.config.php*:
@@ -169,7 +169,7 @@ The routing configuration for a module is stored in *module.config.php* configur
 {line-numbers=on, lang=php}
 ~~~
 <?php
-use Zend\Router\Http\TreeRouteStack;
+use Laminas\Router\Http\TreeRouteStack;
 
 return [
     //...
@@ -285,20 +285,20 @@ la llave `chain_routes` a la configuración de la ruta.
 
 T> Mirando los dos ejemplos de arriba no veremos el uso explicito de los tipos de
 T> ruta `Part` y `Chain` por que (para nuestra conveniencia) ellas son usadas automáticamente
-T> por ZF3 cuando encuentra las llaves `child_routes` y `chain_routes` en nuestra
+T> por Laminas cuando encuentra las llaves `child_routes` y `chain_routes` en nuestra
 T> configuración de routing.
 
-### Configuración por Defecto del Routing in Zend Skeleton Application
+### Configuración por Defecto del Routing in Laminas Skeleton Application
 
 Ahora que sabemos como configurar y organizar rutas en estructuras compuestas,
-vamos a mirar un ejemplo de la vida real. En una Zend Skeleton Application fresca
+vamos a mirar un ejemplo de la vida real. En una Laminas Skeleton Application fresca
 la configuración de routing se ve de la siguiente manera:
 
 {line-numbers=on, lang=php}
 ~~~
 <?php
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 
 return [
     'router' => [
@@ -379,7 +379,7 @@ de nuestro sitio web:
 ~~~
 
 La línea 2 de este ejemplo dice que el tipo de ruta *Literal*. El algoritmo exacto
-de comparación de ruta se implementa en la clase `Zend\Rotuter\Http\Literal`.
+de comparación de ruta se implementa en la clase `Laminas\Rotuter\Http\Literal`.
 
 La línea 4 define la cadena de ruta que se comparará contra la ruta URL (la barra '/'
 significa que la parte-URL está vacía). Cuando tenemos un tipo de ruta literal la
@@ -436,9 +436,9 @@ ruta tipo *Segment* para relacionar la acción con una URL como
 "http://localhost/barcode/&lt;type&gt;/&lt;label&gt;".
 
 I> Para ser capaces de usar códigos de barra necesitamos instalar el componente
-I> `Zend\Barcode`, usando Composer escribimos el siguiente comando:
+I> `Laminas\Barcode`, usando Composer escribimos el siguiente comando:
 I>
-I> `php composer.phar require zendframework/zend-barcode`
+I> `php composer.phar require laminas/laminas-barcode`
 
 W> Debemos saber que para que las imágenes de los códigos de barra funcionen
 W> necesitamos tener instalada y activada la extensión del motor de PHP GD[^gd].
@@ -494,7 +494,7 @@ Luego, agregamos el método `barcodeAction()` dentro de la clase `IndexControlle
 {line-numbers=on, lang=php}
 ~~~
 // Add name alias in the beginning of the file
-use Zend\Barcode\Barcode;
+use Laminas\Barcode\Barcode;
 
 // ...
 
@@ -527,14 +527,14 @@ ruta. Hacemos esto con la ayuda del método `fromRoute()` del complemento contro
 `Params`. Análogamente al método `fromQuery()` este toma dos argumentos: el nombre de
 la variable y su valor por defecto.
 
-Para generar la imagen de código de barras usamos el componente `Zend\Barcode`.
+Para generar la imagen de código de barras usamos el componente `Laminas\Barcode`.
 En la línea 14 definimos la etiqueta de texto para el código de barras. En las líneas
 18-19 creamos el objeto `Barcode` con el método `factory`. Finalmente, en la línea
 23 creamos la imagen dirigiéndola a un flujo de salida PHP.
 
-I> `Zend\Barcode` es un componente auxiliar usado para generar diferentes imágenes
+I> `Laminas\Barcode` es un componente auxiliar usado para generar diferentes imágenes
 I> de código de barras. Para información adicional sobre este componente podemos
-I> revisar la sección correspondiente del manual de referencia de Zend Framework.
+I> revisar la sección correspondiente del manual de referencia de Laminas Framework.
 
 En la línea 26 regresamos el objeto `Response` para evitar que se genere la vista
 por defecto.
@@ -613,7 +613,7 @@ La linea 9 contiene la opción `spec` que es usada por la ruta para generar URLs
 
 I> No olvidemos agregar la siguiente línea al comienzo del archivo `module.config.php`:
 I>
-I> `user Zend\Router\Http\Regex;`
+I> `user Laminas\Router\Http\Regex;`
 
 Luego, agregamos la siguiente acción a la clase `IndexController`:
 
@@ -644,7 +644,7 @@ la captura llamada "page" de nuestra expresión regular?) y la guardamos en la v
 `$pageTemplate`. Usaremos la variable `$pageTemplate` para determinar el nombre del
 plantilla de la vista que se pasará al view resolver. Luego, en las líneas 6-10 revisamos
 si el archivo existe y si no regresamos el código de estado 404 "Not Found" que
-forzará que ZF3 muestre la página de error. En la línea 12 creamos el contenedor
+forzará que Laminas muestre la página de error. En la línea 12 creamos el contenedor
 de la variable `ViewModel` y en la línea 15 colocamos el nombre del plantilla de la
 vista que se mostrará.
 
@@ -858,11 +858,11 @@ public function someAction()
 ### Recuperar la RouteMatch y el Router Object
 
 Cuando una ruta coincide, la clase router crea internamente una instancia de la clase
-`Zend\Router\RouteMatch` que provee los métodos para extraer el nombre de la ruta
+`Laminas\Router\RouteMatch` que provee los métodos para extraer el nombre de la ruta
 coincidente y los parámetros extraídos de la ruta. Los métodos útiles de la clase
 `RouteMatch` se listan en la tabla 5.3:
 
-{title="Tabla 5.3. Métodos de la clase Zend\Router\RouteMatch"}
+{title="Tabla 5.3. Métodos de la clase Laminas\Router\RouteMatch"}
 |--------------------------------|---------------------------------------------------------------|
 | *Nombre del Método*            | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
@@ -900,7 +900,7 @@ public function someAction()
 
 En la línea 5 del código de arriba usamos el método `getEvent()` de la clase base
 `AbstractActionController` para recuperar el objeto `MvcEvent` que representa
-el evento (en ZF3 el ciclo de vida de la aplicación consiste en eventos). Nosotros
+el evento (en Laminas el ciclo de vida de la aplicación consiste en eventos). Nosotros
 usamos el método `getRouteMatch()` de la clase `MvcEvent` para recuperar el
 objeto `RouteMatch`.
 
@@ -1150,7 +1150,7 @@ Desafortunadamente este enlace no es útil por que no coincidirá con nuestra ru
 
 ## Escribir nuestra Propia Ruta
 
-Aunque ZF3 nos provee de muchos tipos de rutas, en algunas situaciones, necesitaremos
+Aunque Laminas nos provee de muchos tipos de rutas, en algunas situaciones, necesitaremos
 escribir nuestro propio tipo de ruta.
 
 Un ejemplo en el que necesitamos un tipo de ruta a la medida es cuando tenemos que
@@ -1164,7 +1164,7 @@ documentos los guarda el administrador del sistema y no el programador.
 
 ### RouteInterface
 
-Sabemos que cada clase ruta debe implementar la interface `Zend\Router\Http\RouteInterface`.
+Sabemos que cada clase ruta debe implementar la interface `Laminas\Router\Http\RouteInterface`.
 Los métodos de esta interface se presenta en al tabla 5.4:
 
 {title="Tabla 5.4. Métodos RouteInterface"}
@@ -1180,7 +1180,7 @@ Los métodos de esta interface se presenta en al tabla 5.4:
 | `getAssembledParams()`         | Método para recuperar los parámetros que fueron utilizados en la generación de la URL. |
 |--------------------------------|---------------------------------------------------------------|
 
-El método estático `factory()` es usado por el router de ZF3 (`TreeRouteStack` or `SimpleRouteStack`)
+El método estático `factory()` es usado por el router de Laminas (`TreeRouteStack` or `SimpleRouteStack`)
 para instanciar la clase ruta. El router pasa el arreglo `options` como un argumento
 al método `factory()`.
 
@@ -1240,11 +1240,11 @@ Dentro del archivo pegamos este pedazo de código:
 namespace Application\Route;
 
 use Traversable;
-use \Zend\Router\Exception;
-use \Zend\Stdlib\ArrayUtils;
-use \Zend\Stdlib\RequestInterface as Request;
-use \Zend\Router\Http\RouteInterface;
-use \Zend\Router\Http\RouteMatch;
+use \Laminas\Router\Exception;
+use \Laminas\Stdlib\ArrayUtils;
+use \Laminas\Stdlib\RequestInterface as Request;
+use \Laminas\Router\Http\RouteInterface;
+use \Laminas\Router\Http\RouteMatch;
 
 // Custom route that serves "static" web pages.
 class StaticRoute implements RouteInterface
@@ -1450,7 +1450,7 @@ class StaticRoute implements RouteInterface
 ~~~
 
 En el código de arriba vemos que el método `match()` toma dos argumentos: el objeto
-de la petición HTTP (una instancia de la clase `Zend\Stdlib\Request`) y la ruta offset
+de la petición HTTP (una instancia de la clase `Laminas\Stdlib\Request`) y la ruta offset
 URL. El objeto de la petición se usa para conseguir la URL de la petición (línea 17).
 El parámetro de ruta offset es un entero positivo que apunta a la porción de la URL
 contra la que se compara la ruta (línea 21).

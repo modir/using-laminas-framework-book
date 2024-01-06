@@ -7,21 +7,21 @@ como implementar un control de acceso basado en roles, en ingles *Role-Based
 Access Control (RBAC)*. Con un RBAC podemos permitir o rechazar el acceso a
 determinados usuarios a determinadas páginas en base a *roles* y *permisos*.
 
-Como ya conocemos mucho sobre ZF3 a partir de los capítulos anteriores, en este
+Como ya conocemos mucho sobre Laminas a partir de los capítulos anteriores, en este
 capítulo omitiremos la discusión de algunas cosas obvias y nos concentraremos
 solamente en los conceptos importantes. Es recomendable que revisemos el ejemplo
 *Role Demo* que se añade a este libro que es un sitio web completo que podemos
 ejecutar y ver todo en acción. Todo el código que mostramos en este capítulo es
 parte de la aplicación de ejemplo.
 
-Los componentes de ZF3 cubiertos en este capítulo son:
+Los componentes de Laminas cubiertos en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Permissions\Rbac`        | Provee un contenedor que implementa RBAC.                     |
+| `Laminas\Permissions\Rbac`        | Provee un contenedor que implementa RBAC.                     |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Cache`                   | Provee la funcionalidad para guardar datos en cache.          |
+| `Laminas\Cache`                   | Provee la funcionalidad para guardar datos en cache.          |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Obtener el ejemplo de gestión de roles del GitHub
@@ -32,7 +32,7 @@ Como demostración en este capítulo crearemos un sitio web realista. El sitio w
   * Implementar roles y permisos en nuestro sitio web.
   * Organizar los roles en la base de datos con una jerarquía.
   * Gestionar roles y permisos desde una interfaz de usuario.
-  * Usar el componente `Zend\Permissions\Rbac` para implementar el control de
+  * Usar el componente `Laminas\Permissions\Rbac` para implementar el control de
     acceso basado en roles.
   * Usar aserciones dinámicas para implementar reglas de control de acceso.
 
@@ -40,7 +40,7 @@ El ejemplo *Role Demo* se basará en el ejemplo *User Demo* que creamos en el
 capítulo anterior.
 
 Para descargar la aplicación *Role Demo* debemos visitar
-[esta página](https://github.com/olegkrivtsov/using-zf3-book-samples) y hacer
+[esta página](https://github.com/olegkrivtsov/using-laminas-book-samples) y hacer
 clic en el botón *Clone or Download* para descargar el código como un archivo
 ZIP. Cuando la descarga se completa, descomprimimos el archivo en alguna carpeta.
 
@@ -49,7 +49,7 @@ aplicación web *Role Demo*:
 
 {line-numbers=off,lang=text}
 ~~~
-/using-zf3-book-samples
+/using-laminas-book-samples
   /roledemo
   ...
 ~~~
@@ -61,14 +61,14 @@ I> puede encontrar en el archivo *README.md* ubicado en la carpeta del ejemplo.
 
 ## Introducción a RBAC
 
-ZF3 provee un componente especial llamado `Zend\Permissions\Rbac` que implementa
+Laminas provee un componente especial llamado `Laminas\Permissions\Rbac` que implementa
 un contenedor para roles y permisos.
 
-Para instalar el componente `Zend\Permissions\Rbac` en nuestra aplicación web,
+Para instalar el componente `Laminas\Permissions\Rbac` en nuestra aplicación web,
 escribimos el siguiente comando.
 
 ```
-php composer.phar require zendframework/zend-permissions-rbac
+php composer.phar require laminas/laminas-permissions-rbac
 ```
 
 ### Roles y permisos
@@ -132,8 +132,8 @@ el rol *Administrator* tendría asignado el permiso `post.delete`.
 
 ### Contenedor RBAC
 
-En ZF3, podemos usar la clase `Rbac` que vive en el espacio de nombres
-`Zend\Permissions\Rbac` como un contenedor simple para nuestros roles y
+En Laminas, podemos usar la clase `Rbac` que vive en el espacio de nombres
+`Laminas\Permissions\Rbac` como un contenedor simple para nuestros roles y
 permisos. Con este contenedor, guardamos nuestros roles en memoria organizados
 en una jerarquía y con permisos asignados.
 
@@ -142,7 +142,7 @@ con roles y permisos:
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 
 // Create Rbac container.
 $rbac = new Rbac();
@@ -264,7 +264,7 @@ manera:
 <?php
 namespace Application\Service;
 
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 use User\Entity\User;
 
 /**
@@ -280,7 +280,7 @@ class RbacAssertionManager
 
     /**
      * Auth service.
-     * @var Zend\Authentication\AuthenticationService
+     * @var Laminas\Authentication\AuthenticationService
      */
     private $authService;
 
@@ -504,7 +504,7 @@ class Role
     {
         return $this->permissions;
     }
-    
+
     public function addParent(Role $role)
     {
         if ($this->getId() == $role->getId()) {
@@ -1054,12 +1054,12 @@ I> jerarquía de roles precomputada en un archivo puede ser más rápido.
 ### Configurar la caché
 
 Primero, vamos a configurar la memoria cache. Para hacer esto, necesitamos
-instalar los componentes `Zend\Cache` y `Zend\Serializer` con los siguientes
+instalar los componentes `Laminas\Cache` y `Laminas\Serializer` con los siguientes
 comandos:
 
 ~~~
-php composer.phar require zendframework/zend-cache
-php composer.phar require zendframework/zend-serializer
+php composer.phar require laminas/laminas-cache
+php composer.phar require laminas/laminas-serializer
 ~~~
 
 Finalmente, editar el archivo *config/autoload/global.php* y agregar las siguientes
@@ -1067,7 +1067,7 @@ líneas:
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Cache\Storage\Adapter\Filesystem;
+use Laminas\Cache\Storage\Adapter\Filesystem;
 
 return [
     //...
@@ -1100,7 +1100,7 @@ Esto permitirá usar la caché `Filesystem` y guardar los datos en la carpeta
 *APP_DIR/data/cache*.
 
 T> Si queremos aprender más sobre la caché, podemos ver la documentación del
-T> componente de ZF3 `Zend\Cache`.
+T> componente de Laminas `Laminas\Cache`.
 
 ### Escribir el servicio RbacManager
 
@@ -1145,8 +1145,8 @@ se muestra abajo.
 <?php
 namespace User\Service;
 
-use Zend\Permissions\Rbac\Rbac;
-use Zend\Permissions\Rbac\Role as RbacRole;
+use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role as RbacRole;
 use User\Entity\User;
 use User\Entity\Role;
 use User\Entity\Permission;
@@ -1164,19 +1164,19 @@ class RbacManager
 
     /**
      * RBAC service.
-     * @var Zend\Permissions\Rbac\Rbac
+     * @var Laminas\Permissions\Rbac\Rbac
      */
     private $rbac;
 
     /**
      * Auth service.
-     * @var Zend\Authentication\AuthenticationService
+     * @var Laminas\Authentication\AuthenticationService
      */
     private $authService;
 
     /**
      * Filesystem cache.
-     * @var Zend\Cache\Storage\StorageInterface
+     * @var Laminas\Cache\Storage\StorageInterface
      */
     private $cache;
 
@@ -1288,7 +1288,7 @@ class RbacManager
                         return true;
                 }
             }
-            
+
             $parentRoles = $role->getParentRoles();
             foreach ($parentRoles as $parentRole) {
                 if ($this->rbac->isGranted($parentRole->getName(), $permission)) {
@@ -1311,7 +1311,7 @@ namespace User\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use User\Service\RbacManager;
-use Zend\Authentication\AuthenticationService;
+use Laminas\Authentication\AuthenticationService;
 
 /**
  * This is the factory class for RbacManager service. The purpose of the factory
@@ -1325,7 +1325,7 @@ class RbacManagerFactory
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        $authService = $container->get(\Zend\Authentication\AuthenticationService::class);
+        $authService = $container->get(\Laminas\Authentication\AuthenticationService::class);
         $cache = $container->get('FilesystemCache');
 
         $assertionManagers = [];
@@ -1556,8 +1556,8 @@ página *No está autorizado*.
 <?php
 namespace User;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
 use User\Controller\AuthController;
 use User\Service\AuthManager;
 
@@ -1638,7 +1638,7 @@ del módulo *User*:
 <?php
 namespace User\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
  * This controller plugin is used for role-based access control (RBAC).
@@ -1672,7 +1672,7 @@ La fábrica del complemento `Access` tiene el contenido siguiente:
 namespace User\Controller\Plugin\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Service\RbacManager;
 use User\Controller\Plugin\AccessPlugin;
 
@@ -1733,7 +1733,7 @@ fuente del módulo *User*:
 <?php
 namespace User\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * This view helper is used to check user permissions.
@@ -1762,7 +1762,7 @@ La fábrica para el ayudante de vista `Access` tiene el siguiente código:
 namespace User\View\Helper\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Service\RbacManager;
 use User\View\Helper\Access;
 
@@ -1861,7 +1861,7 @@ que la subllave permita el acceso a la página a:
    por una dirección de correo electrónico.
  * A cualquier usuario autenticado con un permiso dado si se especifica un
    signo de suma acompañado con un permiso, `+permission`,
- 
+
 Si nuestro sitio web tiene algunas aserciones dinámicas podemos extender el
 método `assert()` de la clase `RbacAssertionManager` que ya existe (o escribir
 y registrar nuestro propio gestor de aserciones):
@@ -1908,7 +1908,7 @@ if ($this->access('profile.own.view', ['user'=>$user))) {
 ## Resumen
 
 En este capítulo implementamos el sitio web *Role Demo* que muestra como usar
-roles y permisos en ZF3.
+roles y permisos en Laminas.
 
 Un role es básicamente un grupo de usuario. Un usuario puede estar asignado a
 uno o varios roles al mismo tiempo.

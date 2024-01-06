@@ -2,31 +2,31 @@
 
 En un capítulo anterior aprendimos el uso básico de los formularios: que son
 los formulario HTML, como definir un modelo de formulario y la representación
-de formulario en Zend Framework 3. En este capítulo, aprenderemos algunos
+de formulario en Laminas Framework. En este capítulo, aprenderemos algunos
 temas avanzados sobre formularios tales como elementos de seguridad (CAPTCHA
 y CSRF).
 
-Los componentes de ZF3 discutidos en este capítulo son:
+Los componentes de Laminas discutidos en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Captcha`                 | Implementa varios algoritmos CAPTCHA.                         |
+| `Laminas\Captcha`                 | Implementa varios algoritmos CAPTCHA.                         |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Form`                    | Contiene las clases básicas para los modelos de formulario.   |
+| `Laminas\Form`                    | Contiene las clases básicas para los modelos de formulario.   |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Filter`                  | Contiene varias clases de filtro.                             |
+| `Laminas\Filter`                  | Contiene varias clases de filtro.                             |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Validator`               | Implementa varias clases de validación.                       |
+| `Laminas\Validator`               | Implementa varias clases de validación.                       |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\InputFilter`             | Implementa un contenedor para filtros y validadores.          |
+| `Laminas\InputFilter`             | Implementa un contenedor para filtros y validadores.          |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Elementos de seguridad para formularios
 
 Consideraremos el uso de dos elementos de seguridad para formularios que
-provee Zend Framework 3: `Captcha` y `Csrf` (ambas clases pertenecen
-al espacio de nombre `Zend\Form\Element`). Agregando estos elementos a
+provee Laminas Framework: `Captcha` y `Csrf` (ambas clases pertenecen
+al espacio de nombre `Laminas\Form\Element`). Agregando estos elementos a
 nuestro modelo de formulario (e imprimiéndolos en una plantilla de vista),
 haremos a nuestro formulario resistente a ataques que crackers.
 
@@ -66,8 +66,8 @@ I> computarizada).
 
 #### Tipos de CAPTCHA
 
-En Zend Framework 3, existen varios tipos de CAPTCHA disponibles, todos ellos
-pertenecen al componente `Zend\Captcha`:
+En Laminas Framework, existen varios tipos de CAPTCHA disponibles, todos ellos
+pertenecen al componente `Laminas\Captcha`:
 
  * *Dumb.* Este es un algoritmo CAPTCHA muy simple que requiere que el usuario
    del sitio escriba las letras de una palabra en orden inverso. Aquí, no
@@ -81,7 +81,7 @@ pertenecen al componente `Zend\Captcha`:
    algoritmo de distorsión de imágenes. FIGlet es un programa de software libre
    que genera la imagen CAPTCHA de muchas pequeñas letras ASCII (figura 11.1, b).
 
-El componente `Zend\Captcha` provee una interfaz unificada para todos los tipos
+El componente `Laminas\Captcha` provee una interfaz unificada para todos los tipos
 de CAPTCHA, la interfaz `AdapterInterface`. La clase base `AbstractAdapter`
 implementa esta interfaz y todos los otros algoritmos CAPTCHA se derivan
 de la clase adaptadora abstracta [^adapter]. El diagrama de herencia de clase
@@ -104,27 +104,27 @@ de caracteres y para ajustar la opciones de generación de palabras.
 
 #### El elemento CAPTCHA para formularios y el ayudante de vista
 
-ZF3 provee una clase de elemento de formulario dedicada y una clase ayudante de
+Laminas provee una clase de elemento de formulario dedicada y una clase ayudante de
 vista que nos permite usar campos CAPTCHA en nuestros formularios.
 
 Para añadir un campo CAPTCHA a un modelo de formulario usamos la clase `Captcha`
-que pertenece al componente `Zend\Form` y vive en el espacio de nombres
-`Zend\Form\Element`.
+que pertenece al componente `Laminas\Form` y vive en el espacio de nombres
+`Laminas\Form\Element`.
 
 La clase de elemento `Captcha` se puede usar con cualquier algoritmo CAPTCHA
-del componente `Zend\Captcha` (listados en la sección anterior). Por
+del componente `Laminas\Captcha` (listados en la sección anterior). Por
 esta razón, la clase de elemento tiene el método `setCaptcha()` que toma una
-instancia de una clase que implementa la interfaz `Zend\Captcha\AdapterInterface`
+instancia de una clase que implementa la interfaz `Laminas\Captcha\AdapterInterface`
 o una arreglo que contiene la configuración para el CAPTCHA [^array]. Con el
 método `setCaptcha()` podemos asociar el tipo de CAPTCHA deseado al elemento.
 
 [^array]: En el último caso (arreglo de configuración), el algoritmo del CAPTCHA
           será instanciado automáticamente e inicializado por la clase fábrica
-          `Zend\Captcha\Factory`.
+          `Laminas\Captcha\Factory`.
 
 Agregamos el elemento `Captcha` al modelo de formulario de la manera acostumbrada,
-con el método `add()` que provee la clase base `Zend\Form\Form`. Como sabemos,
-podemos pasarle una instancia de la clase `Zend\Form\Element\Captcha` o un
+con el método `add()` que provee la clase base `Laminas\Form\Form`. Como sabemos,
+podemos pasarle una instancia de la clase `Laminas\Form\Element\Captcha` o un
 arreglo especificando las opciones de configuración para un determinado algoritmo
 de CAPTCHA (en este caso, el elemento y su algoritmo CAPTCHA asociado serán
 automáticamente instanciados y configurados por la clase fábrica).
@@ -155,17 +155,17 @@ En el ejemplo de arriba llamamos al método `add()` que provee la clase base
 `Form` y le pasamos un arreglo que describe al elemento que se insertará (línea 3):
 
  * La llave `type` del arreglo (línea 4), como es usual, puede ser el nombre completo
-   de la clase (`Zend\Form\Element\Captcha`) o su alias («captcha»).
+   de la clase (`Laminas\Form\Element\Captcha`) o su alias («captcha»).
  * La llave `name` (línea 5) es el valor para el atributo «name» del campo del
    formulario HTML.
  * La llave `options` contiene el algoritmo CAPTCHA asociado.
    La llave `class` (línea 9) puede contener el nombre completo de la clase CAPTCHA
-   (ejemplo, `Zend\Captcha\Image`) o su alias (por ejemplo, «Image»). Otras opciones
+   (ejemplo, `Laminas\Captcha\Image`) o su alias (por ejemplo, «Image»). Otras opciones
    específicas de cada adaptador se pueden agregar a la llave. Mostraremos como
    hacer esto un poco más tarde.
 
 Para generar el código HTML para el elemento podemos usar la clase ayudante de
-vista (que pertenece al espacio de nombres `Zend\Form\View\Helper`). Pero, como
+vista (que pertenece al espacio de nombres `Laminas\Form\View\Helper`). Pero, como
 aprendimos en el capítulo previo generalmente usamos el ayudante de vista
 genérico, de la manera que se muestra más abajo:
 
@@ -178,7 +178,7 @@ Aquí estamos suponiendo que se llama al ayudante de vista dentro de la plantill
 de vista.
 
 A continuación daremos dos ejemplos que ilustran como usar tipos de CAPTCHA
-diferentes con ZF3: `Image` y `Figlet`. Mostraremos como agregar el campo CAPTCHA
+diferentes con Laminas: `Image` y `Figlet`. Mostraremos como agregar el campo CAPTCHA
 al formulario de contacto que usamos como ejemplo en capítulos anteriores.
 
 #### Ejemplo 1: Agregar la Imagen CAPTCHA al ContactForm
@@ -235,7 +235,7 @@ los siguientes parámetros de configuración para el algoritmo de CAPTCHA de la
 clase `Image` que esta asociado al elemento del formulario:
 
  * El parámetro `class` (línea 21) debe ser el nombre completo de la clase
-   adaptadora CAPTCHA (`\Zend\Captcha\Image`) o su alias (`Image`).
+   adaptadora CAPTCHA (`\Laminas\Captcha\Image`) o su alias (`Image`).
 
  * El parámetro `imgDir` (línea 22) debe ser la ruta a la carpeta donde se guardan
    las imágenes distorsionadas generadas (en este ejemplo, guardaremos las imágenes
@@ -312,7 +312,7 @@ se muestra, más abajo, en la figura 11.3.
 Cuando llenamos los campos del formulario y presionamos el botón *Submit*
 las letras escritas en el campo *Human check* serán transferidos al servidor
 como parte de la petición HTTP. Luego en la validación del formulario, la clase
-`Zend\Form\Element\Captcha` comparará las letras subidas con las que están
+`Laminas\Form\Element\Captcha` comparará las letras subidas con las que están
 guardadas en la sesión de PHP. Si las letras son idénticas el formulario se
 considera valido de lo contrario la validación del formulario falla.
 
@@ -363,7 +363,7 @@ los siguiente parámetros para la configuración del algoritmo CAPTCHA `Figlet`
 asociado al elemento del formulario:
 
  * El parámetro `class` (línea 11) debe ser el nombre completo de la clase
-   adaptadora CAPTCHA (`\Zend\Captcha\Figlet`) o su alias (`FIGlet`).
+   adaptadora CAPTCHA (`\Laminas\Captcha\Figlet`) o su alias (`FIGlet`).
 
  * El parámetro `wordLen` (línea 12) define la longitud de la palabra secreta
    que se generará.
@@ -468,8 +468,8 @@ I> token no está guardado en las *cookies*.
 
 #### Ejemplo: Agregar un elemento CSRF al formulario
 
-En Zend Framework 3, para agregar protección CSRF a nuestro modelo de formulario
-usamos la clase de elemento de formulario `Zend\Form\Element\Csrf`.
+En Laminas Framework, para agregar protección CSRF a nuestro modelo de formulario
+usamos la clase de elemento de formulario `Laminas\Form\Element\Csrf`.
 
 I> El elemento `Csrf` no tiene una representación visual (no lo veremos en la
 I> pantalla).
@@ -496,14 +496,14 @@ un arreglo de configuración describiendo el elemento CSRF. El elemento será
 instanciado automáticamente e inicialiazado por la fábrica.
 
 En la línea 3, especificamos el nombre de la clase para el elemento CSRF. Este
-puede ser el nombre completo de la clase (`Zend\Form\Element\Csrf`) o su
+puede ser el nombre completo de la clase (`Laminas\Form\Element\Csrf`) o su
 alias («csrf»).
 
 En la línea 4, colocamos el atributo «name» para el elemento. En este ejemplo,
 usamos el nombre «csrf» pero podemos usar cualquier otro nombre que elijamos.
 
 En la línea 6, dentro del arreglo `csrf_options`, especificamos las opciones
-específicas para la clase `Zend\Form\Element\Csrf`. Colocamos la opción
+específicas para la clase `Laminas\Form\Element\Csrf`. Colocamos la opción
 `timeout` en 600 (ver línea 7), que significa que la revisión CSRF expira
 en 600 segundos (10 minutos) después de su creación.
 
@@ -599,7 +599,7 @@ T> «http://localhost/payment» en nuestro navegador.
 ## Implementar formulario multi-pasos {#multi-step-forms}
 
 En esta sección mostraremos como implementar un formulario *multi-pasos* con
-ZF3. Un formulario multi-pasos es un formulario que tiene muchos campos y que
+Laminas. Un formulario multi-pasos es un formulario que tiene muchos campos y que
 se muestra en varios pasos. Para guardar el paso actual y los datos ingresados
 por el usuario entre las peticiones a las páginas se utilizan las *sesiones*
 de PHP.
@@ -626,7 +626,7 @@ T> ejemplo *Form Demo* que se distribuye junto a este libro.
 T> Si somos nuevos en las características de sesión de PHP podemos revisar
 T> [Trabajar con sesiones](#session) antes de leer esta sección.
 
-El soporte para sesiones se implementa en el componente `Zend\Session`, por lo
+El soporte para sesiones se implementa en el componente `Laminas\Session`, por lo
 que debemos instalarlo si aún no lo hemos hecho antes.
 
 Primero, modificamos el archivo de configuración *APP_DIR/config/global.php*
@@ -635,9 +635,9 @@ de la siguiente manera:
 {line-numbers=off,lang=php}
 ~~~
 <?php
-use Zend\Session\Storage\SessionArrayStorage;
-use Zend\Session\Validator\RemoteAddr;
-use Zend\Session\Validator\HttpUserAgent;
+use Laminas\Session\Storage\SessionArrayStorage;
+use Laminas\Session\Validator\RemoteAddr;
+use Laminas\Session\Validator\HttpUserAgent;
 
 return [
     // Session configuration.
@@ -696,8 +696,8 @@ en la carpeta *Form* que está dentro de la carpeta fuente del módulo *Applicat
 <?php
 namespace Application\Form;
 
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
 use Application\Validator\PhoneValidator;
 
 /**
@@ -955,7 +955,7 @@ class RegistrationForm extends Form
                         [
                             'name' => 'EmailAddress',
                             'options' => [
-                                'allow' => \Zend\Validator\Hostname::ALLOW_DNS,
+                                'allow' => \Laminas\Validator\Hostname::ALLOW_DNS,
                                 'useMxCheck'    => false,
                             ],
                         ],
@@ -1163,10 +1163,10 @@ esto, creamos el archivo *RegistrationController.php* dentro de la carpeta
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use Application\Form\RegistrationForm;
-use Zend\Session\Container;
+use Laminas\Session\Container;
 
 /**
  * This is the controller class displaying a page with the User Registration form.
@@ -1178,7 +1178,7 @@ class RegistrationController extends AbstractActionController
 {
     /**
      * Session container.
-     * @var Zend\Session\Container
+     * @var Laminas\Session\Container
      */
     private $sessionContainer;
 
@@ -1304,7 +1304,7 @@ Colocamos el siguiente código dentro del archivo:
 namespace Application\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Controller\RegistrationController;
 
 /**
@@ -1612,7 +1612,7 @@ T> distribuye junto a este libro.
 En este capítulo discutimos sobre algunas de las capacidades avanzadas de uso
 del formulario.
 
-Zend Framework 3 provee dos clases cuyo propósito es aumentar la seguridad del
+Laminas Framework provee dos clases cuyo propósito es aumentar la seguridad del
 formulario: `Captcha` y `Csrf`. Un CAPTCHA es un tipo de prueba basada en una
 pregunta de desafío que se usa para determinar si el usuario es o no un humano.
 Los elementos CAPTCHA se usan en los formularios para prevenir su envío por

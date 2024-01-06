@@ -10,33 +10,33 @@ I> arbitrarios. Por ejemplo, los filtros se pueden usar en una acción del contr
 I> para transformar los datos pasados por las variables GET y/o POST a un determinado
 I> formato.
 
-Los componentes de ZF3 que se abarcan en este capítulo son:
+Los componentes de Laminas que se abarcan en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Filter`                  | Contiene varias clases de filtros.                            |
+| `Laminas\Filter`                  | Contiene varias clases de filtros.                            |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\InputFilter`             | Implementa un contenedor para filtros/validadores.            |
+| `Laminas\InputFilter`             | Implementa un contenedor para filtros/validadores.            |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Sobre los Filtros
 
 Los filtros están diseñados para tomar algunos datos, procesarlos y producir algunos
-datos de salida. Zend Framework 3 provee varios filtros estándar que se pueden
+datos de salida. Laminas Framework provee varios filtros estándar que se pueden
 usar para crear reglas de filtrado para nuestros formularios (o si lo deseamos
 para filtrar datos arbitrarios fuera de los formularios).
 
 ### FilterInterface
 
 Técnicamente un *filtro* es una clase PHP que implementa la interfaz `FilterInterface`
-que pertenece al namespace `Zend\Filter`. La definición de la interfaz se presenta
+que pertenece al namespace `Laminas\Filter`. La definición de la interfaz se presenta
 más abajo:
 
 {line-numbers=on, lang=php}
 ~~~
 <?php
-namespace Zend\Filter;
+namespace Laminas\Filter;
 
 interface FilterInterface
 {
@@ -56,7 +56,7 @@ T> métodos que permiten configurar el filtro (colocar las opciones del filtro).
 ## Vista General de los Filtros Estándar
 
 Los filtros estándares que implementan la interfaz `FilterInterface` pertenecen al
-espacio de nombres `Zend\Filter` [^standard_filters]. Un diagrama de herencia de la
+espacio de nombres `Laminas\Filter` [^standard_filters]. Un diagrama de herencia de la
 clase de filtrado se muestra en la figura 8.1. En esta figura se puede ver que
 la clase concreta base para la mayoría de los filtros es la clase `AbstractFilter`
 que implementa la interfaz `FilterInterface` [^filter_inheritance].
@@ -64,12 +64,12 @@ que implementa la interfaz `FilterInterface` [^filter_inheritance].
 ![Figura 8.1. Herencia de la clase Filter](../en/images/filters/filter_inheritance.png)
 
 [^standard_filters]: En esta sección solo consideramos los filtros estándares que
-                     pertenecen al namespace `Zend\Filter` aunque existen otros
+                     pertenecen al namespace `Laminas\Filter` aunque existen otros
                      filtros que se pueden considerar estándares también. Por
-                     ejemplo, el namespace `Zend\Filter\File` contiene varios
+                     ejemplo, el namespace `Laminas\Filter\File` contiene varios
                      filtros que se aplican cuando se procesa la carga de archivos
                      (estos filtros serán cubiertos en el próximo capítulo).
-                     Además, el componente `Zend\I18n` define varias clases de
+                     Además, el componente `Laminas\I18n` define varias clases de
                      filtros para la configuración regional del usuario.
 
 [^filter_inheritance]: En la figura 8.1 podemos notar que hay varios filtros base
@@ -86,7 +86,7 @@ I> de la clase base `AbstractFilter`. Esto es porque la clase `StaticFilter`
 I> es realmente un "envoltorio", ella esta diseñada para ser un procurador (proxy)
 I> de otro filtro sin su instanciación explicita).
 
-Los filtros estándares que provee el componente `Zend\Filter` junto con una breve
+Los filtros estándares que provee el componente `Laminas\Filter` junto con una breve
 descripción para cada uno se muestran en la tabla 8.1.
 
 Como podemos ver en la tabla los filtros estándar se pueden dividir a grandes
@@ -176,7 +176,7 @@ rasgos en los siguientes grupos:
 
 ## Instanciar un filtro
 
-En Zend Framework 3 podemos usar varios métodos para crear un filtro:
+En Laminas Framework podemos usar varios métodos para crear un filtro:
 
  * Instanciandolo manualmente (con el operador `new`).
  * Creándolo con una clase fábrica (pasando un arreglo de configuración),
@@ -239,7 +239,7 @@ filtrado de un valor.
 ~~~
 <?php
 // Optionally, define a short alias for the filter class name.
-use Zend\Filter\StringTrim;
+use Laminas\Filter\StringTrim;
 
 // Create an instance of the filter, passing options to the constructor.
 $filter = new StringTrim(['charlist'=>"\r\n\t "]);
@@ -267,7 +267,7 @@ para que sea limpiada. La salida esperada de esta llamada es la cadena "name@exa
 ~~~
 <?php
 // Optionally, define a short alias for the filter class name.
-use Zend\Filter\StringTrim;
+use Laminas\Filter\StringTrim;
 
 // Create an instance of the filter.
 $filter = new StringTrim();
@@ -308,7 +308,7 @@ a su método `filter()`:
 ~~~
 <?php
 // Create and execute the StringTrim filter through the StaticFilter proxy.
-$filteredValue = \Zend\Filter\StaticFilter::execute(' name@example.com  ',
+$filteredValue = \Laminas\Filter\StaticFilter::execute(' name@example.com  ',
                         'StringTrim', ['charlist' => "\r\n\t "]);
 
 // The expected output of the filter is the 'name@example.com' string.
@@ -363,7 +363,7 @@ cadena de filtros siguiendo el orden en que ellos aparecen en la lista.
 
 La configuración de un filtro consiste generalmente en el `name` (línea 9) y
 las `options` (línea 10). El `name` corresponde al nombre completo de la clase
-filtro (ejemplo, `Zend\Filter\StringTrim`) o su alias (`StringTrim`). Las `options`
+filtro (ejemplo, `Laminas\Filter\StringTrim`) o su alias (`StringTrim`). Las `options`
 son un arreglo que se compone de las opciones especificas para el filtro seleccionado.
 Cuando una clase fábrica instancia al filtro esta pasa la lista de opciones al
 método constructor del filtro y el constructor inicializa el filtro.
@@ -377,7 +377,7 @@ filtros estándares se definen en la clase `FilterPluginManager`.
 I> La clase `FilterPluginManager` define los alias para los filtros estándares.
 
 El alias de un filtro estándar es generalmente el mismo que el nombre de la clase.
-Por ejemplo, la clase `Zend\Filter\StringTrim` tiene el alias `StringTrim`.
+Por ejemplo, la clase `Laminas\Filter\StringTrim` tiene el alias `StringTrim`.
 
 El administrador de complementos de filtro es usado internamente por la clase
 contenedor `InputFilter` para instanciar los filtros estándar.
@@ -393,7 +393,7 @@ pasamos un arreglo a estos filtro lo retornarán tal como lo recibieron.
 Algunos filtros pueden trabajar con datos en un determinado formato solamente
 (por ejemplo, solo con fechas). Si es imposible filtrar los datos de entrada
 (por ejemplo, cuando pasamos al filtro datos incorrectos que es incapaz de procesar)
-el método `filter()` puede lazar una excepción `Zend\Form\Exception\RuntimeException`.
+el método `filter()` puede lazar una excepción `Laminas\Form\Exception\RuntimeException`.
 Este comportamiento se puede ver en el filtro `DateTimeFormatter`.
 
 Algunos filtros (por ejemplo, `ToInt` o `StringToLower`) pueden producir advertencias
@@ -408,7 +408,7 @@ Ahora vamos a ver el uso de los más importantes filtros estándares.
 Describimos los métodos (y opciones) que un filtro tiene y damos código de
 ejemplo que muestra como instanciar el filtro y colocarle datos de entrada.
 Si necesitas usar un filtro que no está explicado en esta sección, puedes
-revisar la sección *Standard Filters* del *Zend Framework Reference Manual*.
+revisar la sección *Standard Filters* del *Laminas Framework Reference Manual*.
 
 ### Filtros que transforman datos a un tipo específico
 
@@ -435,7 +435,7 @@ Abajo, encontraremos un ejemplo que ilustra el uso del filtro `ToInt`.
 ~~~
 <?php
 // Create ToInt filter.
-$filter = new \Zend\Filter\ToInt();
+$filter = new \Laminas\Filter\ToInt();
 
 // Filter a value casting it to an integer number.
 $filteredValue = $filter->filter('10'); // Returns (int) 10.
@@ -530,7 +530,7 @@ El código siguiente muestra dos maneras equivalentes de llamar al método `setT
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Filter\Boolean;
+use Laminas\Filter\Boolean;
 
 // Call the setType() and pass it a combination of constants.
 $filter->setType(Boolean::TYPE_BOOLEAN|
@@ -567,11 +567,11 @@ Abajo, mostramos un ejemplo que ilustra el uso del filtro `Boolean`.
 ~~~
 <?php
 // Create ToBoolean filter.
-$filter = new \Zend\Filter\Boolean();
+$filter = new \Laminas\Filter\Boolean();
 
 // Optionally configure the filter.
 $filter->setCasting(true);
-$filter->setType(\Zend\Filter\Boolean::TYPE_ALL);
+$filter->setType(\Laminas\Filter\Boolean::TYPE_ALL);
 $filter->setTranslations(['yes'=>true, 'no'=>false]);
 
 // Filter a value casting it to a boolean number.
@@ -637,7 +637,7 @@ El siguiente ejemplo ilustra dos maneras equivalentes de llamar al método `setT
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Filter\ToNull;
+use Laminas\Filter\ToNull;
 
 // Call the setType() and pass it a combination of constants.
 $filter->setType(ToNull::TYPE_ZERO_STRING|ToNull::TYPE_STRING);
@@ -652,10 +652,10 @@ Abajo, mostramos un ejemplo de como usar el filtro `ToNull`:
 ~~~
 <?php
 // Create ToNull filter.
-$filter = new \Zend\Filter\ToNull();
+$filter = new \Laminas\Filter\ToNull();
 
 // Optionally configure the filter.
-$filter->setType(\Zend\Filter\ToNull::TYPE_ALL);
+$filter->setType(\Laminas\Filter\ToNull::TYPE_ALL);
 
 $filteredValue = $filter->filter('0'); // Returns null.
 $filteredValue2 = $filter->filter('1'); // Returns string '1'.
@@ -670,7 +670,7 @@ convierte al formato deseado.
 I> Este filtro puede aceptar una cadena de caracteres (por ejemplo, '2014-03-22 15:36'),
 I> una marca de tiempo de tipo entero (como la que regresa la función `time()` de PHP)
 I> o una instancia de la clase `DateTime` de PHP. El filtro `DateTimeFormatter`
-I> puede producir una excepción `Zend\Filter\Exception\InvalidArgumentException`
+I> puede producir una excepción `Laminas\Filter\Exception\InvalidArgumentException`
 I> si le pasamos una fecha en un formato incorrecto.
 
 Los métodos públicos del filtro se muestran en la tabla 8.7.
@@ -693,7 +693,7 @@ caracteres con una fecha y convertirla al formato deseado:
 ~~~
 <?php
 // Create DateTimeFormatter filter.
-$filter = new \Zend\Filter\DateTimeFormatter();
+$filter = new \Laminas\Filter\DateTimeFormatter();
 
 // Set filter's format (optional).
 $filter->setFormat('F j, Y g:i A');
@@ -725,7 +725,7 @@ Abajo, podemos encontrar un ejemplo del uso del filtro `BaseName`:
 ~~~
 <?php
 // Create BaseName filter.
-$filter = new \Zend\Filter\BaseName();
+$filter = new \Laminas\Filter\BaseName();
 
 // Filter a file path and return its last part.
 $filteredValue = $filter->filter('/var/log/httpd/error.log');
@@ -752,7 +752,7 @@ Abajo mostramos un ejemplo que demuestra el uso del filtro `Dir`.
 ~~~
 <?php
 // Create Dir filter.
-$filter = new \Zend\Filter\Dir();
+$filter = new \Laminas\Filter\Dir();
 
 // Filter a file path and return its directory name part.
 $filteredValue = $filter->filter('/var/log/httpd/error.log');
@@ -796,7 +796,7 @@ Abajo mostramos un ejemplo que demuestra el uso del filtro `RealPath`.
 ~~~
 <?php
 // Create RealPath filter.
-$filter = new \Zend\Filter\RealPath();
+$filter = new \Laminas\Filter\RealPath();
 
 // Filter a file path (it is assumed that the current
 // working directory is /var/log/httpd and that it contains
@@ -851,7 +851,7 @@ clase *adaptador*. La clase adaptador debe implementar la interfaz
 y el adaptador implementa el algoritmo de compresión concreto.
 
 Existen varias clases adaptadoras estándares disponibles (figura 8.2 y tabla 8.10).
-Estas clases se encuentran en el espacio de nombres `Zend\Filter\Compress`.
+Estas clases se encuentran en el espacio de nombres `Laminas\Filter\Compress`.
 
 {title="Tabla 8.10. Adaptadores de Compresión"}
 |--------------------------------|---------------------------------------------------------------|
@@ -891,7 +891,7 @@ Abajo, mostramos un ejemplo del uso del filtro `Compress`.
 ~~~
 <?php
 // Create Compress filter.
-$filter = new \Zend\Filter\Compress();
+$filter = new \Laminas\Filter\Compress();
 
 // Configure the adapter.
 $filter->setAdapter('Zip');
@@ -939,7 +939,7 @@ el adaptador ejecuta el cifrado.
 La clase adaptador debe implementar la interfaz `EncryptionAlgorithmInterface`.
 
 Existen varias clases adaptadoras estándares disponibles (ver la figura 8.3).
-Estas clases están en el espacio de nombres `Zend\Filter\Encrypt`.
+Estas clases están en el espacio de nombres `Laminas\Filter\Encrypt`.
 
  * `BlockCipher` -- implementa un algoritmo de cifrado por bloques simétrico.
  * `Openssl` -- usa el algoritmo de cifrado de la biblioteca OpenSSL.
@@ -952,7 +952,7 @@ Abajo, tenemos un ejemplo que demuestra el uso del filtro `Encrypt`.
 ~~~
 <?php
 // Create Encrypt filter.
-$filter = new \Zend\Filter\Encrypt();
+$filter = new \Laminas\Filter\Encrypt();
 
 // Set encryption adapter.
 $filter->setAdapter('BlockCipher');
@@ -1013,7 +1013,7 @@ Abajo, mostramos un ejemplo de como usar el filtro `StringToLower`:
 ~~~
 <?php
 // Create StringToLower filter.
-$filter = new \Zend\Filter\StringToLower();
+$filter = new \Laminas\Filter\StringToLower();
 
 // (Optionally) set encoding on the filter.
 $filter->setEncoding('UTF-8');
@@ -1060,7 +1060,7 @@ Abajo, se muestra un ejemplo de como usar el filtro @`PregReplace`:
 ~~~
 <?php
 // Create PregReplace filter.
-$filter = new \Zend\Filter\PregReplace();
+$filter = new \Laminas\Filter\PregReplace();
 
 // Configure the filter.
 $filter->setPattern("/\s\s+/");
@@ -1105,7 +1105,7 @@ Abajo, mostramos un ejemplo de como usar el filtro `StripTags`:
 ~~~
 <?php
 // Create StripTags filter.
-$filter = new \Zend\Filter\StripTags();
+$filter = new \Laminas\Filter\StripTags();
 
 // Configure the filter.
 $filter->setTagsAllowed(['p']);
@@ -1132,7 +1132,7 @@ Abajo, mostramos un código de ejemplo que muestra como usar el filtro `StripNew
 ~~~
 <?php
 // Create StripNewlines filter.
-$filter = new \Zend\Filter\StripNewlines();
+$filter = new \Laminas\Filter\StripNewlines();
 
 // Filter a string.
 $filteredValue = $filter->filter("A multi line\r\n string");
@@ -1192,7 +1192,7 @@ Abajo, mostramos un ejemplo de como usar el filtro `UriNormalize`:
 ~~~
 <?php
 // Create UriNormalize filter.
-$filter = new \Zend\Filter\UriNormalize();
+$filter = new \Laminas\Filter\UriNormalize();
 
 // Configure the filter.
 $filter->setDefaultScheme('http');
@@ -1251,7 +1251,7 @@ siguiente código:
 {line-numbers=on, lang=php}
 ~~~
 <?php
-use Zend\Filter\FilterChain;
+use Laminas\Filter\FilterChain;
 
 // Instantiate the filter chain.
 $filter = new FilterChain();
@@ -1373,7 +1373,7 @@ Para «normalizar» el número de teléfono, el filtro debe:
  3. Agregar los paréntesis, los espacios y el guión (cuando se usa el formato
     internacional) o simplemente agregar el guión (cuando se usa el formato local).
 
-Como ZF3 no provee un filtro estándar para filtrar el teléfono, usaremos el filtro
+Como Laminas no provee un filtro estándar para filtrar el teléfono, usaremos el filtro
 de envoltura `Callback`. Para hacerlo, haremos los siguientes cambios en el
 código de la clase `ContactForm`:
 
@@ -1550,7 +1550,7 @@ siguiente código dentro del archivo:
 <?php
 namespace Application\Filter;
 
-use Zend\Filter\AbstractFilter;
+use Laminas\Filter\AbstractFilter;
 
 // This filter class is designed for transforming an arbitrary phone number to
 // the local or the international format.
@@ -1718,7 +1718,7 @@ $filteredValue = $filter->filter('12345678901');
 ## Resumen
 
 Los filtros están diseñados para tomar unos datos de entrada, procesarlos y producir
-unos datos de salida. Zend Framework 3 provee muchos filtros estándares que pueden
+unos datos de salida. Laminas Framework provee muchos filtros estándares que pueden
 ser usados para crear reglas de filtrado para nuestros formularios (o si deseamos,
 para filtrar datos arbitrarios fuera de un formulario).
 

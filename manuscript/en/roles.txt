@@ -3,63 +3,63 @@
 If you remember, in the previous chapter we created the User Demo website which allowed us to manage
 users and permit access to some web pages to authenticated users only.
 In this chapter, we will extend the User Demo and show how to implement the Role-Based Access Control (RBAC).
-The RBAC allows to permit or deny access for certain users to certain website 
+The RBAC allows to permit or deny access for certain users to certain website
 pages based on *roles* and *permissions*.
 
-Since you have already known a lot about ZF3 from reading previous chapters, in this chapter we will
+Since you have already known a lot about Laminas from reading previous chapters, in this chapter we will
 omit discussing some obvious things and concentrate on *conceptual* moments only. It is recommended that you refer to
-the *Role Demo* sample bundled with this book, which is a complete website that you can run and see everything in action. 
-All code discussed in this chapter is part of this sample application. 
+the *Role Demo* sample bundled with this book, which is a complete website that you can run and see everything in action.
+All code discussed in this chapter is part of this sample application.
 
-ZF3 components covered in this chapter:
+Laminas components covered in this chapter:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Permissions\Rbac`        | Provides RBAC container implementation.                       |
+| @`Laminas\Permissions\Rbac`        | Provides RBAC container implementation.                       |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Cache`                   | Provides functionality for storing data in cache.             |
+| @`Laminas\Cache`                   | Provides functionality for storing data in cache.             |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Get Role Demo Sample from GitHub
 
-For demonstration, in this chapter, we will create a real-life *Role Demo* website 
+For demonstration, in this chapter, we will create a real-life *Role Demo* website
 that shows how to:
 
  * Implement roles and permissions in your website
  * Organize roles in database into an hierarchy
  * Manage roles and permissions in user interface
- * Use @`Zend\Permissions\Rbac` component to implement role-based access control
+ * Use @`Laminas\Permissions\Rbac` component to implement role-based access control
  * Use dynamic assertions to implement complex access control rules
 
 The *Role Demo* sample will be based on the *User Demo* sample that we created in the previous chapter.
-  
-To download the *Role Demo* application, visit [this page](https://github.com/olegkrivtsov/using-zf3-book-samples)
-and click the *Clone or Download* button to download the code as a ZIP archive. 
+
+To download the *Role Demo* application, visit [this page](https://github.com/olegkrivtsov/using-laminas-book-samples)
+and click the *Clone or Download* button to download the code as a ZIP archive.
 When download is complete, unpack the archive to some directory.
 
-Then navigate to the `roledemo` directory containing the 
+Then navigate to the `roledemo` directory containing the
 source code of the *Role Demo* web application:
 
 {line-numbers=off,lang=text}
 ~~~
-/using-zf3-book-samples
+/using-laminas-book-samples
   /roledemo
   ...
 ~~~
 
 The *Role Demo* is a website which can be installed on your machine.
 
-I> Detailed instructions on how to install the *Role Demo* sample can be found in *README.md* file located in the sample directory.  
+I> Detailed instructions on how to install the *Role Demo* sample can be found in *README.md* file located in the sample directory.
 
 ## Introduction to RBAC
 
-ZF3 provides a special component named @`Zend\Permissions\Rbac` which implements a container for roles and permissions.
+Laminas provides a special component named @`Laminas\Permissions\Rbac` which implements a container for roles and permissions.
 
-To install the @`Zend\Permissions\Rbac` component in your web application, type the following command:
+To install the @`Laminas\Permissions\Rbac` component in your web application, type the following command:
 
 ```
-php composer.phar require zendframework/zend-permissions-rbac
+php composer.phar require laminas/laminas-permissions-rbac
 ```
 
 ### Roles and Permissions
@@ -80,7 +80,7 @@ Viewer, Author, Editor, and Administrator.
 | `Administrator`                | Can do anything a Viewer and Editor can do plus delete posts. |
 |--------------------------------|---------------------------------------------------------------|
 
-A *user* may be assigned a role or several roles at once. For example, user John may be a Viewer 
+A *user* may be assigned a role or several roles at once. For example, user John may be a Viewer
 and Editor at the same time.
 
 A role may *inherit* permissions from other roles. In other words, roles may be organized into an hierarchy when
@@ -117,15 +117,15 @@ with the `post.delete` permission.
 
 ### RBAC Container
 
-In ZF3, you can use the @`Rbac` class living in @`Zend\Permissions\Rbac` namespace as a simple container for your
-roles and permissions. With this container, you store your roles in memory organized in an hierarchy and assigned 
+In Laminas, you can use the @`Rbac` class living in @`Laminas\Permissions\Rbac` namespace as a simple container for your
+roles and permissions. With this container, you store your roles in memory organized in an hierarchy and assigned
 with permissions.
 
 For example, let's create an @`Rbac` container for the Blog application and fill it with roles and permissions:
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 
 // Create Rbac container.
 $rbac = new Rbac();
@@ -163,7 +163,7 @@ Permissions are assigned to the created role with the help of role's `addPermiss
 
 ### Checking Permissions
 
-When you have an @`Rbac` container set up, you can query if the role has certain permission 
+When you have an @`Rbac` container set up, you can query if the role has certain permission
 with the `isGranted()` method, as follows:
 
 {line-numbers=off,lang=php}
@@ -180,8 +180,8 @@ the permission, it returns `true`; otherwise `false`.
 
 ## Default Roles in the Role Demo Sample
 
-Since our Role Demo application is designed to be the base for your own more complex websites, 
-for our Role Demo sample, we will have only the following simple default roles: Administrator and Guest. 
+Since our Role Demo application is designed to be the base for your own more complex websites,
+for our Role Demo sample, we will have only the following simple default roles: Administrator and Guest.
 
 I> You will be able to add more roles via user interface of the website.
 
@@ -204,8 +204,8 @@ We will have the following default permissions:
 
 The first three permissions will allow Administrator to manage users, roles and permissions via user interface.
 
-The last two permissions (`profile.any.view` and `profile.own.view`) are mostly for demonstration of 
-how Rbac works and can in theory be deleted from your own website if you do not have the user profile page. 
+The last two permissions (`profile.any.view` and `profile.own.view`) are mostly for demonstration of
+how Rbac works and can in theory be deleted from your own website if you do not have the user profile page.
 
 The `profile.any.view` allows Administrator to access *http://localhost/application/settings/&lt;user_id&gt;* page,
 which is the user profile of a user with the given ID.
@@ -216,17 +216,17 @@ I> You will be able to create additional permissions via the user interface of t
 
 ## Introduction to Dynamic Assertions
 
-You might notice that for the Blog example we had two "special" permissions named `post.own.edit` and `post.own.publish`. 
-Those permissions are special, because they allow the author to edit *only* the posts he is the creator of. 
+You might notice that for the Blog example we had two "special" permissions named `post.own.edit` and `post.own.publish`.
+Those permissions are special, because they allow the author to edit *only* the posts he is the creator of.
 
-To "check" such permission against the real user, we need to additionally determine if the post really 
+To "check" such permission against the real user, we need to additionally determine if the post really
 belongs to that user. This is called a *dynamic assertion*.
 
 In the Role Demo website, we also will have a special permission called `profile.own.view`. What makes it special
 is that it allows the user to view a profile the user is the owner of.
 
 To implement dynamic assertions in the *Role Demo* sample, we will use a special service called the *assertion manager*.
-This assertion manager will be implemented as the `RbacAssertionManager` class, which lives in the 
+This assertion manager will be implemented as the `RbacAssertionManager` class, which lives in the
 `Application\Service` namespace and looks like the following:
 
 {line-numbers=off,lang=php}
@@ -234,7 +234,7 @@ This assertion manager will be implemented as the `RbacAssertionManager` class, 
 <?php
 namespace Application\Service;
 
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 use User\Entity\User;
 
 /**
@@ -244,36 +244,36 @@ class RbacAssertionManager
 {
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager 
+     * @var Doctrine\ORM\EntityManager
      */
     private $entityManager;
-    
+
     /**
      * Auth service.
-     * @var Zend\Authentication\AuthenticationService 
+     * @var Laminas\Authentication\AuthenticationService
      */
     private $authService;
-    
+
     /**
      * Constructs the service.
      */
-    public function __construct($entityManager, $authService) 
+    public function __construct($entityManager, $authService)
     {
         $this->entityManager = $entityManager;
         $this->authService = $authService;
     }
-    
+
     /**
-     * This method is used for dynamic assertions. 
+     * This method is used for dynamic assertions.
      */
     public function assert(Rbac $rbac, $permission, $params)
     {
         $currentUser = $this->entityManager->getRepository(User::class)
                 ->findOneByEmail($this->authService->getIdentity());
-        
+
         if ($permission=='profile.own.view' && $params['user']->getId()==$currentUser->getId())
             return true;
-        
+
         return false;
     }
 }
@@ -284,7 +284,7 @@ As you can see from the code above, the class has the `assert()` method which ac
   * the `$rbac` is the container of our roles and permissions;
   * the `$permission` is the name of the permission to check;
   * the `$params` is an array of parameters (it can be used for example to pass the user owning the blog post).
-  
+
 Inside the `assert()` method, we can get the currently logged in user and compare it with the user passed, this
 way we can return `true` if the user is trying to open its own profile; otherwise `false`.
 
@@ -293,7 +293,7 @@ T> dynamic assertions, you can create and register an assertion manager for that
 
 ## Setting Up the Database
 
-In our Role Demo sample, we will store the role hierarchy in the "roledemo" database. 
+In our Role Demo sample, we will store the role hierarchy in the "roledemo" database.
 We will create the following tables (see figure 17.2):
 
   * `role` table will contain data related to a role (its name and description)
@@ -302,8 +302,8 @@ We will create the following tables (see figure 17.2):
   * `role_permission` table will allow to assign permissions to roles
   * `user_role` table will allow to assign roles to users
   * `user` table will contain data of users (we created this table earlier in *User Demo* sample)
-  
-![Figure 17.2 Database Schema of Role Demo Sample](images/roles/roledemo_db_schema.png)  
+
+![Figure 17.2 Database Schema of Role Demo Sample](images/roles/roledemo_db_schema.png)
 
 You can find a database migration, which creates these tables, in the *Role Demo* sample application. To run migrations,
 type the following command:
@@ -317,12 +317,12 @@ T> If you are new to migrations, refer to chapter [Database Migrations](#migrati
 
 ## Implementing Entities
 
-The *Role Demo* sample uses Doctrine ORM for managing database. We have already learned how to use Doctrine in 
+The *Role Demo* sample uses Doctrine ORM for managing database. We have already learned how to use Doctrine in
 [Database Management with Doctrine ORM](#doctrine).
 
-For storing information about roles and permissions in database, we will create the `Role` and `Permission` 
-entities. The `Role` entity is mapped 
-onto the `role` database table, while the `Permission` entity is mapped onto the `permission` table. 
+For storing information about roles and permissions in database, we will create the `Role` and `Permission`
+entities. The `Role` entity is mapped
+onto the `role` database table, while the `Permission` entity is mapped onto the `permission` table.
 Those are typical Doctrine entity classes.
 
 Create the *Role.php* file inside the *Entity* directory under the *User* module's source directory. Put
@@ -350,18 +350,18 @@ class Role
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="name")  
+    /**
+     * @ORM\Column(name="name")
      */
     protected $name;
-    
-    /** 
-     * @ORM\Column(name="description")  
+
+    /**
+     * @ORM\Column(name="description")
      */
     protected $description;
 
-    /** 
-     * @ORM\Column(name="date_created")  
+    /**
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
 
@@ -373,7 +373,7 @@ class Role
      *      )
      */
     private $parentRoles;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Role")
      * @ORM\JoinTable(name="role_hierarchy",
@@ -382,7 +382,7 @@ class Role
      *      )
      */
     protected $childRoles;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Permission")
      * @ORM\JoinTable(name="role_permission",
@@ -391,31 +391,31 @@ class Role
      *      )
      */
     private $permissions;
-    
+
     /**
      * Constructor.
      */
-    public function __construct() 
+    public function __construct()
     {
         $this->parentRoles = new ArrayCollection();
         $this->childRoles = new ArrayCollection();
         $this->permissions = new ArrayCollection();
     }
-    
+
     /**
      * Returns role ID.
      * @return integer
      */
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Sets role ID. 
-     * @param int $id    
+     * Sets role ID.
+     * @param int $id
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -424,47 +424,47 @@ class Role
     {
         return $this->name;
     }
-    
+
     public function setName($name)
     {
         $this->name = $name;
     }
-    
+
     public function getDescription()
     {
         return $this->description;
     }
-    
+
     public function setDescription($description)
     {
         $this->description = $description;
     }
-    
+
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
     }
-    
+
     public function getParentRoles()
     {
         return $this->parentRoles;
     }
-    
+
     public function getChildRoles()
     {
         return $this->childRoles;
     }
-    
+
     public function getPermissions()
     {
         return $this->permissions;
     }
-    
+
     public function addParent(Role $role)
     {
         if ($this->getId() == $role->getId()) {
@@ -520,21 +520,21 @@ class Permission
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="name")  
+    /**
+     * @ORM\Column(name="name")
      */
     protected $name;
-    
-    /** 
-     * @ORM\Column(name="description")  
+
+    /**
+     * @ORM\Column(name="description")
      */
     protected $description;
 
-    /** 
-     * @ORM\Column(name="date_created")  
+    /**
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Role")
      * @ORM\JoinTable(name="role_permission",
@@ -547,17 +547,17 @@ class Permission
     /**
      * Constructor.
      */
-    public function __construct() 
+    public function __construct()
     {
         $this->roles = new ArrayCollection();
     }
-    
-    public function getId() 
+
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -566,32 +566,32 @@ class Permission
     {
         return $this->name;
     }
-    
+
     public function setName($name)
     {
         $this->name = $name;
     }
-    
+
     public function getDescription()
     {
         return $this->description;
     }
-    
+
     public function setDescription($description)
     {
         $this->description = $description;
     }
-    
+
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
     }
-    
+
     public function getRoles()
     {
         return $this->roles;
@@ -599,7 +599,7 @@ class Permission
 }
 ~~~
 
-Finally, we will slightly extend the `User` entity that already created in the *User Demo* website and add 
+Finally, we will slightly extend the `User` entity that already created in the *User Demo* website and add
 the property and methods related to roles:
 
 {line-numbers=off,lang=php}
@@ -615,12 +615,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity()
  * @ORM\Table(name="user")
  */
-class User 
+class User
 {
     // User status constants.
     const STATUS_ACTIVE       = 1; // Active user.
     const STATUS_RETIRED      = 2; // Retired user.
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(name="id")
@@ -628,41 +628,41 @@ class User
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="email")  
+    /**
+     * @ORM\Column(name="email")
      */
     protected $email;
-    
-    /** 
-     * @ORM\Column(name="full_name")  
+
+    /**
+     * @ORM\Column(name="full_name")
      */
     protected $fullName;
 
-    /** 
-     * @ORM\Column(name="password")  
+    /**
+     * @ORM\Column(name="password")
      */
     protected $password;
 
-    /** 
-     * @ORM\Column(name="status")  
+    /**
+     * @ORM\Column(name="status")
      */
     protected $status;
-    
+
     /**
-     * @ORM\Column(name="date_created")  
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
-        
+
     /**
-     * @ORM\Column(name="pwd_reset_token")  
+     * @ORM\Column(name="pwd_reset_token")
      */
     protected $passwordResetToken;
-    
+
     /**
-     * @ORM\Column(name="pwd_reset_token_creation_date")  
+     * @ORM\Column(name="pwd_reset_token_creation_date")
      */
     protected $passwordResetTokenCreationDate;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Role")
      * @ORM\JoinTable(name="user_role",
@@ -671,74 +671,74 @@ class User
      *      )
      */
     private $roles;
-    
+
     /**
      * Constructor.
      */
-    public function __construct() 
+    public function __construct()
     {
         $this->roles = new ArrayCollection();
     }
-    
+
     /**
      * Returns user ID.
      * @return integer
      */
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Sets user ID. 
-     * @param int $id    
+     * Sets user ID.
+     * @param int $id
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
 
     /**
-     * Returns email.     
+     * Returns email.
      * @return string
      */
-    public function getEmail() 
+    public function getEmail()
     {
         return $this->email;
     }
 
     /**
-     * Sets email.     
+     * Sets email.
      * @param string $email
      */
-    public function setEmail($email) 
+    public function setEmail($email)
     {
         $this->email = $email;
     }
-    
+
     /**
      * Returns full name.
-     * @return string     
+     * @return string
      */
-    public function getFullName() 
+    public function getFullName()
     {
         return $this->fullName;
-    }       
+    }
 
     /**
      * Sets full name.
      * @param string $fullName
      */
-    public function setFullName($fullName) 
+    public function setFullName($fullName)
     {
         $this->fullName = $fullName;
     }
-    
+
     /**
      * Returns status.
-     * @return int     
+     * @return int
      */
-    public function getStatus() 
+    public function getStatus()
     {
         return $this->status;
     }
@@ -747,14 +747,14 @@ class User
      * Returns possible statuses as array.
      * @return array
      */
-    public static function getStatusList() 
+    public static function getStatusList()
     {
         return [
             self::STATUS_ACTIVE => 'Active',
             self::STATUS_RETIRED => 'Retired'
         ];
-    }    
-    
+    }
+
     /**
      * Returns user status as string.
      * @return string
@@ -764,55 +764,55 @@ class User
         $list = self::getStatusList();
         if (isset($list[$this->status]))
             return $list[$this->status];
-        
+
         return 'Unknown';
-    }    
-    
+    }
+
     /**
      * Sets status.
-     * @param int $status     
+     * @param int $status
      */
-    public function setStatus($status) 
+    public function setStatus($status)
     {
         $this->status = $status;
-    }   
-    
+    }
+
     /**
      * Returns password.
      * @return string
      */
-    public function getPassword() 
+    public function getPassword()
     {
-       return $this->password; 
+       return $this->password;
     }
-    
+
     /**
-     * Sets password.     
+     * Sets password.
      * @param string $password
      */
-    public function setPassword($password) 
+    public function setPassword($password)
     {
         $this->password = $password;
     }
-    
+
     /**
      * Returns the date of user creation.
-     * @return string     
+     * @return string
      */
-    public function getDateCreated() 
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     /**
      * Sets the date when this user was created.
-     * @param string $dateCreated     
+     * @param string $dateCreated
      */
-    public function setDateCreated($dateCreated) 
+    public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
-    }    
-    
+    }
+
     /**
      * Returns password reset token.
      * @return string
@@ -821,16 +821,16 @@ class User
     {
         return $this->passwordResetToken;
     }
-    
+
     /**
      * Sets password reset token.
      * @param string $token
      */
-    public function setPasswordResetToken($token) 
+    public function setPasswordResetToken($token)
     {
         $this->passwordResetToken = $token;
     }
-    
+
     /**
      * Returns password reset token's creation date.
      * @return string
@@ -839,16 +839,16 @@ class User
     {
         return $this->passwordResetTokenCreationDate;
     }
-    
+
     /**
      * Sets password reset token's creation date.
      * @param string $date
      */
-    public function setPasswordResetTokenCreationDate($date) 
+    public function setPasswordResetTokenCreationDate($date)
     {
         $this->passwordResetTokenCreationDate = $date;
     }
-    
+
     /**
      * Returns the array of roles assigned to this user.
      * @return array
@@ -857,14 +857,14 @@ class User
     {
         return $this->roles;
     }
-    
+
     /**
      * Returns the string of assigned role names.
      */
     public function getRolesAsString()
     {
         $roleList = '';
-        
+
         $count = count($this->roles);
         $i = 0;
         foreach ($this->roles as $role) {
@@ -873,10 +873,10 @@ class User
                 $roleList .= ', ';
             $i++;
         }
-        
+
         return $roleList;
     }
-    
+
     /**
      * Assigns a role to user.
      */
@@ -885,7 +885,7 @@ class User
         $this->roles->add($role);
     }
 }
-~~~ 
+~~~
 
 ## Implementing Role Management
 
@@ -894,7 +894,7 @@ In the Role Demo sample, we will create a convenient user interface for managing
 T> You can access the role management page by logging in as `admin@example.com` and opening
 T> menu Admin -> Manage Roles.
 
-The role management will be implemented inside the `RoleController` controller living in the 
+The role management will be implemented inside the `RoleController` controller living in the
 `User\Controller` namespace. The action methods of the `RoleController` are listed in table 17.4:
 
 {title="Table 17.4. Actions of the RoleController controller"}
@@ -916,7 +916,7 @@ The role management will be implemented inside the `RoleController` controller l
 
 The `RoleController` works in pair with the `RoleManager` service which lives in `User\Service` namespace.
 
-The `RoleController` and `RoleManager` contain nothing new and special, so we will skip their 
+The `RoleController` and `RoleManager` contain nothing new and special, so we will skip their
 discussion here and will just provide some screenshots of the resulting user interface below.
 
 T> You can find the complete code of the `RoleController` and `RoleManager` classes in the Role Demo sample.
@@ -929,7 +929,7 @@ T> You can find the complete code of the `RoleController` and `RoleManager` clas
 
 ![Figure 17.6 Edit an existing role](images/roles/roledemo_roles_edit.png)
 
-![Figure 17.7 Assign permissions to a role](images/roles/roledemo_roles_edit_permissions.png)  
+![Figure 17.7 Assign permissions to a role](images/roles/roledemo_roles_edit_permissions.png)
 
 ## Implementing Permission Management
 
@@ -939,7 +939,7 @@ It will be useful if you plan to add new permissions or remove existing ones.
 T> You can access the permission management page by logging in as `admin@example.com` and opening
 T> menu Admin -> Manage Permissions.
 
-The permission management will be implemented inside the `PermissionController` controller living in the 
+The permission management will be implemented inside the `PermissionController` controller living in the
 `User\Controller` namespace. The action methods of the `PermissionController` are listed in table 17.5:
 
 {title="Table 17.5. Actions of the PermissionController controller"}
@@ -957,10 +957,10 @@ The permission management will be implemented inside the `PermissionController` 
 | `viewAction()`                 | Displays the details of a permission.                         |
 |--------------------------------|---------------------------------------------------------------|
 
-The `PermissionController` works in pair with the `PermissionManager` service which 
+The `PermissionController` works in pair with the `PermissionManager` service which
 lives in `User\Service` namespace.
 
-The `PermissionController` and `PermissionManager` contain nothing new and special, so we will skip their 
+The `PermissionController` and `PermissionManager` contain nothing new and special, so we will skip their
 discussion here and will just provide some screenshots of the resulting user interface below.
 
 T> You can find the complete code of the `PermissionController` and `PermissionManager` classes in the Role Demo sample.
@@ -979,36 +979,36 @@ In the Role Demo website, you can assign roles to a user via the convenient user
 Open the *Admin -> Manage Users* menu and click *Edit* on the user of your choice. On the
 page that appears, select the roles you'd like to assign to the user and click the *Save* button.
 
-This functionality contain nothing new and special, so we will skip its detailed 
+This functionality contain nothing new and special, so we will skip its detailed
 discussion here and will just provide a screenshot of the user interface below.
 
 ![Figure 17.12 Assign Roles to a User](images/roles/roledemo_users_edit.png)
 
 ## Implementing RbacManager
 
-The next thing we will discuss will be the functionality for creating the `Rbac` container, 
+The next thing we will discuss will be the functionality for creating the `Rbac` container,
 whose purpose is loading the role hierarchy from the database,
 and caching the data in the filesystem cache.
 
 I> The *cache* allows to store frequently used data in fast storage. For example, retrieving roles
 I> and permissions from database on each page load may be rather slow, while storing the precomputed
-I> role hierarchy in a file may be faster. 
+I> role hierarchy in a file may be faster.
 
 ### Setting Up Caching
 
-First, let's set up caching. To do that, you need to install the `Zend\Cache` and `Zend\Serializer` components with
+First, let's set up caching. To do that, you need to install the `Laminas\Cache` and `Laminas\Serializer` components with
 the following commands:
 
 ~~~
-php composer.phar require zendframework/zend-cache
-php composer.phar require zendframework/zend-serializer
+php composer.phar require laminas/laminas-cache
+php composer.phar require laminas/laminas-serializer
 ~~~
 
 Finally, edit the *config/autoload/global.php* and add the following lines:
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Cache\Storage\Adapter\Filesystem;
+use Laminas\Cache\Storage\Adapter\Filesystem;
 
 return [
     //...
@@ -1021,13 +1021,13 @@ return [
                     // Store cached data in this directory.
                     'cache_dir' => './data/cache',
                     // Store cached data for 1 hour.
-                    'ttl' => 60*60*1 
+                    'ttl' => 60*60*1
                 ],
             ],
             'plugins' => [
                 [
                     'name' => 'serializer',
-                    'options' => [                        
+                    'options' => [
                     ],
                 ],
             ],
@@ -1040,7 +1040,7 @@ return [
 This will allow you to use the `Filesystem` cache and store cached data
 in *APP_DIR/data/cache* directory.
 
-T> If you want to learn more about caching, please refer to the `Zend\Cache` ZF3 component
+T> If you want to learn more about caching, please refer to the `Laminas\Cache` Laminas component
 T> documentation.
 
 ### Writing the RbacManager Service
@@ -1065,7 +1065,7 @@ The key should contain the `assertions` subkey, in which you can register all as
 ~~~
 return [
     //...
-    
+
     // This key stores configuration for RBAC manager.
     'rbac_manager' => [
         'assertions' => [Service\RbacAssertionManager::class],
@@ -1073,15 +1073,15 @@ return [
 ];
 ~~~
 
-The code of the `RbacManager` class living in `User\Service` namespace is presented below. 
+The code of the `RbacManager` class living in `User\Service` namespace is presented below.
 
 {line-numbers=off,lang=php}
 ~~~
 <?php
 namespace User\Service;
 
-use Zend\Permissions\Rbac\Rbac;
-use Zend\Permissions\Rbac\Role as RbacRole;
+use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role as RbacRole;
 use User\Entity\User;
 use User\Entity\Role;
 use User\Entity\Permission;
@@ -1089,49 +1089,49 @@ use User\Entity\Permission;
 /**
  * This service is responsible for initialzing RBAC (Role-Based Access Control).
  */
-class RbacManager 
+class RbacManager
 {
     /**
      * Doctrine entity manager.
      * @var Doctrine\ORM\EntityManager
      */
-    private $entityManager; 
-    
+    private $entityManager;
+
     /**
      * RBAC service.
-     * @var Zend\Permissions\Rbac\Rbac
+     * @var Laminas\Permissions\Rbac\Rbac
      */
     private $rbac;
-    
+
     /**
      * Auth service.
-     * @var Zend\Authentication\AuthenticationService 
+     * @var Laminas\Authentication\AuthenticationService
      */
     private $authService;
-    
+
     /**
      * Filesystem cache.
-     * @var Zend\Cache\Storage\StorageInterface
+     * @var Laminas\Cache\Storage\StorageInterface
      */
     private $cache;
-    
+
     /**
      * Assertion managers.
      * @var array
      */
     private $assertionManagers = [];
-    
+
     /**
      * Constructs the service.
      */
-    public function __construct($entityManager, $authService, $cache, $assertionManagers) 
+    public function __construct($entityManager, $authService, $cache, $assertionManagers)
     {
         $this->entityManager = $entityManager;
         $this->authService = $authService;
         $this->cache = $cache;
         $this->assertionManagers = $assertionManagers;
     }
-    
+
     /**
      * Initializes the RBAC container.
      */
@@ -1141,12 +1141,12 @@ class RbacManager
             // Already initialized; do nothing.
             return;
         }
-        
+
         // If user wants us to reinit RBAC container, clear cache now.
         if ($forceCreate) {
             $this->cache->removeItem('rbac_container');
         }
-        
+
         // Try to load Rbac container from cache.
         $this->rbac = $this->cache->getItem('rbac_container', $result);
         if (!$result)
@@ -1176,12 +1176,12 @@ class RbacManager
                     $rbac->getRole($roleName)->addPermission($permission->getName());
                 }
             }
-            
+
             // Save Rbac container to cache.
             $this->cache->setItem('rbac_container', $rbac);
         }
     }
-    
+
     /**
      * Checks whether the given user has permission.
      * @param User|null $user
@@ -1193,14 +1193,14 @@ class RbacManager
         if ($this->rbac==null) {
             $this->init();
         }
-        
+
         if ($user==null) {
-            
+
             $identity = $this->authService->getIdentity();
             if ($identity==null) {
                 return false;
             }
-            
+
             $user = $this->entityManager->getRepository(User::class)
                     ->findOneByEmail($identity);
             if ($user==null) {
@@ -1209,21 +1209,21 @@ class RbacManager
                 throw new \Exception('There is no user with such identity');
             }
         }
-        
+
         $roles = $user->getRoles();
-        
+
         foreach ($roles as $role) {
             if ($this->rbac->isGranted($role->getName(), $permission)) {
-                
+
                 if ($params==null)
                     return true;
-                    
+
                 foreach ($this->assertionManagers as $assertionManager) {
                     if ($assertionManager->assert($this->rbac, $permission, $params))
                         return true;
                 }
             }
-            
+
             $parentRoles = $role->getParentRoles();
             foreach ($parentRoles as $parentRole) {
                 if ($this->rbac->isGranted($parentRole->getName(), $permission)) {
@@ -1231,11 +1231,11 @@ class RbacManager
                 }
             }
         }
-        
+
         return false;
     }
 }
-~~~ 
+~~~
 
 The factory for the `RbacManager` class looks like the following:
 
@@ -1246,7 +1246,7 @@ namespace User\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use User\Service\RbacManager;
-use Zend\Authentication\AuthenticationService;
+use Laminas\Authentication\AuthenticationService;
 
 /**
  * This is the factory class for RbacManager service. The purpose of the factory
@@ -1255,14 +1255,14 @@ use Zend\Authentication\AuthenticationService;
 class RbacManagerFactory
 {
     /**
-     * This method creates the RbacManager service and returns its instance. 
+     * This method creates the RbacManager service and returns its instance.
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {        
+    {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        $authService = $container->get(\Zend\Authentication\AuthenticationService::class);
+        $authService = $container->get(\Laminas\Authentication\AuthenticationService::class);
         $cache = $container->get('FilesystemCache');
-        
+
         $assertionManagers = [];
         $config = $container->get('Config');
         if (isset($config['rbac_manager']['assertions'])) {
@@ -1270,7 +1270,7 @@ class RbacManagerFactory
                 $assertionManagers[$serviceName] = $container->get($serviceName);
             }
         }
-        
+
         return new RbacManager($entityManager, $authService, $cache, $assertionManagers);
     }
 }
@@ -1313,7 +1313,7 @@ Then add the `notAuthorizedAction()` method to the `AuthController` in the `User
 public function notAuthorizedAction()
 {
     $this->getResponse()->setStatusCode(403);
-    
+
     return new ViewModel();
 }
 ~~~
@@ -1336,8 +1336,8 @@ Now you can see the *Not Authorized* page if you type the following URL into the
 
 ## Modifying the AuthManager Service
 
-The next thing we will do is modifying the access filter inside the `AuthManager` service 
-we wrote for the *User Demo* sample. Particularly, we want to modify the `filterAccess()` 
+The next thing we will do is modifying the access filter inside the `AuthManager` service
+we wrote for the *User Demo* sample. Particularly, we want to modify the `filterAccess()`
 method. We want the `filterAccess()` method to use our `RbacManager` class.
 
 But first we will modify the format of the `access_filter` key in the configuration. We want the key to allow
@@ -1346,10 +1346,10 @@ to permit access to:
  * anyone if we specify the asterisk (`*`);
  * any authenticated user if we specify the "commercial at" (`@`);
  * a concrete authenticated user with the given `identity` email address if we specify (`@identity`)
- * any authenticated user with the given `permission` if we specify the plus sign followed by the 
+ * any authenticated user with the given `permission` if we specify the plus sign followed by the
    permission name (`+permission`).
 
-For example, here how the `access_filter` key would look like for the *User* module:   
+For example, here how the `access_filter` key would look like for the *User* module:
 
 {line-numbers=off,lang=php}
 ~~~
@@ -1365,9 +1365,9 @@ return [
                 // Give access to "resetPassword", "message" and "setPassword" actions
                 // to anyone.
                 ['actions' => ['resetPassword', 'message', 'setPassword'], 'allow' => '*'],
-                // Give access to "index", "add", "edit", "view", "changePassword" actions 
+                // Give access to "index", "add", "edit", "view", "changePassword" actions
                 // to users having the "user.manage" permission.
-                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'], 
+                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'],
                  'allow' => '+user.manage']
             ],
             Controller\RoleController::class => [
@@ -1380,7 +1380,7 @@ return [
             ],
         ]
     ],
-    
+
     //...
 ];
 ~~~
@@ -1392,7 +1392,7 @@ Below you can find the source code of the `filterAccess()` method of the `AuthMa
 /**
  * This is a simple access control filter. It is able to restrict unauthorized
  * users to visit certain pages.
- * 
+ *
  * This method uses the 'access_filter' key in the config file and determines
  * whenther the current visitor is allowed to access the given controller action
  * or not. It returns true if allowed; otherwise false.
@@ -1401,14 +1401,14 @@ public function filterAccess($controllerName, $actionName)
 {
     // Determine mode - 'restrictive' (default) or 'permissive'. In restrictive
     // mode all controller actions must be explicitly listed under the 'access_filter'
-    // config key, and access is denied to any not listed action for unauthorized users. 
-    // In permissive mode, if an action is not listed under the 'access_filter' key, 
+    // config key, and access is denied to any not listed action for unauthorized users.
+    // In permissive mode, if an action is not listed under the 'access_filter' key,
     // access to it is permitted to anyone (even for not logged in users.
     // Restrictive mode is more secure and recommended to use.
     $mode = isset($this->config['options']['mode'])?$this->config['options']['mode']:'restrictive';
     if ($mode!='restrictive' && $mode!='permissive')
         throw new \Exception('Invalid access filter mode (expected either restrictive or permissive mode');
-    
+
     if (isset($this->config['controllers'][$controllerName])) {
         $items = $this->config['controllers'][$controllerName];
         foreach ($items as $item) {
@@ -1418,27 +1418,27 @@ public function filterAccess($controllerName, $actionName)
                 $actionList=='*') {
                 if ($allow=='*')
                     // Anyone is allowed to see the page.
-                    return self::ACCESS_GRANTED; 
+                    return self::ACCESS_GRANTED;
                 else if (!$this->authService->hasIdentity()) {
                     // Only authenticated user is allowed to see the page.
-                    return self::AUTH_REQUIRED;                        
+                    return self::AUTH_REQUIRED;
                 }
-                    
+
                 if ($allow=='@') {
                     // Any authenticated user is allowed to see the page.
-                    return self::ACCESS_GRANTED;                         
+                    return self::ACCESS_GRANTED;
                 } else if (substr($allow, 0, 1)=='@') {
                     // Only the user with specific identity is allowed to see the page.
                     $identity = substr($allow, 1);
                     if ($this->authService->getIdentity()==$identity)
-                        return self::ACCESS_GRANTED; 
+                        return self::ACCESS_GRANTED;
                     else
                         return self::ACCESS_DENIED;
                 } else if (substr($allow, 0, 1)=='+') {
                     // Only the user with this permission is allowed to see the page.
                     $permission = substr($allow, 1);
                     if ($this->rbacManager->isGranted(null, $permission))
-                        return self::ACCESS_GRANTED; 
+                        return self::ACCESS_GRANTED;
                     else
                         return self::ACCESS_DENIED;
                 } else {
@@ -1446,11 +1446,11 @@ public function filterAccess($controllerName, $actionName)
                             'either "?", "@", "@identity" or "+permission"');
                 }
             }
-        }            
+        }
     }
-    
-    // In restrictive mode, we require authentication for any action not 
-    // listed under 'access_filter' key and deny access to authorized users 
+
+    // In restrictive mode, we require authentication for any action not
+    // listed under 'access_filter' key and deny access to authorized users
     // (for security reasons).
     if ($mode=='restrictive') {
         if(!$this->authService->hasIdentity())
@@ -1458,7 +1458,7 @@ public function filterAccess($controllerName, $actionName)
         else
             return self::ACCESS_DENIED;
     }
-    
+
     // Permit access to this page.
     return self::ACCESS_GRANTED;
 }
@@ -1472,7 +1472,7 @@ As you could see from the code, the method returns one of three constants:
 
 ## Modifying the Dispatch Event Listener
 
-Next, we will modify the `Module` class living in `User` namespace and 
+Next, we will modify the `Module` class living in `User` namespace and
 particularly its `onDispatch()` method. The main goal of this is that if the access filter
 returns `ACCESS_DENIED`, we redirect the user to the *Not Authorized* page.
 
@@ -1481,8 +1481,8 @@ returns `ACCESS_DENIED`, we redirect the user to the *Not Authorized* page.
 <?php
 namespace User;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
 use User\Controller\AuthController;
 use User\Service\AuthManager;
 
@@ -1494,7 +1494,7 @@ class Module
      * Event listener method for the 'Dispatch' event. We listen to the Dispatch
      * event to call the access filter. The access filter allows to determine if
      * the current visitor is allowed to see the page or not. If he/she
-     * is not authorized and is not allowed to see the page, we redirect the user 
+     * is not authorized and is not allowed to see the page, we redirect the user
      * to the login page.
      */
     public function onDispatch(MvcEvent $event)
@@ -1503,19 +1503,19 @@ class Module
         $controller = $event->getTarget();
         $controllerName = $event->getRouteMatch()->getParam('controller', null);
         $actionName = $event->getRouteMatch()->getParam('action', null);
-        
+
         // Convert dash-style action name to camel-case.
         $actionName = str_replace('-', '', lcfirst(ucwords($actionName, '-')));
-        
+
         // Get the instance of AuthManager service.
         $authManager = $event->getApplication()->getServiceManager()->get(AuthManager::class);
-        
+
         // Execute the access filter on every controller except AuthController
         // (to avoid infinite redirect).
         if ($controllerName!=AuthController::class)
         {
             $result = $authManager->filterAccess($controllerName, $actionName);
-            
+
             if ($result==AuthManager::AUTH_REQUIRED) {
                 // Remember the URL of the page the user tried to access. We will
                 // redirect the user to that URL after successful login.
@@ -1529,7 +1529,7 @@ class Module
                 $redirectUrl = $uri->toString();
 
                 // Redirect the user to the "Login" page.
-                return $controller->redirect()->toRoute('login', [], 
+                return $controller->redirect()->toRoute('login', [],
                         ['query'=>['redirectUrl'=>$redirectUrl]]);
             }
             else if ($result==AuthManager::ACCESS_DENIED) {
@@ -1543,7 +1543,7 @@ class Module
 
 ## Adding Access Controller Plugin and View Helper
 
-To query `RbacManager` inside of controllers and view templates, we need to create a 
+To query `RbacManager` inside of controllers and view templates, we need to create a
 special controller plugin (which we will name `Access`) and a special view helper (which we will name
 `Access` too).
 
@@ -1553,7 +1553,7 @@ Sometimes it is required to check some permission inside the controller. For exa
 for the `profile.own.view` permission, which uses the dynamic assertion. For this purpose, we will
 create the `Access` controller plugin.
 
-The plugin code will be located inside the `AccessPlugin.php` file inside the *Controller/Plugin* directory 
+The plugin code will be located inside the `AccessPlugin.php` file inside the *Controller/Plugin* directory
 of the *User* module's source directory:
 
 {line-numbers=off,lang=php}
@@ -1561,7 +1561,7 @@ of the *User* module's source directory:
 <?php
 namespace User\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
  * This controller plugin is used for role-based access control (RBAC).
@@ -1569,12 +1569,12 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 class AccessPlugin extends AbstractPlugin
 {
     private $rbacManager;
-    
+
     public function __construct($rbacManager)
     {
         $this->rbacManager = $rbacManager;
     }
-    
+
     /**
      * Checks whether the currently logged in user has the given permission.
      * @param string $permission Permission name.
@@ -1595,7 +1595,7 @@ The `Access` plugin's factory looks like the following:
 namespace User\Controller\Plugin\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Service\RbacManager;
 use User\Controller\Plugin\AccessPlugin;
 
@@ -1606,9 +1606,9 @@ use User\Controller\Plugin\AccessPlugin;
 class AccessPluginFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {   
+    {
         $rbacManager = $container->get(RbacManager::class);
-        
+
         return new AccessPlugin($rbacManager);
     }
 }
@@ -1635,7 +1635,7 @@ So, in your controller's action, you can easily call this plugin like the follow
 ~~~
 if (!$this->access('profile.own.view', ['user'=>$user])) {
     return $this->redirect()->toRoute('not-authorized');
-}        
+}
 ~~~
 
 ### Access View Helper
@@ -1644,7 +1644,7 @@ Sometimes, it may be required to query the `RbacManager` inside a view template.
 you may need to hide or show some HTML block based on current user's permissions. To do that,
 we will implement the `Access` view helper.
 
-The view helper's code will be located inside the `Access.php` file inside the *View/Helper* directory 
+The view helper's code will be located inside the `Access.php` file inside the *View/Helper* directory
 of the *User* module's source directory:
 
 {line-numbers=off,lang=php}
@@ -1652,20 +1652,20 @@ of the *User* module's source directory:
 <?php
 namespace User\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * This view helper is used to check user permissions.
  */
-class Access extends AbstractHelper 
+class Access extends AbstractHelper
 {
     private $rbacManager = null;
-    
-    public function __construct($rbacManager) 
+
+    public function __construct($rbacManager)
     {
         $this->rbacManager = $rbacManager;
     }
-    
+
     public function __invoke($permission, $params = [])
     {
         return $this->rbacManager->isGranted(null, $permission, $params);
@@ -1681,7 +1681,7 @@ The `Access` view helper's factory looks like the following:
 namespace User\View\Helper\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Service\RbacManager;
 use User\View\Helper\Access;
 
@@ -1692,9 +1692,9 @@ use User\View\Helper\Access;
 class AccessFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {   
+    {
         $rbacManager = $container->get(RbacManager::class);
-        
+
         return new Access($rbacManager);
     }
 }
@@ -1734,13 +1734,13 @@ that we created. Assign a role (or several roles) to each website user.
 
 Then edit the *module.config.php* configuration configuration file in your module and add two keys:
 
-  * the `rbac_manager` key will contain settings for the `RbacManager` (particularly the 
+  * the `rbac_manager` key will contain settings for the `RbacManager` (particularly the
     configuration of assertion manager(s));
 
   An example of that key is presented below:
 
 {line-numbers=off,lang=php}
-~~~  
+~~~
 // This key stores configuration for RBAC manager.
 'rbac_manager' => [
     'assertions' => [Service\RbacAssertionManager::class],
@@ -1749,7 +1749,7 @@ Then edit the *module.config.php* configuration configuration file in your modul
 
   * the `access_filter` key stores the access rules for the pages of your website. It typically looks like below:
 
-{line-numbers=off,lang=php}  
+{line-numbers=off,lang=php}
 ~~~
 'access_filter' => [
     'options' => [
@@ -1766,15 +1766,15 @@ Then edit the *module.config.php* configuration configuration file in your modul
 ],
 ~~~
 
-The `*` and `@` in the `allow` subkeys are not the only options. You can make the `allow` 
+The `*` and `@` in the `allow` subkeys are not the only options. You can make the `allow`
 subkeys to look as follows. We allow access to the page to:
 
  * anyone if we specify the asterisk (`*`);
  * any authenticated user if we specify the "commercial at" (`@`);
  * a concrete authenticated user with the given `identity` email address if we specify (`@identity`)
- * any authenticated user with the given `permission` if we specify the plus sign followed by the 
+ * any authenticated user with the given `permission` if we specify the plus sign followed by the
    permission name (`+permission`).
-   
+
 If your website has some dynamic assertions, extend the `assert()` method of the
 existing `RbacAssertionManager` class (or write and register your own assertion manager):
 
@@ -1784,16 +1784,16 @@ public function assert(Rbac $rbac, $permission, $params)
 {
     $currentUser = $this->entityManager->getRepository(User::class)
             ->findOneByEmail($this->authService->getIdentity());
-    
+
     if ($permission=='post.own.edit' && $params['post']->getUser()->getId()==$currentUser->getId())
         return true;
-        
+
     if ($permission=='post.own.publish' && $params['post']->getUser()->getId()==$currentUser->getId())
-        return true;        
-    
+        return true;
+
     return false;
 }
-~~~   
+~~~
 
 If you want to check permissions in a controller action, you can use the `Access` controller plugin as follows:
 
@@ -1801,7 +1801,7 @@ If you want to check permissions in a controller action, you can use the `Access
 ~~~
 if (!$this->access('profile.own.view', ['user'=>$user])) {
     return $this->redirect()->toRoute('not-authorized');
-}        
+}
 ~~~
 
 If you want to check permissions in a view template, you can use the `Access` view helper:
@@ -1817,8 +1817,8 @@ That's all! That simple! Enjoy!
 
 ## Summary
 
-In this chapter we have implemented the *Role Demo* website which demonstrates how to use roles 
-and permissions in ZF3.
+In this chapter we have implemented the *Role Demo* website which demonstrates how to use roles
+and permissions in Laminas.
 
 A role is basically a group of users. A user may be assigned with one or several roles at once.
 
@@ -1828,4 +1828,3 @@ A dynamic assertion is an additional rule associated with the permission.
 
 Roles may be organised into an hierarchy, when parent roles
 inherit permissions from their child roles.
-

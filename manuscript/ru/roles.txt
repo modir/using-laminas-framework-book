@@ -5,58 +5,58 @@
 В этой главе мы расширим пример User Demo и покажем как реализовать Контроль доступа на основе ролей (Role-Based Access Control, RBAC).
 RBAC позволяет разрешать или запрещать доступ для некоторых пользователей к определенным веб страницам на основе *ролей* и *привелегий (permissions)*.
 
-Так как вы уже многое знаете о ZF3 из предыдущих глав, в этой главе мы опустим обсуждение некоторых очевидных вещей
-и сконцентрируемся на *концептуальных* моментах. Рекомендуется обратиться к коду примера 
-*Role Demo*, поставляемого с этой книгой, который является целым вебсайтом, который вы можете запустить и посмотреть в действии. 
-Весь код, обсуждаемый в данной главе, является частью этого примера. 
+Так как вы уже многое знаете о Laminas из предыдущих глав, в этой главе мы опустим обсуждение некоторых очевидных вещей
+и сконцентрируемся на *концептуальных* моментах. Рекомендуется обратиться к коду примера
+*Role Demo*, поставляемого с этой книгой, который является целым вебсайтом, который вы можете запустить и посмотреть в действии.
+Весь код, обсуждаемый в данной главе, является частью этого примера.
 
-Компоненты ZF3, обсуждаемые в данной главе :
+Компоненты Laminas, обсуждаемые в данной главе :
 
 |--------------------------------|---------------------------------------------------------------|
 | *Компонент*                    | *Описание*                                                    |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Permissions\Rbac`        | Предоставляет реализацию контейнера RBAC.                       |
+| @`Laminas\Permissions\Rbac`        | Предоставляет реализацию контейнера RBAC.                       |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Cache`                   | Предоставляет возможность хранения данных в кэше.             |
+| @`Laminas\Cache`                   | Предоставляет возможность хранения данных в кэше.             |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Загрузка примера Role Demo с GitHub
 
-В качестве демонстрации в данной главе мы создадим настоящий вебсайт *Role Demo*, который показывает как: 
+В качестве демонстрации в данной главе мы создадим настоящий вебсайт *Role Demo*, который показывает как:
 
  * реализовать роли и привилегии в вашем вебсайте
  * организовать роли в иерархию внутри базы данных
  * управлять ролями и привилегиями в пользовательском интерфейсе
- * использовать компонент @`Zend\Permissions\Rbac`, чтобы реализовать контроль доступа на основе ролей
+ * использовать компонент @`Laminas\Permissions\Rbac`, чтобы реализовать контроль доступа на основе ролей
  * использовать динамические утверждения (dynamic assertions), чтобы реализовать сложные правила доступа
 
 Пример *Role Demo* будет базироваться на примере *User Demo*, созданном в предыдущей главе.
-  
-Чтобы загрузить пример *Role Demo*, посетите [эту страницу](https://github.com/olegkrivtsov/using-zf3-book-samples)
-и щелкните кнопку *Clone or Download*, чтобы загрузить код ZIP-архивом. 
+
+Чтобы загрузить пример *Role Demo*, посетите [эту страницу](https://github.com/olegkrivtsov/using-laminas-book-samples)
+и щелкните кнопку *Clone or Download*, чтобы загрузить код ZIP-архивом.
 Когда загрузка закончится, распакуйте код в какую либо директорию.
 
 Затем перейдите в директорию `roledemo`, содержащую код приложения *Role Demo*:
 
 {line-numbers=off,lang=text}
 ~~~
-/using-zf3-book-samples
+/using-laminas-book-samples
   /roledemo
   ...
 ~~~
 
 *Role Demo* - это вебсайт, который может быть установлен на вашу машину.
 
-I> Детальные инструкции о том как установить пример *Role Demo* могут быть найдены в файле *README.md*, расположенном в директории примера.  
+I> Детальные инструкции о том как установить пример *Role Demo* могут быть найдены в файле *README.md*, расположенном в директории примера.
 
 ## Введение в RBAC
 
-ZF3 предоставляет специальный компонент @`Zend\Permissions\Rbac`, реализующий контейнер для ролей и привилегий.
+Laminas предоставляет специальный компонент @`Laminas\Permissions\Rbac`, реализующий контейнер для ролей и привилегий.
 
-Для установки компонента @`Zend\Permissions\Rbac` в ваше веб-приложение, воспользуйтесь следующей командой:
+Для установки компонента @`Laminas\Permissions\Rbac` в ваше веб-приложение, воспользуйтесь следующей командой:
 
 ```
-php composer.phar require zendframework/zend-permissions-rbac
+php composer.phar require laminas/laminas-permissions-rbac
 ```
 
 ### Роли и привилегии
@@ -113,14 +113,14 @@ Viewer (читатель), Author (автор), Editor (редактор) и Adm
 
 ### Контейнер RBAC
 
-В ZF3 в качестве контейнера для ролей и привилегий можно использовать класс @`Rbac` из пространства имен @`Zend\Permissions\Rbac`.
+В Laminas в качестве контейнера для ролей и привилегий можно использовать класс @`Rbac` из пространства имен @`Laminas\Permissions\Rbac`.
 С помощью этого контейнера вы можете хранить в памяти роли, организованные в иерархию, и с присвоенными им привилегиями.
 
 В качестве примера, создадим контейнер @`Rbac` для приложения Blog и заполним его ролями и привилегиями:
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 
 // Создаем новый контейнер Rbac.
 $rbac = new Rbac();
@@ -229,7 +229,7 @@ I> Вы сможете создавать больше привилегий че
 <?php
 namespace Application\Service;
 
-use Zend\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 use User\Entity\User;
 
 /**
@@ -239,48 +239,48 @@ class RbacAssertionManager
 {
     /**
      * Менеджер сущностей.
-     * @var Doctrine\ORM\EntityManager 
+     * @var Doctrine\ORM\EntityManager
      */
     private $entityManager;
-    
+
     /**
      * Служба аутентификации.
-     * @var Zend\Authentication\AuthenticationService 
+     * @var Laminas\Authentication\AuthenticationService
      */
     private $authService;
-    
+
     /**
      * Конструирует сервис.
      */
-    public function __construct($entityManager, $authService) 
+    public function __construct($entityManager, $authService)
     {
         $this->entityManager = $entityManager;
         $this->authService = $authService;
     }
-    
+
     /**
-     * Этот метод используется для динамичечких утверждений. 
+     * Этот метод используется для динамичечких утверждений.
      */
     public function assert(Rbac $rbac, $permission, $params)
     {
         $currentUser = $this->entityManager->getRepository(User::class)
                 ->findOneByEmail($this->authService->getIdentity());
-        
+
         if ($permission=='profile.own.view' && $params['user']->getId()==$currentUser->getId())
             return true;
-        
+
         return false;
     }
 }
 ~~~
- 
+
 Как можете видеть из фрагмента кода сверху, у данного класса есть метод `assert()`, принимающий три аргумента:
 
   * `$rbac` – контейнер для наших ролей и привилегий;
   * `$permission` – имя привилегии, которую нужно проверить;
-  * `$params` – массив параметров (он может быть использован, например, для передачи пользователю владения постом в блоге). 
-  
-  
+  * `$params` – массив параметров (он может быть использован, например, для передачи пользователю владения постом в блоге).
+
+
 В методе `assert()` мы можем получить информацию о залогиненном в текущий момент пользователе и сравнить ее с информацией
 о совершающем переход пользователе. Таким образом, мы сможем вернуть `true`, если пользователь пытается открыть свой собственный профиль,
 и `false` в противном случае.
@@ -292,16 +292,16 @@ T> есть какие-либо динамические утверждения,
 
 В нашем примере Role Demo мы будем хранить ирархию ролей в базе данных "roledemo".
 Мы создадим следующие таблицы (см. рисунок 17.2):
-  
+
   * таблица `role` будет содержать данные, связанные с ролью (ее имя и описание)
   * таблица `role_hierarchy` будет содержать связи наследования между ролями
   * таблица `permission` будет содержать привилегии
   * таблица `role_permission` позволит присваивать привилегии ролям
   * таблица `user_role` позволит присваивать роли пользователям
   * таблица `user` будет содежать данные о пользователях (эту таблицу мы создали ранее в примере *User Demo*)
-  
-  
-![Рисунок 17.2 Схема базы данных примера Role Demo](../en/images/roles/roledemo_db_schema.png)  
+
+
+![Рисунок 17.2 Схема базы данных примера Role Demo](../en/images/roles/roledemo_db_schema.png)
 
 Миграцию базы данных, создающую эти таблицы, вы можете найти в приложении *Role Demo*. Чтобы запустить миграции,
 введите следующую команду:
@@ -347,18 +347,18 @@ class Role
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="name")  
+    /**
+     * @ORM\Column(name="name")
      */
     protected $name;
-    
-    /** 
-     * @ORM\Column(name="description")  
+
+    /**
+     * @ORM\Column(name="description")
      */
     protected $description;
 
-    /** 
-     * @ORM\Column(name="date_created")  
+    /**
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
 
@@ -370,7 +370,7 @@ class Role
      *      )
      */
     private $parentRoles;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Role")
      * @ORM\JoinTable(name="role_hierarchy",
@@ -379,7 +379,7 @@ class Role
      *      )
      */
     protected $childRoles;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Permission")
      * @ORM\JoinTable(name="role_permission",
@@ -388,31 +388,31 @@ class Role
      *      )
      */
     private $permissions;
-    
+
     /**
      * Конструктор.
      */
-    public function __construct() 
+    public function __construct()
     {
         $this->parentRoles = new ArrayCollection();
         $this->childRoles = new ArrayCollection();
         $this->permissions = new ArrayCollection();
     }
-    
+
     /**
      * Возвращает ID роли.
      * @return integer
      */
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Задает ID роли. 
-     * @param int $id    
+     * Задает ID роли.
+     * @param int $id
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -421,47 +421,47 @@ class Role
     {
         return $this->name;
     }
-    
+
     public function setName($name)
     {
         $this->name = $name;
     }
-    
+
     public function getDescription()
     {
         return $this->description;
     }
-    
+
     public function setDescription($description)
     {
         $this->description = $description;
     }
-    
+
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
     }
-    
+
     public function getParentRoles()
     {
         return $this->parentRoles;
     }
-    
+
     public function getChildRoles()
     {
         return $this->childRoles;
     }
-    
+
     public function getPermissions()
     {
         return $this->permissions;
     }
-    
+
     public function addParent(Role $role)
     {
         if ($this->getId() == $role->getId()) {
@@ -517,21 +517,21 @@ class Permission
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="name")  
+    /**
+     * @ORM\Column(name="name")
      */
     protected $name;
-    
-    /** 
-     * @ORM\Column(name="description")  
+
+    /**
+     * @ORM\Column(name="description")
      */
     protected $description;
 
-    /** 
-     * @ORM\Column(name="date_created")  
+    /**
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Role")
      * @ORM\JoinTable(name="role_permission",
@@ -544,17 +544,17 @@ class Permission
     /**
      * Конструктор.
      */
-    public function __construct() 
+    public function __construct()
     {
         $this->roles = new ArrayCollection();
     }
-    
-    public function getId() 
+
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -563,32 +563,32 @@ class Permission
     {
         return $this->name;
     }
-    
+
     public function setName($name)
     {
         $this->name = $name;
     }
-    
+
     public function getDescription()
     {
         return $this->description;
     }
-    
+
     public function setDescription($description)
     {
         $this->description = $description;
     }
-    
+
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
     }
-    
+
     public function getRoles()
     {
         return $this->roles;
@@ -612,12 +612,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity()
  * @ORM\Table(name="user")
  */
-class User 
+class User
 {
     // Константы статуса пользователя.
     const STATUS_ACTIVE       = 1; // Активный пользователь.
     const STATUS_RETIRED      = 2; // Неактивный пользователь.
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(name="id")
@@ -625,41 +625,41 @@ class User
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="email")  
+    /**
+     * @ORM\Column(name="email")
      */
     protected $email;
-    
-    /** 
-     * @ORM\Column(name="full_name")  
+
+    /**
+     * @ORM\Column(name="full_name")
      */
     protected $fullName;
 
-    /** 
-     * @ORM\Column(name="password")  
+    /**
+     * @ORM\Column(name="password")
      */
     protected $password;
 
-    /** 
-     * @ORM\Column(name="status")  
+    /**
+     * @ORM\Column(name="status")
      */
     protected $status;
-    
+
     /**
-     * @ORM\Column(name="date_created")  
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
-        
+
     /**
-     * @ORM\Column(name="pwd_reset_token")  
+     * @ORM\Column(name="pwd_reset_token")
      */
     protected $passwordResetToken;
-    
+
     /**
-     * @ORM\Column(name="pwd_reset_token_creation_date")  
+     * @ORM\Column(name="pwd_reset_token_creation_date")
      */
     protected $passwordResetTokenCreationDate;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="User\Entity\Role")
      * @ORM\JoinTable(name="user_role",
@@ -668,74 +668,74 @@ class User
      *      )
      */
     private $roles;
-    
+
     /**
      * Конструктор.
      */
-    public function __construct() 
+    public function __construct()
     {
         $this->roles = new ArrayCollection();
     }
-    
+
     /**
      * Возвращает ID пользователя.
      * @return integer
      */
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Задает ID пользователя. 
-     * @param int $id    
+     * Задает ID пользователя.
+     * @param int $id
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
 
     /**
-     * Возвращает адрес эл. почты.     
+     * Возвращает адрес эл. почты.
      * @return string
      */
-    public function getEmail() 
+    public function getEmail()
     {
         return $this->email;
     }
 
     /**
-     * Задает адрес эл. почты.     
+     * Задает адрес эл. почты.
      * @param string $email
      */
-    public function setEmail($email) 
+    public function setEmail($email)
     {
         $this->email = $email;
     }
-    
+
     /**
      * Возвращает полное имя.
-     * @return string     
+     * @return string
      */
-    public function getFullName() 
+    public function getFullName()
     {
         return $this->fullName;
-    }       
+    }
 
     /**
      * Задает полное имя.
      * @param string $fullName
      */
-    public function setFullName($fullName) 
+    public function setFullName($fullName)
     {
         $this->fullName = $fullName;
     }
-    
+
     /**
      * Возвращает статус.
-     * @return int     
+     * @return int
      */
-    public function getStatus() 
+    public function getStatus()
     {
         return $this->status;
     }
@@ -744,14 +744,14 @@ class User
      * Возвращает возможные статусы в виде массива.
      * @return array
      */
-    public static function getStatusList() 
+    public static function getStatusList()
     {
         return [
             self::STATUS_ACTIVE => 'Active',
             self::STATUS_RETIRED => 'Retired'
         ];
-    }    
-    
+    }
+
     /**
      * Возвращает статус пользователя в виде строки.
      * @return string
@@ -761,55 +761,55 @@ class User
         $list = self::getStatusList();
         if (isset($list[$this->status]))
             return $list[$this->status];
-        
+
         return 'Unknown';
-    }    
-    
+    }
+
     /**
      * Задает статус.
-     * @param int $status     
+     * @param int $status
      */
-    public function setStatus($status) 
+    public function setStatus($status)
     {
         $this->status = $status;
-    }   
-    
+    }
+
     /**
      * Возвращает пароль.
      * @return string
      */
-    public function getPassword() 
+    public function getPassword()
     {
-       return $this->password; 
+       return $this->password;
     }
-    
+
     /**
-     * Задает пароль.     
+     * Задает пароль.
      * @param string $password
      */
-    public function setPassword($password) 
+    public function setPassword($password)
     {
         $this->password = $password;
     }
-    
+
     /**
      * Возвращает дату создания пользователя.
-     * @return string     
+     * @return string
      */
-    public function getDateCreated() 
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     /**
      * Задает дату, когда был создан этот пользователь.
-     * @param string $dateCreated     
+     * @param string $dateCreated
      */
-    public function setDateCreated($dateCreated) 
+    public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
-    }    
-    
+    }
+
     /**
      * Возвращает токен сброса пароля.
      * @return string
@@ -818,16 +818,16 @@ class User
     {
         return $this->passwordResetToken;
     }
-    
+
     /**
      * Задает токен сброса пароля.
      * @param string $token
      */
-    public function setPasswordResetToken($token) 
+    public function setPasswordResetToken($token)
     {
         $this->passwordResetToken = $token;
     }
-    
+
     /**
      * Возвращает дату создания токена сброса пароля.
      * @return string
@@ -836,16 +836,16 @@ class User
     {
         return $this->passwordResetTokenCreationDate;
     }
-    
+
     /**
      * Задает дату создания токена сброса пароля.
      * @param string $date
      */
-    public function setPasswordResetTokenCreationDate($date) 
+    public function setPasswordResetTokenCreationDate($date)
     {
         $this->passwordResetTokenCreationDate = $date;
     }
-    
+
     /**
      * Возвращает массив ролей, присвоенных этому пользователю.
      * @return array
@@ -854,14 +854,14 @@ class User
     {
         return $this->roles;
     }
-    
+
     /**
      * Возвращает строку имен присвоенных ролей.
      */
     public function getRolesAsString()
     {
         $roleList = '';
-        
+
         $count = count($this->roles);
         $i = 0;
         foreach ($this->roles as $role) {
@@ -870,10 +870,10 @@ class User
                 $roleList .= ', ';
             $i++;
         }
-        
+
         return $roleList;
     }
-    
+
     /**
      * Присваивает пользователю роль.
      */
@@ -882,7 +882,7 @@ class User
         $this->roles->add($role);
     }
 }
-~~~ 
+~~~
 
 ## Управление ролями
 
@@ -927,7 +927,7 @@ T> Полный код классов `RoleController` и `RoleManager` вы м�
 
 ![Рисунок 17.6 Изменить существующую роль](../en/images/roles/roledemo_roles_edit.png)
 
-![Рисунок 17.7 Присвоить роли привилегии](../en/images/roles/roledemo_roles_edit_permissions.png)  
+![Рисунок 17.7 Присвоить роли привилегии](../en/images/roles/roledemo_roles_edit_permissions.png)
 
 ## Управление привилегиями
 
@@ -989,23 +989,23 @@ T> Полный код классов `PermissionController` и `PermissionManag
 
 I> *Кэш* позволяет хранить часто используемые данные в быстродействующей памяти. Например, извлечение
 I> ролей и привилегий из базы данных может быть довольно медленным, в то время как хранение
-I> заранее вычисленной иерархии ролей может быть быстрее. 
+I> заранее вычисленной иерархии ролей может быть быстрее.
 
 ### Настройка кеширования
 
-Для начала давайте настроим кэширование. Для этого вам нужно установить компоненты Zend\Cache` и `Zend\Serializer` с
+Для начала давайте настроим кэширование. Для этого вам нужно установить компоненты Laminas\Cache` и `Laminas\Serializer` с
 помощью следующих команд:
 
 ~~~
-php composer.phar require zendframework/zend-cache
-php composer.phar require zendframework/zend-serializer
+php composer.phar require laminas/laminas-cache
+php composer.phar require laminas/laminas-serializer
 ~~~
 
 Затем измените файл *config/autoload/global.php*, добавив следующие строки:
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Cache\Storage\Adapter\Filesystem;
+use Laminas\Cache\Storage\Adapter\Filesystem;
 
 return [
     //...
@@ -1018,13 +1018,13 @@ return [
                     // Store cached data in this directory.
                     'cache_dir' => './data/cache',
                     // Store cached data for 1 hour.
-                    'ttl' => 60*60*1 
+                    'ttl' => 60*60*1
                 ],
             ],
             'plugins' => [
                 [
                     'name' => 'serializer',
-                    'options' => [                        
+                    'options' => [
                     ],
                 ],
             ],
@@ -1038,7 +1038,7 @@ return [
 данные в каталоге *APP_DIR/data/cache*.
 
 T> Если вы хотите больше узнать о кэшировании, пожалуйста, обратитесь к документации компонента
-T> ZF3 @`Zend\Cache`.
+T> Laminas @`Laminas\Cache`.
 
 ### Пишем сервис RbacManager
 
@@ -1052,7 +1052,7 @@ T> ZF3 @`Zend\Cache`.
 Класс `RbacManager` будет иметь два метода:
 
   * метод `init()` будет использоваться для загрузки иерархии ролей из базы данных и ее сохранения в кэш;
-  * метод `isGranted()` будет использоваться для запроса у контейнера @`Rbac` информации о том, есть ли 
+  * метод `isGranted()` будет использоваться для запроса у контейнера @`Rbac` информации о том, есть ли
 	у заданного *пользователя* заданная привилегия (и проверки менеджера(-ов) утверждений на динамические утверждения).
 
 Класс `RbacManager` будет считывать конфигурацию и искать ключ `rbac_manager`.
@@ -1062,8 +1062,8 @@ T> ZF3 @`Zend\Cache`.
 ~~~
 return [
     //...
-    
-    // Этот ключ хранит конфигурацию для менеджера RBAC. 
+
+    // Этот ключ хранит конфигурацию для менеджера RBAC.
     'rbac_manager' => [
         'assertions' => [Service\RbacAssertionManager::class],
     ],
@@ -1077,8 +1077,8 @@ return [
 <?php
 namespace User\Service;
 
-use Zend\Permissions\Rbac\Rbac;
-use Zend\Permissions\Rbac\Role as RbacRole;
+use Laminas\Permissions\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Role as RbacRole;
 use User\Entity\User;
 use User\Entity\Role;
 use User\Entity\Permission;
@@ -1086,49 +1086,49 @@ use User\Entity\Permission;
 /**
  * Этот сервис отвечает за инициализацию RBAC (Role-Based Access Control – контроль доступа на основе ролей).
  */
-class RbacManager 
+class RbacManager
 {
     /**
      * Менеджер сущностей Doctrine.
      * @var Doctrine\ORM\EntityManager
      */
-    private $entityManager; 
-    
+    private $entityManager;
+
     /**
      * Сервис RBAC.
-     * @var Zend\Permissions\Rbac\Rbac
+     * @var Laminas\Permissions\Rbac\Rbac
      */
     private $rbac;
-    
+
     /**
      * Сервис аутентификации.
-     * @var Zend\Authentication\AuthenticationService 
+     * @var Laminas\Authentication\AuthenticationService
      */
     private $authService;
-    
+
     /**
      * Кэш файловой системы.
-     * @var Zend\Cache\Storage\StorageInterface
+     * @var Laminas\Cache\Storage\StorageInterface
      */
     private $cache;
-    
+
     /**
      * Менеджеры утверждений.
      * @var array
      */
     private $assertionManagers = [];
-    
+
     /**
      * Конструирует сервис.
      */
-    public function __construct($entityManager, $authService, $cache, $assertionManagers) 
+    public function __construct($entityManager, $authService, $cache, $assertionManagers)
     {
         $this->entityManager = $entityManager;
         $this->authService = $authService;
         $this->cache = $cache;
         $this->assertionManagers = $assertionManagers;
     }
-    
+
     /**
      * Инициализирует контейнер RBAC.
      */
@@ -1138,12 +1138,12 @@ class RbacManager
             // Уже инициализирован; ничего не делаем.
             return;
         }
-        
+
         // Если пользователь хочет, чтобы мы заново инициализировали контейнер RBAC, очищаем кэш.
         if ($forceCreate) {
             $this->cache->removeItem('rbac_container');
         }
-        
+
         // Пробуем загрузить контейнер Rbac из кэша.
         $this->rbac = $this->cache->getItem('rbac_container', $result);
         if (!$result)
@@ -1173,12 +1173,12 @@ class RbacManager
                     $rbac->getRole($roleName)->addPermission($permission->getName());
                 }
             }
-            
+
             // Сохраняем контейнер Rbac в кэш.
             $this->cache->setItem('rbac_container', $rbac);
         }
     }
-    
+
     /**
      * Проверяет, есть ли привилегия у данного пользователя.
      * @param User|null $user
@@ -1190,14 +1190,14 @@ class RbacManager
         if ($this->rbac==null) {
             $this->init();
         }
-        
+
         if ($user==null) {
-            
+
             $identity = $this->authService->getIdentity();
             if ($identity==null) {
                 return false;
             }
-            
+
             $user = $this->entityManager->getRepository(User::class)
                     ->findOneByEmail($identity);
             if ($user==null) {
@@ -1206,21 +1206,21 @@ class RbacManager
                 throw new \Exception('There is no user with such identity');
             }
         }
-        
+
         $roles = $user->getRoles();
-        
+
         foreach ($roles as $role) {
             if ($this->rbac->isGranted($role->getName(), $permission)) {
-                
+
                 if ($params==null)
                     return true;
-                    
+
                 foreach ($this->assertionManagers as $assertionManager) {
                     if ($assertionManager->assert($this->rbac, $permission, $params))
                         return true;
                 }
             }
-            
+
             $parentRoles = $role->getParentRoles();
             foreach ($parentRoles as $parentRole) {
                 if ($this->rbac->isGranted($parentRole->getName(), $permission)) {
@@ -1228,11 +1228,11 @@ class RbacManager
                 }
             }
         }
-        
+
         return false;
     }
 }
-~~~ 
+~~~
 
 Фабрика для класса `RbacManager` будет выглядеть следующим образом:
 
@@ -1243,7 +1243,7 @@ namespace User\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use User\Service\RbacManager;
-use Zend\Authentication\AuthenticationService;
+use Laminas\Authentication\AuthenticationService;
 
 /**
  * Это фабричный класс для сервиса RbacManager. Целями данной фабрики являются
@@ -1252,14 +1252,14 @@ use Zend\Authentication\AuthenticationService;
 class RbacManagerFactory
 {
     /**
-     * Этот метод создает сервис RbacManager и возвращает его экземпляр. 
+     * Этот метод создает сервис RbacManager и возвращает его экземпляр.
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {        
+    {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        $authService = $container->get(\Zend\Authentication\AuthenticationService::class);
+        $authService = $container->get(\Laminas\Authentication\AuthenticationService::class);
         $cache = $container->get('FilesystemCache');
-        
+
         $assertionManagers = [];
         $config = $container->get('Config');
         if (isset($config['rbac_manager']['assertions'])) {
@@ -1267,7 +1267,7 @@ class RbacManagerFactory
                 $assertionManagers[$serviceName] = $container->get($serviceName);
             }
         }
-        
+
         return new RbacManager($entityManager, $authService, $cache, $assertionManagers);
     }
 }
@@ -1275,7 +1275,7 @@ class RbacManagerFactory
 
 ## Добавление страницы Not Authorized
 
-Теперь создадим страницу *Not Authorized* (см. рисунок 17.13), на которую мы будем перенаправлять пользователей, если 
+Теперь создадим страницу *Not Authorized* (см. рисунок 17.13), на которую мы будем перенаправлять пользователей, если
 они пытаются перейти на веб-страницу, к которой у них нет доступа.
 
 ![Рисунок 17.13 Страница Not Authorized](../en/images/roles/roledemo_notauthorized_page.png)
@@ -1310,7 +1310,7 @@ return [
 public function notAuthorizedAction()
 {
     $this->getResponse()->setStatusCode(403);
-    
+
     return new ViewModel();
 }
 ~~~
@@ -1360,9 +1360,9 @@ return [
             Controller\UserController::class => [
                 // Дать доступ к действиям "resetPassword", "message" и "setPassword" всем.
                 ['actions' => ['resetPassword', 'message', 'setPassword'], 'allow' => '*'],
-                // Дать доступ к действиям "index", "add", "edit", "view", "changePassword" 
+                // Дать доступ к действиям "index", "add", "edit", "view", "changePassword"
                 // пользователям с привилегией "user.manage".
-                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'], 
+                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'],
                  'allow' => '+user.manage']
             ],
             Controller\RoleController::class => [
@@ -1375,7 +1375,7 @@ return [
             ],
         ]
     ],
-    
+
     //...
 ];
 ~~~
@@ -1387,7 +1387,7 @@ return [
 /**
  * Это простой фильтр контроля доступа. Он может ограничивать доступ к определенным страницам
  * для неавторизованных пользователей.
- * 
+ *
  * Данный метод использует ключ в файле конфигурации и определяет, разрешен ли
  * текущему посетителю доступ к заданному действию контроллера или нет. Если разрешен,
  * он возвращает true, в противном случае – false.
@@ -1396,14 +1396,14 @@ public function filterAccess($controllerName, $actionName)
 {
     // Определяем режим – 'ограничительный' (по умолчанию) или 'разрешительный'. В ограничительном
     // режиме все действия контроллера должны быть явно перечислены под ключом конфигурации 'access_filter',
-    // и доступ к любому не указанному действию для неавторизованных пользователей запрещен. 
-    // В разрешительном режиме, если действие не указано под ключом 'access_filter', доступ к нему 
+    // и доступ к любому не указанному действию для неавторизованных пользователей запрещен.
+    // В разрешительном режиме, если действие не указано под ключом 'access_filter', доступ к нему
     // разрешен для всех (даже для незалогиненных пользователей).
     // Ограничительный режим является более безопасным, и рекомендуется использовать его.
     $mode = isset($this->config['options']['mode'])?$this->config['options']['mode']:'restrictive';
     if ($mode!='restrictive' && $mode!='permissive')
         throw new \Exception('Invalid access filter mode (expected either restrictive or permissive mode');
-    
+
     if (isset($this->config['controllers'][$controllerName])) {
         $items = $this->config['controllers'][$controllerName];
         foreach ($items as $item) {
@@ -1413,27 +1413,27 @@ public function filterAccess($controllerName, $actionName)
                 $actionList=='*') {
                 if ($allow=='*')
                     // Все могут просматривать эту страницу.
-                    return self::ACCESS_GRANTED; 
+                    return self::ACCESS_GRANTED;
                 else if (!$this->authService->hasIdentity()) {
                     // Только аутентифицированные пользователи могут просматривать страницу.
-                    return self::AUTH_REQUIRED;                        
+                    return self::AUTH_REQUIRED;
                 }
-                    
+
                 if ($allow=='@') {
                     // Любой аутентифицированный пользователь может просматривать страницу.
-                    return self::ACCESS_GRANTED;                         
+                    return self::ACCESS_GRANTED;
                 } else if (substr($allow, 0, 1)=='@') {
                     // Только пользователи с определенной привилегией могут просматривать страницу.
                     $identity = substr($allow, 1);
                     if ($this->authService->getIdentity()==$identity)
-                        return self::ACCESS_GRANTED; 
+                        return self::ACCESS_GRANTED;
                     else
                         return self::ACCESS_DENIED;
                 } else if (substr($allow, 0, 1)=='+') {
                     // Только пользователи с этой привилегией могут просматривать страницу.
                     $permission = substr($allow, 1);
                     if ($this->rbacManager->isGranted(null, $permission))
-                        return self::ACCESS_GRANTED; 
+                        return self::ACCESS_GRANTED;
                     else
                         return self::ACCESS_DENIED;
                 } else {
@@ -1441,10 +1441,10 @@ public function filterAccess($controllerName, $actionName)
                             'either "?", "@", "@identity" or "+permission"');
                 }
             }
-        }            
+        }
     }
-    
-    // В ограничительном режиме мы требуем аутентификации для любого действия, не 
+
+    // В ограничительном режиме мы требуем аутентификации для любого действия, не
     // перечисленного под ключом 'access_filter' и отказываем в доступе авторизованным пользователям
     // (из соображений безопасности).
     if ($mode=='restrictive') {
@@ -1453,7 +1453,7 @@ public function filterAccess($controllerName, $actionName)
         else
             return self::ACCESS_DENIED;
     }
-    
+
     // Разрешить доступ к этой странице.
     return self::ACCESS_GRANTED;
 }
@@ -1476,8 +1476,8 @@ public function filterAccess($controllerName, $actionName)
 <?php
 namespace User;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
 use User\Controller\AuthController;
 use User\Service\AuthManager;
 
@@ -1489,7 +1489,7 @@ class Module
      * Метод обработчика событий для события 'Dispatch'. Мы обрабатываем событие Dispatch
      * и вызываем фильтр доступа. Фильтр доступа позволяет определить, разрешено ли текущему
      * посетителю просматривать страницу или нет. Если он не авторизован и доступ к странице
-     * для него запрещен, мы перенаправляем такого пользователя на страницу входа на сайт. 
+     * для него запрещен, мы перенаправляем такого пользователя на страницу входа на сайт.
      */
     public function onDispatch(MvcEvent $event)
     {
@@ -1497,19 +1497,19 @@ class Module
         $controller = $event->getTarget();
         $controllerName = $event->getRouteMatch()->getParam('controller', null);
         $actionName = $event->getRouteMatch()->getParam('action', null);
-        
+
         // Конвертируем написанное через дефис имя действия в верблюжий регистр.
         $actionName = str_replace('-', '', lcfirst(ucwords($actionName, '-')));
-        
+
         // Получаем экземпляр сервиса AuthManager.
         $authManager = $event->getApplication()->getServiceManager()->get(AuthManager::class);
-        
+
         // Применяем фильтр доступа к каждому контроллеру кроме AuthController
         // (во избежание бесконечного перенаправления).
         if ($controllerName!=AuthController::class)
         {
             $result = $authManager->filterAccess($controllerName, $actionName);
-            
+
             if ($result==AuthManager::AUTH_REQUIRED) {
                 // Запоминаем URL страницы, на которую пытался перейти пользователь. Мы
                 // перенаправим пользователя на этот URL после его успешного входа на сайт.
@@ -1523,7 +1523,7 @@ class Module
                 $redirectUrl = $uri->toString();
 
                 // Перенаправляем пользователя на страницу "Login".
-                return $controller->redirect()->toRoute('login', [], 
+                return $controller->redirect()->toRoute('login', [],
                         ['query'=>['redirectUrl'=>$redirectUrl]]);
             }
             else if ($result==AuthManager::ACCESS_DENIED) {
@@ -1555,7 +1555,7 @@ class Module
 <?php
 namespace User\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
  * Этот плагин контроллера используется для контроля доступа на основе ролей (RBAC).
@@ -1563,12 +1563,12 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 class AccessPlugin extends AbstractPlugin
 {
     private $rbacManager;
-    
+
     public function __construct($rbacManager)
     {
         $this->rbacManager = $rbacManager;
     }
-    
+
     /**
      * Проверяет наличие заданной привилегии у залогиненного в текущий момент пользователя.
      * @param string $permission Имя привилегии.
@@ -1589,7 +1589,7 @@ class AccessPlugin extends AbstractPlugin
 namespace User\Controller\Plugin\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Service\RbacManager;
 use User\Controller\Plugin\AccessPlugin;
 
@@ -1600,9 +1600,9 @@ use User\Controller\Plugin\AccessPlugin;
 class AccessPluginFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {   
+    {
         $rbacManager = $container->get(RbacManager::class);
-        
+
         return new AccessPlugin($rbacManager);
     }
 }
@@ -1629,7 +1629,7 @@ class AccessPluginFactory implements FactoryInterface
 ~~~
 if (!$this->access('profile.own.view', ['user'=>$user])) {
     return $this->redirect()->toRoute('not-authorized');
-}        
+}
 ~~~
 
 ### Помощник представления Access
@@ -1646,20 +1646,20 @@ if (!$this->access('profile.own.view', ['user'=>$user])) {
 <?php
 namespace User\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Этот помощник представления используется для проверки привилегий пользователя.
  */
-class Access extends AbstractHelper 
+class Access extends AbstractHelper
 {
     private $rbacManager = null;
-    
-    public function __construct($rbacManager) 
+
+    public function __construct($rbacManager)
     {
         $this->rbacManager = $rbacManager;
     }
-    
+
     public function __invoke($permission, $params = [])
     {
         return $this->rbacManager->isGranted(null, $permission, $params);
@@ -1675,7 +1675,7 @@ class Access extends AbstractHelper
 namespace User\View\Helper\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Service\RbacManager;
 use User\View\Helper\Access;
 
@@ -1686,9 +1686,9 @@ use User\View\Helper\Access;
 class AccessFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {   
+    {
         $rbacManager = $container->get(RbacManager::class);
-        
+
         return new Access($rbacManager);
     }
 }
@@ -1721,20 +1721,20 @@ if ($this->access('profile.own.view, ['user'=>$user]))) {
 ## Использование модуля User
 
 Поздравляем, наш сайт *Role Demo* почти готов. Давайте кратко обговорим то, каким образом вы
-обычно будете использовать его, если планируете создать свой собственный вебсайт на его основе. 
+обычно будете использовать его, если планируете создать свой собственный вебсайт на его основе.
 
-Первым делом вам необходимо создать все необходимые роли и привилегии через написанный нами удобный 
+Первым делом вам необходимо создать все необходимые роли и привилегии через написанный нами удобный
 пользовательский интерфейс. Присвойте роль (или несколько ролей) каждому пользователю сайта.
 
 Затем измените файл конфигурации *module.config.php* в модуле и добавьте два ключа:
 
-  * ключ `rbac_manager`, который будет содержать настройки для `RbacManager` (в частности, 
+  * ключ `rbac_manager`, который будет содержать настройки для `RbacManager` (в частности,
     конфигурацию менеджера(-ов));
 
   Пример этого ключа представлен ниже:
 
 {line-numbers=off,lang=php}
-~~~  
+~~~
 // Этот ключ хранит конфигурацию для менеджера RBAC.
 'rbac_manager' => [
     'assertions' => [Service\RbacAssertionManager::class],
@@ -1743,7 +1743,7 @@ if ($this->access('profile.own.view, ['user'=>$user]))) {
 
   * и ключ `access_filter`, который будет хранить правила доступа для страниц вашего вебсайта. Как правило, он выглядит так:
 
-{line-numbers=off,lang=php}  
+{line-numbers=off,lang=php}
 ~~~
 'access_filter' => [
     'options' => [
@@ -1762,12 +1762,12 @@ if ($this->access('profile.own.view, ['user'=>$user]))) {
 
 Символы `*` и `@` в подключах `allow` являются не единственными опциями. Ниже показано,
 как могут выглядеть подключи `allow`. Так, мы разрешаем доступ к странице:
-   
+
  * всем, если мы поставим звездочку (`*`);
  * любому аутентифицированному пользователю, если мы поставим коммерческое at (`@`);
  * конкретному аутентифицированному пользователю с заданным адресом эл. почты `личности`, если мы поставим (`@identity`)
  * любому аутентифицированному пользователю с заданной `привилегией`, если мы поставим знак плюса и имя привилегии (`+permission`).
-   
+
 Если ваш вебсайт содержит динамические утверждения, расширьте метод `assert()` существующего
 класса `RbacAssertionManager` (или напишите и зарегистрируйте свой собственный менеджер утверждений):
 
@@ -1777,16 +1777,16 @@ public function assert(Rbac $rbac, $permission, $params)
 {
     $currentUser = $this->entityManager->getRepository(User::class)
             ->findOneByEmail($this->authService->getIdentity());
-    
+
     if ($permission=='post.own.edit' && $params['post']->getUser()->getId()==$currentUser->getId())
         return true;
-        
+
     if ($permission=='post.own.publish' && $params['post']->getUser()->getId()==$currentUser->getId())
-        return true;        
-    
+        return true;
+
     return false;
 }
-~~~   
+~~~
 
 Если вы хотите проверить привилегии в действии контроллера, можно использовать плагин контроллера `Access` следующим образом:
 
@@ -1794,7 +1794,7 @@ public function assert(Rbac $rbac, $permission, $params)
 ~~~
 if (!$this->access('profile.own.view', ['user'=>$user])) {
     return $this->redirect()->toRoute('not-authorized');
-}        
+}
 ~~~
 
 Если вы хотите проверить привилегии в шаблоне представления, можете использовать помощник представления `Access`:
@@ -1811,7 +1811,7 @@ if ($this->access('profile.own.view', ['user'=>$user))) {
 ## Выводы
 
 В этой главе мы реализовали вебсайт *Role Demo*, который демонстрирует использование ролей и
-привилегий в ZF3.
+привилегий в Laminas.
 
 Роль – это, по сути, группа пользователей. Пользователю могут быть присвоены одна или сразу несколько ролей.
 

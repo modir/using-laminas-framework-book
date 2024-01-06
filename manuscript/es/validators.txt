@@ -11,14 +11,14 @@ I> Por ejemplo, los validadores se puede usar en las acciones del controlador
 I> para asegurar que los datos pasado en las variables GET y/o POST son seguras
 I> y cumplen con un determinado formato.
 
-Los componentes de ZF3 tratados en este capítulo son:
+Los componentes de Laminas tratados en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Validator`              | Implementa varias clases validadoras.                         |
+| @`Laminas\Validator`              | Implementa varias clases validadoras.                         |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\InputFilter`            | Implementa un contenedor para filtros/validadores.            |
+| @`Laminas\InputFilter`            | Implementa un contenedor para filtros/validadores.            |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Sobre los validadores
@@ -30,15 +30,15 @@ el porqué no paso la revisión.
 
 ### ValidatorInterface
 
-En ZF3 un validador es una clase PHP común que implementa la interfaz
-@`ValidatorInterface`[Zend\Validator\ValidatorInterface]
-que pertenece al espacio de nombres @`Zend\Validator`. La definición de la interfaz
+En Laminas un validador es una clase PHP común que implementa la interfaz
+@`ValidatorInterface`[Laminas\Validator\ValidatorInterface]
+que pertenece al espacio de nombres @`Laminas\Validator`. La definición de la interfaz
 se presenta abajo:
 
 {line-numbers=on, lang=php}
 ~~~
 <?php
-namespace Zend\Validator;
+namespace Laminas\Validator;
 
 interface ValidatorInterface
 {
@@ -51,7 +51,7 @@ interface ValidatorInterface
 }
 ~~~
 
-Como podemos ver @`ValidatorInterface`[Zend\Validator\ValidatorInterface] tiene dos métodos: el método `isValid()`
+Como podemos ver @`ValidatorInterface`[Laminas\Validator\ValidatorInterface] tiene dos métodos: el método `isValid()`
 (línea 7) y el método `getMessages()` (línea 11).
 
 El primer método `isValid()` esta concebido para ejecutar la revisión del valor
@@ -59,19 +59,19 @@ de entrada (el parámetro `$value`). Si `$value` pasa la validación, el
 método `isValid()` regresa el booleano `true`. Si la validación de `$value` falla,
 entonces el método regresa `false`.
 
-T> Una clase validadora concreta implementa la interfaz @`ValidatorInterface`[Zend\Validator\ValidatorInterface] y
+T> Una clase validadora concreta implementa la interfaz @`ValidatorInterface`[Laminas\Validator\ValidatorInterface] y
 I> puede tener métodos adicionales. Por ejemplo, muchas clases validadoras tienen
 I> métodos que permiten configurar al validador (colocar las opciones de validación).
 
 ## Perspectiva general de los validadores estándares
 
-Los validadores estándares de ZF3 son provistos por el componente @`Zend\Validator`
+Los validadores estándares de Laminas son provistos por el componente @`Laminas\Validator`
 [^standard_validators]. La herencia de las clases validadoras estándares se
 muestran en la figura 9.1. Como podemos ver en la figura la mayoría de las clases
 se derivan de la clase base @`AbstractValidator`.
 
 [^standard_validators]: Aquí solo consideramos las clases validadoras estándares
-    que pertenecen al espacio de nombres @`Zend\Validator`. Sin embargo, existen
+    que pertenecen al espacio de nombres @`Laminas\Validator`. Sin embargo, existen
     más validadores que se pueden considerar estándares. Hablaremos sobre ellos
     en capítulos posteriores.
 
@@ -90,19 +90,19 @@ table, they can be roughly divided into several groups:
  * Validadores que revisan si un valor numérico está en un rango determinado
    (menos que, mayor que, entre, etc).
  * Validadores que funcionan como «procuradores» (proxies) de otros validadores
-   (@`ValidatorChain`[Zend\Validator\ValidatorChain], @`StaticValidator`
-   y @`Callback`[Zend\Validator\Callback]).
+   (@`ValidatorChain`[Laminas\Validator\ValidatorChain], @`StaticValidator`
+   y @`Callback`[Laminas\Validator\Callback]).
 
 {title="Tabla 9.1. Validadores estándares"}
 |--------------------------------|---------------------------------------------------------------|
 | *Nombre de la clase*           | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`EmailAddress`                | Regresa el booleano `true` si el valor es una dirección de    |
-| [Zend\Validator\EmailAddress]   | correo electrónico valida, de lo contrario regresa `false`.  |
+| [Laminas\Validator\EmailAddress]   | correo electrónico valida, de lo contrario regresa `false`.  |
 |--------------------------------|---------------------------------------------------------------|
-| @`Hostname`[Zend\Validator\Hostname]| Revisa si el valor es un nombre de servidor valido.      |
+| @`Hostname`[Laminas\Validator\Hostname]| Revisa si el valor es un nombre de servidor valido.      |
 |--------------------------------|---------------------------------------------------------------|
-| @`Barcode`[Zend\Validator\Barcode]                     | Regresa el booleano `true` si y solo si el valor contiene un  |
+| @`Barcode`[Laminas\Validator\Barcode]                     | Regresa el booleano `true` si y solo si el valor contiene un  |
 |                                | código de barras valido.                                      |
 |--------------------------------|---------------------------------------------------------------|
 | @`CreditCard`                  | Regresa `true` si y solo si el valor sigue el formato común de|
@@ -117,10 +117,10 @@ table, they can be roughly divided into several groups:
 | @`Ip`                          | Regresa `true` si el valor es una dirección IP valida, de lo  |
 |                                | contrario regresa `false`.                                    |
 |--------------------------------|---------------------------------------------------------------|
-| @`Uri`[Zend\Validator\Uri]                         | Regresa `true` si y solo si el valor es un Identificador de   |
+| @`Uri`[Laminas\Validator\Uri]                         | Regresa `true` si y solo si el valor es un Identificador de   |
 |            | Recursos Uniforme, en ingles URI.                             |
 |--------------------------------|---------------------------------------------------------------|
-| @`Between`[Zend\Validator\Between]                     | Regresa `true` si el valor está en un determinado rango, de lo|
+| @`Between`[Laminas\Validator\Between]                     | Regresa `true` si el valor está en un determinado rango, de lo|
 |        | contrario regresa `false`.                                    |
 |--------------------------------|---------------------------------------------------------------|
 | @`LessThan`                    | Regresa el booleano `true` si el valor es menor que determinado|
@@ -133,10 +133,10 @@ table, they can be roughly divided into several groups:
 |--------------------------------|---------------------------------------------------------------|
 | @`Step`                        | Revisa si el valor es un escalar y un valor de paso valido.   |
 |--------------------------------|---------------------------------------------------------------|
-| @`Csrf`[Zend\Validator\Csrf]                        | Este validador revisa si la seña (token) provista coincide con la |
+| @`Csrf`[Laminas\Validator\Csrf]                        | Este validador revisa si la seña (token) provista coincide con la |
 |           | generada y guardada en la sesión de PHP anteriormente.        |
 |--------------------------------|---------------------------------------------------------------|
-| @`Date`[Zend\Validator\Date]                        | Regresa `true` si el valor es una fecha valida en un          |
+| @`Date`[Laminas\Validator\Date]                        | Regresa `true` si el valor es una fecha valida en un          |
 |           | determinado formato.                                          |
 |--------------------------------|---------------------------------------------------------------|
 | @`DateStep`                    | Regresa un booleano `true` si la fecha está dentro de una paso valido. |
@@ -144,7 +144,7 @@ table, they can be roughly divided into several groups:
 | @`InArray`                     | Regresa `true` si un valor está en una arreglo dado, de otra  |
 |                                | manera regresa `false`.                                       |
 |--------------------------------|---------------------------------------------------------------|
-| @`Digits`[Zend\Validator\Digits]                      | Regresa el booleano `true` si y solo si ``$value` contiene solo  |
+| @`Digits`[Laminas\Validator\Digits]                      | Regresa el booleano `true` si y solo si ``$value` contiene solo  |
 |         | dígitos.                                                      |
 |--------------------------------|---------------------------------------------------------------|
 | @`Hex`                         | Regresa `true` si y solo si el valor contiene solo dígitos    |
@@ -155,7 +155,7 @@ table, they can be roughly divided into several groups:
 |--------------------------------|---------------------------------------------------------------|
 | @`NotEmpty`                    | Regresa `true` si el valor no es vacío.                       |
 |--------------------------------|---------------------------------------------------------------|
-| @`Regex`[Zend\Validator\Regex]                       | Regresa `true` si el valor coincide con un patrón dado, de lo |
+| @`Regex`[Laminas\Validator\Regex]                       | Regresa `true` si el valor coincide con un patrón dado, de lo |
 |          | contrario regresa `false`.                                    |
 |--------------------------------|---------------------------------------------------------------|
 | @`StringLength`                | Regresa `true` si la longitud de una cadena de caracteres está|
@@ -167,11 +167,11 @@ table, they can be roughly divided into several groups:
 | @`StaticValidator`             | Este validador permite ejecutar otro validador sin            |
 |                                | instanciarlo explícitamente.                                  |
 |--------------------------------|---------------------------------------------------------------|
-| @`Callback`[Zend\Validator\Callback]                    | Este validador permite ejecutar un algoritmo de validación    |
+| @`Callback`[Laminas\Validator\Callback]                    | Este validador permite ejecutar un algoritmo de validación    |
 |       | personalizado a través de un función de retro llamada provista|
 |                                | por el usuario.                                               |
 |--------------------------------|---------------------------------------------------------------|
-| @`ValidatorChain`[Zend\Validator\ValidatorChain]              | Validador de envoltura que permite organizar varios           |
+| @`ValidatorChain`[Laminas\Validator\ValidatorChain]              | Validador de envoltura que permite organizar varios           |
 | | validadores en una cadena. Los validadores añadidos se        |
 |                                | ejecutan en el orden en que fueron agregados a la cadena (FIFO).|
 |--------------------------------|---------------------------------------------------------------|
@@ -181,7 +181,7 @@ table, they can be roughly divided into several groups:
 Si pasamos a un validador algún dato que no pasa la revisión, el validador crea
 internamente una lista de mensajes de error que se pueden recuperar con el
 método `getMessages()`. Por ejemplo, veamos abajo los posibles errores que el
-validador @`EmailAdrress`[Zend\Validator\EmailAddress] regresa si le pasamos
+validador @`EmailAdrress`[Laminas\Validator\EmailAddress] regresa si le pasamos
 el valor «abc@ewr» (el carácter
 barra invertida, «\», indica una nueva línea donde el código no se ajusta a la
 página):
@@ -212,7 +212,7 @@ llamada.
 Algunos validadores pueden trabajar solamente con datos de entrada en determinado
 formato (por ejemplo, un validador puede necesitar que los datos de entrada sean
 cadenas de caracteres y no un arreglo). Si pasamos datos en un formato inaceptable
-el validador puede lanzar una excepción @`Zend\Validator\Exception\RuntimeException`
+el validador puede lanzar una excepción @`Laminas\Validator\Exception\RuntimeException`
 o producir una advertencia de PHP
 
 I> Se recomienda revisar la documentación del validador que vamos a usar para
@@ -220,7 +220,7 @@ I> asegurarnos de su comportamiento en caso de datos inaceptables.
 
 ## Instanciar un validador
 
-En Zend Framework 3 existen varios métodos para crear un validador:
+En Laminas Framework existen varios métodos para crear un validador:
 
  * Instanciarlo manualmente (con el operador `new`).
  * Crearlo con una clase fábrica (pasándole un arreglo de configuración).
@@ -329,9 +329,9 @@ poseen el prefijo `ALLOW_` [^allow_constants] y son las siguientes:
   * `ALLOW_ALL`  permite todas las anteriores.
 
 [^allow_constants]: Las constantes con el prefijo `ALLOW_` las provee el validador
-                    @`Hostname`[Zend\Validator\Hostname].
+                    @`Hostname`[Laminas\Validator\Hostname].
 
-I> Internamente, el validador @`EmailAddress` usa el validador @`Hostname`[Zend\Validator\Hostname] para revisar
+I> Internamente, el validador @`EmailAddress` usa el validador @`Hostname`[Laminas\Validator\Hostname] para revisar
 I> la parte del nombre del servidor de la dirección de correo electrónico. Opcionalmente,
 I> podemos añadir un validador personalizado para el nombre del servidor con el
 I> uso del método `setHostnameValidator()`, sin embargo no es común hacerlo.
@@ -357,8 +357,8 @@ revisando los valores de entrada:
 ~~~
 <?php
 // Optionally, define a short alias for the validator class name.
-use Zend\Validator\EmailAddress;
-use Zend\Validator\Hostname;
+use Laminas\Validator\EmailAddress;
+use Laminas\Validator\Hostname;
 
 // Create an instance of the validator, passing options to the constructor.
 $validator = new EmailAddress([
@@ -397,8 +397,8 @@ con el método `getMessages()` (línea 19).
 ~~~
 <?php
 // Optionally, define a short alias for the validator class name.
-use Zend\Validator\EmailAddress;
-use Zend\Validator\Hostname;
+use Laminas\Validator\EmailAddress;
+use Laminas\Validator\Hostname;
 
 // Create an instance of the validator.
 $validator = new EmailAddress();
@@ -448,7 +448,7 @@ configurarlo y llamar a su método `isValid()`:
 ~~~
 <?php
 // Create and execute the EmailAddress validator through StaticValidator proxy.
-$validatedValue = \Zend\Validator\StaticValidator::execute('name@example.com',
+$validatedValue = \Laminas\Validator\StaticValidator::execute('name@example.com',
                     'EmailAddress',
                     [
                       'allow' =>
@@ -501,7 +501,7 @@ $inputFilter->add([
     [
       'name' => 'EmailAddress',
       'options' => [
-        'allow' => \Zend\Validator\Hostname::ALLOW_DNS,
+        'allow' => \Laminas\Validator\Hostname::ALLOW_DNS,
         'useMxCheck' => false,
         'useDeepMxCheck' => false,
       ],
@@ -512,14 +512,14 @@ $inputFilter->add([
 ~~~
 
 En el código de arriba llamamos al método `add()` provisto por la clase contenedor
-@`InputFilter`[Zend\InputFilter\InputFilter] (línea 5). El método `add()` toma un arreglo que tiene la llave
+@`InputFilter`[Laminas\InputFilter\InputFilter] (línea 5). El método `add()` toma un arreglo que tiene la llave
 `validators`. Generalmente registramos los validadores dentro de esta llave (línea 7).
 Los validadores registrados dentro de esta llave se insertan dentro de la cadena
 validadora in el orden en que aparecen en la lista.
 
 La configuración de un validador generalmente consiste en una llave `name` (línea 9)
 y otra `options` (línea 10). La primera, `name`, es el nombre completo de la clase
-validadora (por ejemplo, @`\Zend\Validator\EmailAddress`) o su alias (@`EmailAddress`).
+validadora (por ejemplo, @`\Laminas\Validator\EmailAddress`) o su alias (@`EmailAddress`).
 La llave `options` es un arreglo que consiste en opciones especifica para cada validador.
 Cuando la clase fábrica instancia el validador, ella pasa la lista de opciones
 al constructor del validador y el constructor inicializa el validador según sea
@@ -534,11 +534,11 @@ en la clase @`ValidatorPluginManager`.
 I> La clase @`ValidatorPluginManager` define los alias de los validadores.
 
 El alias de un validador estándar es generalmente el mismo que el nombre de la
-clase. Por ejemplo, la clase @`Zend\Validator\EmailAddress` tiene el alias
+clase. Por ejemplo, la clase @`Laminas\Validator\EmailAddress` tiene el alias
 @`EmailAddress`.
 
 El administrador de complementos para validadores es usado internamente por la
-clase contenedora @`InputFilter`[Zend\InputFilter\InputFilter] para la
+clase contenedora @`InputFilter`[Laminas\InputFilter\InputFilter] para la
 instanciación de los validadores estándar.
 
 ## Ejemplos de uso de validadores
@@ -607,7 +607,7 @@ Abajo tenemos un código de ejemplo que demuestra el uso del validador @`Ip`.
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\Ip;
+use Laminas\Validator\Ip;
 
 // Create Ip validator.
 $validator = new Ip();
@@ -633,7 +633,7 @@ $isValid3 = $validator->isValid('abc'); // Returns false
 
 #### Validador Hostname
 
-El validador @`Hostname`[Zend\Validator\Hostname] está diseñado para revisar si el valor dado es un nombre
+El validador @`Hostname`[Laminas\Validator\Hostname] está diseñado para revisar si el valor dado es un nombre
 de servidor que pertenece al conjunto de tipos de nombres de servidor permitidos.
 Los tipos son:
 
@@ -707,12 +707,12 @@ omitir dependiendo de las opciones del validador:
         Internet que contiene al menos una letra en un alfabeto específico como
         en el Árabe, Chino o Ruso.
 
-Abajo, mostramos un código de ejemplo que demuestra el uso del validador @`Hostname`[Zend\Validator\Hostname].
+Abajo, mostramos un código de ejemplo que demuestra el uso del validador @`Hostname`[Laminas\Validator\Hostname].
 
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\Hostname;
+use Laminas\Validator\Hostname;
 
 // Create the Hostname validator.
 $validator = new Hostname();
@@ -729,7 +729,7 @@ $isValid2 = $validator->isValid('abc');
 
 #### El validador Uri
 
-El validador @`Uri`[Zend\Validator\Uri] está diseñado para revisar si el valor de entrada es un
+El validador @`Uri`[Laminas\Validator\Uri] está diseñado para revisar si el valor de entrada es un
 Identificador de Recursos Uniforme (URI) [^uri]. En caso de falla los mensajes
 de error se pueden recuperar con el método del validador `getMessages()`.
 
@@ -741,7 +741,7 @@ I> pensar a la URI como un URL usual.
         Uniforme de recursos (URL) es un tipo de URI. Pero, no todas las URIs son
         URLs.
 
-Los métodos públicos que provee el validador @`Uri`[Zend\Validator\Uri] se listan en la tabla 9.5:
+Los métodos públicos que provee el validador @`Uri`[Laminas\Validator\Uri] se listan en la tabla 9.5:
 
 {title="Table 9.5. Public methods of the Uri validator"}
 |--------------------------------|---------------------------------------------------------------|
@@ -768,9 +768,9 @@ Los métodos públicos que provee el validador @`Uri`[Zend\Validator\Uri] se lis
 | `getAllowRelative()`           | Regresa `true` si se aceptan las URIs relativas.              |
 |--------------------------------|---------------------------------------------------------------|
 
-Internamente, el validador @`Uri`[Zend\Validator\Uri] usa el *gestor de objetos URI* (URI handler object)
+Internamente, el validador @`Uri`[Laminas\Validator\Uri] usa el *gestor de objetos URI* (URI handler object)
 que es responsable de analizar la cadena de caracteres de la URI. Por defecto, la
-clase @`Zend\Uri\Uri` se usa como gestor de URI. (Si queremos, podemos colocar nuestro
+clase @`Laminas\Uri\Uri` se usa como gestor de URI. (Si queremos, podemos colocar nuestro
 gestor de URI personalizado con el método `setUriHandler()`).
 
 Una URI puede ser absoluta o relativa. Por ejemplo, una URI absoluta es
@@ -780,12 +780,12 @@ URIs relativas, a las absolutas o ambas. Para esto, usamos los métodos
 `setAllowAbsolute()` and `setAllowRelative()`, respectivamente. Por defecto, ambas
 son tratadas como tipos de URI aceptables.
 
-Abajo, un código de ejemplo muestra el uso del validador @`Uri`[Zend\Validator\Uri].
+Abajo, un código de ejemplo muestra el uso del validador @`Uri`[Laminas\Validator\Uri].
 
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\Uri;
+use Laminas\Validator\Uri;
 
 // Create the Uri validator.
 $validator = new Uri();
@@ -803,11 +803,11 @@ $isValid2 = $validator->isValid('index/index');
 
 #### El validador Date
 
-El validador @`Date`[Zend\Validator\Date] está pensado para revisar si el dato de entrada es una fecha
+El validador @`Date`[Laminas\Validator\Date] está pensado para revisar si el dato de entrada es una fecha
 en un formato dado. En caso de falla, los mensajes de error se pueden extraer con
 el método del validador `getMessages()`.
 
-Los métodos públicos que provee el validador @`Date`[Zend\Validator\Date] se listan en la tabla 9.6:
+Los métodos públicos que provee el validador @`Date`[Laminas\Validator\Date] se listan en la tabla 9.6:
 
 {title="Tabla 9.6. Métodos públicos del validador Date"}
 |--------------------------------|---------------------------------------------------------------|
@@ -833,12 +833,12 @@ I> Internamente, el filtro @`DateTimeFormatter` usa la clase `DateTime` de la bi
 I> estándar de PHP para convertir y formatear las fechas. Los formatos de fecha
 I> disponibles los podemos conseguir en la documentación de PHP de la clase `DateTime`.
 
-Abajo, un código de ejemplo demuestra el uso del validador @`Date`[Zend\Validator\Date].
+Abajo, un código de ejemplo demuestra el uso del validador @`Date`[Laminas\Validator\Date].
 
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\Date;
+use Laminas\Validator\Date;
 
 // Create validator instance.
 $validator = new Date();
@@ -858,7 +858,7 @@ expresión regular. Regresa `true` si la cadena de caracteres coincide con la ex
 regular, de lo contrario regresa `false`. En caso de fallo, los mensajes de error
 se pueden extraer con el método `getMessages()` del validador.
 
-Los métodos públicos que provee el validador @`Regex`[Zend\Validator\Regex] se listan en la tabla 9.7:
+Los métodos públicos que provee el validador @`Regex`[Laminas\Validator\Regex] se listan en la tabla 9.7:
 
 {title="Tabla 9.7. Métodos públicos del validador Regex"}
 |--------------------------------|---------------------------------------------------------------|
@@ -883,7 +883,7 @@ la comparación.
 T> Para conocer la sintaxis y ver ejemplos de las expresiones regulares recomendamos
 T> revisar la sección *Patrones PCRE* de la documentación de PHP.
 
-Abajo, con un código de ejemplo mostramos el uso del validador @`Regex`[Zend\Validator\Regex]. En el ejemplo
+Abajo, con un código de ejemplo mostramos el uso del validador @`Regex`[Laminas\Validator\Regex]. En el ejemplo
 usamos una expresión regular para revisar si la cadena de caracteres de entrada es
 una dirección IPv4 valida (una dirección consiste típicamente consiste en cuatro
 grupos de dígitos separados por puntos).
@@ -891,7 +891,7 @@ grupos de dígitos separados por puntos).
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\Regex;
+use Laminas\Validator\Regex;
 
 // Create Regex validator.
 $validator = new Regex();
@@ -989,7 +989,7 @@ Abajo, mostramos un código de ejemplo que demuestra el uso del validador @`NotE
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\NotEmpty;
+use Laminas\Validator\NotEmpty;
 
 // Create validator instance.
 $validator = new NotEmpty();
@@ -1005,10 +1005,10 @@ $isValid3 = $validator->isValid(0); // returns false
 
 #### Validador Between
 
-El validador @`Between`[Zend\Validator\Between] revisa si un número está en un determinado rango (min, max),
+El validador @`Between`[Laminas\Validator\Between] revisa si un número está en un determinado rango (min, max),
 incluyéndolos (por defecto) o excluyéndolos.
 
-Los métodos públicos que provee el validador @@`Between`[Zend\Validator\Between] se listan en la tabla 9.10:
+Los métodos públicos que provee el validador @@`Between`[Laminas\Validator\Between] se listan en la tabla 9.10:
 
 {title="Tabla 9.10. Métodos públicos del validador Between"}
 |--------------------------------|---------------------------------------------------------------|
@@ -1048,7 +1048,7 @@ Abajo, se muestra un ejemplo del uso del validador `Between`.
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\Between;
+use Laminas\Validator\Between;
 
 // Create validator instance.
 $validator = new Between();
@@ -1117,7 +1117,7 @@ Abajo, demostramos con un ejemplo el uso del validador @`InArray`.
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\InArray;
+use Laminas\Validator\InArray;
 
 // Create validator instance.
 $validator = new InArray();
@@ -1185,7 +1185,7 @@ Abajo, mostramos un código de ejemplo del uso del validador `StringLength`.
 {line-numbers=off, lang=php}
 ~~~
 <?php
-use Zend\Validator\StringLength;
+use Laminas\Validator\StringLength;
 
 // Create validator instance.
 $validator = new StringLength();
@@ -1202,17 +1202,17 @@ $isValid3 = $validator->isValid("a very long string"); // returns false (value i
 ### Organizar los validadores en una cadena
 
 Los validadores se pueden organizar en una cadena. Esto es posible con el
-uso de la clase @`ValidatorChain`[Zend\Validator\ValidatorChain]. Cuando un validador compuesto se ejecuta,
+uso de la clase @`ValidatorChain`[Laminas\Validator\ValidatorChain]. Cuando un validador compuesto se ejecuta,
 el valor de entrada se pasa a cada validador por turno. El método
-`isValid()` del validador @`ValidatorChain`[Zend\Validator\ValidatorChain] regresa `true` si todos los validadores
+`isValid()` del validador @`ValidatorChain`[Laminas\Validator\ValidatorChain] regresa `true` si todos los validadores
 en la cadena regresan `true`, de lo contrario regresa `false`.
 
-I> La clase @`ValidatorChain`[Zend\Validator\ValidatorChain] es usada
-I> internamente por la clase contenedor @`InputFilter`[Zend\InputFilter\InputFilter]
+I> La clase @`ValidatorChain`[Laminas\Validator\ValidatorChain] es usada
+I> internamente por la clase contenedor @`InputFilter`[Laminas\InputFilter\InputFilter]
 I> para almacenar la secuencia de validadores asociados a un campo del modelo del
 I> formulario.
 
-Los métodos públicos que provee la clase @`ValidadorChain`[Zend\Validator\ValidatorChain]
+Los métodos públicos que provee la clase @`ValidadorChain`[Laminas\Validator\ValidatorChain]
 se presentan en la tabla 9.13:
 
 {title="Tabla 9.13. Métodos públicos del validador ValidatorChain"}
@@ -1244,10 +1244,10 @@ se presentan en la tabla 9.13:
 
 Un ejemplo de validadores en cadena se muestra en la figura 9.2. Consiste en el
 validador @`NotEmpty` seguido por el validador @`StringLength` que a su vez está
-seguido por el validador @`Date`[Zend\Validator\Date]. Cuando esta cadena se ejecuta, primero, el
+seguido por el validador @`Date`[Laminas\Validator\Date]. Cuando esta cadena se ejecuta, primero, el
 validador @`NotEmpty` revisa que el valor no sea un valor vacío, luego el validador
 @`StringLength` revisa que la longitud de la cadena de caracteres este en el rango
-(1, 16); ambos inclusive; y finalmente, el validador @`Date`[Zend\Validator\Date] revisa que el valor
+(1, 16); ambos inclusive; y finalmente, el validador @`Date`[Laminas\Validator\Date] revisa que el valor
 de entrada es una fecha con formato «YYYY-MM-DD».
 
 ![Figura 9.2. Cadena validadora](../en/images/validators/validator_chain.png)
@@ -1259,7 +1259,7 @@ el siguiente código:
 ~~~
 <?php
 // Instantiate the validator chain.
-$validator = new \Zend\Validator\ValidatorChain();
+$validator = new \Laminas\Validator\ValidatorChain();
 
 // Insert validators into validator chain.
 $validator->attachByName('NotEmpty');
@@ -1272,10 +1272,10 @@ $isValid = $validator->isValid('2014-04-04'); // Returns true.
 
 ### Validador personalizado con el validador Callback
 
-El validador @`Callback`[Zend\Validator\Callback] puede ser un envoltorio para nuestro algoritmo de validación
+El validador @`Callback`[Laminas\Validator\Callback] puede ser un envoltorio para nuestro algoritmo de validación
 personalizado. Por ejemplo, puede ser útil cuando un validador no es apropiado
 y necesitamos aplicar nuestro propio algoritmo de revisión a los datos. Los métodos
-públicos provistos por el validador @`Callback`[Zend\Validator\Callback] se listan en la tabla 9.14.
+públicos provistos por el validador @`Callback`[Laminas\Validator\Callback] se listan en la tabla 9.14.
 
 {title="Tabla 9.14. Métodos públicos del validador Callback"}
 |--------------------------------|---------------------------------------------------------------|
@@ -1302,7 +1302,7 @@ parámetros.
 
 #### Ejemplo
 
-Para demostrar el uso del validador @`Callback`[Zend\Validator\Callback], vamos a agregar un validador al
+Para demostrar el uso del validador @`Callback`[Laminas\Validator\Callback], vamos a agregar un validador al
 número de teléfono de nuestra clase de modelo de formulario `ContactForm`.
 Este validador revisará el número de teléfono ingresado por el visitante del
 sitio.
@@ -1313,8 +1313,8 @@ comunes:
   * El formato internacional que se ve: «1 (234) 567-8901»;
   * El formato local, que tiene el siguiente aspecto «567-8901».
 
-Como ZF3 no provee un validador estándar que filtre el número de teléfono, usaremos
-el validador @`Callback`[Zend\Validator\Callback] como envoltorio. Para conseguirlo, hacemos los siguientes
+Como Laminas no provee un validador estándar que filtre el número de teléfono, usaremos
+el validador @`Callback`[Laminas\Validator\Callback] como envoltorio. Para conseguirlo, hacemos los siguientes
 cambios al código de nuestra clase `ContactForm`:
 
 {line-numbers=on, lang=php}
@@ -1389,7 +1389,7 @@ class ContactForm extends Form
 En el código de arriba, creamos el campo `phone` en nuestro `ContactForm`
 (Si ya tenemos este campo, podemos ignorar este paso)
 
-Entre las líneas 26-40, agregamos el validador @`Callback`[Zend\Validator\Callback] a la cadena de validación
+Entre las líneas 26-40, agregamos el validador @`Callback`[Laminas\Validator\Callback] a la cadena de validación
 de filtros de entrada para el campo «phone».
 
 En las líneas 44-64, tenemos el método de retro llamada `validatePhone()`. Este
@@ -1408,13 +1408,13 @@ Dentro del método de retro llamada, hacemos lo siguiente:
 
 ## Escribir nuestro propio validador
 
-Una alternativa al uso del validador @`Callback`[Zend\Validator\Callback] es escribir nuestra propia clase
-validadora, implementando la interfaz @`ValidatorInterface`[Zend\Validator\ValidatorInterface]. Y luego, este validador
+Una alternativa al uso del validador @`Callback`[Laminas\Validator\Callback] es escribir nuestra propia clase
+validadora, implementando la interfaz @`ValidatorInterface`[Laminas\Validator\ValidatorInterface]. Y luego, este validador
 se puede usar en los formulario de nuestra aplicación web.
 
 Para demostrar como crear nuestro propio validador, escribiremos la clase
 `PhoneValidator`, encapsulando el algoritmo de validación que usamos en el ejemplo
-del validador @`Callback`[Zend\Validator\Callback].
+del validador @`Callback`[Laminas\Validator\Callback].
 
 I> Como podemos recordar, la clase concreta base para todos los validadores
 I> estándares es la clase @`AbstractValidator`. Por analogía, también derivaremos
@@ -1466,7 +1466,7 @@ el siguiente código dentro del archivo:
 <?php
 namespace Application\Validator;
 
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 // This validator class is designed for checking a phone number for
 // conformance to the local or to the international format.
@@ -1611,10 +1611,10 @@ I> Esto es porque heredamos este método de la clase base @`AbstractValidator`.
 I> Dentro de nuestro método `isValid()`, para generar mensajes de error, usamos
 I> el método protegido `error()` que provee la clase base (líneas 61, 91, 93).
 
-T> The `PhoneValidator` is only for demonstration of how to write custom validators in ZF3. 
-T> Implementing a validator that will work correctly against all possible phone numbers in 
-T> the world is beyond the scope of this book. If you'd like to use this validator in a real-life 
-T> app, you will definitely need to improve it. For example, take a look at the `libphonenumber` 
+T> The `PhoneValidator` is only for demonstration of how to write custom validators in Laminas.
+T> Implementing a validator that will work correctly against all possible phone numbers in
+T> the world is beyond the scope of this book. If you'd like to use this validator in a real-life
+T> app, you will definitely need to improve it. For example, take a look at the `libphonenumber`
 T> PHP library from Google.
 
 ### Usar la clase PhoneValidator
@@ -1698,10 +1698,10 @@ Abajo, podemos encontrar el código del método de acción:
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Filter\StaticFilter;
-use Zend\Validator\StaticValidator;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
+use Laminas\Filter\StaticFilter;
+use Laminas\Validator\StaticValidator;
 
 class IndexController extends AbstractActionController
 {
@@ -1747,7 +1747,7 @@ Los validadores están diseñados para tomar algunos datos de entrada, revisarlo
 y regresar un resultado booleano diciendo si los datos son correctos (y mensajes
 de error si los datos tienen errores).
 
-En Zend Framework 3, existen varios grupos de validadores estándares:
+En Laminas Framework, existen varios grupos de validadores estándares:
 
  * Validadores para revisar la conformidad de un valor a un formato determinado.
  * Validadores para revisar si un valor numérico está dentro de un rango.
@@ -1755,4 +1755,4 @@ En Zend Framework 3, existen varios grupos de validadores estándares:
 
 En algunos casos, un validador estándar no es útil y necesitamos aplicar nuestro
 propio algoritmo de revisión a los datos de entrada. En este caso, podemos usar
-el validador @`Callback`[Zend\Validator\Callback] o escribir nuestra propia clase validadora.
+el validador @`Callback`[Laminas\Validator\Callback] o escribir nuestra propia clase validadora.

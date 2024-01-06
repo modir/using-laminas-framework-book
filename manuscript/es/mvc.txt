@@ -5,20 +5,20 @@ de diseño MVC). Una aplicación web usa el patrón MVC para separar la lógica 
 negocio de la presentación. El objetivo de esto es permitir la reutilización del
 código y la separación de conceptos.
 
-Los componentes de ZF3 sobre los que discutiremos en este capítulo son:
+Los componentes de Laminas sobre los que discutiremos en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Mvc`                     | Soporte para el patrón MVC. Implementa las clases de tipo     |
+| `Laminas\Mvc`                     | Soporte para el patrón MVC. Implementa las clases de tipo     |
 |                                | controlador básicas, complementos para los controladores      |
 |                                | (controller plugins), etc.                                    |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\View`                    | Implementa la funcionalidad para los contenedores de          |
+| `Laminas\View`                    | Implementa la funcionalidad para los contenedores de          |
 |                                | variables (variable containers), la impresión de una página   |
 |                                | web y ayudantes de vista comunes (view helpers).              |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Http`                    | Implementa un envoltorio alrededor de las peticiones y        |
+| `Laminas\Http`                    | Implementa un envoltorio alrededor de las peticiones y        |
 |                                | respuestas HTTP.                                              |
 |--------------------------------|---------------------------------------------------------------|
 
@@ -30,7 +30,7 @@ sin errores. Si estamos atascados o no entendemos porque nuestro código no func
 podemos descargar la aplicación *Hello World* completa desde GitHub. Las líneas de
 código de ejemplo de este capítulo son en su mayor parte de esta aplicación.
 
-Para descargar la aplicación *Hello World* vamos a [esta página](https://github.com/olegkrivtsov/using-zf3-book-samples)
+Para descargar la aplicación *Hello World* vamos a [esta página](https://github.com/olegkrivtsov/using-laminas-book-samples)
 y hacemos clic en el botón *Clone or Download* para descargar el código en un archivo
 ZIP (ver figura 4.1). Cuando la descarga este completa descomprimimos el archivo
 en alguna carpeta.
@@ -42,7 +42,7 @@ completo del ejemplo *Hello World*:
 
 {line-numbers=off,lang=text}
 ~~~
-/using-zf3-book-samples
+/using-laminas-book-samples
    /helloworld
      ...
 ~~~
@@ -97,7 +97,7 @@ una aplicación MVC y como la respuesta se genera:
 
 * El servidor web con el motor de PHP ejecuta el script de entrada *index.php*.
   La única cosa que hace el script de entrada es crear una instancia de la clase
-  `Zend\Mvc\Application`.
+  `Laminas\Mvc\Application`.
 
 * La aplicación usa el componente *router* para asociar la URL y determinar a que
   controlador pasar la petición. Si coincide una ruta el controlador es instanciado
@@ -140,7 +140,7 @@ Los controladores que pertenecen a un módulo residen típicamente en la subcarp
 
 ![Figura 4.3. Directorio Controlador](../en/images/mvc/controller_dir.png)
 
-Zend Skeleton Application nos provee de una implementación por defecto de la clase
+Laminas Skeleton Application nos provee de una implementación por defecto de la clase
 `IndexController`. La clase `IndexController` es típicamente la clase controladora
 principal de un sitio web. El código se presenta abajo (algunas partes se omitieron
 por simplicidad):
@@ -150,8 +150,8 @@ por simplicidad):
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
@@ -173,7 +173,7 @@ Por defecto la clase controlador contiene un solo *método de acción* llamado
 `indexAction()` (ver líneas 9-12). Generalmente, crearemos otros métodos de acción
 en las clases controladoras.
 
-T> ZF3 reconoce automáticamente el método de acción por el sufijo `Action`.
+T> Laminas reconoce automáticamente el método de acción por el sufijo `Action`.
 T> Si el nombre del método en el controlador no tiene el sufijo, este se considera
 T> como un método usual y no una acción.
 
@@ -215,19 +215,19 @@ usar en las clases controladoras. La tabla 4.2 muestra un breve resumen de los m
 |----------------------------------|--------------------------------------------------------|
 | *Nombre del Método*              | *Descripción*                                          |
 |----------------------------------|--------------------------------------------------------|
-| `getRequest()`                   | Recupera el objeto `Zend\Http\Request`, que es la      |
+| `getRequest()`                   | Recupera el objeto `Laminas\Http\Request`, que es la      |
 |                                  | representación de los datos de la petición HTTP.       |
 |----------------------------------|--------------------------------------------------------|
-| `getResponse()`                  | Recupera el objeto `Zend\Http\PhpEnvironment\Response` |
+| `getResponse()`                  | Recupera el objeto `Laminas\Http\PhpEnvironment\Response` |
 |                                  | que permite insertar datos en la respuesta HTTP.       |
 |----------------------------------|--------------------------------------------------------|
-| `getEventManager()`              | Regresa el objeto `Zend\EventManager\EventManager`     |
+| `getEventManager()`              | Regresa el objeto `Laminas\EventManager\EventManager`     |
 |                                  | que permite lanzar eventos y escuchar los eventos.     |
 |----------------------------------|--------------------------------------------------------|
-| `getEvent()`                     | Regresa el objeto `Zend\Mvc\MvcEvent` que representa   |
+| `getEvent()`                     | Regresa el objeto `Laminas\Mvc\MvcEvent` que representa   |
 |                                  | al evento al que el controlador responde.              |
 |----------------------------------|--------------------------------------------------------|
-| `getPluginManager()`             | Regresa el objeto `Zend\Mvc\Controller\PluginManager`  |
+| `getPluginManager()`             | Regresa el objeto `Laminas\Mvc\Controller\PluginManager`  |
 |                                  | que se puede usar para registrar complementos          |
 |                                  | controladores (controller plugins)                     |
 |----------------------------------|--------------------------------------------------------|
@@ -248,8 +248,8 @@ del controlador luego en este capítulo).
 
 En algún método de acción del controlador podríamos necesitar recuperar los datos
 de la petición HTTP (datos como las variables GET o POST, cookies, las cabeceras
-HTTP, etc). Para este proposíto, Zend Framework 3 nos provee con la clase
-`Zend\Http\Request` que es parte del componente `Zend\Http`.
+HTTP, etc). Para este proposíto, Laminas Framework nos provee con la clase
+`Laminas\Http\Request` que es parte del componente `Laminas\Http`.
 
 Para tener el objeto de la petición HTTP dentro de nuestro método de acción podemos
 usar el siguiente código:
@@ -260,11 +260,11 @@ usar el siguiente código:
 $request = $this->getRequest();
 ~~~
 
-El código de arriba regresa la instancia de la clase `Zend\Http\Request` que contiene
+El código de arriba regresa la instancia de la clase `Laminas\Http\Request` que contiene
 todos los datos de la petición HTTP. En la tabla 4.3 podemos encontrar los métodos
 más ampliamente usados de la clase `Request` junto con una breve descripción.
 
-{title="Tabla 4.3. Métodos de la clase `Zend\Http\Request`."}
+{title="Tabla 4.3. Métodos de la clase `Laminas\Http\Request`."}
 |----------------------------------------|------------------------------------------------------|
 | *Nombre del Método*                    | *Descripción*                                        |
 |----------------------------------------|------------------------------------------------------|
@@ -337,18 +337,18 @@ existe.
 En la línea 5 usamos el método `fromPost()` para recuperar una variable del método POST.
 El funcionamiento de este método es el mismo que él del método `fromQuery()`.
 
-T> En ZF3 no debemos acceder a los parámetros de la petición por medio de los tradicionales
-T> arreglos globales `$_GET` y `$_POST`. En su lugar usamos la API que provee ZF3 para
+T> En Laminas no debemos acceder a los parámetros de la petición por medio de los tradicionales
+T> arreglos globales `$_GET` y `$_POST`. En su lugar usamos la API que provee Laminas para
 T> recuperar los datos de la petición.
 
 ## Colocar Datos en la Respuesta HTTP
 
 Aunque raramente interactuamos con los datos de la respuesta HTTP directamente podemos
 hacerlo con la ayuda del método `getResponse()` que provee la clase base `AbstractActionController`.
-El método `getResponse()` regresa la instancia de la clase `Zend\Http\PhpEnvironment\Response`.
+El método `getResponse()` regresa la instancia de la clase `Laminas\Http\PhpEnvironment\Response`.
 La tabla 4.4 contiene los métodos más importantes de esta clase:
 
-{title="Tabla 4.4. Métodos de la clase Zend\Http\PhpEnvironment\Response."}
+{title="Tabla 4.4. Métodos de la clase Laminas\Http\PhpEnvironment\Response."}
 |----------------------------------------|--------------------------------------------------------|
 | *Nombre del Método*                    | *Descripción*                                          |
 |----------------------------------------|--------------------------------------------------------|
@@ -439,7 +439,7 @@ en una vista con la ayuda del objeto `ViewModel`:
 public function aboutAction()
 {
     $appName = 'HelloWorld';
-    $appDescription = 'A sample application for the Using Zend Framework 3 book';
+    $appDescription = 'A sample application for the Using Laminas Framework book';
 
     // Return variables to view script with the help of
     // ViewModel variable container
@@ -519,7 +519,7 @@ public function viewAction()
 }
 ~~~
 
-Cuando ZF3 encuentra el código de estado *4xx* en la respuesta él redirecciona al usuario
+Cuando Laminas encuentra el código de estado *4xx* en la respuesta él redirecciona al usuario
 a la página especial *error page*. Hablaremos sobre las páginas de error más tarde en este
 capítulo.
 
@@ -531,7 +531,7 @@ ejemplo:
 throw new \Exception("Post with ID=$id could not be found");
 ~~~
 
-Cuando ZF3 encuentra una excepción que no puede manejar muestra otra página de error con
+Cuando Laminas encuentra una excepción que no puede manejar muestra otra página de error con
 la información sobre la exception.
 
 ## Registro de los Controladores
@@ -543,7 +543,7 @@ de configuración *module.config.php*. Si nuestra clase controladora no necesita
 {line-numbers=on,lang=php}
 ~~~
 <?php
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     // ...
@@ -567,7 +567,7 @@ la resolución de nombre de clase), y el valor será el nombre de una clase fáb
 la clase controladora que necesitamos usar. En nuestro caso usamos la `InvokableFactory`
 estándar pero podemos crear una propia si es necesario.
 
-I> Al usar la `InvokableFactory` decimos a Zend Framework que puede invocar el controlador
+I> Al usar la `InvokableFactory` decimos a Laminas Framework que puede invocar el controlador
 I> instanciandolo con el operador `new`. Esta es la manera más simple de instaciar el
 I> controlador. Como una alternativa, podemos registrar nuestra propia fábrica para crear
 I> la instancia del controlador e inyectar las dependencias dentro del él.
@@ -589,7 +589,7 @@ dinero de USD a EUR. La clase fábrica de nuestro controlador tendrá el siguien
 <?php
 namespace Application\Controller\Factory;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\CurrencyConverter;
 use Application\Controller\IndexController;
 
@@ -628,11 +628,11 @@ return [
 ];
 ~~~
 
-I> Si tenemos alguna experiencia con Zend Framework 2 podemos notar que las cosas ahora
+I> Si tenemos alguna experiencia con Laminas Framework 2 podemos notar que las cosas ahora
 I> son un poco diferentes que antes. En ZF2 había un método `getServiceLocator()` en la
 I> clase base `AbstractActionController` que permitía traer las dependencias al
 I> controlador incluso sin la clase fábrica.
-I> En ZF3 tenemos que pasar las dependencias explícitamente. Esto es un poco más aburrido
+I> En Laminas tenemos que pasar las dependencias explícitamente. Esto es un poco más aburrido
 I> pero elimina las dependencias "ocultas" y hace a nuestro código más claro y fácil de
 I> entender.
 
@@ -675,7 +675,7 @@ Luego registramos el controlador de la misma manera pero especificando la fábri
 {line-numbers=off,lang=php}
 ~~~
 <?php
-use Zend\Mvc\Controller\LazyControllerAbstractFactory;
+use Laminas\Mvc\Controller\LazyControllerAbstractFactory;
 
 return [
     // ...
@@ -719,7 +719,7 @@ la funcionalidad de *todos los controladores*.
 I> Sin complementos para extender la funcionalidad a todos los controladores tendríamos
 I> que crear una clase base a la medida, por decir `BaseController`, y derivar todos los
 I> controladores de esta clase base. Esta manera puede ser usada, pero en opinión
-I> de los creadores de ZF3 los complements son una mejor solución porque ellos
+I> de los creadores de Laminas los complements son una mejor solución porque ellos
 I> usan *composición de clases* [^foo] que provee mayor flexibilidad en comparación
 I> con la herencia de clases. Registramos el controlador de tipo complemento y este
 I> automáticamente es accesible desde todos los controladores de nuestra aplicación
@@ -785,7 +785,7 @@ con el método `plugin()` que provee la clase controladora base, de la siguiente
 
 {line-numbers=off,lang=php}
 ~~~
-use Zend\Mvc\Controller\Plugin\Url;
+use Laminas\Mvc\Controller\Plugin\Url;
 
 // Inside your controller's action use the plugin() method.
 $urlPlugin = $this->plugin(Url::class);
@@ -808,7 +808,7 @@ está anidado en el namespace `Controller`:
 <?php
 namespace Application\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 // Plugin class
 class AccessPlugin extends AbstractPlugin
@@ -822,7 +822,7 @@ class AccessPlugin extends AbstractPlugin
 }
 ~~~
 
-Para informar a Zend Framework 3 sobre el nuevo complemento necesitamos registrarlo
+Para informar a Laminas Framework sobre el nuevo complemento necesitamos registrarlo
 en el archivo *module.config.php* con la llave `controller_plugins`. Veamos el
 ejemplo más abajo:
 
@@ -863,7 +863,7 @@ Las vistas pertenecen a la capa de presentación de la aplicación web porque su
 objetivo es producir una salida HTML que regresa el servidor web al visitante del
 sitio.
 
-En Zend Framework 3 una vista se implementa como un *archivo de plantilla*
+En Laminas Framework una vista se implementa como un *archivo de plantilla*
 que es una archivo que tiene la extensión `.phtml` ("phtml" representa PHP+HTML).
 Las plantillas de vista tienen ese nombre porque ellas usualmente contienen código
 HTML mezclado con retazos (snippets) de código PHP que imprimen la página web.
@@ -879,7 +879,7 @@ Q>
 Q> Las plantillas de vista (archivos `.phtml`) no se almacenan dentro de la carpeta
 Q> `src/` del módulo porque ellas no son clases de PHP normales y no es necesario
 Q> que la funcionalidad de autoloading de clases de PHP las busque.
-Q> Las plantillas de vista son buscadas por la clase especial de ZF3 llamada
+Q> Las plantillas de vista son buscadas por la clase especial de Laminas llamada
 Q> *view resolver* y por esta razón las plantillas de vista se almacenan dentro
 Q> del directorio `view` del módulo.
 
@@ -973,7 +973,7 @@ I> complementos para controladores permiten "extender" la funcionalidad de los
 I> controladores y los ayudantes de vista permiten "extender" la funcionalidad
 I> de las plantillas de vista.
 
-ZF3 provee muchos ayudantes de vista estándares listos para usar. En la tabla 4.7
+Laminas provee muchos ayudantes de vista estándares listos para usar. En la tabla 4.7
 se presentan algunos de ellos junto con una breve descripción:
 
 {title="Tabla 4.7. Ayudantes de Vista Estándar"}
@@ -1040,12 +1040,12 @@ I> ejemplos de uso en el capítulo [Apariencia de la Página y Diseño](#appeara
 ## Los Nombres de las Plantillas de vista
 
 Cuando regresamos datos con el contenedor de variables `ViewModel` desde nuestro
-método de acción del controlador Zend Framework de alguna manera conoce el nombre
+método de acción del controlador Laminas Framework de alguna manera conoce el nombre
 que corresponde al archivo de plantilla de vista. Por ejemplo, para nuestro
-método `aboutAction()` del `IndexController` ZF3 usa automáticamente la plantilla
+método `aboutAction()` del `IndexController` Laminas usa automáticamente la plantilla
 de vista *about.phtml*.
 
-I> ZF3 determina el nombre correcto de la plantilla de vista por medio del nombre
+I> Laminas determina el nombre correcto de la plantilla de vista por medio del nombre
 I> del módulo, el nombre del controlador y el nombre de la acción. Por ejemplo,
 I> la acción `IndexController::aboutAction()` que pertenece al módulo `Application`
 I> tendrá la plantilla de vista por defecto `application/index/about.phtml`.
@@ -1078,7 +1078,7 @@ Para colocar el nombre de la plantilla usamos el método `setTemplate()`. El mé
 actualmente para el modelo de la vista.
 
 El siguiente código de ejemplo muestra como podemos llamar al métodhttp://bicentenariobu.com/o `setTemplate()`
-desde el método `indexAction()` de la clase `IndexController` para forzar a ZF3
+desde el método `indexAction()` de la clase `IndexController` para forzar a Laminas
 a usar el archivo de template de vista *about.phtml* para imprimir la página
 *Home* en lugar del archivo *index.phtml*:
 
@@ -1105,18 +1105,18 @@ Finalmente regresamos el objeto del modelo de vista (el objeto de la clase `View
 desde el método de acción (línea 7).
 
 I> Sin embargo, llamar al método `setTemplate()` en cada método de acción es
-I> opcional. Si no lo hacemos ZF3 determinará el nombre de la plantilla de vista
+I> opcional. Si no lo hacemos Laminas determinará el nombre de la plantilla de vista
 I> automáticamente mediante la concatenación del nombre del módulo actual, el
 I> nombre del controlador y el nombre del método de acción.
 
 ## Resolución de Vista
 
-Una vez que Zend Framework tiene el nombre de la plantilla solo queda por determinar
+Una vez que Laminas Framework tiene el nombre de la plantilla solo queda por determinar
 la ruta absoluta para el archivo *.phtml* correspondiente. Esto es llamado
 también *resolución de la plantilla de vista*. Las plantillas de vista se resuelven
-con una clase especial de Zend Framework llamada *view resolver*.
+con una clase especial de Laminas Framework llamada *view resolver*.
 
-En ZF3 existen dos decisores de vista listos para usar: `TemplatePathStack` y
+En Laminas existen dos decisores de vista listos para usar: `TemplatePathStack` y
 `TemplateMapResolver`. Ambos decisores toman el nombre de la plantilla de vista
 como entrada y regresa la ruta al archivo de plantilla de vista como salida.
 El nombre de la plantilla está usualmente compuesto del nombre del módulo
@@ -1197,8 +1197,8 @@ Agregamos el archivo *DownloadController.php* a la carpeta *Controller* del mód
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 /**
  * This is the controller class for managing file downloads.
@@ -1281,7 +1281,7 @@ return [
 ~~~
 
 Además, necesitaremos agregar la *ruta* al archivo *module.config.php* (una ruta
-le dice a ZF3 a que URL le corresponde que acción en el controlador). Modificamos
+le dice a Laminas a que URL le corresponde que acción en el controlador). Modificamos
 la llave `routes` del archivo de configuración de la siguiente manera:
 
 {line-numbers=off,lang=php}
@@ -1320,7 +1320,7 @@ parte.
 Una *estrategia de impresión* (rendering strategy) determina como la página será
 mostrada en el navegador web. Por defecto, para producir una página HTML la
 plantilla de vista *.phtml* se imprime con la ayuda de la clase `PhpRenderer`
-que está en el namespace `Zend\View\Renderer`. Esta estrategia es útil en el
+que está en el namespace `Laminas\View\Renderer`. Esta estrategia es útil en el
 99% de los casos. Pero algunas veces necesitamos regresar algo más, por ejemplo,
 una respuesta JSON o una respuesta RSS.
 
@@ -1330,7 +1330,7 @@ I> recuperar algún tipo de datos en un formato legible por la maquina. Una resp
 I> en formato RSS es generalmente usada para publicar información que cambia
 I> frecuentemente como noticias y publicaciones de un blog.
 
-Así, ZF3 provee tres estrategias para imprimir vistas listas para usar:
+Así, Laminas provee tres estrategias para imprimir vistas listas para usar:
 
   * La estrategia por defecto (también conocida como `PhpRenderingStrategy`).
   * La estrategia `JsonStrategy` que produce una respuesta JSON.
@@ -1367,8 +1367,8 @@ de acción del controlador:
 ~~~
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\ActionController;
-use Zend\View\Model\JsonModel;
+use Laminas\Mvc\Controller\ActionController;
+use Laminas\View\Model\JsonModel;
 
 class IndexController extends ActionController
 {
@@ -1465,13 +1465,13 @@ Los modelos pueden tener algún comportamiento. Por ejemplo, el modelo *envió d
 puede enviar mensajes de correo electrónico, el modelo *convertidor de monedas*
 puede ser capaz de convertir dinero, etc.
 
-I> Con ZF3 representamos los modelos como clases de PHP usuales. Las propiedades se
+I> Con Laminas representamos los modelos como clases de PHP usuales. Las propiedades se
 I> implementan como campos de una clase y el comportamiento se implementa como
 I> métodos de clase.
 
 ## Tipos de Modelo
 
-En Zend Framework 3, como ya pudimos adivinar, no hay una sola carpeta `Model`
+En Laminas Framework, como ya pudimos adivinar, no hay una sola carpeta `Model`
 para guardar las clases de modelos. En cambio y por convención, los modelos
 son subdivididos en los siguientes tipos principales que son guardados cada uno
 en sus propias subcarpetas (ver tabla 4.9):
@@ -1682,7 +1682,7 @@ class Mailer
 }
 ~~~
 
-T> En Zend Framework registramos nuestros modelos de tipo servicio en el
+T> En Laminas Framework registramos nuestros modelos de tipo servicio en el
 T> Administrador de Servicios.
 
 ### Fábricas
@@ -1710,7 +1710,7 @@ para el `PurchaseManager` que instanciará el servicio y lo pasará como depende
 namespace Application\Service\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\CurrencyConverter;
 use Application\Service\PurchaseManager;
 
@@ -1733,7 +1733,7 @@ class PurchaseManagerFactory implements FactoryInterface
 ~~~
 
 En el código de arriba tenemos la clase `PurchaseManagerFactory` que implementa
-la interface `Zend\ServiceManager\Factory\FactoryInterface`. La clase de tipo
+la interface `Laminas\ServiceManager\Factory\FactoryInterface`. La clase de tipo
 fábrica tiene el método `__invoke()` cuyo objetivo es instanciar el objeto.
 Este método tiene el argumento `$container` que es el administrador de servicios.
 Podemos usar la variable `$container` para recuperar servicios del administrador
@@ -1999,7 +1999,7 @@ temas intercambiables.
 
 ## Resumen
 
-Una aplicación web basada en Zend Framework 3 es solo un programa escrito en PHP
+Una aplicación web basada en Laminas Framework es solo un programa escrito en PHP
 que recibe una petición HTTP desde el servidor web y produce una respuesta HTTP.
 La aplicación web usa el patrón Modelo-Vista-Controlador para separar la lógica
 del negocio de la presentación. El objetivo de esto es permitir la reutilización

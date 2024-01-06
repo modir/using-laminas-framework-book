@@ -1,5 +1,5 @@
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Using Zend Framework 3 - Contents - Adaptive -->
+<!-- Using Laminas Framework - Contents - Adaptive -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-3933778336056438"

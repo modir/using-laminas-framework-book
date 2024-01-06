@@ -465,7 +465,7 @@ La barra de navegación se puede mostrar usando dos «temas» estándar: el tema
 *default* que vimos arriba y el tema *inverse*. El tema *inverse* hace que los
 elementos de la barra de navegación se muestren en colores oscuros (figura C.10).
 Es probable que ya hallamos visto la barra de navegación inversa en el demo
-*Zend Skeleton Application*.
+*Laminas Skeleton Application*.
 
 ![Figura C.10. Barra de Navegación con el Estilo Inverso](../en/images/bootstrap/navbar_inverse.png)
 
@@ -679,6 +679,6 @@ desplegables, barras de navegación, migas de pan, etc. Estos componentes son
 interactivos, capacidad que se consigue con la extensión JavaScript incluida en
 el framework.
 
-Bootstrap está incluido en *Zend Skeleton Application* y podemos usarlo luego de
+Bootstrap está incluido en *Laminas Skeleton Application* y podemos usarlo luego de
 instalar la aplicación o, alternativamente, podemos descargar la nueva versión
 de Bootstrap desde la página del proyecto y personalizarla si lo deseamos.

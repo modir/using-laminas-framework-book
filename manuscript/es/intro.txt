@@ -1,11 +1,11 @@
 ﻿{mainmatter}
 
-# Introducción a Zend Framework 3 {#intro}
+# Introducción a Laminas Framework {#intro}
 
-En este capítulo aprenderemos sobre Zend Framework 3, sus principios y sus
+En este capítulo aprenderemos sobre Laminas Framework, sus principios y sus
 componentes.
 
-## ¿Qué es Zend Framework 3?
+## ¿Qué es Laminas Framework?
 
 PHP es un lenguaje de desarrollo web muy popular. Sin embargo escribir sitios web
 en PHP puro es difícil. Si escribimos una aplicación web en PHP puro tendremos que
@@ -27,25 +27,25 @@ I> Un framework es un tipo de biblioteca, una pieza de software (también escrit
 I> en PHP) que provee código base a los desarrolladores web y una manera
 I> consistente y estandarizada de crear aplicaciones web.
 
-Zend Framework 3 es un framework de PHP disponible como *Software Libre y Código
-Abierto*. Su desarrollo esta guiado y patrocinado por «Zend Technologies» que es
+Laminas Framework es un framework de PHP disponible como *Software Libre y Código
+Abierto*. Su desarrollo esta guiado y patrocinado por «Laminas Technologies» que es
 además conocido como el mantenedor del lenguaje de programación PHP. La primera
-versión (Zend Framework 1) se lanzó en 2007; Zend Framework 2, la segunda
-versión del software, se lanzó en septiembre de 2012. Zend Framework 3 (ZF3)
+versión (Laminas Framework 1) se lanzó en 2007; Laminas Framework 2, la segunda
+versión del software, se lanzó en septiembre de 2012. Laminas Framework (Laminas)
 se lanzó en junio de 2016.
 
-Zend Framework 3 provee las siguientes capacidades:
+Laminas Framework provee las siguientes capacidades:
 
 * Permite desarrollar un sitio web mucho más rápido que cuando lo escribimos
-  en PHP puro. ZF3 provee muchos componentes que se pueden usar como código
+  en PHP puro. Laminas provee muchos componentes que se pueden usar como código
   base para nuestro sitio web.
 
 * Facilita la cooperación con los otros miembros de nuestro equipo de desarrollo.
-  El patrón Modelo-Vista-Controlador que usa ZF3 permite separar la lógica del
+  El patrón Modelo-Vista-Controlador que usa Laminas permite separar la lógica del
   negocio y la capa de presentación de nuestro sitio web haciendo su estructura
   consistente y fácil de mantener.
 
-* Permite escalar el sitio web con el concepto de módulos. ZF3 usa el concepto
+* Permite escalar el sitio web con el concepto de módulos. Laminas usa el concepto
   de *módulos* que permite separar el sitio en partes que se puedan desacoplar
   permitiendo reusar los modelos, las vistas, los controladores y archivos
   estáticos de un sitio web a otro.
@@ -59,7 +59,7 @@ Zend Framework 3 provee las siguientes capacidades:
   Doctrine permite abstraernos de la base de datos y hacer el código más fácil
   de entender.
 
-* Permite escribir sitios web seguros con la ayuda de los componentes que ZF3
+* Permite escribir sitios web seguros con la ayuda de los componentes que Laminas
   provee, como filtros y validadores para los datos ingresados en los formularios,
   escapar la salida HTML, algoritmos criptográficos, detectores
   de humanos (Captcha) y falsificación de petición en sitios cruzados (CSRF).
@@ -222,7 +222,7 @@ exit;
 ~~~
 
 T> El código completo de este sitio web se puede encontrar en el ejemplo
-T> [Pure PHP](https://github.com/olegkrivtsov/using-zf3-book-samples/tree/master/purephp)
+T> [Pure PHP](https://github.com/olegkrivtsov/using-laminas-book-samples/tree/master/purephp)
 T> que acompaña a este libro.
 
 ### Revisión del Código
@@ -271,57 +271,57 @@ además, es un ejemplo de como *no deberíamos* escribir nuestro sitio web
    reinventar la rueda y no usar una biblioteca bien diseñada para esto?
 
 Los problemas de arriba se resuelven fácilmente cuando escribimos un sitio web
-con un framework (como Zend Framework 3):
+con un framework (como Laminas Framework):
 
-1. En ZF3 usamos el patrón de diseño *Modelo-Vista-Controlador* separando el
+1. En Laminas usamos el patrón de diseño *Modelo-Vista-Controlador* separando el
    código PHP en modelos (el código responsable de la autenticación debería ir
    aquí), vistas (el código responsable de la impresión del HTML debería ir
    aquí) y los controladores (el código responsable de recuperar las variables
    POST debería ir aquí).
 
-2. El *enrutamiento* de ZF3 permite tener URL con un aspecto profesional, esto
+2. El *enrutamiento* de Laminas permite tener URL con un aspecto profesional, esto
    se consigue ocultando la extensión `.php`. Como las URLs se pueden parecer,
    se definen mediante reglas estrictas. Si un usuario intenta ver una página
    que no existe, es automáticamente redirigido a la página de error estándar.
 
-3. En ZF3 podemos usar el concepto de *módulo*. Este permite convenientemente
+3. En Laminas podemos usar el concepto de *módulo*. Este permite convenientemente
    separar nuestros modelos, vistas y controladores en unidades autónomas
    (módulos) y reusar con facilidad esta unidad en otro proyecto.
 
-4. En ZF3 podemos definir una *maqueta* de plantilla de vista común y reusarla
+4. En Laminas podemos definir una *maqueta* de plantilla de vista común y reusarla
    en todas o en la mayoría de las páginas web.
 
-5. ZF3 nos provee de varias características de seguridad como filtros de
+5. Laminas nos provee de varias características de seguridad como filtros de
    de formulario y validadores, escapar la salida, validadores de sesión,
-   algoritmos criptográficos, etc. En un sitio web con ZF3 solamente el `index.php`
+   algoritmos criptográficos, etc. En un sitio web con Laminas solamente el `index.php`
    es accesible para los usuarios web, todos los otros script de PHP se
    almacenan fuera de la carpeta raíz de documentos de Apache.
 
-6. En un sitio web con ZF3 colocamos el código dentro de clases dejándolo
+6. En un sitio web con Laminas colocamos el código dentro de clases dejándolo
    mejor organizado.
 
-7. ZF3 nos provee de muchos componentes que podemos usar en nuestro sitio web:
+7. Laminas nos provee de muchos componentes que podemos usar en nuestro sitio web:
    un componente de autenticación, un componente para trabajar con formularios,
    etc.
 
-T> Ahora que tenemos una idea de las ventajas de usar Zend Framework 3 y lo que
+T> Ahora que tenemos una idea de las ventajas de usar Laminas Framework y lo que
 T> él puede hacer por nosotros dedicaremos la siguiente sección a describir
-T> ZF3 con más detalles.
+T> Laminas con más detalles.
 
 ## Licencia
 
-Zend Framework está licenciado con la licencia *BSD-like* que nos permite usarlo
+Laminas Framework está licenciado con la licencia *BSD-like* que nos permite usarlo
 tanto en aplicaciones comerciales como libres. Incluso podemos modificar el
 código de la biblioteca y publicarlo usando otro nombre. La única cosa que no
-podemos hacer es remover la nota de *copyright* del código. Si usamos Zend
+podemos hacer es remover la nota de *copyright* del código. Si usamos Laminas
 Framework 3 es recomendable que lo mencionemos en la documentación de nuestro
 sitio o en la página *Acerca de*.
 
-Abajo presentamos el texto de la licencia de Zend Framework 3.
+Abajo presentamos el texto de la licencia de Laminas Framework.
 
 {line-numbers=off,lang=text}
 ~~~
-Copyright (c) 2005-2016, Zend Technologies USA, Inc.
+Copyright (c) 2005-2016, Laminas Technologies USA, Inc.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -336,7 +336,7 @@ are met:
 	  the documentation and/or other materials provided with the
 	  distribution.
 
-	* Neither the name of Zend Technologies USA, Inc. nor the names of
+	* Neither the name of Laminas Technologies USA, Inc. nor the names of
 	  its contributors may be used to endorse or promote products
 	  derived from this software without specific prior written
 	  permission.
@@ -361,58 +361,58 @@ framework como base para nuestro sitio web. El soporte incluye documentación
 bien escrita, conferencias web, foros comunitarios y (opcionalmente) servios de
 soporte comercial como cursos y programas de certificación.
 
-![Sitio web oficial de Zend Framework](../en/images/intro/zend_framework_site.png)
+![Sitio web oficial de Laminas Framework](../en/images/intro/Laminas_framework_site.png)
 
-*Documentación*. La documentación de Zend Framework está ubicada en [esta dirección](https://framework.zend.com/learn).
+*Documentación*. La documentación de Laminas Framework está ubicada en [esta dirección](https://framework.Laminas.com/learn).
 Esta incluye tutoriales para aprendices y manuales de programación.
 
-*Referencia de la API* se puede encontrar en [este enlace](https://olegkrivtsov.github.io/zf3-api-reference/html/).
+*Referencia de la API* se puede encontrar en [este enlace](https://olegkrivtsov.github.io/laminas-api-reference/html/).
 
-*Foro comunitario*. Podemos hacer preguntas sobre como usar Zend Framework 3 en
-[StackOverflow](https://stackoverflow.com/search?q=zend+framework+3).
+*Foro comunitario*. Podemos hacer preguntas sobre como usar Laminas Framework en
+[StackOverflow](https://stackoverflow.com/search?q=Laminas+framework+3).
 Nuestras preguntas serán respondidas por una amplia comunidad de desarrolladores
-ZF3 como nosotros.
+Laminas como nosotros.
 
 *Conferencias webs*. Son video tutoriales que cubren varias de las características
-de Zend Framework. Una lista completa de las conferencias
-se encuentra en [este enlace](http://www.zend.com/en/resources/webinars/framework).
+de Laminas Framework. Una lista completa de las conferencias
+se encuentra en [este enlace](http://www.Laminas.com/en/resources/webinars/framework).
 
 *Cursos de capacitación* con instructores en vivo, se puede acceder a ellos por
-[este enlace](http://www.zend.com/en/services/training).
-Aquí podemos aprender Zend Framework haciendo ejercicios,
+[este enlace](http://www.Laminas.com/en/services/training).
+Aquí podemos aprender Laminas Framework haciendo ejercicios,
 pequeños proyectos y desarrollar código real.
 
-*Programas de Certificación*. Nos permite convertirnos en un Ingeniero Zend Certificado (ZCE),
+*Programas de Certificación*. Nos permite convertirnos en un Ingeniero Laminas Certificado (ZCE),
 con facilidad podemos mejorar nuestros habilidades como arquitecto y encontrar un trabajo
-dentro de un mercado competitivo de trabajo con PHP. Las certificaciones se encuentran [aquí](http://www.zend.com/en/services/certification).
+dentro de un mercado competitivo de trabajo con PHP. Las certificaciones se encuentran [aquí](http://www.Laminas.com/en/services/certification).
 
-*¿Quires más información de ZF3? Revisa esta genial lista de
-[Recursos Zend Framework](https://github.com/dignityinside/awesome-zf).
+*¿Quires más información de Laminas? Revisa esta genial lista de
+[Recursos Laminas Framework](https://github.com/dignityinside/awesome-zf).
 
 ## El código fuente del Framework
 
-El código fuente de Zend Framework 3 está guardado en los [repositorios](https://github.com/zendframework)
-de GitHub. Existe un repositorio separado para cada componente de ZF3.
+El código fuente de Laminas Framework está guardado en los [repositorios](https://github.com/laminas)
+de GitHub. Existe un repositorio separado para cada componente de Laminas.
 
-I> En la mayoría de los casos no necesitaremos instalar el código de Zend Framework 3 manualmente.
+I> En la mayoría de los casos no necesitaremos instalar el código de Laminas Framework manualmente.
 I> En lugar de esto, lo instalaremos con el administrador de dependencias Composer.
-I> Nos familiarizaremos con Composer luego en el capítulo llamado [Zend Skeleton Application](#skeleton).
+I> Nos familiarizaremos con Composer luego en el capítulo llamado [Laminas Skeleton Application](#skeleton).
 
 ### Estándar de Codificación
 
 Es una buena práctica usar algún estándar de estilo de codificación para todo
 nuestro código. Este estándar definiría reglas para nombres de clases,
-formateo de código, etc. Zend Framework 3 define cada estándar [aquí](https://www.php-fig.org/).
-Todo el código en ZF3 sigue las reglas descritas en ese documento.
+formateo de código, etc. Laminas Framework define cada estándar [aquí](https://www.php-fig.org/).
+Todo el código en Laminas sigue las reglas descritas en ese documento.
 
-T> Si planeamos escribir un sitio web basado en ZF3, es recomendable que sigas
+T> Si planeamos escribir un sitio web basado en Laminas, es recomendable que sigas
 T> el mismo estándar para tu propio código. Esto
 T> hará nuestro código coherente y más fácil de extender y mantener por otras
 T> personas.
 
 ## Sistemas Operativos Soportados
 
-Como cualquier sitio web hecho con PHP, una aplicación web basada en ZF3 puede
+Como cualquier sitio web hecho con PHP, una aplicación web basada en Laminas puede
 funcionar sobre un servidor GNU/Linux o sobre cualquier otro sistema operativo
 donde PHP pueda ejecutarse. Por ejemplo, para crear los ejemplos de
 este libro, el autor usó la distribución de GNU/Linux Ubuntu.
@@ -424,47 +424,47 @@ más instrucciones sobre la configuración de nuestro entorno de desarrollo.
 
 ## Requerimientos del Servidor
 
-Zend Framework 3 necesita que nuestro servidor tenga instalada la versión de
+Laminas Framework necesita que nuestro servidor tenga instalada la versión de
 PHP 5.6 o superior. Observe que es una requerimiento obligatorio. No todos
 los alojamientos compartidos baratos y no todos los servidores privados tienen
 una versión moderno de PHP.
 
-Además, la manera recomendad de instalar ZF3 (y los otros componentes de los
+Además, la manera recomendad de instalar Laminas (y los otros componentes de los
 que nuestra aplicación depende) es usando [Composer](http://getcomposer.org/).
 Esto nos obliga a tener acceso SSH para poder ejecutar la herramienta de línea
 de comandos. Algunos servicios de alojamiento dan acceso solamente por FTP
-así que no seremos capaces de instalar una aplicación web basada en ZF3 en
+así que no seremos capaces de instalar una aplicación web basada en Laminas en
 esos servidor de la manera usual.
 
-ZF3 usa la extensión de reescritura de URL para redirigir a los usuarios
+Laminas usa la extensión de reescritura de URL para redirigir a los usuarios
 al punto de entrada de nuestro sitio web (tenemos que activar el módulo de
 Apache `mod_rewrite`). Además, podemos necesitar instalar alguna extensión
 de PHP, como `memcached`. Esto puede ser una dificultad cuando usamos un
 alojamiento web, pues necesitamos tener privilegios de administrador en el
 servidor.
 
-Si estamos planeando usar ZF3 en un servicio de alojamiento compartido,
-piénsalo dos veces. El mejor servidor donde instalar ZF3 es sobre un servidor
+Si estamos planeando usar Laminas en un servicio de alojamiento compartido,
+piénsalo dos veces. El mejor servidor donde instalar Laminas es sobre un servidor
 que tenga la última versión de PHP y que tenga acceso a la consola para poder
 ejecutar Composer e instalar las extensiones.
 
 Si nuestra empresa administra sus propia infraestructura de servidores y es
-capaz de actualizar PHP a la última versión podremos instalar ZF3
+capaz de actualizar PHP a la última versión podremos instalar Laminas
 en nuestro servidor privado sin problemas .
 
-Una alternativa acceptable para instalar una aplicación web basada en ZF3
+Una alternativa acceptable para instalar una aplicación web basada en Laminas
 es usar un servicio de alojamiento «en la nube» como [Amazon Web Services](http://aws.amazon.com/).
 Amazon provee instancias de sistemas GNU/Linux como parte de su servicio EC2.
 EC2 es bastante barato y tiene una [modalidad gratuita](http://aws.amazon.com/free/)
 que permite probarlo por un año gratuitamente.
-En el [Apéndice E. Instalar una Aplicación Web hecha con ZF3 en Amazon EC2](#ec2-tutorial)
+En el [Apéndice E. Instalar una Aplicación Web hecha con Laminas en Amazon EC2](#ec2-tutorial)
 damos instrucciones para los principiantes de como instalar un sitio web con
-ZF3 en la nube EC2 de Amazon.
+Laminas en la nube EC2 de Amazon.
 
 ## Seguridad
 
-Zend Framework 3 sigue las mejores prácticas para darnos un código
-base seguro para nuestro sitio web. Los creadores ZF3 publican parches de
+Laminas Framework sigue las mejores prácticas para darnos un código
+base seguro para nuestro sitio web. Los creadores Laminas publican parches de
 seguridad una vez que la comunidad de usuarios encuentran un problema.
 Podemos incorporar estas correcciones con un solo comando mediante el
 administrador de dependencias Composer.
@@ -474,7 +474,7 @@ I> es más seguro que usar PHP «puro» porque no necesitamos reinventar la rued
 I> En un framework la mayoría de las vulnerabilidades ya se conocen y han
 I> sido corregidas por la comunidad de usuarios.
 
-ZF3 provee las siguientes características que hacen a nuestro sitio web
+Laminas provee las siguientes características que hacen a nuestro sitio web
 más seguro:
 
 * *Script de entrada* (`index.php`) es el único script de PHP accesible a los
@@ -507,7 +507,7 @@ más seguro:
   que respectivamente se usan para revisar si el usuario es humano y para
   prevenir los ataques de los crackers.
 
-* El componente *Zend\Escaper* permite quitar las etiquetas HTML indeseadas
+* El componente *Laminas\Escaper* permite quitar las etiquetas HTML indeseadas
   de los datos enviados a las páginas del sitio.
 
 * El *soporte criptográfico* permite guardar datos sensibles (ejemplo, credenciales)
@@ -515,7 +515,7 @@ más seguro:
 
 ## Rendimiento
 
-ZF3 provee las siguientes características para asegurar un rendimiento
+Laminas provee las siguientes características para asegurar un rendimiento
 aceptable:
 
   * *Lazy class autoloading.* Las clases se cargan solo cuando se necesitan.
@@ -523,7 +523,7 @@ aceptable:
     En su lugar, el framework descubre automáticamente las clases usando la
     característica *autoloader*.
 
-  * *Carga eficiente de servicios y complementos.* En ZF3 las clases se instancian
+  * *Carga eficiente de servicios y complementos.* En Laminas las clases se instancian
     solo cuando ellas realmente se necesitan. Esto se consigue a través del
     administrador de servicios (el contenedor central para servicios de nuestra
     aplicación).
@@ -534,10 +534,10 @@ aceptable:
 
 ## Patrones de Diseño
 
-Los creadores de Zend Framework 3 son grandes fanáticos de varios patrones de
+Los creadores de Laminas Framework son grandes fanáticos de varios patrones de
 diseño. Aunque no tenemos que saber sobre patrones para leer este libro esta
 sección se propone darnos una idea sobre los patrones de diseño en los que
-está basado ZF3.
+está basado Laminas.
 
 * *El patrón Modelo-Vista-Controlador (MVC)*. El patrón Modelo-Vista-Controlador
   se usa en todos los frameworks modernos de PHP. En una aplicación MVC separamos
@@ -549,21 +549,21 @@ está basado ZF3.
   podemos fácilmente reemplazar una vista por otra sin cambiar la lógica de
   negocio.
 
-* *El patrón de Diseño Guiado por Dominio (DDD)*. En Zend Framework 3, por
+* *El patrón de Diseño Guiado por Dominio (DDD)*. En Laminas Framework, por
   convención, tendremos la capa de modelo dividida en *entidades* (clases
   que representan tablas de base de datos), *repositories* (clases usadas para
   recuperar entidades de la base de datos), *objetos con valor* (clases de
   modelo que no tienen identidad), *servicios* (clases responsables de la
   lógica de negocio).
 
-* *El patrón de Diseño Orientado a Aspectos.* En ZF3 todo está manejado por un
+* *El patrón de Diseño Orientado a Aspectos.* En Laminas todo está manejado por un
   evento. Cuando un usuario del sitio pide una página, un *evento* es generado
   (lanzado). Un oyente (u observador) puede capturar el evento y hacer algo
-  con el. Por ejemplo, el componente @`Zend\Router` analiza la URL y determina a que
+  con el. Por ejemplo, el componente @`Laminas\Router` analiza la URL y determina a que
   clase controlador llamar. Cuando el evento finalmente llega al punto de generar
   la página, una respuesta HTTP se genera y el usuario ve la página.
 
-* *Patrón de Instancia Única.* En ZF3 existe una objeto administrador de
+* *Patrón de Instancia Única.* En Laminas existe una objeto administrador de
   servicios que es el contenedor centralizado de todos los servicios disponibles
   en la aplicación. Cada servicio existe en una instancia única.
 
@@ -574,7 +574,7 @@ está basado ZF3.
   impresión puede generar una página HTML, una respuesta JSON, un RSS, etc.)
 
 * *El Patrón Adaptador*. Los adaptadores permiten adaptar una clase genérica a
-  un caso de uso concreto. Por ejemplo, el componente @`Zend\Db` provee acceso
+  un caso de uso concreto. Por ejemplo, el componente @`Laminas\Db` provee acceso
   a la base de datos de una forma genérica. Internamente, se usan adaptadores
   para cada base de datos soportada (SQLite, MySQL, PostgreSQL, etc.)
 
@@ -584,96 +584,96 @@ está basado ZF3.
   porque ellas simplifican la inyección de dependencias. Además, usar fábricas
   simplifica las pruebas de nuestro modelo y de las clases controladores.
 
-## Principales Componentes de ZF3
+## Principales Componentes de Laminas
 
-Los desarrolladores de ZF3 creen que el framework debe ser un conjunto de
+Los desarrolladores de Laminas creen que el framework debe ser un conjunto de
 componentes desacoplables con un mínimo de dependencias entre ellos. Así es
-como ZF3 está organizado.
+como Laminas está organizado.
 
-La idea es que se puedan usar los componentes de ZF3 separadamente, incluso
+La idea es que se puedan usar los componentes de Laminas separadamente, incluso
 si estamos escribiendo nuestro sitio web con otro framework. Esto es incluso más
-fácil si tenemos en mente que cada componente de ZF3 es una paquete
+fácil si tenemos en mente que cada componente de Laminas es una paquete
 que se puede instalar usando Composer, así podemos fácilmente instalar cualquier
-componente de ZF3 junto con sus dependencias usando solo un comando.
+componente de Laminas junto con sus dependencias usando solo un comando.
 
-Existen varios componentes «principales» en ZF3 que se usan explícitamente
+Existen varios componentes «principales» en Laminas que se usan explícitamente
 o implícitamente en casi cualquier aplicación web:
 
-  * El componente @`Zend\EventManager` permite enviar eventos y registrar oyentes
+  * El componente @`Laminas\EventManager` permite enviar eventos y registrar oyentes
     que reaccionan a ellos.
 
-  * @`Zend\ModuleManager`. En ZF3 cada aplicación está constituida por módulos
+  * @`Laminas\ModuleManager`. En Laminas cada aplicación está constituida por módulos
     y este componente contiene las funcionalidades necesarias para cargarlos.
 
-  * @`Zend\ServiceManager`. Este es el registro centralizado de todos los
+  * @`Laminas\ServiceManager`. Este es el registro centralizado de todos los
     servicios disponibles en la aplicación y permite acceder a los servicios
     desde cualquier punto de la página web.
 
-  * @`Zend\Http` provee una interfaz fácil para manejar mensajes HTTP
+  * @`Laminas\Http` provee una interfaz fácil para manejar mensajes HTTP
     (Hyper-Text Transfer Protocol)
 
-  * @`Zend\Mvc`. Provee el soporte para el patrón Modelo-Vista-Controlador y
+  * @`Laminas\Mvc`. Provee el soporte para el patrón Modelo-Vista-Controlador y
     para la separación de la lógica del negocio de la presentación.
 
-  * @`Zend\View`. Provee un sistema de ayudantes, filtros de salida y escape
+  * @`Laminas\View`. Provee un sistema de ayudantes, filtros de salida y escape
     de variables usados en la capa de presentación.
 
-  * @`Zend\Form`. Recolección, filtrado, validación e impresión de los datos del
+  * @`Laminas\Form`. Recolección, filtrado, validación e impresión de los datos del
     formulario.
 
-  * @`Zend\InputFilter`. Provee la capacidad de definir reglas para la validación
+  * @`Laminas\InputFilter`. Provee la capacidad de definir reglas para la validación
     de formularios.
 
-  * @`Zend\Filter`. Provee un conjunto de filtros de datos usados comúnmente,
+  * @`Laminas\Filter`. Provee un conjunto de filtros de datos usados comúnmente,
     como los cortadores de cadenas.
 
-  * @`Zend\Validator`. Provee un conjunto de validadores usados comúnmente.
+  * @`Laminas\Validator`. Provee un conjunto de validadores usados comúnmente.
 
-## Diferencias con Zend Framework 2
+## Diferencias con Laminas Framework 2
 
-Para los lectores que han experimentado con Zend Framework 2 daremos en esta
-sección información sobre lo que ha cambiado en Zend Framework 3.
+Para los lectores que han experimentado con Laminas Framework 2 daremos en esta
+sección información sobre lo que ha cambiado en Laminas Framework.
 
-Abajo presentamos las principales diferencias técnicas entre ZF2 y ZF3:
+Abajo presentamos las principales diferencias técnicas entre ZF2 y Laminas:
 
 ### Retrocompatibilidad
 
-ZF3 es una versión evolutiva así que la retrocompatibilidad se preserva en la
+Laminas es una versión evolutiva así que la retrocompatibilidad se preserva en la
 mayoría de los caso. Sin embargo, algunos trabajos de migración tienen que
 hacerse si usamos `ServiceLocatorAwareInterface` a lo largo del código,
-lo que es probable. En ZF3, esta interfaz se ha removido y ahora todas las
+lo que es probable. En Laminas, esta interfaz se ha removido y ahora todas las
 dependencias se deben inyectar a través de fábricas. Así, tendremos que crear
 fábricas para la mayoría de los controladores, servicios, ayudantes de vista
 y complementos de controlador.
 
 ### Componentes
 
-En ZF2 los componentes estaban guardados en un solo repositorio GIT. En ZF3
+En ZF2 los componentes estaban guardados en un solo repositorio GIT. En Laminas
 los componentes están guardados en multiples repositorios GIT, un repositorio
-por cada componente (por ejemplo, `zendframework/zend-mvc`,
-`zendframework/zend-servicemanager`, `zendframework/zend-form`, etc).
+por cada componente (por ejemplo, `laminas/laminas-mvc`,
+`laminas/laminas-servicemanager`, `laminas/laminas-form`, etc).
 Esto permite desarrollar y publicar componentes independientementes uno de otro.
 
 Los componentes son más fáciles de desacoplar que antes y tienen un mínimo de
-dependencias entre ellos. El componente @`Zend\Mvc` se ha divido en varios
+dependencias entre ellos. El componente @`Laminas\Mvc` se ha divido en varios
 componentes. Por ejemplo, las funcionalidades para el enrutamiento se han
-separado y colocado en el nuevo componente @`Zend\Router`.
+separado y colocado en el nuevo componente @`Laminas\Router`.
 
 Ahora se recomienda especificar las dependencias individualmente en el archivo
-`composer.json`, aunque aún es posible depender del paquete `zendframework/zendframework`
+`composer.json`, aunque aún es posible depender del paquete `laminas/laminas`
 que es un metapaquete que instala *todos* los componentes disponibles.
 
 ### Instalador de Componentes
 
-En ZF3 un complemente especial de Composer llamado *component installer* se
+En Laminas un complemente especial de Composer llamado *component installer* se
 introdujo. Este permite instalar componentes como módulos de ZF. Además, inyecta
 información sobre los componentes dentro del archivo de configuración de la
 aplicación.
 
 ### Rendimiento del ServiceManager y del EventManager
 
-Los desarrolladores de ZF3 hicieron un gran trabajo mejorando el rendimiento
-de los componentes @`Zend\ServiceManager` y @`Zend\EventManager`. Ellos ahora son
+Los desarrolladores de Laminas hicieron un gran trabajo mejorando el rendimiento
+de los componentes @`Laminas\ServiceManager` y @`Laminas\EventManager`. Ellos ahora son
 varias veces más rápidos que antes. La desventaja es que tenemos que hacer un
 trabajo de migración para poder usar las nuevas funcionalidades. Ahora, en los nombre
 de los controladores y los servicios se recomienda utilizar la característica
@@ -685,12 +685,12 @@ Podemos leer la documentación del componente `Mvc` para información adicional.
 
 ### PSR-4
 
-En ZF2 la estructura de carpetas recomendada fue PSR-0, mientras que en ZF3 es
+En ZF2 la estructura de carpetas recomendada fue PSR-0, mientras que en Laminas es
 PSR-4. Esto requiere algunos (pequeños) trabajos de migración.
 
 ### Middleware
 
-Zend cree que el futuro de PHP está en ser un «middleware». «Middleware es, dicho
+Laminas cree que el futuro de PHP está en ser un «middleware». «Middleware es, dicho
 con simplicidad, código ubicado entre una petición HTTP entrate y una respuesta
 HTTP saliente». Ahora podemos registrar un «middleware» que escuche eventos
 en una aplicación MVC.
@@ -703,9 +703,9 @@ documentación esta ahora en formato Markdown y tiene mejor diseño.
 ## Resumen
 
 Un framework de PHP es una biblioteca que nos da código base y una manera
-consistente de crear aplicaciones web. Zend Framework 3 es un moderno framework
-de desarrollo web creado por Zend Technologies, el mantenedor del lenguaje PHP.
+consistente de crear aplicaciones web. Laminas Framework es un moderno framework
+de desarrollo web creado por Laminas Technologies, el mantenedor del lenguaje PHP.
 Provee a los desarrolladores de excelentes capacidades para construir sitios
-web escalables y seguros. ZF3 usa una licencia tipo BSD, lo que permite que sea
+web escalables y seguros. Laminas usa una licencia tipo BSD, lo que permite que sea
 usado tanto en aplicaciones libres y de código abierto como en aplicaciones
 comerciales.

@@ -1,26 +1,26 @@
 ﻿# Operación del Sitio Web {#operation}
 
-En este capítulo daremos algo de teoría sobre como funciona una típica aplicación web basada en Zend Framework 3.
+En este capítulo daremos algo de teoría sobre como funciona una típica aplicación web basada en Laminas Framework.
 Aprenderemos cosas básicas como clases de PHP, sobre como los espacios de nombres son usados para evitar la colisión de nombres,
 aprenderemos lo que es una clase *autoloading*, como definir los parámetros de configuración de una aplicación y
 la etapa actual dentro del ciclo de vida de una aplicación. Además, nos familiarizaremos con cada uno de estos
-importantes componentes de ZF3: @`Zend\EventManager`, @`Zend\ModuleManager` y @`Zend\ServiceManager`.
+importantes componentes de Laminas: @`Laminas\EventManager`, @`Laminas\ModuleManager` y @`Laminas\ServiceManager`.
 Si en lugar de aprender la teoría quieres tener algunos ejemplos prácticos salta este capítulo
 y revisa directamente el [Modelo-Vista-Controlador](#mvc).
 
-Los componentes de ZF3 sobre los que hablaremos en este capítulo son:
+Los componentes de Laminas sobre los que hablaremos en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\Mvc`                    | Provee el patrón Modelo-Vista-Controlador. Separación de la   |
+| @`Laminas\Mvc`                    | Provee el patrón Modelo-Vista-Controlador. Separación de la   |
 |                                | lógica del negocio de la presentación.                        |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\ModuleManager`          | Este componente es responsable de cargar e inicializar los módulos de la aplicación. |
+| @`Laminas\ModuleManager`          | Este componente es responsable de cargar e inicializar los módulos de la aplicación. |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\EventManager`           | Este componente implementa funcionalidades para el lanzamiento y manejo de eventos. |
+| @`Laminas\EventManager`           | Este componente implementa funcionalidades para el lanzamiento y manejo de eventos. |
 |--------------------------------|---------------------------------------------------------------|
-| @`Zend\ServiceManager`         | Implementa un registro de todos los servicios disponibles en la aplicación web. |
+| @`Laminas\ServiceManager`         | Implementa un registro de todos los servicios disponibles en la aplicación web. |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Clases PHP
@@ -88,7 +88,7 @@ echo "Person's full name is: " . $person->getFullName() . "\n";
 
 I> Las clases permiten separar nuestras funcionalidades en pequeños bloques manteniéndola
 I> bien organizada.
-I> ZF3 consiste en cientos de clases.
+I> Laminas consiste en cientos de clases.
 I> Además, escribiremos nuestras propias clases para nuestra aplicación web.
 
 ## PHP Namespaces
@@ -96,29 +96,29 @@ I> Además, escribiremos nuestras propias clases para nuestra aplicación web.
 Cuando usamos clases de diferentes bibliotecas (o incluso clases de diferentes componentes de
 una misma biblioteca) en nuestro programa los nombres de las clases pueden chocar. Esto significa
 que podemos encontrar dos clases con el mismo nombre, el resultado es un error de interpretación
-de PHP. Si alguna vez programamos sitios webs con Zend Framework 1 podemos recordar esos nombres de
-clases *extra* largos como `Zend_Controller_Abstract`. La idea detrás de estos nombres tan largos
+de PHP. Si alguna vez programamos sitios webs con Laminas Framework 1 podemos recordar esos nombres de
+clases *extra* largos como `Laminas_Controller_Abstract`. La idea detrás de estos nombres tan largos
 era evitar la colisión de nombres entre diferentes componentes. Cada componente definía su propio
-prefijo como `Zend_` o `My_`
+prefijo como `Laminas_` o `My_`
 
-Para alcanzar el mismo objetivo Zend Framework 3 usa una característica de PHP
+Para alcanzar el mismo objetivo Laminas Framework usa una característica de PHP
 llamada *namespaces*.
-Los namespaces o espacio de nombres permiten resolver la colisión de nombres 
+Los namespaces o espacio de nombres permiten resolver la colisión de nombres
 entre componentes y nos permite tener nombres más cortos.
 
-Un namespace es un contenedor para un grupo de nombres. Podemos anidar un 
+Un namespace es un contenedor para un grupo de nombres. Podemos anidar un
 namespaces dentro de otro.
 Si una clase no define un namespace ella se puede buscar dentro del namespace
 *global*  (por ejemplo, las clases de PHP `Exception` o `DateTime` pertenecen al
 namespace global).
 
 Un ejemplo realista de la definición de un namespace, tomado del componente
-@`Zend\Mvc`, se muestra abajo:
+@`Laminas\Mvc`, se muestra abajo:
 
 {line-numbers=on,lang="php"}
 ~~~
 <?php
-namespace Zend\Mvc;
+namespace Laminas\Mvc;
 
 /**
  * Main application class for invoking applications.
@@ -129,23 +129,23 @@ class Application
 }
 ~~~
 
-En Zend Framework 3 todas las clases están dentro del namespace de primer nivel *Zend*.
-La línea 2 define el namespace *Mvc* que está anidado dentro del namespace *Zend*,
-todas las clases de este componente (incluida la clase @`Application`[Zend\Mvc\Application]
+En Laminas Framework todas las clases están dentro del namespace de primer nivel *Laminas*.
+La línea 2 define el namespace *Mvc* que está anidado dentro del namespace *Laminas*,
+todas las clases de este componente (incluida la clase @`Application`[Laminas\Mvc\Application]
 que se muestra entre
 las líneas 7-10) pertenece a este namespace. Los namespace anidados se separan con
 la barra invertida ('\\').
 
-En las otras partes del código hacemos referencia a la clase @`Application`[Zend\Mvc\Application]
+En las otras partes del código hacemos referencia a la clase @`Application`[Laminas\Mvc\Application]
 usando su nombre completo (*fully-qualified name*):
 
 {line-numbers=off,lang="php"}
 ~~~
 <?php
-$application = new \Zend\Mvc\Application();
+$application = new \Laminas\Mvc\Application();
 ~~~
 
-I> Obsérvese la presencia de la primera barra invertida en el nombre @`\Zend\Mvc\Application`.
+I> Obsérvese la presencia de la primera barra invertida en el nombre @`\Laminas\Mvc\Application`.
 I> Si especificamos un nombre de clase que comienza con una barra invertida estamos usando
 I> el nombre completo de la clase. Es posible especificar un nombre de clase relativo al actual
 I> namespace, en este caso no usamos la barra invertida inicial.
@@ -157,7 +157,7 @@ Es posible usar *alias* (un nombre corto para la clase) con la ayuda de la sente
 ~~~
 <?php
 // Define the alias in the beginning of the file.
-use Zend\Mvc\Application;
+use Laminas\Mvc\Application;
 
 // Later in your code, use the short class name.
 $application = new Application();
@@ -168,7 +168,7 @@ T> su uso es opcional. No es necesario usar alias y podemos hacer referencia a l
 T> por su nombre completo cualificado.
 
 Generalmente, cada archivo PHP de nuestra aplicación define un espacio de nombres (excepto el script
-de inicio *index.php* y los archivos de configuración que comúnmente no tienen 
+de inicio *index.php* y los archivos de configuración que comúnmente no tienen
 un espacio de nombres.
 Por ejemplo, el módulo principal de nuestro sitio web, el módulo *Application* define su
 propio espacio de nombres y este es igual al nombre del módulo:
@@ -190,13 +190,13 @@ En PHP las *interfaces* permiten definir el comportamiento que una clase debe te
 sin proveer la implementación de tal comportamiento. Esto también es llamado un *contract*:
 al implementar una interface la clase acepta los términos del contrato.
 
-En Zend Framework 3 las interfaces son ampliamente usadas. Por ejemplo, la clase @`Application` implementa
+En Laminas Framework las interfaces son ampliamente usadas. Por ejemplo, la clase @`Application` implementa
 la @`ApplicationInterface`, de esta manera se definen los métodos que cada clase *application* debe proveer:
 
 {line-numbers=off,lang="php"}
 ~~~
 <?php
-namespace Zend\Mvc;
+namespace Laminas\Mvc;
 
 interface ApplicationInterface
 {
@@ -223,7 +223,7 @@ para recuperar el Gestor de Servicios (el Gestor de Servicios lo revisaremos má
 en este capítulo), los métodos `getRequest()` y `getResponse()` que respectivamente recuperan
 las peticiones y respuestas HTTP, y el método `run()` para ejecutar la aplicación.
 
-I> En Zend Framework 3, por convención, las interfaces de clases deben incluir en su nombre el
+I> En Laminas Framework, por convención, las interfaces de clases deben incluir en su nombre el
 I> sufijo `Interface` por ejemplo @`ApplicationInterface`.
 
 La clase que implementa una interfaz se llama clase *concreta*. La clase concreta @`Application`
@@ -233,7 +233,7 @@ definidos por la interface:
 {line-numbers=off,lang="php"}
 ~~~
 <?php
-namespace Zend\Mvc;
+namespace Laminas\Mvc;
 
 class Application implements ApplicationInterface
 {
@@ -278,7 +278,7 @@ Una aplicación web consiste en muchas clases PHP y cada clase generalmente resi
 un archivo separado. Esto crea la necesidad de *incluir* los archivos.
 
 Por ejemplo, vamos a asumir que tenemos el archivo llamado *Application.php* que
-contiene la definición para la clase @`\Zend\Mvc\Application` de la sección anterior.
+contiene la definición para la clase @`\Laminas\Mvc\Application` de la sección anterior.
 Antes de que podamos crear una instancia de la clase `Application` en cualquier lugar
 de nuestro código debemos incluir el contenido del archivo *Application.php* (podemos
 hacer esto con la ayuda de la sentencia `require_once`, pasándole la ruta completa
@@ -287,17 +287,17 @@ del archivo):
 {line-numbers=off,lang="php"}
 ~~~
 <?php
-require_once "/path/to/zendframework/zend-mvc/src/Application.php";
+require_once "/path/to/laminas/laminas-mvc/src/Application.php";
 
-use Zend\Mvc\Application;
+use Laminas\Mvc\Application;
 
 $application = new Application();
 ~~~
 
 Como la aplicación crece en tamaña puede ser difícil incluir cada nuevo archivo.
-Zend Framework 3 consiste en cientos de archivos y puede ser muy difícil cargar
+Laminas Framework consiste en cientos de archivos y puede ser muy difícil cargar
 la biblioteca entera y todas sus dependencias. Además, cuando se ejecuta el código
-resultante el interprete PHP consumirá tiempo de CPU para procesar cada archivo 
+resultante el interprete PHP consumirá tiempo de CPU para procesar cada archivo
 incluido, aun cuando no se crea una instancia de su clase.
 
 Para corregir este problema se introdujo en PHP una característica que permite la
@@ -307,7 +307,7 @@ En sitios webs complejos podemos crear varias funciones *autoloader* que se
 encadenan en una pila.
 
 Durante la ejecución de un script si el interprete de PHP encuentra el nombre de una clase
-que no se ha definido aún, se llama una por una a todas las funciones 
+que no se ha definido aún, se llama una por una a todas las funciones
 *autoloader* registradas hasta encontrar a la función *autoloader* que tiene la clase o hasta que se alcanza
 un error «not fount». Esto permite una *lazy loading*, el interprete PHP procesa la
 definición de la clase solo en el momento de su invocación, cuando es realmente
@@ -326,7 +326,7 @@ function autoloadFunc($className)
 {
     // Class map static array.
     static $classMap = [
-        '\\Zend\\Mvc\\Application' => '/path/to/zendframework/zend-mvc/src/Zend/Mvc/Application.php',
+        '\\Laminas\\Mvc\\Application' => '/path/to/laminas/laminas-mvc/src/Laminas/Mvc/Application.php',
         '\\Application\\Module' => '/path/to/app/dir/module/Application/Module.php',
         //...
     ];
@@ -386,28 +386,28 @@ interoperabilidad entre autoloaders. En dos palabras el estándar dice que:
 * Al nombre de la clase se agrega el sufijo de extensión *.php* cuando se carga el
   archivo desde el sistema de archivos.
 
-Por ejemplo, para la clase @`Zend\Mvc\Application` tendremos la siguiente estructura
+Por ejemplo, para la clase @`Laminas\Mvc\Application` tendremos la siguiente estructura
 de directorios:
 
 {line-numbers=off,lang="text"}
 ~~~
-/path/to/zendframework/zend-mvc/src
-  /Zend
+/path/to/laminas/laminas-mvc/src
+  /Laminas
     /Mvc
        Application.php
 ~~~
 
 La desventaja de esto es que es necesario colocar el código dentro de varios directorios
-anidados (*Zend* y *Mvc*).
+anidados (*Laminas* y *Mvc*).
 
 Para corregir esto PSR-4 permite que definamos una serie continua de uno o más namespace
 o sub-namespaces iniciales que correspondan a una «carpeta base». Por ejemplo, si tenemos
-el nombre de clase fully qualified: `Zend\Mvc\Application`, y definimos que la serie
-`Zend\Mvc` corresponde a la carpeta "/path/to/zendframework/zend-mvc/src" podemos
+el nombre de clase fully qualified: `Laminas\Mvc\Application`, y definimos que la serie
+`Laminas\Mvc` corresponde a la carpeta "/path/to/laminas/laminas-mvc/src" podemos
 organizar los archivos de la siguiente manera:
 
 ```
-/path/to/zendframework/zend-mvc/src
+/path/to/laminas/laminas-mvc/src
     Application.php
 ```
 
@@ -422,8 +422,8 @@ un autoloader que llamaremos autoloader «standard»:
 function standardAutoloadFunc($className)
 {
     // Replace the namespace prefix with base directory.
-    $prefix = '\\Zend\\Mvc';
-    $baseDir = '/path/to/zendframework/zend-mvc/src/';
+    $prefix = '\\Laminas\\Mvc';
+    $baseDir = '/path/to/laminas/laminas-mvc/src/';
     if (substr($className, 0, strlen($prefix)) == $prefix) {
         $className = substr($className, strlen($prefix)+1);
         $className = $baseDir . $className;
@@ -458,15 +458,15 @@ Sin embargo, su ventaja es que no necesitamos mantener ninguna clase map, lo que
 muy conveniente cuando desarrollamos código nuevo y agregamos nuevas clases a la
 aplicación.
 
-I> Zend Framework 3 se ajusta al estándar PSR-4, haciendo posible usar el mecanismo
+I> Laminas Framework se ajusta al estándar PSR-4, haciendo posible usar el mecanismo
 I> de autoloading estándar con todos sus componentes. Es también compatible
 I> con otras bibliotecas que se ajustan a PSR-4 como Doctrine o Symfony.
 
 ### El Autoloader provisto por Composer
 
 Composer puede generar las funciones de autoloader (tanto la clase map autoloaders
-como el estándar de autoloaders PSR-4) para el código que se instala con él. 
-Zend Framework 3 usa la implementación que hace Composer del «autoloader». Cuando
+como el estándar de autoloaders PSR-4) para el código que se instala con él.
+Laminas Framework usa la implementación que hace Composer del «autoloader». Cuando
 se instala un paquete usando Composer se crea automáticamente el archivo *APP_DIR/vendor/autoload.php*,
 que usa la función de PHP `spl_autoload_register()` para registrar un autoloader.
 De esta manera todas las clases de PHP ubicadas en el directorio `APP_DIR/vendor`
@@ -502,7 +502,7 @@ T> `php composer.phar dump-autoload`
 
 ### PSR-4 y Estructura de la Carpeta Fuente del Módulo
 
-En la aplicación Zend Skeleton podemos ver como el estándar PSR-4 se aplica en la
+En la aplicación Laminas Skeleton podemos ver como el estándar PSR-4 se aplica en la
 práctica. Para el módulo por defecto de nuestro sitio web, el módulo `Application`,
 las clases PHP que se registran en el autoloader estándar se guardan en el directorio
 `APP_DIR/module/Application/src` («src» es la abreviatura de «source»).
@@ -617,8 +617,8 @@ A pesar de que el archivo *index.php* es muy importante es sorprendentemente peq
 ~~~
 <?php
 
-use Zend\Mvc\Application;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Mvc\Application;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * This makes our life easier when dealing with paths. Everything is relative
@@ -663,28 +663,28 @@ Primero, en la línea 10, la carpeta actual de trabajo se cambia a `APP_DIR`.
 Esto simplifica la definición de rutas de archivos relativas en nuestra aplicación.
 
 Luego en la línea 22, la clase autoloading de PHP se ejecuta. Esto permite cargar
-fácilmente cualquier clase, tanto si está ubicada en la biblioteca Zend Framework como
+fácilmente cualquier clase, tanto si está ubicada en la biblioteca Laminas Framework como
 si está en nuestra aplicación, sin necesidad de usar una sentencia `require_once`.
 
-Finalmente, en la línea 40, se crea una instancia de la clase @`Zend\Mvc\Application`.
+Finalmente, en la línea 40, se crea una instancia de la clase @`Laminas\Mvc\Application`.
 La aplicación se inicia con las configuraciones leídas desde el archivo de
 configuración *application.config.php* y por último la aplicación se ejecuta.
 
 ## Eventos y Ciclo de Vida de la Aplicación
 
 Como hemos aprendido de las secciones anteriores, con cada petición HTTP se crea
-un objeto @`Zend\Mvc\Application`. Normalmente una aplicación «vive» por un segundo o menos
+un objeto @`Laminas\Mvc\Application`. Normalmente una aplicación «vive» por un segundo o menos
 (este tiempo es suficiente para generar la respuesta HTTP). La «vida» de la aplicación
 tiene varias etapas.
 
-I> Zend Framework 3 usa el concepto de *eventos*. Una clase puede *lanzar* un evento,
+I> Laminas Framework usa el concepto de *eventos*. Una clase puede *lanzar* un evento,
 I> y otro clase puede *escuchar* los eventos. Técnicamente, lanzar un evento significa
-I> llamar a otra clase, más exactamente a un método «callback» de la clase. El 
-I> administrador de eventos está implementado dentro del componente @`Zend\EventManger`.
+I> llamar a otra clase, más exactamente a un método «callback» de la clase. El
+I> administrador de eventos está implementado dentro del componente @`Laminas\EventManger`.
 
 Cada etapa de vida de una aplicación se inicia cuando la aplicación lanza un
 un evento (este evento está representado par la clase `MvcEvent` que está ubicada en el
-namespace `Zend\Mvc`). Otras clases (tanto las que pertenecen a Zend Framework como
+namespace `Laminas\Mvc`). Otras clases (tanto las que pertenecen a Laminas Framework como
 las de nuestra aplicación) pueden escuchar los eventos y actuar en consecuencia.
 
 Los cinco principales eventos (etapas de vida) se muestran abajo:
@@ -694,16 +694,16 @@ de registrarse como un oyente (listener) de los próximos eventos de la aplicaci
 en su método callback `onBootstrap()`.
 
 **Route**. Cuando este evento se lanza el URL de la petición es analizado usando una
-clase *router* (normalmente es la clase @`Zend\Route\Http\TreeRouteStack`). Si existe
-una correspondencia exacta entre la URL y una ruta, la petición es pasada a una 
+clase *router* (normalmente es la clase @`Laminas\Route\Http\TreeRouteStack`). Si existe
+una correspondencia exacta entre la URL y una ruta, la petición es pasada a una
 *clase-controlador* específica asignada en el router.
 
-**Dispatch**. La clase-controlador atiende o «despacha» la petición usando el 
+**Dispatch**. La clase-controlador atiende o «despacha» la petición usando el
 método de acción correspondiente y produce los datos que se muestran en la página web.
 
 **Render**. En este evento las datos producidos por el método de acción en el controlador
-se pasan a la clase @`Zend\View\Renderer\PhpRenderer` para ser representados. 
-La clase «renderer» usa un archivo de *plantilla de vista* o *view template* 
+se pasan a la clase @`Laminas\View\Renderer\PhpRenderer` para ser representados.
+La clase «renderer» usa un archivo de *plantilla de vista* o *view template*
 para producir una página HTML.
 
 **Finish**. En este evento la respuesta HTTP se envía al cliente.
@@ -730,7 +730,7 @@ A nivel de módulo definimos parámetros que solo tienen efecto en el módulo.
 I> Algunos frameworks de PHP prefieren el concepto de *convención sobre configuración*,
 I> donde muchos de los parámetros están embebidos en el código y no necesitan configuración.
 I> Esto hace más rápido el desarrollo de la aplicación, pero la hace menos configurable.
-I> En Zend Framework 3 se usa el concepto de *configuración sobre convención*
+I> En Laminas Framework se usa el concepto de *configuración sobre convención*
 I> así podemos personalizar cualquier aspecto de nuestra aplicación, para esto tenemos
 I> que invertir algún tiempo en aprender a como hacerlo.
 
@@ -815,7 +815,7 @@ return [
     // ],
 
    // Initial configuration with which to seed the ServiceManager.
-   // Should be compatible with Zend\ServiceManager\Config.
+   // Should be compatible with Laminas\ServiceManager\Config.
    // 'service_manager' => [],
 ];
 ~~~
@@ -825,12 +825,12 @@ Podemos ver que los nombres de los módulos se guardan dentro de otro archivo de
 `modules.config.php` en el que se listan todos los módulos presentes en nuestro
 sitio web.
 
-En la línea 11 está la llave `module_paths` que le indica a ZF3 en que carpetas
+En la línea 11 está la llave `module_paths` que le indica a Laminas en que carpetas
 buscar el código fuente que pertenece a los módulos. Los módulos de aplicación
 que desarrollamos se ubican dentro del directorio *APP_DIR/module* y los módulos
 de terceros se ubican dentro del directorio *APP_DIR/vendor*.
 
-En la línea 19 tenemos la llave `config_glob_paths` que le dice a ZF3 en donde buscar
+En la línea 19 tenemos la llave `config_glob_paths` que le dice a Laminas en donde buscar
 archivos de configuración extra. Aquí se ve que los archivos con el sufijo *global.php*
 o *local.php* del *APP_DIR/config/autoload* se cargan automáticamente.
 
@@ -847,23 +847,23 @@ tenemos los siguientes módulos instalados en nuestro sitio web.
 {line-numbers=off,lang=php, title="Content of modules.config.php file"}
 ~~~
 return [
-    'Zend\Session',
-    'Zend\Mvc\Plugin\Prg',
-    'Zend\Mvc\Plugin\Identity',
-    'Zend\Mvc\Plugin\FlashMessenger',
-    'Zend\Mvc\Plugin\FilePrg',
-    'Zend\Form',
-    'Zend\Router',
-    'Zend\Validator',
+    'Laminas\Session',
+    'Laminas\Mvc\Plugin\Prg',
+    'Laminas\Mvc\Plugin\Identity',
+    'Laminas\Mvc\Plugin\FlashMessenger',
+    'Laminas\Mvc\Plugin\FilePrg',
+    'Laminas\Form',
+    'Laminas\Router',
+    'Laminas\Validator',
     'Application',
 ];
 ~~~
 
 El módulo `Application` es el módulo que contiene los archivos de nuestra aplicación.
-Todos los otros módulos listados son componentes de Zend Framework.
+Todos los otros módulos listados son componentes de Laminas Framework.
 
-I> En ZF3 se introdujo un complemento especial de Composer llamado *instalador de componentes*.
-I> Si recordamos, en el capítulo [Zend Skeleton Application](#skeleton) respondimos varias preguntas
+I> En Laminas se introdujo un complemento especial de Composer llamado *instalador de componentes*.
+I> Si recordamos, en el capítulo [Laminas Skeleton Application](#skeleton) respondimos varias preguntas
 I> con «yes» o «no» sobre la instalación, con lo que determinamos que componentes instalar.
 I> El instalador *inyecta* los nombres de los módulos de componentes en el archivo
 I> `modules.config.php`.
@@ -871,7 +871,7 @@ I> `modules.config.php`.
 ### Archivos de Configuración Extra a Nivel de la Aplicación
 
 Los archivos de configuración «extra» *APP_DIR/config/autoload/global.php* y *APP_DIR/config/autolocal.php*
-definen, respectivamente, parámetros para toda la aplicación independientes del 
+definen, respectivamente, parámetros para toda la aplicación independientes del
 entorno y parámetros dependientes del
 entorno. Estos archivos de configuración se cargan automáticamente
 y se mezclan recursivamente con los archivos de configuración del módulo,
@@ -884,7 +884,7 @@ Aquí hay algunos consejos:
 * Usamos el archivo *autoload/global.php* para guardar parámetros que no dependen
   de un entorno de maquina concreto. Por ejemplo, aquí podemos guardar parámetros
   que sobrescriben los parámetros por defecto de algún módulo. Aquí no guardamos
-  información sensible (como credenciales de base de datos), para ese propósito 
+  información sensible (como credenciales de base de datos), para ese propósito
   es mejor usar el archivo *autoload/local.php*.
 
 * Usamos el archivo *autoload/local.php* para guardar parámetros específicos de
@@ -895,10 +895,10 @@ Aquí hay algunos consejos:
   en el servidor de producción, editaremos el archivo `local.php` y colocaremos
   las credenciales para la base de datos de producción.
 
-I> Como el archivo *autoload/local.php* contiene parámetros específicos para un 
+I> Como el archivo *autoload/local.php* contiene parámetros específicos para un
 I> entorno no lo guardamos en el sistema de control de versiones.
 I> En el sistema de control de versiones almacenaremos la *plantilla de distribución*
-I> *local.php.dist*. Cada desarrollador del equipo puede renombrar el archivo 
+I> *local.php.dist*. Cada desarrollador del equipo puede renombrar el archivo
 I> *local.php.dist*
 I> a *local.php* y colocar sus propios parámetros. El archivo *local.php* no debe
 I> ser guardado en el control de versiones porque puede contener información
@@ -910,7 +910,7 @@ I> que otras personas lo vean.
 El archivo de configuración del desarrollador a nivel de aplicación
 (`APP_DIR/config/development.config.php`)
 está presente solo cuando activamos el *modo de desarrollo*. Si recordamos, nosotros
-habilitamos el modo de desarrollo al principio en el capítulo [Zend Skeleton Application](#skeleton).
+habilitamos el modo de desarrollo al principio en el capítulo [Laminas Skeleton Application](#skeleton).
 
 I> Activamos el modo de desarrollo con el siguiente comando:
 I>
@@ -924,7 +924,7 @@ Esto permite sobrescribir algunos parámetros. Por ejemplo, podemos:
     puede tener consecuencias indeseables como impedir que veamos el resultado de
     nuestros cambios inmediatamente.
   * Cargar módulos adicionales. Por ejemplo, podemos cargar el módulo
-    [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools)
+    [LaminasDeveloperTools](https://github.com/laminas/LaminasDeveloperTools)
     solo en el entorno de desarrollo.
 
 Si desactivamos el módulo de desarrollo, el archivo `development.config.php` se
@@ -958,9 +958,9 @@ módulo. Vamos a ver como es el archivo `module.config.php` del módulo `Applica
 <?php
 namespace Application;
 
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -1053,13 +1053,13 @@ Los archivos de configuración son cargados en el siguiente orden:
 
 ## Punto de Acceso al Módulo
 
-En ZF3 nuestra aplicación esta constituida por módulos. Por defecto, tenemos un
+En Laminas nuestra aplicación esta constituida por módulos. Por defecto, tenemos un
 solo módulo, `Application`, pero podemos crear más si lo necesitamos. Normalmente, nuestros
 propios módulos se guardan en el directorio *APP_DIR/modulo*, mientras los módulos
 de terceros se guardan en el directorio *APP_DIR/vendor*.
 
-Al iniciar, cuando se crea el objeto @`Zend\Mvc\Application`, se usa el componente
-@`Zend\ModuleManager` para encontrar y cargar todos los módulos registrados en la
+Al iniciar, cuando se crea el objeto @`Laminas\Mvc\Application`, se usa el componente
+@`Laminas\ModuleManager` para encontrar y cargar todos los módulos registrados en la
 configuración de la aplicación.
 
 Cada módulo de la aplicación web tiene el archivo *Module.php* que es un tipo de
@@ -1083,7 +1083,7 @@ class Module
 La clase `Module` pertenece al namespace del módulo (el módulo principal pertenece
 al namespace `Application`).
 
-El método `getConfig()` se usa normalmente para proveerle a Zend Framework la 
+El método `getConfig()` se usa normalmente para proveerle a Laminas Framework la
 configuración del módulo (archivo *module.config.php*).
 
 I> Aquí también podemos registrar algunos *event listeners* (escuchas de eventos),
@@ -1098,15 +1098,15 @@ usuarios, un servicio administrador de entidades responsable del acceso
 a la base de datos, un servicio para la administración de eventos responsable de
 lanzar eventos y entregarlos al *listeners* de eventos, etc.
 
-En Zend Framework la clase @`ServiceManager` es un *contenedor* centralizado para
+En Laminas Framework la clase @`ServiceManager` es un *contenedor* centralizado para
 todos los servicios de aplicación. El administrador de servicios se implementa en
-el componente @`Zend\ServiceManager`, con la clase @`ServiceManager`. El diagrama
+el componente @`Laminas\ServiceManager`, con la clase @`ServiceManager`. El diagrama
 de herencia de la clase se muestra en la figura 3.5:
 
 ![Figura 3.5. Diagrama de herencia de la clase administradora de servicios](../en/images/operation/service_manager_inheritance.png)
 
 El administrador de servicios es creado luego de arrancar la aplicación (dentro
-del método estático `init()` de la clase @`Zend\Mvc\Application`). Los servicios
+del método estático `init()` de la clase @`Laminas\Mvc\Application`). Los servicios
 estándares disponibles a través del administrador de servicios se presentan en la
 tabla 3.1. Esta tabla está incompleta, porque el número actual de servicios registrados
 en el administrador de servicios puede ser muy grande.
@@ -1115,7 +1115,7 @@ en el administrador de servicios puede ser muy grande.
 |----------------------|-----------------------------------------------------------------------|
 | Nombre del Servicio  | Descripción                                                           |
 |----------------------|-----------------------------------------------------------------------|
-| `Application`        | Permite recuperar la clase singleton @`Zend\Mvc\Application`.         |
+| `Application`        | Permite recuperar la clase singleton @`Laminas\Mvc\Application`.         |
 |----------------------|-----------------------------------------------------------------------|
 | `ApplicationConfig`  | Arreglo de configuración extraído desde el archivo *application.config.php*. |
 |----------------------|-----------------------------------------------------------------------|
@@ -1123,33 +1123,33 @@ en el administrador de servicios puede ser muy grande.
 |                      | junto con *autoload/global.php* y el *autoload/local.php*.            |
 |----------------------|-----------------------------------------------------------------------|
 | `EventManager`       | Permite recuperar una *nueva* instancia de la clase                   |
-|                      | @`Zend\EventManager\EventManager`. El administrador de eventos permite|
+|                      | @`Laminas\EventManager\EventManager`. El administrador de eventos permite|
 |                      | enviar (lanzar) eventos y asociar *listeners* de evento.              |
 |----------------------|-----------------------------------------------------------------------|
-| `SharedEventManager` | Permite recuperar una instancia *singleton* de la clase @`Zend\EventManager\SharedEventManager`. |
+| `SharedEventManager` | Permite recuperar una instancia *singleton* de la clase @`Laminas\EventManager\SharedEventManager`. |
 |                      | El administrador de eventos compartidos permite escuchar eventos definidos |
 |                      | por otras clases y componentes.                                       |
 |----------------------|-----------------------------------------------------------------------|
-| `ModuleManager`      | Permite recuperar una clase *singleton* de @`Zend\ModuleManager\ModuleManager`. |
+| `ModuleManager`      | Permite recuperar una clase *singleton* de @`Laminas\ModuleManager\ModuleManager`. |
 |                      | El administrador de módulos es responsable de cargar los módulos de la aplicación. |
 |----------------------|-----------------------------------------------------------------------|
-| `Request`            | La clase *singleton* de @`Zend\Http\Request`. Representa una petición HTTP |
+| `Request`            | La clase *singleton* de @`Laminas\Http\Request`. Representa una petición HTTP |
 |                      | recibida desde el client.                                             |
 |----------------------|-----------------------------------------------------------------------|
-| `Response`           | La clase *singleton* de @`Zend\Http\Response`. Representa la respuesta HTTP |
+| `Response`           | La clase *singleton* de @`Laminas\Http\Response`. Representa la respuesta HTTP |
 |                      | que será enviada al cliente.                                          |
 |----------------------|-----------------------------------------------------------------------|
-| `Router`             | La clase *singleton* de @`Zend\Router\Http\TreeRouteStack`. Ejecuta el|
+| `Router`             | La clase *singleton* de @`Laminas\Router\Http\TreeRouteStack`. Ejecuta el|
 |                      | direccionamiento URL.                                                 |
 |----------------------|-----------------------------------------------------------------------|
 | `ServiceManager`     | El administrador de servicios.                                        |
 |----------------------|-----------------------------------------------------------------------|
-| `ViewManager`        | La clase *singleton* de @`Zend\Mvc\View\Http\ViewManager`. Responsable|
+| `ViewManager`        | La clase *singleton* de @`Laminas\Mvc\View\Http\ViewManager`. Responsable|
 |                      | de preparar la capa de vista para pintar la página.                   |
 |----------------------|-----------------------------------------------------------------------|
 
 Un servicio es típicamente una clase PHP arbitraria, pero no siempre. Por ejemplo,
-cuando ZF3 carga los archivos de configuración y mezcla los datos dentro de un arreglo
+cuando Laminas carga los archivos de configuración y mezcla los datos dentro de un arreglo
 anidado, se guarda el arreglo en dos servicios del administrador de servicios: `ApplicationConfig` y
 `Config`. El primero es una arreglo cargado desde el nivel de aplicación con el
 archivo *application.config.php* y el segundo servicio es la mezcla de los archivos de configuración
@@ -1157,7 +1157,7 @@ a nivel de módulo y los archivos de configuración autocargados del nivel de ap
 Luego, en el administrador de eventos podemos guardar cualquier cosa que queramos:
 una clase PHP, una simple variable o un arreglo.
 
-En la tabla 3.1 podemos ver que en ZF3 casi todo se puede considerar un servicio.
+En la tabla 3.1 podemos ver que en Laminas casi todo se puede considerar un servicio.
 El administrador de servicios mismo se registra como un servicio. Además, la clase
 @`Application` se registra también como un servicio.
 
@@ -1218,10 +1218,10 @@ T> que estamos creando y pasar estos
 T> servicios (dependencias) al constructor del objeto. A esto se le llama
 T> *inyección de dependencias*.
 
-I> Si tenemos alguna experiencia con Zend Framework 2 podemos ver que las cosas ahora
+I> Si tenemos alguna experiencia con Laminas Framework 2 podemos ver que las cosas ahora
 I> son un poco diferentes. En ZF2, había un patrón `ServiceLocator` que
 I> permitía traer dependencias desde administrador de servicios en *cualquier*
-I> parte de la aplicación (controladores, servicios, etc). En ZF3, tenemos que pasar
+I> parte de la aplicación (controladores, servicios, etc). En Laminas, tenemos que pasar
 I> las dependencias explícitamente. Esto es un poco aburrido pero remueve las dependencias
 I> «ocultas» y hace que nuestro código sea más fácil y claro de entender.
 
@@ -1265,8 +1265,8 @@ $serviceManager->setService(CurrencyConverter::class, $service);
 ~~~
 
 En este ejemplo se crea una instancia de la clase con el operador `new` y la registramos en el
-administrador de servicios usando el método `setService()` (asumimos que la variable 
-`$serviceManager` es de tipo *class* correspondiente a @`Zend\ServiceManager\ServiceManager`
+administrador de servicios usando el método `setService()` (asumimos que la variable
+`$serviceManager` es de tipo *class* correspondiente a @`Laminas\ServiceManager\ServiceManager`
 y que ha sido declarada en algún lugar).
 
 El método `setService()` toma dos parámetros: una cadena de caracteres que es el
@@ -1340,17 +1340,17 @@ $serviceManager->setInvokableClass(CurrencyConverter::class);
 ~~~
 
 En el ejemplo de arriba pasamos al administrador de servicios el nombre completo
-de la clase (fully qualified) que implementa el servicio en lugar de pasar su 
+de la clase (fully qualified) que implementa el servicio en lugar de pasar su
 instancia. Con esta técnica, el
 servicio será instanciado por el administrador de servicios solo cuando se
-llama al método `get(CurrencyConverter::class)`. A esta técnica también se le 
+llama al método `get(CurrencyConverter::class)`. A esta técnica también se le
 llama *lazy loading*.
 
 T> Los servicios a menudo dependen de otro. Por ejemplo, el servicio que convierte
 T> monedas puede usar el servicio de administración de entidades para leer la tasa de cambio
 T> desde la base de datos. La desventaja del método `setInvokableClass()` es que
 T> no permite pasar parámetros (dependencias) al servicio en la instanciación del
-T> objeto. Para resolver esta cuestión podemos usar *fábricas* (factories) como 
+T> objeto. Para resolver esta cuestión podemos usar *fábricas* (factories) como
 T> se describe más adelante.
 
 ### Registrar una Fábrica
@@ -1366,7 +1366,7 @@ de la sección anterior.
 {line-numbers=off,lang=php}
 ~~~
 <?php
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 // This is equivalent to the setInvokableClass() method from previous section.
 $serviceManager->setFactory(CurrencyConverter::class, InvokableFactory::class);
@@ -1381,13 +1381,13 @@ del servicio con el operador `new` (como lo hace la clase @`InvokableFactory`). 
 necesitar pasar algunos parámetros al constructor del servicio o invocar algunos
 métodos del servicio justo después de la construcción. Esta lógica de instanciación
 compleja se puede encapsular dentro de nuestra propia clase *fábrica* escrita a la
-medida. La clase fábrica normalmente implementa a la interfaz 
-@`FactoryInterface`[Zend\ServiceManager\Factory\FactoryInterface]:
+medida. La clase fábrica normalmente implementa a la interfaz
+@`FactoryInterface`[Laminas\ServiceManager\Factory\FactoryInterface]:
 
 {line-numbers=off,lang=php}
 ~~~
 <?php
-namespace Zend\ServiceManager\Factory;
+namespace Laminas\ServiceManager\Factory;
 
 use Interop\Container\ContainerInterface;
 
@@ -1398,8 +1398,8 @@ interface FactoryInterface
 }
 ~~~
 
-Como podemos ver a partir de la definición de la interfaz 
-@`FactoryInterface`[Zend\ServiceManager\Factory\FactoryInterface],
+Como podemos ver a partir de la definición de la interfaz
+@`FactoryInterface`[Laminas\ServiceManager\Factory\FactoryInterface],
 la clase fábrica debe
 proveer el método mágico `__invoke` que retorna una instancia de un solo servicio.
 El administrador de servicios se pasa al método `__invoke` en el parámetro `$container`;
@@ -1419,7 +1419,7 @@ hacerlo.
 <?php
 namespace Application\Service\Factory;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Application\Service\CurrencyConverter;
 
 // Factory class
@@ -1436,7 +1436,7 @@ class CurrencyConverterFactory implements FactoryInterface
 }
 ~~~
 
-I> Técnicamente, con ZF3 *podemos* usar la misma clase fábrica para instanciar varios
+I> Técnicamente, con Laminas *podemos* usar la misma clase fábrica para instanciar varios
 I> servicios que tienen código de instanciación similar (para este propósito podemos
 I> usar el argumento `$requestedName` que se pasa al método fábrica `__invoke()`).
 I>  Sin embargo, *principalmente* crearemos diferentes fábrica una por cada servicio.
@@ -1446,12 +1446,12 @@ I>  Sin embargo, *principalmente* crearemos diferentes fábrica una por cada ser
 Un escenario más complejo para una fábrica es cuando necesitamos determinar en tiempo de ejecución
 cuales nombres de servicios deberían ser registrados. En esta situación podemos
 usar una *fábrica abstracta*. Una fábrica abstracta deberá implementar la interfaz
-@`AbstractFactoryInterface`[Zend\ServiceManager\Factory\AbstractFactoryInterface]:
+@`AbstractFactoryInterface`[Laminas\ServiceManager\Factory\AbstractFactoryInterface]:
 
 {line-numbers=off,lang=php}
 ~~~
 <?php
-namespace Zend\ServiceManager\Factory;
+namespace Laminas\ServiceManager\Factory;
 
 use Interop\Container\ContainerInterface;
 
@@ -1587,7 +1587,7 @@ un alias para él:
 {line-numbers=off,lang=php}
 ~~~
 <?php
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 use Application\Service\CurrencyConverter;
 
 return [
@@ -1618,21 +1618,21 @@ instanciar servicios de un único tipo. Con este tipo de complemento un administ
 de complementos se puede instanciar incrustado en el código dentro de la clase
 administradora de complementos.
 
-¿Por qué necesitamos tal cosa? De hecho, en ZF3, el administrador de complementos
+¿Por qué necesitamos tal cosa? De hecho, en Laminas, el administrador de complementos
 se usa ampliamente porque ellos permiten instanciar un complemento solo cuando se
 necesita (esto reduce el uso de CPU y memoria). Existen administradores de complementos
 separados para:
 
-  * controladores (la clase @`Zend\Mvc\Controller\ControllerManager`)
-  * complementos controladores (la clase @`Zend\Mvc\Controller\PluginManager`)
-  * ayudante de vista (la clase @`Zend\View\HelperPluginManager`)
-  * elementos del formulario (la clase @`Zend\Form\FormElementManager\FormElementManagerV3Polyfill`)
-  * filtros (la clase @`Zend\Filter\FilterPluginManager`)
-  * validadores (la clase @`Zend\Validator\ValidatorPluginManager`)
+  * controladores (la clase @`Laminas\Mvc\Controller\ControllerManager`)
+  * complementos controladores (la clase @`Laminas\Mvc\Controller\PluginManager`)
+  * ayudante de vista (la clase @`Laminas\View\HelperPluginManager`)
+  * elementos del formulario (la clase @`Laminas\Form\FormElementManager\FormElementManagerV3Polyfill`)
+  * filtros (la clase @`Laminas\Filter\FilterPluginManager`)
+  * validadores (la clase @`Laminas\Validator\ValidatorPluginManager`)
   * y probablemente otras cosas.
 
 El hecho de que cada administrador de complementos herede desde la clase base
-@`Zend\ServiceManager\ServiceManager` permite que los administradores de complementos
+@`Laminas\ServiceManager\ServiceManager` permite que los administradores de complementos
 tengan una configuración similar. Por ejemplo, los controladores se registran dentro de la
 llave `controllers` en el archivo *module.config.php* y esta llave puede tener
 las mismas subllaves: *services*, *invokables*, *factories*, *abstract_factories*
@@ -1644,36 +1644,36 @@ complementos controladores, etc.
 
 T> En esta sección daremos información avanzada sobre el administrador de eventos.
 T> Podemos saltar esta sección con relativa seguridad, sin embargo será necesario
-T> leerla si planeamos implementar algunos oyentes de eventos (event listeners) 
+T> leerla si planeamos implementar algunos oyentes de eventos (event listeners)
 T> avanzados en nuestro sitio web.
 
 Anteriormente en este capítulo hemos mencionado que el ciclo de vida de la aplicación
 consiste en *eventos*. Una clase puede *lazar* un evento y otra clase puede *escuchar*
 los eventos. Técnicamente, lanzar un evento significa con exactitud llamar a otro
 método *callback* de una clase. El administrador de eventos se implementa dentro del
-componente @`Zend\EventManager`.
+componente @`Laminas\EventManager`.
 
-T> ZF3 (y particularmente su componente @`Zend\Mvc`) depende de eventos para
+T> Laminas (y particularmente su componente @`Laminas\Mvc`) depende de eventos para
 T> funcionar, como consecuencia su código es una combinación de oyentes de
 T> eventos que son algo difíciles de entender. Por fortuna, en la mayoría de los
-T> casos no necesitamos entender como ZF3 lanza y maneja eventos internamente, solo
+T> casos no necesitamos entender como Laminas lanza y maneja eventos internamente, solo
 T> necesitamos entender lo que es un evento, que eventos están presentes en una
 T> aplicación y cual es la diferencia entre un *administrador de eventos* usual
 T> y un *administrador de eventos compartidos*.
 
 ### Event y MvcEvent
 
-Un evento es técnicamente una instancia de la clase @`Zend\EventManager\Event`. Un
+Un evento es técnicamente una instancia de la clase @`Laminas\EventManager\Event`. Un
 evento puede en principio tener al menos las siguientes partes:
 
 * *name* - identifica unívocamente al evento;
 * *target* - es típicamente un puntero al objeto que lanza el evento;
 * y *params* - argumentos específicos pasados a los oyentes de evento.
 
-Es posible crear tipos de eventos a la medida extendiendo a la clase @`Event`[Zend\EventManager\Event].
-Por ejemplo, el componente @`Zend\Mvc` define un tipo de evento a la medida llamado
-@`Zend\Mvc\MvcEvent` que extiende a la clase `Event` y agrega varias propiedades
-y métodos necesarios para el funcionamiento de @`Zend\Mvc`.
+Es posible crear tipos de eventos a la medida extendiendo a la clase @`Event`[Laminas\EventManager\Event].
+Por ejemplo, el componente @`Laminas\Mvc` define un tipo de evento a la medida llamado
+@`Laminas\Mvc\MvcEvent` que extiende a la clase `Event` y agrega varias propiedades
+y métodos necesarios para el funcionamiento de @`Laminas\Mvc`.
 
 ### EventManager y SharedEventManager
 
@@ -1709,10 +1709,10 @@ T> [Administración de Usuarios, Autenticación y Filtro de Acceso](#users).
 
 ## Resumen
 
-En este capítulo aprendimos algo de teoría sobre el funcionamiento básica de un 
-un sitio web basado en ZF3.
+En este capítulo aprendimos algo de teoría sobre el funcionamiento básica de un
+un sitio web basado en Laminas.
 
-ZF3 usa los *namespaces* de PHP y las características de clase *autoloading* que simplifica
+Laminas usa los *namespaces* de PHP y las características de clase *autoloading* que simplifica
 el desarrollo de aplicaciones que usan muchos componentes de terceros. Los nombres de
 espacio permiten resolver la colisión de nombres entre componentes y proveernos de
 la capacidad de hacer cortos los nombres largos.
@@ -1721,17 +1721,17 @@ La clase *autoloading* permite usar cualquier clase PHP y de cualquier bibliotec
 *Composer* sin el uso de una sentencia `require_once`. Además, *Composer* provee un *autoloader PSR-4*
 para las clases que están en los módulos de nuestra aplicación web.
 
-La mayoría de los componentes de Zend Framework 3 requieren configuración. Podemos definir
+La mayoría de los componentes de Laminas Framework requieren configuración. Podemos definir
 los parámetros de configuración tanto a nivel de aplicación como a nivel de módulo.
 
 El objetivo principal de cualquier aplicación web es manejar una petición HTTP y producir
 una respuesta HTTP que comúnmente contiene el código HTML de la página web solicitada.
 Cuando el servidor web Apache recibe una petición HTTP desde el navegador web del cliente
 ejecuta el archivo *index.php*, que también es conocido como script de entrada.
-Con cada petición HTTP se crea un objeto @`Zend\Mvc\Application` cuyo «ciclo de vida»
+Con cada petición HTTP se crea un objeto @`Laminas\Mvc\Application` cuyo «ciclo de vida»
 consiste de varias etapas (o eventos).
 
 La lógica de negocios de la aplicación web se puede considerar como un conjunto
-de servicios. En Zend Framework 3, el administrador de servicios es un contenedor
+de servicios. En Laminas Framework, el administrador de servicios es un contenedor
 centralizado para todos los servicios de aplicación. Un servicio es normalmente una
 clase PHP pero, si es necesario, también puede ser una variable o un arreglo.

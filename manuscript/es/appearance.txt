@@ -3,27 +3,27 @@
 En este capítulo aprenderemos como hacer las páginas de nuestro sitio web
 atractivas y con aspecto profesional con la ayuda de "Twitter Bootstrap CSS Framework"
 y como posicionar elementos sobre una página usando el mecanismo de diseño
-de ZF3. Además, nos familiarizaremos con los ayudantes de vista más comunes
+de Laminas. Además, nos familiarizaremos con los ayudantes de vista más comunes
 para componer páginas web con partes reusables. Si somos nuevos con Twitter
 Bootstrap es bueno revisar el [Apéndice C. Introducción a Twitter Bootstrap](#bootstrap)
 para una descripción avanzada de las capacidades de Bootstrap.
 
-ZF3 components covered in this chapter:
+Laminas components covered in this chapter:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Mvc`                     | Soporta el patrón MVC. Implementa clases controladoras        |
+| `Laminas\Mvc`                     | Soporta el patrón MVC. Implementa clases controladoras        |
 |                                | básicas, complementos para controladores, etc.                |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\View`                    | Implementa la funcionalidad para los contenedores de          |
+| `Laminas\View`                    | Implementa la funcionalidad para los contenedores de          |
 |                                | variables, imprimir una página web y ayudantes de vista de uso|
 |                                | común.                                                        |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Sobre las Hojas de Estilo y Twitter Bootstrap
 
-En un sitio web basado en ZF3 se usan las hojas de estilo CSS para definir la
+En un sitio web basado en Laminas se usan las hojas de estilo CSS para definir la
 apariencia visual y el estilo de las páginas web. Los archivos CSS [^css] se
 guardan generalmente en el directorio *APP_DIR/public/css*.
 
@@ -47,8 +47,8 @@ la apariencia de nuestro sitio web). Bootstrap es software libre que se
 distribuye bajo la licencia
 [Apache License v.2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-T> Twitter Bootstrap viene empacado con *Zend Skeleton Application* así que
-T> podemos usarlos luego de terminar la instalación de ZF3, apenas al sacarlo
+T> Twitter Bootstrap viene empacado con *Laminas Skeleton Application* así que
+T> podemos usarlos luego de terminar la instalación de Laminas, apenas al sacarlo
 T> de la caja! Además, podemos descargar la versión más reciente de Bootstrap
 T> desde la [página web](http://getbootstrap.com/) oficial del proyecto.
 T> En el momento de escribir este libro la última versión es la número 3.x.
@@ -85,7 +85,7 @@ T> el [Apéndice C. Introducción a Twitter Bootstrap](#bootstrap), en donde
 T> podemos encontrar más información sobre el uso de Twitter Bootstrap y
 T> sus componentes.
 
-## Diseño de Páginas en Zend Framework 3
+## Diseño de Páginas en Laminas Framework
 
 Las páginas de nuestro sitio web generalmente tiene una estructura común que
 se puede compartir entre ellas. Por ejemplo, una página típica tiene generalmente
@@ -111,11 +111,11 @@ referencias a las hojas de estilo y scripts que se incluyen. El elemento `<body>
 contiene el contenido de la página como el logo, la barra de navegación, el
 texto de la página y el pie de página con la información de derechos de autor.
 
-En Zend Framework 3 definimos esta estructura común con una plantilla de vista
+En Laminas Framework definimos esta estructura común con una plantilla de vista
 "maestra" llamada la *maqueta*. El maqueta "adorna" a las otras plantillas.
 
 La plantilla de maqueta generalmente tiene una *palabra clave o comodín* en la
-que ZF3 coloca el contenido específico de una página en particular (ver figura
+que Laminas coloca el contenido específico de una página en particular (ver figura
 6.2 para un ejemplo).
 
 ![Figura 6.2. Ubicación del comodín en la plantilla de maqueta](../en/images/appearance/layout_placeholder.png)
@@ -170,7 +170,7 @@ presenta el contenido completo del archivo:
             </button>
             <a class="navbar-brand" href="<?php echo $this->url('home') ?>">
               <img src="<?= $this->basePath('img/zf-logo.png') ?>"
-                   alt="Zend Framework <?= \Application\Module::VERSION ?>"/>
+                   alt="Laminas Framework <?= \Application\Module::VERSION ?>"/>
                    &nbsp;Skeleton Application
             </a>
           </div>
@@ -187,7 +187,7 @@ presenta el contenido completo del archivo:
         <?= $this->content; ?>
         <hr>
         <footer>
-          <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd.
+          <p>&copy; 2005 - <?= date('Y') ?> by Laminas Technologies Ltd.
             All rights reserved.
           </p>
         </footer>
@@ -199,7 +199,7 @@ presenta el contenido completo del archivo:
 
 Como podemos ver el archivo *layout.phtml* (que es una usual plantilla de vista)
 consiste en etiquetas HTML con fragmentos de código PHP. Cuando una plantilla se
-comienza a imprimir ZF3 evalúa los fragmentos de código PHP en linea y genera
+comienza a imprimir Laminas evalúa los fragmentos de código PHP en linea y genera
 la página HTML final que verán los usuarios del sitio.
 
 Arriba en la línea 1 se genera la declaración `<!DOCTYPE>` [^doctype] de la
@@ -280,11 +280,11 @@ de nuestras páginas.
 
 La línea 54 es muy importante porque esta línea contiene el código PHP en línea
 que representa el comodín para el contenido de la página. Hablamos sobre esto
-al comienzo de esta sección. Cuando ZF3 imprime la página evaluá la plantilla
+al comienzo de esta sección. Cuando Laminas imprime la página evaluá la plantilla
 de maqueta e imprime el contenido real de la página.
 
 Las líneas 56-60 definen el area para el pie de página. El pie de página contiene
-la información de derechos de autor "2016 by Zend Technologies Ltd. All rights reserved."
+la información de derechos de autor "2016 by Laminas Technologies Ltd. All rights reserved."
 Podemos reemplazar esta información por la de nuestra compañia.
 
 En la línea 62 está el comodín para los scripts JavaScript cargados por cada
@@ -298,7 +298,7 @@ para el cuerpo y el documento HTML.
 ## Modificar la Maqueta de la Página por Defecto
 
 Para demostrar como podemos definir nuestra propia maqueta de página modificaremos
-la maqueta original del sitio web: Zend Skeleton Application. Queremos que se
+la maqueta original del sitio web: Laminas Skeleton Application. Queremos que se
 muestre como título de página "Hello world", "Hello world!" como el texto del
 encabezado, la barra de navegación y las migas de pan debajo del
 encabezado, el comodín para el contenido de la página en medio de la página y
@@ -370,7 +370,7 @@ en 5 columnas:
   * En la línea 16 tenemos el espacio para las migas de pan.
 
   * En la línea 22 tenemos el comodín para el contenido de la página. Antes de que
-    ZF3 imprimá la página la evaluá, es decir, determina el contenido de la variable
+    Laminas imprimá la página la evaluá, es decir, determina el contenido de la variable
     `$content` antes de imprimirla. En consecuencia el contenido de la página
     será sustituido dependiendo de la página actual.
 
@@ -486,7 +486,7 @@ T> de los ejemplo de este libro que disponibles en GitHub.
 
 ## Cambiar entre Maquetas
 
-Por defecto ZF3 provee una sola plantilla de maqueta *layout.phtml*. En las
+Por defecto Laminas provee una sola plantilla de maqueta *layout.phtml*. En las
 aplicaciones de la vida real probablemente necesitaremos tener varias maquetas
 y cambiar de maqueta en determinados controles o acciones.
 
@@ -541,7 +541,7 @@ muestra en el ejemplo siguiente:
 {line-numbers=off, lang=php}
 ~~~
 // Add this alias in the beginning of the controller file
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\MvcEvent;
 
 // ...
 
@@ -724,11 +724,11 @@ Colocamos el siguiente código en el archivo de plantilla *layout2.phtml*:
             <h3 class="panel-title">Ads</h3>
           </div>
           <div class="panel-body">
-            <strong>Zend Framework 3 Book</strong>
+            <strong>Laminas Framework Book</strong>
             <p>Learn how to create modern web applications with PHP
-                and Zend Framework 3</p>
+                and Laminas Framework</p>
             <a target="_blank"
-               href="https://github.com/olegkrivtsov/using-zend-framework-3-book">
+               href="https://github.com/olegkrivtsov/using-laminas-framework-book">
                Learn More
             </a>
           </div>
@@ -1258,8 +1258,8 @@ detalles completamente listos para el sitio web con la ayuda de nuestros propios
 ayudantes de vista.
 
 Un ayudante de vista típico es una clase PHP derivada de la clase base
-`Zend\View\Helper\AbstractHelper` que a su vez implementa la interfaz
-`Zend\View\Helper\HelperInterface` (el diagrama de herencia se presenta en
+`Laminas\View\Helper\AbstractHelper` que a su vez implementa la interfaz
+`Laminas\View\Helper\HelperInterface` (el diagrama de herencia se presenta en
 la figura 6.9).
 
 ![Figura 6.9. Diagrama de Clase de un Ayudante de Vista](../en/images/appearance/view_helper_inheritance.png)
@@ -1338,7 +1338,7 @@ Q> Los ayudantes de vista (a diferencia de las plantillas de vista `.phtml`)
 Q> se guardan dentro de la carpeta `src/` del módulo porque ellas son
 Q> clases PHP y necesitan ser resueltas por la clase PHP que implementa la
 Q> característica de autocargado. Por otro lado, las plantillas de vista se
-Q> resuelven usando una clase especial de ZF3 llamada *view resolver*, es por
+Q> resuelven usando una clase especial de Laminas llamada *view resolver*, es por
 Q> esta razón que las plantillas de vista se almacenan dentro de la carpeta
 Q> `view/` del módulo.
 
@@ -1349,7 +1349,7 @@ Luego creamos el esbozo de código para la clase `Menu`:
 <?php
 namespace Application\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 // This view helper class displays a menu bar.
 class Menu extends AbstractHelper
@@ -1603,7 +1603,7 @@ de vista `Menu` por esta razón solo mostramos el código completo de la clase
 <?php
 namespace Application\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 // This view helper class displays breadcrumbs.
 class Breadcrumbs extends AbstractHelper
@@ -1744,9 +1744,9 @@ La tercera mayor capacidad de la clase de vista de modelo es que permite
 de vista tiene en el árbol un nombre de plantilla de vista asociado y datos que
 se pueden pasar a la plantilla de vista para controlar el proceso de impresión.
 
-Esta característica es usada internamente por Zend Framework 3 cuando "combina"
+Esta característica es usada internamente por Laminas Framework cuando "combina"
 la maqueta de plantilla de vista y las plantillas de vista asociadas en el
-el método de acción del controlador. ZF3 crea internamente el modelo de vista
+el método de acción del controlador. Laminas crea internamente el modelo de vista
 para la maqueta de plantilla y le asigna el nombre de la plantilla de vista
 `layout/layout`. Cuando el método de acción del controlador regresa el objeto
 `ViewModel` este objeto es adjuntado como un hijo a la maqueta del modelo de
@@ -1829,7 +1829,7 @@ T> y necesitamos insertar su código HTML en el árbol DOM de una página existe
 
 ## Resumen
 
-Zend Framework 3 viene con Twitter Bootstrap un framework CSS que permite
+Laminas Framework viene con Twitter Bootstrap un framework CSS que permite
 crear aplicaciones web atractivas visualmente y con un aspecto profesional.
 Bootstrap provee reglas CSS básicas, una maqueta de rejillas simple y
 componentes para la interfaz útiles como barras de navegación, migas de pan,
@@ -1838,9 +1838,9 @@ paginación, etc.
 En un sitio web típico las páginas tienen una estructura común, por ejemplo,
 una página típica tiene una barra de navegación en la parte superior,
 un cuerpo con el contenido de la página y un pie de página en la parte de abajo.
-En Zend Framework 3, definimos esta estructura común con un archivo de plantilla
+En Laminas Framework, definimos esta estructura común con un archivo de plantilla
 de vista que llamamos maqueta. La maqueta de plantilla puede tener comodines
-en donde ZF3 coloca el contenido específico para una página en particular.
+en donde Laminas coloca el contenido específico para una página en particular.
 
 Los ayudantes de vista son clases PHP relativamente simples que encapsulan una
 parte de la página que se imprime. Por ejemplo, ellos permiten componer la

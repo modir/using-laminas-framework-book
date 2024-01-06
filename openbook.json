@@ -1,25 +1,25 @@
 ﻿{
-    "book_title": "Using Zend Framework 3",
-    "book_subtitle": "A free and open-source book on ZF3 for beginners",
+    "book_title": "Using Laminas Framework",
+    "book_subtitle": "A free and open-source book on Laminas for beginners",
     "copyright": "2019 by Oleg Krivtsov",
     "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-    "book_website": "https://olegkrivtsov.github.io/using-zend-framework-3-book/html",
+    "book_website": "https://olegkrivtsov.github.io/using-laminas-framework-book/html",
     "keywords": [
-        "zend framework",
+        "Laminas framework",
         "book",
         "beginner",
         "free"
     ],
     "links": {
-        "Home": "https://olegkrivtsov.github.io/using-zend-framework-3-book/html",
-        "Samples": "https://github.com/olegkrivtsov/using-zf3-book-samples",
-        "Class Reference": "https://olegkrivtsov.github.io/zf3-api-reference/html/",
-        "Contribute": "https://github.com/olegkrivtsov/using-zend-framework-3-book"
+        "Home": "https://olegkrivtsov.github.io/using-laminas-framework-book/html",
+        "Samples": "https://github.com/olegkrivtsov/using-laminas-book-samples",
+        "Class Reference": "https://olegkrivtsov.github.io/laminas-api-reference/html/",
+        "Contribute": "https://github.com/olegkrivtsov/using-laminas-framework-book"
     },
     "footer_links": {
-        "Terms &amp; Conditions": "https://olegkrivtsov.github.io/using-zend-framework-3-book/legal/terms-and-conditions.html",
-        "Copyright Policy": "https://olegkrivtsov.github.io/using-zend-framework-3-book/legal/copyright-policy.html",
-        "Privacy Policy": "https://olegkrivtsov.github.io/using-zend-framework-3-book/legal/privacy-policy.html"
+        "Terms &amp; Conditions": "https://olegkrivtsov.github.io/using-laminas-framework-book/legal/terms-and-conditions.html",
+        "Copyright Policy": "https://olegkrivtsov.github.io/using-laminas-framework-book/legal/copyright-policy.html",
+        "Privacy Policy": "https://olegkrivtsov.github.io/using-laminas-framework-book/legal/privacy-policy.html"
     },
     "languages": {
         "en": "English",
@@ -35,18 +35,18 @@
         "account_id": "UA-80824388-1"
     },
     "google_adsence": {
-        "enabled": true, 
+        "enabled": true,
         "contents_ad": "",
         "chapter_upper_ad": "data/upper_ad.js",
         "chapter_bottom_ad": "data/bottom_ad.js"
     },
     "disqus": {
         "enabled": true,
-        "src": "//using-zend-framework-3-book.disqus.com/embed.js"
+        "src": "//using-laminas-framework-book.disqus.com/embed.js"
     },
     "api_reference": {
         "enabled": true,
-        "class_index_url": "https://olegkrivtsov.github.io/zf3-api-reference/html/class-index.json" 
+        "class_index_url": "https://olegkrivtsov.github.io/laminas-api-reference/html/class-index.json"
     },
     "chapter_js_scripts" : []
 }

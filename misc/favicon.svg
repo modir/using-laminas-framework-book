@@ -63,9 +63,9 @@
            height="95.964493"
            x="101.52033"
            y="56.303673" /></flowRegion><flowPara
-         id="flowPara3719">Using ZF3</flowPara></flowRoot>    <g
+         id="flowPara3719">Using Laminas</flowPara></flowRoot>    <g
        id="g3737"
-       inkscape:export-filename="Y:\my\using-zend-framework-3-book\manuscript\favicon.png"
+       inkscape:export-filename="Y:\my\using-laminas-framework-book\manuscript\favicon.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96">
       <text
@@ -90,7 +90,7 @@
            y="33.386559"
            x="19.695559"
            id="tspan3729"
-           sodipodi:role="line">ZF3</tspan></text>
+           sodipodi:role="line">Laminas</tspan></text>
     </g>
   </g>
 </svg>

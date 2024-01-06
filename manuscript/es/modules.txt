@@ -1,10 +1,10 @@
 # Crear un nuevo módulo {#modules}
 
 Cuando nuestra aplicación web crece en tamaño podemos encontrar beneficioso
-usar la característica de Zend Framework 3 llamada *módulos*. Las aplicaciones
+usar la característica de Laminas Framework llamada *módulos*. Las aplicaciones
 modulares consisten en piezas que tienen relativamente pocas dependencias
 una de otra. Esto permite instalar o remover módulos bajo demanda. En este
-capítulo aprenderemos lo que es un módulo de ZF3, cuando crear un nuevo
+capítulo aprenderemos lo que es un módulo de Laminas, cuando crear un nuevo
 módulo y como crearlo.
 
 ## ¿Cuando crear un nuevo módulo?
@@ -54,8 +54,8 @@ innecesarios, los modelos y vistas; y luego cambiando el espacio de nombres
 que esta en cada uno de los archivos fuente. Esta manera es bastante aburrida.
 
 La segunda manera es descargando un *esqueleto de módulo* vacío desde el repositorio
-oficial de Zend Framework en GitHub. Podemos encontrar este repositorio
-[aquí](https://github.com/zendframework/ZendSkeletonModule). Podemos clonar
+oficial de Laminas Framework en GitHub. Podemos encontrar este repositorio
+[aquí](https://github.com/laminas/LaminasSkeletonModule). Podemos clonar
 el código o descargarlo en un archivo ZIP (recomendado).
 
 Por ejemplo, en GNU/Linux, usamos el siguiente comando para descargar el esqueleto
@@ -63,9 +63,9 @@ de módulo:
 
 ~~~
 cd ~
-wget https://github.com/zendframework/ZendSkeletonModule/archive/master.zip
+wget https://github.com/laminas/LaminasSkeletonModule/archive/master.zip
 unzip master.zip
-cp ZendSkeletonModule-master APP_DIR/module/ZendSkeletonModule
+cp LaminasSkeletonModule-master APP_DIR/module/LaminasSkeletonModule
 ~~~
 
 Con los comandos de arriba descargamos el código fuente del esqueleto de módulo
@@ -105,7 +105,7 @@ carpeta que contiene los archivos del módulo. Por ejemplo, el comando de abajo
 cambia el nombre del módulo a `Admin`:
 
 ~~~
-mv ZendSkeletonModule Admin
+mv LaminasSkeletonModule Admin
 ~~~
 
 Luego, debemos cambiar el nombre del archivo `SkeletonController.php` a uno
@@ -113,7 +113,7 @@ más descriptivo. No olvidemos renombrar las subcarpetas que están dentro de la
 carpeta `view` para reflejar el nombre del controlador.
 
 Finalmente, revisamos la configuración y los archivos fuente de los controladores
-y nos aseguramos de cambiar el nombre del espacio de nombres `ZendSkeletonModule`
+y nos aseguramos de cambiar el nombre del espacio de nombres `LaminasSkeletonModule`
 al nombre de nuestro módulo (esto es necesario para asegurar que la clase
 auto-cargador de PHP encuentre a nuestras clases).
 
@@ -153,7 +153,7 @@ ayudantes de vista, etc.
 
 ### Habilitar el módulo
 
-Para que ZF3 reconozca al nuevo módulo y lo cargue al iniciar la aplicación,
+Para que Laminas reconozca al nuevo módulo y lo cargue al iniciar la aplicación,
 no olvidemos habilitar nuestro nuevo módulo en el archivo
 *APP_DIR/config/modules.config.php* de la siguiente manera:
 
@@ -168,7 +168,7 @@ return [
 
 El archivo `Module.php` ubicado dentro de la carpeta fuente del módulo es un
 tipo de *punto de entrada* al módulo. La clase `Module` que esta definida en este
-archivo es cargada por el componente `Zend\ModuleManager` cuando este carga
+archivo es cargada por el componente `Laminas\ModuleManager` cuando este carga
 todos los módulos de la aplicación.
 
 Una cosa útil que podemos hacer con esta clase es *registrar eventos*. Si recordamos
@@ -217,8 +217,8 @@ diferente para *todos* los controladores del módulo:
 <?php
 namespace YourCompanyModule;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
@@ -257,7 +257,7 @@ class Module
 
 En el código de arriba, agregamos el método `init()` a la clase `Module`.
 En este método, registramos un escucha de eventos (línea 17) con la ayuda
-del método `attach()` que provee la clase `Zend\EventManager\SharedEventManager`.
+del método `attach()` que provee la clase `Laminas\EventManager\SharedEventManager`.
 El método `attach()` toma cuatro argumentos: el identificador del componente
 emisor, el nombre del evento («dispatch»), el método de escucha de eventos
 (el método `onDispatch()` de la clase actual) y la prioridad (100).
@@ -277,8 +277,8 @@ al sitio web a usar siempre conexión HTTPS en todas nuestras páginas web.
 <?php
 namespace YourCompanyModule;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
@@ -344,8 +344,8 @@ experiencia del usuario.
 <?php
 namespace YourCompanyModule;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
@@ -430,12 +430,12 @@ podremos usarlo como a cualquier otro módulo de tercero.
 
 ## Resumen
 
-En este capítulo hemos aprendido sobre *módulos* en Zend Framework 3. Un módulo
+En este capítulo hemos aprendido sobre *módulos* en Laminas Framework. Un módulo
 es una unidad *autónoma* y *reusable* de nuestra aplicación. Podemos crear un
 nuevo módulo cuando nuestro sitio web se hace grande y cuando la funcionalidad
 tiene muy pocas dependencias con otras partes de nuestra aplicación.
 
-Cada módulo de ZF3 tiene una clase que funciona como punto de entrada llamado
+Cada módulo de Laminas tiene una clase que funciona como punto de entrada llamado
 `Module`. Podemos usar esta clase para registrar un escucha de eventos. Los
 escuchas de eventos son útiles, por ejemplo, cuando queremos cambiar la maqueta
 de plantilla predeterminada para todo el módulo o retocar el contenido que por

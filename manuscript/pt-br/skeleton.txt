@@ -1,18 +1,18 @@
-﻿# Zend Skeleton Application {#skeleton}
+﻿# Laminas Skeleton Application {#skeleton}
 
-O Zend Framework 3 fornece o que chamamos de "Skeleton Application" uma aplicação padrão que facilitar a criação dos
+O Laminas Framework fornece o que chamamos de "Skeleton Application" uma aplicação padrão que facilitar a criação dos
 seus novos sites a partir do zero. Neste capítulo, vamos mostrar como instalar o skeleton
 application e como criar um Apache virtual host.É recomendável antes de começarmos esse capítulo que seja feita a
 leitura do [Appendix A. Configuring Web Development Environment](#devenv) onde ensina como deixar o ambiente
 desenvolvimento configurado e pronto para o desenvolvimento.
 
-## Iniciando com Zend Skeleton Application
+## Iniciando com Laminas Skeleton Application
 
-O Skeleton Application é um aplicativo simples baseado em ZF3 que traz o
+O Skeleton Application é um aplicativo simples baseado em Laminas que traz o
 necessário para criar seu próprio site.
 
 O código do  skeleton application's está disponível no GitHub e pode ser acessado através
-deste [link](https://github.com/zendframework/ZendSkeletonApplication).
+deste [link](https://github.com/laminas/LaminasSkeletonApplication).
 Porém, Geralmente não é feito o download diretamente do seu código-fonte é recomendando
 que seja utilizado o [Composer](http://getcomposer.org/) como mostramos abaixo.
 
@@ -37,10 +37,10 @@ T> Após executar esse comando, você deve encontrar um arquivo com o nome `comp
 Agora, digite o seguinte comando no seu terminal:
 
 ```
-php composer.phar create-project -sdev zendframework/skeleton-application helloworld
+php composer.phar create-project -sdev laminas/skeleton-application helloworld
 ```
 
-O comando acima faz o download do Zend Skeleton Application na pasta `helloworld` e executa seu
+O comando acima faz o download do Laminas Skeleton Application na pasta `helloworld` e executa seu
 instalador interativo. Agora você vai precisar responder várias perguntas sim/não digitando `y` ou `n` e pressionando Enter.
 Suas respostas vão determinar quais dependências ele deve instalar.
 Se você não souber o que responder, responda `n` (nao); você poderá instalar dependências novamente
@@ -58,12 +58,12 @@ n
     Would you like to install caching support? y/N
 n
 
-    Would you like to install database support (installs zend-db)? y/N
+    Would you like to install database support (installs laminas-db)? y/N
 n
 
     Would you like to install forms support? y/N
 y
-    Will install zendframework/zend-mvc-form (^1.0)
+    Will install laminas/laminas-mvc-form (^1.0)
     When prompted to install as a module, select application.config.php or modules.config.php
 
     Would you like to install JSON de/serialization support? y/N
@@ -90,7 +90,7 @@ n
     Would you like to install MVC testing support? y/N
 n
 
-    Would you like to install the zend-di integration for zend-servicemanager? y/N
+    Would you like to install the laminas-di integration for laminas-servicemanager? y/N
 n
 ```
 
@@ -99,7 +99,7 @@ em qual arquivo de configuração você gostaria de injetar as informações ref
 digite '1' e pressione Enter:
 
 ```
- Please select which config file you wish to inject 'Zend\Form' into:
+ Please select which config file you wish to inject 'Laminas\Form' into:
   [0] Do not inject
   [1] config/modules.config.php
   [2] config/development.config.php.dist
@@ -142,7 +142,7 @@ Parabéns!  Com isso terminamos a instalação. Agora vamos olhar dentro  da pas
 
 ## Estrutura típica dos diretórios
 
-Todo site feito em ZF3 (incluindo o skeleton application) é organizado da maneira recomendada.
+Todo site feito em Laminas (incluindo o skeleton application) é organizado da maneira recomendada.
 Claro, você pode configurar seu aplicativo para usar um layout de uma pasta diferente, mas isso pode
 dificultar o suporte ao seu site por outras pessoas que não estão familiarizadas com essa estrutura de
 diretórios.
@@ -164,9 +164,9 @@ tem os seguintes arquivos:
 * `docker-compose.yml`  e `Dockerfile` arquivos auxiliares somente se você utilizar do [Docker](https://www.docker.com) uma ferramenta que gerencia containers.
 Neste livro nós não iremos abordar a utilização do Docker.
 
-* `LICENSE.md` é um arquivo de texto que contem os dados da licença do ZF3 (Também disponível em
- [Introdução ao Zend Framework 3](#intro)).
- Não remova ou modifique esse arquivo, pois a licença do  ZF3, não permite esse tipo de alteração.
+* `LICENSE.md` é um arquivo de texto que contem os dados da licença do Laminas (Também disponível em
+ [Introdução ao Laminas Framework](#intro)).
+ Não remova ou modifique esse arquivo, pois a licença do  Laminas, não permite esse tipo de alteração.
 
 * `phpunit.xml.dist` é um arquivo com a configuração do PHPUnit [PHPUnit](https://phpunit.de/)). Você pode utilizar este
   arquivo para efetuar testes no seu site.
@@ -183,8 +183,8 @@ E também temos as sub-pastas:
 
 Na pasta `config`  encontra-se a configuração do aplicativo.
 
-Na pasta `data`  contém os dados que seu aplicativo pode criar; também contem o cache do Zend Framework
-geralmente utilizado para aumentar a velocidade do ZF3.
+Na pasta `data`  contém os dados que seu aplicativo pode criar; também contem o cache do Laminas Framework
+geralmente utilizado para aumentar a velocidade do Laminas.
 
 Na pasta `module` contém todos os módulos da sua aplicação. Nesse primeiro momento existe um único
 módulo chamado `Application`.
@@ -194,7 +194,7 @@ Você pode adicionar outros módulos se quiser.
 O assunto de módulos será tratado nós proximos capitulos.
 
 A pasta `vendor` contém blibiotecas que foram adquiridas através da internet, incluindo
-os arquivos das blibiotecas do Zend Framework 3. Esta pasta geralmente é somente preenchida pelo o Composer.
+os arquivos das blibiotecas do Laminas Framework. Esta pasta geralmente é somente preenchida pelo o Composer.
 
 O diretório `public` contém dados publicamente acessíveis pelo usuário da web.Como você pode ver, os usuários
 irá se comunicar com o `index.php`, que também é chamado de * ponto de entrada * do seu site.
@@ -224,14 +224,14 @@ Q> jQuery é uma biblioteca JavaScript que foi criada para simplifica o HTML das
 Q> páginas.O mecanismo do jQuery permite manipular eventos a certos elementos HTML, tornando
 Q> é muito simples fazer suas páginas HTML interativas.
 
-Como o Zend Skeleton Application é armazenado no GitHub, dentro das pastas você,
+Como o Laminas Skeleton Application é armazenado no GitHub, dentro das pastas você,
 você pode encontrar o arquivo `.gitignore`. Este arquivo é um controle de versão [GIT] (http://git-scm.com/)
 de arquivos.Você pode ignorá-lo (ou até mesmo remover se não planeja armazenar seu código em um repositório GIT).
 
 ## Dependências de aplicativos
 
 Uma dependência é um código de terceiros que seu aplicativo usa.
-Por exemplo, o Zend Framework 3 é a dependência do seu site.
+Por exemplo, o Laminas Framework é a dependência do seu site.
 
 No Composer, qualquer biblioteca é chamada de *pacote*. Todos os pacotes instaláveis ​​pelo Composer
 estão registrados no site [Packagist.org] (https://packagist.org/).
@@ -242,8 +242,8 @@ As dependências do skeleton application estão no arquivo `APP_DIR/composer.jso
 {line-numbers=off,lang=text, title="Contents of composer.json file"}
 ~~~
 {
-    "name": "zendframework/skeleton-application",
-    "description": "Skeleton Application for Zend Framework zend-mvc applications",
+    "name": "laminas/skeleton-application",
+    "description": "Skeleton Application for Laminas Framework laminas-mvc applications",
     "type": "project",
     "license": "BSD-3-Clause",
     "keywords": [
@@ -251,17 +251,17 @@ As dependências do skeleton application estão no arquivo `APP_DIR/composer.jso
         "mvc",
         "zf2"
     ],
-    "homepage": "http://framework.zend.com/",
+    "homepage": "http://framework.Laminas.com/",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": "^5.6 || ^7.0",
-        "zendframework/zend-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
-        "zendframework/zend-mvc": "^3.0.1",
+        "laminas/laminas-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
+        "laminas/laminas-mvc": "^3.0.1",
         "zfcampus/zf-development-mode": "^3.0",
-        "zendframework/zend-mvc-form": "^1.0",
-        "zendframework/zend-mvc-plugins": "^1.0.1",
-        "zendframework/zend-session": "^2.7.1"
+        "laminas/laminas-mvc-form": "^1.0",
+        "laminas/laminas-mvc-plugins": "^1.0.1",
+        "laminas/laminas-session": "^2.7.1"
     },
     "autoload": {
         "psr-4": {
@@ -297,7 +297,7 @@ se você não desejar publicar sua aplicação no `Packagist`.
 
 O que é interessante nesta imagem para nós agora é a palavra `require`. O `require`
 contém as dependências para nosso aplicativo. Essa keyword só funciona a partir do
-PHP versão 5.6 ou posterior e funciona com vários componentes do Zend Framework, como `zend-mvc`,` zend-mvc-form`, etc.
+PHP versão 5.6 ou posterior e funciona com vários componentes do Laminas Framework, como `laminas-mvc`,` laminas-mvc-form`, etc.
 
 As informações contidas no arquivo `composer.json` são suficientes para localizar as
 dependências, baixar e instalar nos subdiretório `vendor`. A qualquer momento que você precisa
@@ -313,19 +313,19 @@ php composer.phar install
 
 Os comandos acima atualizarão o Composer para a última versão disponível e, em seguida,
 vai instalar suas dependências. A propósito, o Composer não instala o PHP para você,
-ele apenas garente que PHP tenha uma versão apropriada, e se não, ele irá avisá-lo dizendo que a versão não é compatível.
+ele apenas garente que PHP tenha uma versão apropriada, e se não, ele irá avisá-lo diLaminaso que a versão não é compatível.
 
 Se você olhar dentro da sub-pastas do `vendor`, você verá que ele contém muitos arquivos dos pacotes instalados.
 
-Os arquivos do Zend Framework 3 podem ser encontrados dentro do `APP_DIR/vendor/zendframework/`
+Os arquivos do Laminas Framework podem ser encontrados dentro do `APP_DIR/vendor/laminas/`
 (Imagem 2.2).
 
 ![Imagem 2.2. Pasta Vendor](../en/images/skeleton/vendor_dir.png)
 
 I> Em outros frameworks, outra forma (convencional) de instalação de instalação de dependências é usada.
 I> Onde você baixa o arquivo da blibioteca que você vai utilizar descompacta e coloca em algum lugar da sua pastas
-I> (geralmente, vai para a pasta `vendor`). Essa abordagem foi usada no Zend Framework 1.
-I> Mas, no Zend Framework 3, é recomendável instalar dependências com o Composer.
+I> (geralmente, vai para a pasta `vendor`). Essa abordagem foi usada no Laminas Framework 1.
+I> Mas, no Laminas Framework, é recomendável instalar dependências com o Composer.
 
 ## Apache Virtual Host
 
@@ -380,7 +380,7 @@ informa ao Apache que *index.php* deve ser como o index padrão.O  `AllowOverrid
 permite definir qualquer regra em arquivos `.htaccess`.
 
 
-W> Zend Framework 3 utiliza o mod rewrite para reescrever a URL do Apache e para redirecionar
+W> Laminas Framework utiliza o mod rewrite para reescrever a URL do Apache e para redirecionar
 W> os usuários para o script do seu site. Cerifique-se que seu servidor tem o
 W> `mod_rewrite` habilitado. Para obter instruções sobre como ativar, por favor
 W> consulte [Appendix A. Configuring Web Development Environment](#devenv).
@@ -394,10 +394,10 @@ Imagem 2.3 Mostra seu site em funcionamento.
 
 Na página que apareceu, você pode ver o menu de navegação na parte superior. A barra de navegação atualmente
 contém o único link chamado *Home*.
-Sob a barra de navegação, você pode ver a legenda "Welcome to Zend Framework". Abaixo
-a legenda, você pode encontrar algumas dicas para os iniciantes sobre como desenvolver aplicações em ZF3.
+Sob a barra de navegação, você pode ver a legenda "Welcome to Laminas Framework". Abaixo
+a legenda, você pode encontrar algumas dicas para os iniciantes sobre como desenvolver aplicações em Laminas.
 
-![Imagem 2.3. Zend Skeleton Application](../en/images/skeleton/zend_skeleton_default_view.png)
+![Imagem 2.3. Laminas Skeleton Application](../en/images/skeleton/Laminas_skeleton_default_view.png)
 
 ## Criando um Projeto no NetBeans
 
@@ -448,12 +448,12 @@ você pode ver o código do `index.php`.
 
 Por favor, consulte o [Appendix B. Introduction to PHP Development in NetBeans IDE](#netbeans)
 para mais dicas de uso do NetBeans, incluindo utlização e depuração de
-Sites baseados em ZF3.
+Sites baseados em Laminas.
 
 T> ** É hora de algumas coisas avançadas ... **
 T>
 T> Parabéns! Nós fizemos o trabalho duro de instalar e executar
-T> o Zend Skeleton Application, e agora é hora de descansar
+T> o Laminas Skeleton Application, e agora é hora de descansar
 Vamos ler sobre algums assuntos avançados na última parte deste capítulo.
 
 ## Arquivo de Hypertext Access (.htaccess)
@@ -675,7 +675,7 @@ I> sobre o domínio e não consegue resolver o endereço IP do seu site.
 
 ## Uso Avançado do Composer
 
-Anteriormente neste capítulo, usamos o Composer para instalar as biblioteca do Zend Framework 3.
+Anteriormente neste capítulo, usamos o Composer para instalar as biblioteca do Laminas Framework.
 Agora vamos mostrar brevemente alguns exemplos avançados de uso do Composer.
 
 Como já sabemos, a única chave obrigatória no arquivo `composer.json` é a `require`. Esta chave
@@ -687,12 +687,12 @@ informa quais pacotes são necessários para a sua aplicativo:
 {
     "require": {
         "php": "^5.6 || ^7.0",
-        "zendframework/zend-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
-        "zendframework/zend-mvc": "^3.0.1",
+        "laminas/laminas-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
+        "laminas/laminas-mvc": "^3.0.1",
         "zfcampus/zf-development-mode": "^3.0",
-        "zendframework/zend-mvc-form": "^1.0",
-        "zendframework/zend-mvc-plugins": "^1.0.1",
-        "zendframework/zend-session": "^2.7.1"
+        "laminas/laminas-mvc-form": "^1.0",
+        "laminas/laminas-mvc-plugins": "^1.0.1",
+        "laminas/laminas-session": "^2.7.1"
     }
 }
 ~~~
@@ -701,9 +701,9 @@ informa quais pacotes são necessários para a sua aplicativo:
 
 
 Um pacote consiste em duas partes: o nome do vendor e o nome do projeto. Por exemplo
-O nome do pacote "zendframework/zend-mvc" consiste no nome do vendor "zendframework"
-e o nome do projeto "zend-mvc". Você pode procurar outros pacotes de "zendframework"
-através do site [Packagist.org](https://packagist.org/search/?q=zendframework)
+O nome do pacote "laminas/laminas-mvc" consiste no nome do vendor "laminas"
+e o nome do projeto "laminas-mvc". Você pode procurar outros pacotes de "laminas"
+através do site [Packagist.org](https://packagist.org/search/?q=laminas)
 (veja a imagem 2.8 para um exemplo).
 
 ![Imagem 2.8. Você pode pesquisar pacotes no Packagist.org](../en/images/skeleton/packagist_search.png)
@@ -755,7 +755,7 @@ Q> ** É seguro instalar dependências com o Composer? **
 Q>
 Q> Bem, algumas pessoas podem ter medo receio do estilo de gerenciamento do Composer,
 Q> Porque acham que alguém pode atualizar todo o sistema por engano ou até intencionalmente,
-Q> fazendo com que o aplicativo da web seja
+Q> faLaminaso com que o aplicativo da web seja
 Q> pare de funcionar . Note que o Composer *nunca* instala estes
 Q> arquivos no sistema, em vez disso, instala-os no diretório `APP_DIR/vendor/`.
 
@@ -766,7 +766,7 @@ Você vai querer atualizar seus pacotes para manter seu site seguro. Você pode 
 
 Se você deseja atualizar apenas uma única dependência, digite seu nome da seguinte forma:
 
-`php composer.phar update zendframework/zend-mvc`
+`php composer.phar update laminas/laminas-mvc`
 
 Após o comando `update`, seu arquivo `composer.lock` será atualizado também.
 
@@ -850,7 +850,7 @@ controle de versão:
 
 ## Resumo
 
-Neste capítulo, baixamos o Zend Skeleton Application do GitHub e o instalamos através do Composer.
+Neste capítulo, baixamos o Laminas Skeleton Application do GitHub e o instalamos através do Composer.
 Nós configuramos o Apache Virtual Host para informar ao servidor da Web sobre o local do diretório raiz do site.
 
 O Skeleton Application demonstra a estrutura de pastas recomendada de um site.
@@ -862,8 +862,6 @@ Na segunda parte do capítulo,falamos sobre configurações avançadas do Apache
 pode proteger seu site com senha e permite acessá-lo somente a partir de determinados endereços IP.
 
 O Composer é uma ferramenta poderosa para instalar as dependências de seu site.
-Por exemplo, o próprio Zend Framework 3 pode ser considerado como uma dependência.
+Por exemplo, o próprio Laminas Framework pode ser considerado como uma dependência.
 Todos os pacotes instaláveis ​​pelo Composer são registrados em um catálogo no
 site Packagist.org.
-
-

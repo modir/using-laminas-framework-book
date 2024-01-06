@@ -10,7 +10,7 @@ $(document).on('click', '#contact-close', function(event){
 if ($(document).width() < 640) {
     return; // Don't show this popup on small devices
 }
- 
+
 var style = `
 <style>
 #contact_popup {
@@ -55,23 +55,23 @@ var style = `
 .btn-no {
     background-color: red;
 }
-</style> 
+</style>
 `;
 
 $('head').append(style);
- 
+
  var popupDiv = `
 <div id="contact_popup">
-   <h1>Need Help with ZF3?</h1>
-   
-   <p>You can contact Oleg (the author of this book) to get paid consulting and/or ZF3 development assistance.</p>
+   <h1>Need Help with Laminas?</h1>
+
+   <p>You can contact Oleg (the author of this book) to get paid consulting and/or Laminas development assistance.</p>
    <br>
    <p>
      <a class="contact-btn btn-yes" href="https://olegkrivtcov.wordpress.com/contact/">Contact Now</a>&nbsp;&nbsp;<a id="contact-close" class="contact-btn btn-no" href="#">Hide</a>
    </P>
  </div>
 </div>`;
- 
+
  $('body').append(popupDiv);
 
 var cookie = getCookie('contact-cookie');
@@ -84,11 +84,11 @@ if (Math.floor(Math.random() * 50) > 1) {
 }
 
 $('#contact_popup').slideToggle();
- 
+
  function openPopup(hash) {
    $(hash + '_popup').slideToggle().addClass('open');
  }
- 
+
  function openAndClose(hash) {
    if ($(hash + '_popup').hasClass('open')) {
      $($(hash + '_popup')).slideToggle().removeClass();
@@ -97,7 +97,7 @@ $('#contact_popup').slideToggle();
      $(hash + '_popup').slideToggle().addClass('open');
    }
  }
- 
+
  function setCookie(name,value,days) {
     var expires = "";
     if (days) {
@@ -119,9 +119,9 @@ function getCookie(name) {
     return null;
 }
 
-function eraseCookie(name) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
+function eraseCookie(name) {
+    document.cookie = name+'=; Max-Age=-99999999;';
 }
- 
+
 });
 </script>

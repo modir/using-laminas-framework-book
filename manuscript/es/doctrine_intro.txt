@@ -174,7 +174,7 @@ El [Proyecto Doctrine](http://www.doctrine-project.org/) está constituido por
 varias librerías (componentes). Cada componente de Doctrine se distribuye como
 un paquete que se puede instalar usando Composer y está registrado en el catalogo
 [Packagist.org](https://packagist.org/). Se instala de la misma manera en que
-se instalan los componentes de Zend Framework 3.
+se instalan los componentes de Laminas Framework.
 
 Aquí ofreceremos una breve descripción de la arquitectura de la biblioteca Doctrine
 para dar una idea general de sus capacidades.
@@ -197,7 +197,7 @@ más alto nivel. El componente `DBAL` provee una capa de abstracción para los
 diferentes tipos de base de datos. Y arriba de todo esto está el componente `ORM`
 que provee la API para trabajar con los datos de una manera orientada a objetos.
 Los componentes `DoctrineModule` y `DoctrineORMModule` se diseñan para la
-integración con Zend Framework 3.
+integración con Laminas Framework.
 
 I> El componente ORM de Doctrine usa el patrón llamado [Data Mapper](http://en.wikipedia.org/wiki/Data_mapper_pattern).
 I> Este patrón dice que una tabla de base de datos se puede representar como una
@@ -207,7 +207,7 @@ I> del repositorio una sentencia SQL se ejecuta internamente y una instancia
 I> de la clase entidad de PHP se construye y sus propiedades se llenan con
 I> los datos.
 
-Análogamente a los componentes de ZF3 los nombres de los componentes de Doctrine
+Análogamente a los componentes de Laminas los nombres de los componentes de Doctrine
 tiene dos partes: el nombre del proveedor ("Doctrine") y el nombre del componente
 (por ejemplo, "Common"). Abajo podemos encontrar una lista de los componentes
 de Doctrine junto con el nombre del paquete que se debe usar para instalarlo
@@ -281,7 +281,7 @@ para sus correspondientes bases de datos. El concepto ODM es muy similar al ORM
 en el sentido de que provee la capacidad de trabajar con bases de datos NoSQL
 de una manera orientada a objetos mediate el mapeo de un documento a una clase
 entidad de PHP. El componente `DoctrineMongoODMModule` tiene el propósito de
-integrar Doctrine con ZF3.
+integrar Doctrine con Laminas.
 
 Abajo podemos encontrar una lista de los componentes junto con el nombre del
 paquete para instalar con Composer y una breve descripción:
@@ -293,9 +293,9 @@ paquete para instalar con Composer y una breve descripción:
     documentos NoSQL a un modelo de entidad PHP. El nombre del paquete para
     Composer es `doctrine/mongodb-odm`.
 
-  * `Doctrine\MongoODMModule` es un módulo de Zend Framework 3 que provee
+  * `Doctrine\MongoODMModule` es un módulo de Laminas Framework que provee
     funcionalidades para Doctrine MongoDB ODM. Facilita la integración de Doctrine
-    con ZF3. El paquete para Composer se llama `doctrine/doctrine-mongo-odm-module`.
+    con Laminas. El paquete para Composer se llama `doctrine/doctrine-mongo-odm-module`.
 
   * `Doctrine\CouchDB` es un componente que provee una API simple que se envuelve
     alrededor de la API HTTP de CouchDB. El paqueta para instalarlo usando

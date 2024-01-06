@@ -6,25 +6,25 @@ webs de comercio electrónico un usuario registrado puede comprar bienes, maneja
 y pagar con la tarjeta de crédito.
 
 En este capítulo, aprenderemos a implementar la autenticación usando un usuario y una contraseña en un
-sitio web desarrollado con ZF3. Veremos como manejar usuarios (agregar, editar, ver y cambiar/reiniciar la contraseña)
+sitio web desarrollado con Laminas. Veremos como manejar usuarios (agregar, editar, ver y cambiar/reiniciar la contraseña)
 en nuestra aplicación web y guardar la contraseña de usuario en la base de datos con seguridad. Aprenderemos también
 como implementar filtros de acceso y permitir que ciertas páginas sean vistas solamente por usuarios autorizados.
 
-Como ya sabemos bastante sobre ZF3 por la lectura de los capítulos anteriores en este omitiremos
+Como ya sabemos bastante sobre Laminas por la lectura de los capítulos anteriores en este omitiremos
 algunas cosas obvias y nos concentraremos solamente sobre los *conceptos*. Es recomendable que revisemos
 el bundled de ejemplo *Demostración de Usuario* que esta en este libro, el ejemplo es un sitio web completo que podemos ejecutar y ver
 con todos los elementos en acción.
 
-Los componentes de ZF3 que revisamos en este capítulo son:
+Los componentes de Laminas que revisamos en este capítulo son:
 
 |--------------------------------|---------------------------------------------------------------|
 | *Componente*                   | *Descripción*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Authentication`          | Provee la característica de autenticación de usuario.         |
+| `Laminas\Authentication`          | Provee la característica de autenticación de usuario.         |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Crypt`                   | Provee la funcionalidad de codificación de la contraseña.     |
+| `Laminas\Crypt`                   | Provee la funcionalidad de codificación de la contraseña.     |
 |--------------------------------|---------------------------------------------------------------|
-| `Zend\Math`                    | Provee la funcionalidad para generar tokens seguros y aleatorios. |
+| `Laminas\Math`                    | Provee la funcionalidad para generar tokens seguros y aleatorios. |
 |--------------------------------|---------------------------------------------------------------|
 
 ## Obtener el ejemplo de demostración de usuario desde GitHub
@@ -41,7 +41,7 @@ que muestra como:
   * Implementar una interfaz de manejo de usuarios que permita agregar, editar, ver y cambiar la contraseña de un usuario.
   * Construir un menú con elementos diferenciados basado en si un usuario ha iniciado sesión o no.
 
-Para descargar la aplicación de demostración debemos visitar [esta página](https://github.com/olegkrivtsov/using-zf3-book-samples)
+Para descargar la aplicación de demostración debemos visitar [esta página](https://github.com/olegkrivtsov/using-laminas-book-samples)
 y hacer clic en el botón *Clonar o Descargar* para obtener el código en un archivo ZIP.
 Cuando la descarga esta completada desempaquetamos el archivo en algún directorio.
 
@@ -50,7 +50,7 @@ de la aplicación web de demostración de usuarios:
 
 {line-numbers=off,lang=text}
 ~~~
-/using-zf3-book-samples
+/using-laminas-book-samples
   /userdemo
   ...
 ~~~
@@ -118,7 +118,7 @@ que contendrá las rutas y el registro para nuestros controladores y servicios. 
 también contendrá la llave *access_filter* que define que páginas web del modulo serán accesibles
 por usuarios no autenticados (esta llave es leída por el servicio *AuthManager*).
 
-Como puedes ver, el modulo *User* es un típico modulo de ZF3 con la estructura propia de un patron MVC.
+Como puedes ver, el modulo *User* es un típico modulo de Laminas con la estructura propia de un patron MVC.
 
 ## Configurar la base de datos
 
@@ -501,13 +501,13 @@ sus propiedades adecuadamente.
 
 Lo que es interesante aquí es como guardamos la contraseña del usuario en la base de datos. Por razones de
 seguridad no guardamos la contraseña tal cual sino que calculamos un hash de ella con la clase `Bcrypt` que esta
-en `Zend\Crypt` (lines 18-19), un componente de Zend Framework.
+en `Laminas\Crypt` (lines 18-19), un componente de Laminas Framework.
 
-T> Podemos instalar `Zend\Crypt` con el siguiente comando:
+T> Podemos instalar `Laminas\Crypt` con el siguiente comando:
 T>
-T>   `php composer.phar require zendframework/zend-crypt`
+T>   `php composer.phar require laminas/laminas-crypt`
 T>
-T> El componente `Zend\Crypt` también necesita que tengamos instalada la extensión de PHP `mcrypt`.
+T> El componente `Laminas\Crypt` también necesita que tengamos instalada la extensión de PHP `mcrypt`.
 
 W> El algoritmo *Bcrypt* es un algoritmo de hashing ampliamente usado y recomendado por la comunidad de seguridad
 W> para guardar la contraseña del usuario.
@@ -591,7 +591,7 @@ I> ellos no serán capaces de reiniciar la contraseña de los usuarios.
 
 El algoritmo que genera el token de reinicio de contraseña se implementa dentro del método
 `generatePassworkResetToken()` del `UserManager`. Para generar una cadena de caracteres aleatoria
-usamos la clase `Rand` provista por el componente `Zend\Math`.
+usamos la clase `Rand` provista por el componente `Laminas\Math`.
 
 {line-numbers=off,lang=php}
 ~~~
@@ -754,20 +754,20 @@ Una vez que el algoritmo de autenticación determina que el usuario y la contras
 un identificador (ID) único para el usuario. La *identity* es normalmente guardada en la sesión, de esta manera el usuario no necesita
 autenticarse con cada petición HTTP.
 
-En ZF3 hay un componente especial que permite implementar la autenticación del usuario, `Zend\Authentication`.
+En Laminas hay un componente especial que permite implementar la autenticación del usuario, `Laminas\Authentication`.
 Podemos instalar este componente con Composer escribiendo el siguiente comando:
 
 ```
-php composer.phar require zendframework/zend-authentication
+php composer.phar require laminas/laminas-authentication
 ```
 
-T> Para que la autenticación funcione necesitamos tener instalado el componente `Zend\Session` y el administrador de sesión configurado.
+T> Para que la autenticación funcione necesitamos tener instalado el componente `Laminas\Session` y el administrador de sesión configurado.
 T> La información sobre como hacer esto esta en el capítulo [Trabajar con sesiones](#session).
 
 ### AuthenticationService
 
-El componente `Zend\Authentication` provee una clase de servicio especial llamada `AuthenticationService` que
-se encuentra en el espacio de nombres `Zend\Authentication`. Los métodos más útiles de este servicio se muestran
+El componente `Laminas\Authentication` provee una clase de servicio especial llamada `AuthenticationService` que
+se encuentra en el espacio de nombres `Laminas\Authentication`. Los métodos más útiles de este servicio se muestran
 en la tabla 16.1 de abajo:
 
 {title="Table 16.1. Métodos de la clase AuthenticationService"}
@@ -800,7 +800,7 @@ comparar el nombre de usuario y la contraseña contra la base de datos. Tampoco 
 guardar la identidad de usuario en la sesión. Este diseño permite implementar el algoritmo de autenticación
 y el almacenamiento apropiado.
 
-El componente `Zend\Authentication` provee varios *adaptadores de autenticación* que implementan
+El componente `Laminas\Authentication` provee varios *adaptadores de autenticación* que implementan
 algunos algoritmos de autenticación estándar (ver figura 16.9) y varios *administradores de almacenamiento*
 que permiten guardar y recuperar la identidad de usuarios (ver figura 16.10).
 
@@ -827,7 +827,7 @@ contra la base de datos. Lo haremos de la siguiente manera:
   * Si el hash de la contraseña no coincide regresamos un error.
   * Si la contraseña es correcta regresamos un estado de éxito.
 
-El método `authenticate()` regresa una instancia de la clase `Zend\Authentication\Result`. La clase
+El método `authenticate()` regresa una instancia de la clase `Laminas\Authentication\Result`. La clase
 `Result` contiene el estado de la autenticación, el mensaje de error y la identidad del usuario.
 
 El adaptador puede además tener métodos adicionales. Por ejemplo, agregamos los métodos `setEmail()`
@@ -846,9 +846,9 @@ Coloca el siguiente código dentro del archivo:
 <?php
 namespace User\Service;
 
-use Zend\Authentication\Adapter\AdapterInterface;
-use Zend\Authentication\Result;
-use Zend\Crypt\Password\Bcrypt;
+use Laminas\Authentication\Adapter\AdapterInterface;
+use Laminas\Authentication\Result;
+use Laminas\Crypt\Password\Bcrypt;
 use User\Entity\User;
 
 /**
@@ -856,7 +856,7 @@ use User\Entity\User;
  * and checks the database if there is a user with such login (email) and password.
  * If such user exists, the service returns his identity (email). The identity
  * is saved to session and can be retrieved later with Identity view helper provided
- * by ZF3.
+ * by Laminas.
  */
 class AuthAdapter implements AdapterInterface
 {
@@ -954,7 +954,7 @@ class AuthAdapter implements AdapterInterface
 ### Crear la Factory para el AuthenticationService
 
 Una vez que hemos implementado el adaptador podemos crear el `AuthenticationService`.
-El `AuthenticationService` de ZF3 debe ser registrado en el administrador de servicio antes de poder usarlo.
+El `AuthenticationService` de Laminas debe ser registrado en el administrador de servicio antes de poder usarlo.
 Primero que todo, crearemos una factory para él. Agregar el archivo *AuthenticationServiceFactory.php*
 dentro del directorio *Service/Factory* y colocar el código siguiente:
 
@@ -964,10 +964,10 @@ dentro del directorio *Service/Factory* y colocar el código siguiente:
 namespace User\Service\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\Authentication\AuthenticationService;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\Session\SessionManager;
-use Zend\Authentication\Storage\Session as SessionStorage;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\Session\SessionManager;
+use Laminas\Authentication\Storage\Session as SessionStorage;
 use User\Service\AuthAdapter;
 
 /**
@@ -976,14 +976,14 @@ use User\Service\AuthAdapter;
 class AuthenticationServiceFactory implements FactoryInterface
 {
     /**
-     * This method creates the Zend\Authentication\AuthenticationService service
+     * This method creates the Laminas\Authentication\AuthenticationService service
      * and returns its instance.
      */
     public function __invoke(ContainerInterface $container,
                     $requestedName, array $options = null)
     {
         $sessionManager = $container->get(SessionManager::class);
-        $authStorage = new SessionStorage('Zend_Auth', 'session', $sessionManager);
+        $authStorage = new SessionStorage('Laminas_Auth', 'session', $sessionManager);
         $authAdapter = $container->get(AuthAdapter::class);
 
         // Create the service and inject dependencies into its constructor.
@@ -1005,7 +1005,7 @@ Registramos el `AuthenticationService` en nuestro archivo de configuración de l
 return [
     'service_manager' => [
         'factories' => [
-            \Zend\Authentication\AuthenticationService::class
+            \Laminas\Authentication\AuthenticationService::class
                 => Service\Factory\AuthenticationServiceFactory::class,
             // ...
         ],
@@ -1035,10 +1035,10 @@ El código del controlador `AuthController` se presenta a abajo:
 
 namespace User\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Authentication\Result;
-use Zend\Uri\Uri;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
+use Laminas\Authentication\Result;
+use Laminas\Uri\Uri;
 use User\Form\LoginForm;
 use User\Entity\User;
 
@@ -1061,7 +1061,7 @@ class AuthController extends AbstractActionController
 
     /**
      * Auth service.
-     * @var \Zend\Authentication\AuthenticationService
+     * @var \Laminas\Authentication\AuthenticationService
      */
     private $authService;
 
@@ -1248,7 +1248,7 @@ El servicio `AuthManager` tiene los siguientes métodos responsables de la auten
   * El método `login()`.
   * El método `logout()`.
 
-El método `login()` (ver abajo) usa el `AuthenticationService` y el `AuthAdapter` de ZF3 que escribimos al principio
+El método `login()` (ver abajo) usa el `AuthenticationService` y el `AuthAdapter` de Laminas que escribimos al principio
 para ejecutar la autenticación del usuario. El método adicionalmente acepta el argumento `$remenberMe` que permite
 extender la vida de la cookie de sesión hasta 30 días.
 
@@ -1363,7 +1363,7 @@ Dentro de la llave `access_filter` tenemos dos subllaves:
 
 I> La implementación del filtro de acceso es muy simple. Este no puede, por ejemplo, permitir el acceso basado en nombres
 I> o por roles de usuarios. Sin embargo, podemos fácilmente modificar y extenderla como deseemos. Si planeas introducir
-I> un control de acceso basado en roles (RBAC), revisa la documentación para el componente de Zend Framework `Zend\Permissions\Rbac`.
+I> un control de acceso basado en roles (RBAC), revisa la documentación para el componente de Laminas Framework `Laminas\Permissions\Rbac`.
 
 ### Agregar el listener event dispatch
 
@@ -1379,8 +1379,8 @@ del modulo *User* de la siguiente manera:
 <?php
 namespace User;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
 use User\Controller\AuthController;
 use User\Service\AuthManager;
 
@@ -1519,9 +1519,9 @@ Una de las últimas cosas que discutiremos es como revisar en nuestro sitio web 
 o no y recuperar la identidad del usuario. Podemos hacer esto con la ayuda del controller plugin `Identity`
 y el view helper `Identity`.
 
-I> Para usar el plugin `Identity` se necesita instalar mediante Composer el paquete `zendframework/zend-mvc-plugins`, de la siguiente manera:
+I> Para usar el plugin `Identity` se necesita instalar mediante Composer el paquete `laminas/laminas-mvc-plugins`, de la siguiente manera:
 I>
-I> `php composer.phar require zendframework/zend-mvc-plugins`
+I> `php composer.phar require laminas/laminas-mvc-plugins`
 
 En nuestro método de acción del controlador podemos revisar si el usuario ha iniciado sesión de la siguiente manera:
 
@@ -1550,7 +1550,7 @@ En este capítulo aprendimos sobre el manejo de usuarios, autenticación de usua
 El manejo de usuarios significa proveer una interfaz de usuario para agregar, ver y cambiar la contraseña del usuario.
 
 La autenticación es el proceso en el cual un usuario provee su nombre de usuario y contraseña y se determina si estas
-credenciales son correctas. ZF3 provee un servicio especial llamado `AuthenticationService` que podemos usar para este
+credenciales son correctas. Laminas provee un servicio especial llamado `AuthenticationService` que podemos usar para este
 propósitos, pero primero necesitamos implementar un adaptador de autenticación.
 
 El filtro de acceso permite conceder acceso a determinadas página solo a usuarios autorizados. Tu puedes implementar

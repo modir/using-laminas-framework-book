@@ -3,7 +3,7 @@
 # Apéndice A. Configurar el Entorno de Desarrollo Web {#devenv}
 
 Aquí proveeremos instrucciones para preparar nuestro entorno para el desarrollo
-de aplicaciones basadas en ZF3. Si ya tenemos configurado el entorno podemos
+de aplicaciones basadas en Laminas. Si ya tenemos configurado el entorno podemos
 saltar este apéndice.
 
 Configurar el entorno de desarrollo es la primera cosa que debemos hacer cuando
@@ -21,8 +21,8 @@ NetBeans IDE esta escrito con Java y se puede instalar en Windows, GNU/Linux y e
 otras plataformas que soporten una maquina Java compatible.
 
 I> Además, ofrecemos indicaciones para los principiantes sobre como instalar
-I> un sitio web hecho con ZF3 en «Amazon EC2 cloud», todo esto en el
-I> [Apéndice E. Instalar una Aplicación Web hecha con ZF3 en Amazon EC2](#ec2-tutorial).
+I> un sitio web hecho con Laminas en «Amazon EC2 cloud», todo esto en el
+I> [Apéndice E. Instalar una Aplicación Web hecha con Laminas en Amazon EC2](#ec2-tutorial).
 
 ## Instalar Apache, PHP and MySQL en GNU/Linux
 
@@ -95,7 +95,7 @@ de la distribución:
 | GNU/Linux Ubuntu 14.04 Trusty Tahr       | 5.5                        |
 |------------------------------------------|----------------------------|
 
-I> Como podemos ver en la tabla de arriba para desarrollar con ZF3 necesitamos
+I> Como podemos ver en la tabla de arriba para desarrollar con Laminas necesitamos
 I> instalar Ubuntu 18.04 o superior.
 
 Cuando elegimos entre las versiones 32-bit y 64-bit del sistema operativo,
@@ -306,7 +306,7 @@ O el siguiente comando en Fedora, CentOS o Red Hat:
 
 ### Habilitar el Módulo mod_rewrite
 
-Zend Framework 3 necesita tener el módulo *mod_rewrite* de Apache habilitado.
+Laminas Framework necesita tener el módulo *mod_rewrite* de Apache habilitado.
 El módulo *mod_rewrite* se usa para reescribir las URLs de las peticiones en
 base a algunas reglas, redirigiendo a los usuarios del sitio a otra URL.
 
@@ -325,7 +325,7 @@ En estas distribuciones de GNU/Linux no necesitamos hacer nada. en ellas el mód
 
 ### Crear un Servidor Virtual en Apache
 
-Zend Framework 3 necesita que creemos un *servidor virtual* para nuestro sitio
+Laminas Framework necesita que creemos un *servidor virtual* para nuestro sitio
 web. El termino servidor virtual significa que podemos ejecutar varios sitios
 web en la misma computadora.
 
@@ -335,7 +335,7 @@ carpeta raíz de documentos, esto permite colocar nuestros archivos web en cualq
 lugar del sistema (no solo en la carpeta */var/www/html*).
 
 T> Nótese que en este momento no necesitamos crear un servidor virtual, lo crearemos
-T> en el capítulo [Zend Skeleton Application](#skeleton). Por el momento solo
+T> en el capítulo [Laminas Skeleton Application](#skeleton). Por el momento solo
 T> necesitamos tener una idea de como se crean los servidores virtuales en cada
 T> una de las diferentes distribuciones de GNU/Linux.
 
@@ -427,7 +427,7 @@ el siguiente comando:
 `sudo mcedit /etc/php/7.0/mods-available/xdebug.ini`
 
 Agregamos las siguientes líneas al final del archivo (debemos reemplazar el
-comodín `<remove_ip_address>` con la dirección IP del sitio web que vamos a 
+comodín `<remove_ip_address>` con la dirección IP del sitio web que vamos a
 revisar):
 
 {line-numbers=off,lang=text}
@@ -452,7 +452,7 @@ Instalamos el paquete XDebug con el siguiente comando:
 
 `yum install php-pecl-xdebug`
 
-Luego de la instalación es necesario crear el archivo *xdebug.ini* en la 
+Luego de la instalación es necesario crear el archivo *xdebug.ini* en la
 carpeta */etc/php.d/*:
 
 `mcedit /etc/php.d/xdebug.ini`
@@ -464,7 +464,7 @@ el comodín con la dirección IP del sitio que vamos a revisar:
 ~~~
 [xdebug]
 
-zend_extension = /usr/lib/php/modules/xdebug.so
+Laminas_extension = /usr/lib/php/modules/xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_handler=dbgp
 xdebug.remote_mode=req
@@ -556,7 +556,7 @@ CREATE DATABASE test_db;
 The command above creates empty schema that we will populate later.
 
 Next, we want to create another database user named `test_user` that
-will be used by the ZF3-based web site for connecting to the database.
+will be used by the laminas-based web site for connecting to the database.
 To create the user, type the following (in the command below,
 replace the `<insert_your_password>` placeholder with some password):
 
@@ -612,7 +612,7 @@ Open the file in your browser. The standard PHP information page should display
 
 ### Enabling Apache's mod_rewrite module
 
-Zend Framework 3 requires that you have Apache's `mod_rewrite` module enabled.
+Laminas Framework requires that you have Apache's `mod_rewrite` module enabled.
 To enable `mod_rewrite`, open your the Apache config file (typically *httpd.conf*), then find the following line:
 
 {line-numbers=off,lang=text}
@@ -638,7 +638,7 @@ and *site2.mydomain.com*)
 
 Please consult to your WAMP or XAMPP documentation for information on how to create virtual hosts.
 
-T> Right now, you don't need to edit virtual host file, we'll do that in chapter [Zend Skeleton Application](#skeleton)
+T> Right now, you don't need to edit virtual host file, we'll do that in chapter [Laminas Skeleton Application](#skeleton)
 T> when installing the Hello World application. Now you just need to understand
 T> how to create virtual hosts.
 
@@ -652,7 +652,7 @@ Then edit your *php.ini* file and add the following line:
 
 {line-numbers=off,lang=text}
 ~~~
-zend_extension="C:/path/to/your/xdebug.dll"
+Laminas_extension="C:/path/to/your/xdebug.dll"
 ~~~
 
 Add the following lines to the end of file (replace the remote IP address placeholder with the IP address
@@ -760,7 +760,7 @@ Apache HTTP Server, PHP engine and MySQL database in both Linux and Windows plat
 
 We've also provided instructions for installing NetBeans integrated development environment (IDE),
 which is a convenient integrated development environment for PHP development. It allows you
-to navigate, edit and debug your ZF3-based application in an effective manner.
+to navigate, edit and debug your laminas-based application in an effective manner.
 
 Q> **These installation instructions do not work for me. What do I do?**
 Q>
