@@ -1,4 +1,4 @@
-﻿# Laminas Skeleton Application {#skeleton}
+# Laminas Skeleton Application {#skeleton}
 
 Laminas Framework nos provee con la llamada «skeleton application» para facilitar
 la creación de nuestros sitios web desde cero. En este capítulo mostraremos

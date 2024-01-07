@@ -1,4 +1,4 @@
-﻿{mainmatter}
+{mainmatter}
 
 # Введение в Laminas Framework {#intro}
 

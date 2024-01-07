@@ -1,4 +1,4 @@
-﻿# Website Operation {#operation}
+# Website Operation {#operation}
 
 Neste capítulo, vamos aprender algumas teorias e conceitos sobre como um aplicativo é desenvolvido no Laminas Framework funciona.
 Você aprenderá neste capítulo algumas noções básicas de PHP, como classes PHP, namespaces, como definir os parâmetros de
