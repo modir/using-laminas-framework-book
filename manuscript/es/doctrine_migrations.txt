@@ -50,8 +50,7 @@ que describe que conexión a base de datos usar, en que tabla guardar el histór
 de migraciones, donde guardar las clases de migración, etc. Para hacer esto
 agregamos las siguientes líneas a nuestro archivo `config/autoload/global.php`:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     'doctrine' => [

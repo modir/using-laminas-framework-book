@@ -48,8 +48,7 @@ Un formulario HTML simple capaz de cargar archivos se muestra en el código de e
 más abajo. El tipo de codificación binaria se habilita colocando el atributo
 `enctype` del formulario con el valor «multipart/form-data»:
 
-{line-numbers=on, lang=html}
-~~~
+~~~html
 <form action="upload" method="POST" enctype="multipart/form-data">
     <input type="file" name="myfile">
     <br/>
@@ -76,8 +75,7 @@ en el botón *Submit* del formulario, el navegador web enviará una petición HT
 al servidor web y la petición contendrá los datos del archivo que será subido.
 El ejemplo de abajo ilustra como se ve una petición HTTP:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 POST http://localhost/upload HTTP/1.1
 Host: localhost
 Content-Length: 488
@@ -137,8 +135,7 @@ Por ejemplo, para el formulario simple de subida que mencionamos antes, el arreg
 super-global `$_FILES` tiene la siguiente forma (la salida se genero con la
 función de PHP `var_dump()`).
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 array (size=1)
     'myfile' =>
         array (size=5)
@@ -186,8 +183,7 @@ T> errores.
 El siguiente código de ejemplo muestra como mover el archivo subido con el formulario
 simple que hemos mostrado arriba:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 $destPath = '/path/to/your/upload/dir';
 $result = move_uploaded_file($_FILES['myfile']['tmp_name'], $destPath);
 if(!$result) {
@@ -218,8 +214,7 @@ En nuestra clase controlador generalmente no nos comunicamos con el arreglo
 `$_FILES` directamente, en su lugar usamos la clase @`Request`[Laminas\Http\Request]
 o el complemento para controladores @`Params`, como se muestra en el código más abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class IndexController extends AbstractActionController
@@ -258,8 +253,7 @@ Para agregar la capacidad de subir archivos a nuestro modelo de formulario,
 necesitamos agregar un elemento de la clase @`Laminas\Form\Element\File` de la
 siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
     // Add the following code inside of form's addElements() method.
 
     // Add the "file" field.
@@ -463,8 +457,7 @@ usar la clase `FileInput` en lugar de la acostumbrada clase @`Input`[Laminas\Inp
 En nuestro método privado `addInputFilter()` del modelo de formulario, agregamos
 las reglas de validación para la entrada del archivo de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
     $inputFilter->add([
         'type'     => 'Laminas\InputFilter\FileInput',
         'name'     => 'file',  // Element's name.
@@ -551,8 +544,7 @@ Supongamos que queremos agregar una página web que muestre un formulario
 (llamémoslo `YourForm`) capaz de subir archivos. Para esta página, necesitamos
 agregar el método `uploadAction()` a la clase controladora:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class IndexController extends AbstractActionController
@@ -675,8 +667,7 @@ El código del modelo de formulario `ImageForm` se presenta más abajo. Este se
 debe colocar en un archivo *ImageForm.php* guardado en la carpeta *Form* que
 está dentro de la carpeta fuente del módulo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -756,8 +747,7 @@ archivos que se cargan, los agregaremos a la clase de modelo de formulario
 Para agregar reglas de validación al formulario modificamos el código de la clase
 `ImageForm` de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -892,8 +882,7 @@ T> la separación de conceptos y la reusabilidad del código.
 Agregamos el archivo *ImageManager.php* a la carpeta *Service* que esta dentro
 de la carpeta fuente del módulo. Agregamos el siguiente código al archivo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -927,8 +916,7 @@ El método escaneará la carpeta de subida y regresa un arreglo que contiene los
 nombres de los archivos subidos. Para agregar el método `getSavedFiles()`
 modificamos el código de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -986,8 +974,7 @@ archivo subido:
 
 Para agregar estos tres métodos, cambiamos el código de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -1043,8 +1030,7 @@ el tamaño de la imagen. La funcionalidad para cambiar el tamaño de la imagen
 se usará para crear imágenes en miniatura. Agregamos el método `resizeImage()`
 a la clase `ImageManager` de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class ImageManager
@@ -1132,8 +1118,7 @@ Para comenzar, creamos el archivo *ImageController.php* en la carpeta *Applicati
 que está dentro de la carpeta fuente del módulo. Colocamos el siguiente pedazo
 de código dentro de archivo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1188,8 +1173,7 @@ de imagen a la galería.
 
 Cambiamos el archivo *ImageController.php* de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class ImageController extends AbstractActionController
@@ -1259,8 +1243,7 @@ Ahora, es el momento de agregar la plantilla de vista para la acción «upload»
 Agregamos el archivo de plantilla de vista *upload.phtml* dentro de la carpeta
 *application/image* que está dentro de la carpeta *view* del modulo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
@@ -1312,8 +1295,7 @@ que abrirá la imagen en otra pestaña del navegador.
 
 Cambiamos el archivo *ImageController.php* de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class ImageController extends AbstractActionController
@@ -1343,8 +1325,7 @@ Agregamos la plantilla de vista *index.phtml* en la carpeta *application/image*
 que está dentro de la carpeta *view* del módulo. El contenido de este archivo se
 muestra abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <h1>Image Gallery</h1>
 
 <p>
@@ -1431,8 +1412,7 @@ miniatura de la imagen. La acción del método tomará dos parámetros GET:
 
 Cambiamos el archivo *ImageController.php* de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
  <?php
 //...
 class ImageController extends AbstractActionController

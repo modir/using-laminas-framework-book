@@ -382,8 +382,7 @@ T> commands, respectively, from your command shell.
 Once you have installed the *DoctrineORMModule* and all its dependencies, you need to add
 the following lines to your *APP_DIR/config/modules.config.php* file to enable the modules:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     // Add the Doctrine integration modules.
@@ -470,8 +469,7 @@ MySQL database that we created earlier in this chapter:
 I> This connection is shared between all modules of the web application. If you want to create
 I> module-specific connection, consider adding the key to the *module.config.php* file instead.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
@@ -596,8 +594,7 @@ T> automatically based entirely on code and annotations analysis.
 For example, below, we provide the basic example of a Doctrine entity class. You can see that the class and its
 properties are marked with Docblock annotations with special *tags* (a tag starts with '@' character).
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -688,8 +685,7 @@ We start with creating the `Post` entity. Create the *Post.php* file under modul
 directory. (If you haven't created the *Entity* directory yet, its the right time to do that.)
 Put the following code into the file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -865,8 +861,7 @@ By analogy with the `Post` entity, we next create the `Comment` and the `Tag` en
 the *Entity* directory. To do that, first, create *Comment.php* file and put the
 following code inside of it:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -953,8 +948,7 @@ class Comment
 
 Next, create *Tag.php* file and put the following code inside of it:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -1031,8 +1025,7 @@ T> For detailed information about relationships between entities in Doctrine, pl
 First, let's define one-to-many relationship between the `Post` and `Comment` entities. Modify the *Post.php*
 file and add the following lines:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Doctrine\Common\Collections\ArrayCollection;
@@ -1250,8 +1243,7 @@ tag.
 To let Doctrine know where to find entities for your *Application* module (or for another module you
 have), you add the following lines into your *module.config.php* file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -1451,8 +1443,7 @@ This page will display the list of posts sorted by date in descending order.
 To do that, add the constructor method and `indexAction()` method to the
 `IndexController` controller class, as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1791,8 +1782,7 @@ I> The `PostManager` service will contain business logic of the *Blog* sample. T
 Create the *PostManager.php* file inside the *Service* directory under the module's
 source directory. Put the following content into that file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -1932,8 +1922,7 @@ For post management (e.g. adding, editing, viewing and removing posts), we will 
 `PostController` controller class. We create the `addAction()` action method inside the
 `PostController` controller class that will allow to add a new post to blog (see code below):
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 class PostController extends AbstractActionController
 {
     /**
@@ -2183,8 +2172,7 @@ To implement this page we need the following things:
 First, we add the `updatePost()` and `convertTagsToString()` methods to the `PostManager` service
 model as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 //...
 class PostManager
@@ -2508,8 +2496,7 @@ First, we implement the `CommentForm` form that will allow to add a comment to a
 Create the *CommentForm.php* file in *Form* directory under module's source directory.
 Put the following content into the file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -2981,8 +2968,7 @@ Below, you can find the code of `PostRepository` class that has two public metho
   * and the `findPostsByTag()` method is designed to return all published posts that have the particular tag
     assigned (to filter posts by the given tag).
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Repository;
 
@@ -3058,8 +3044,7 @@ T> [this page](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/
 To let Doctrine know that it should use the custom repository for `Post` entity,
 modify the `Post` entity's annotation as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -3131,8 +3116,7 @@ Then it normalizes the frequency values (makes them to be between 0 and 1.0).
 
 Here we will modify the `IndexController` to implement tag filter.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 //...
 class IndexController extends AbstractActionController
@@ -3390,8 +3374,7 @@ T> now it will receive the `Query`. It is a simple and obvious modification, so 
 
 Next, modify the `indexAction()` method of the `IndexController` as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 

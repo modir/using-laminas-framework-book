@@ -468,8 +468,7 @@ afeta apenas seu diretório próprio e todos os subdiretórios.
 
 O conteúdo do arquivo `.htaccess` é apresentado abaixo:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
 # exists, simply serve it.
@@ -551,8 +550,7 @@ fazer login no seu site.
 Para permitir o acesso ao seu site por nome de usuário e senha, você pode modificar o arquivo do virtual host
 da seguinte forma:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 ...
 <Directory /home/username/helloworld/public/>
     DirectoryIndex index.php

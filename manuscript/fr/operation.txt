@@ -107,8 +107,7 @@ eux. Si une classe ne définit pas un espace de noms, elle réside à l'intérie
 Un exemple réel d'une définition d'espace de noms (prise à partir du composant @`Laminas\Mvc` component) est présenté
 ci-dessous :
 
-{line-numbers=on,lang="php"}
-~~~
+~~~php
 <?php
 namespace Laminas\Mvc;
 
@@ -570,8 +569,7 @@ I> d'accéder à tous les fichiers PHP de votre application).
 
 Bien que le fichier *index.php* soit très important, il est étonnamment petit (voir ci-dessous) :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 
 use Laminas\Mvc\Application;
@@ -1138,8 +1136,7 @@ de services. L'un des moyens de déclarer un service consiste à utiliser la mé
 gestionnaire de services. Par exemple, créons et déclarons la classe de service "convertisseur de devise",
 qui sera utilisée, par exemple, sur une page de panier pour convertir la devise EUR en USD:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 // Définis l'espace de noms où notre service personnalisé est situé.
 namespace Application\Service;
@@ -1405,8 +1402,7 @@ W> différents modules.
 
 Cette clé du `service_manager` devrait ressembler à ça :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

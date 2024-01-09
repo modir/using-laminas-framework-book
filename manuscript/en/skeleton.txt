@@ -452,8 +452,7 @@ affects only its owning directory and all sub-directories.
 
 The content of `.htaccess` file is presented below:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
 # exists, simply serve it.
@@ -531,8 +530,7 @@ logging into your site.
 To allow access to your website by username and password, you can modify the virtual host
 file as follows:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 ...
 <Directory /home/username/helloworld/public/>
     DirectoryIndex index.php

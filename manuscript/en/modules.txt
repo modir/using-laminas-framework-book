@@ -162,8 +162,7 @@ In the following examples, we use `init()` method.
 To show you how to subscribe to an event, let's create an event listener that will react on *Dispatch* event and
 set a different layout template for *all* controllers of the module:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace YourCompanyModule;
 
@@ -218,8 +217,7 @@ dispatched to the controller belonging to our module, and if so, switch the layo
 In this example, we will show how to register an event listener that makes the website to always use HTTPS connection
 with all of your web pages:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace YourCompanyModule;
 
@@ -281,8 +279,7 @@ With this technique, you can easily track all exceptions happening in your websi
 exceptions and errors is an important thing, because it allows to make your website more stable,
 secure and improve user experience.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace YourCompanyModule;
 

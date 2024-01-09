@@ -176,8 +176,7 @@ El código HTML de arriba generará un grupo como el de la figura 7.3:
 
 Un ejemplo de un formulario HTML típico se presenta abajo:
 
-{line-numbers=on, lang=html}
-~~~
+~~~html
 <form name="contact-form" action="/contactus" method="post">
   <label for="email">E-mail</label>
   <input name="email" type="text">
@@ -252,8 +251,7 @@ en el cuerpo de la petición HTTP. Por ejemplo, cuando presionamos el botón
 *Submit* del formulario de contacto la petición HTTP tendrá la siguiente
 forma:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 POST http://localhost/contactus HTTP/1.1
 Host: localhost
 Connection: keep-alive
@@ -274,8 +272,7 @@ inseguros por caracteres de la tabla ASCII.
 En comparación, cuando colocamos el método GET en el formulario la petición
 HTTP tiene el siguiente aspecto:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 GET http://localhost/contactus?email=name%40example.com&subject=Example+Subject&body=Hello%21&submit=Submit HTTP/1.1
 Host: localhost
 Connection: keep-alive
@@ -424,8 +421,7 @@ Luego, agregamos el método de acción `contactUsAction()` a la clase
 `IndexController`. Con el método de acción queremos extraer los datos crudos
 del formulario de contacto que fue enviado por el usuario del sitio:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -616,8 +612,7 @@ T> para colocar atributos de formulario desde la clase @`Element`.
 Abajo, proveemos el esbozo de una clase modelo para el formulario de contacto
 de nuestro ejemplo anterior:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -864,8 +859,7 @@ elementos al formulario.
 El siguiente fragmento de código crea una instancia de la clase
 @`Laminas\Form\Element\Text` y agrega el elemento al modelo de formulario:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -962,7 +956,6 @@ I> @`Laminas\Form\Factory` (como se muestra en la figura 7.13).
 
 ![Figura 7.13. La lógica del método add()](../en/images/forms/factory_graph.png)
 
-{line-numbers=on, lang=php}
 
 ~~~
 <?php
@@ -1040,8 +1033,7 @@ I> del formulario.
 
 El código de la clase `ContactForm` se muestra abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -1225,8 +1217,7 @@ Para agregar una entrada al filtro de entrada usamos el método `add()` que
 toma un solo argumento, un arreglo con las especificaciones de la entrada como
 se muestra a continuación:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 [
   'name'     => '<name>',
   'type'     => '<type>',
@@ -1269,8 +1260,7 @@ En el arreglo de arriba tenemos las siguientes llaves:
 
 La configuración de un filtro típico se muestra abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 [
   'name' => '<filter_name>',
   'priority' => <priority>,
@@ -1296,8 +1286,7 @@ y puede contener parámetros para configurar el filtro.
 
 Una configuración típica para el validador se presenta abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 [
   'name' => '<validator_name>',
   'break_chain_on_failure' => <flag>,
@@ -1343,8 +1332,7 @@ el método privado `addInputFilter()` que define las reglas de filtrado/validaci
 las guarda en el contenedor de filtro de entrada y asocia el filtro de
 entrada al modelo de formulario.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Laminas\InputFilter\InputFilter;
@@ -1540,8 +1528,7 @@ Así el flujo de uso de un formulario genérico es el siguiente:
 El código de abajo muestra como implementar este flujo de trabajo típico en
 nuestro método de acción en el controlador:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1663,8 +1650,7 @@ que está dentro de la carpeta *src* del módulo (ver la figura 7.19).
 
 El siguiente es el código que deberíamos colocar dentro del archivo *MailSender.php*:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -1809,8 +1795,7 @@ return [
 Luego agregamos el constructor y los métodos `contactUsAction()`, `thankYouAction()`
 y `sendErrorAction()` al controlador. Abajo mostramos todo el código:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Application\Service\MailSender;
@@ -2267,8 +2252,7 @@ contacto. Si recordamos, antes agregamos la plantilla de vista *contact-us.phtml
 en la carpeta *application/index* que esta dentro de la carpeta *view/* del módulo.
 Debemos reemplazar el código en este archivo por el siguiente:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->prepare();
@@ -2371,8 +2355,7 @@ de Twitter Bootstrap para dar al formulario una apariencia bonita y profesional.
 Para agregar los estilos de Bootstrap al formulario debemos modificar el código
 en el archivo *.phtml* para que tenga el siguiente aspecto:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->prepare();

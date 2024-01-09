@@ -527,8 +527,7 @@ a sus subcarpetas.
 
 El contenido del archivo `.htaccess` se presenta más abajo:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
 # exists, simply serve it.
@@ -617,8 +616,7 @@ sitio.
 Para permitir el acceso a nuestro sitio web mediante un usuario y su contraseña
 podemos modificar el sitio virtual de la siguiente manera:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 ...
 <Directory /home/username/helloworld/public/>
     DirectoryIndex index.php

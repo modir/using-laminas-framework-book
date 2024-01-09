@@ -326,8 +326,7 @@ una cabecera, donde la marca de nuestro sitio web se puede colocar, y los
 enlaces a las páginas principales. Para colocar una barra de navegación en
 nuestra página podemos usar el siguiente código HTML:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">Hello World</a>
@@ -375,8 +374,7 @@ usando un menú desplegable (ver figura C.8).
 Podemos definir el menú desplegable remplazando el elemento *Soporte* de la lista
 en el ejemplo anterior de la siguiente manera:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
      Support <b class="caret"></b>
@@ -412,8 +410,7 @@ botón se expandirán los elementos ocultos de la barra de navegación.
 
 Definimos una barra de navegación plegable como se muestra en el siguiente ejemplo:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">

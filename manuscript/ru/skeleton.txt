@@ -446,8 +446,7 @@ T> о некоторых продвинутых вещах в последней
 
 Содержимое файла `.htaccess` представлено ниже:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
 # exists, simply serve it.
@@ -527,8 +526,7 @@ Q> компьютеры в Интернет могут обратиться к �
 Чтобы разрешить доступ к вашему сайту по логину и паролю, вы можете изменить файл виртуального
 хоста, добавив в него следующие строки:
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 AuthType Basic
 AuthName "Authentication Required"
 AuthUserFile /usr/local/apache/passwd/passwords

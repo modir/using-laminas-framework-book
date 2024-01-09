@@ -129,8 +129,7 @@ la carpeta del módulo *Application* (para un ejemplo ver la figura 6.3).
 Vamos a ver con más detalles el archivo de plantilla *layout.phtml*. Abajo se
 presenta el contenido completo del archivo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?= $this->doctype() ?>
 
 <html lang="en">
@@ -318,8 +317,7 @@ Luego usaremos el sistema de rejillas que provee Bootstrap para organizar el
 bloque principal de la página. Reemplazamos el código HTML del elemento `<body>`
 (líneas 28-63) con el siguiente código:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <body>
   <div class="container">
     <div class="row">
@@ -499,8 +497,7 @@ cambios necesarios.
 Cuando la segunda plantilla de maqueta está lista podemos cambiar entre maquetas
 desde una determinada acción del controlador usando el siguiente código:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // A controller's action method that uses an alternative
 // layout template.
 public function indexAction()
@@ -615,8 +612,7 @@ imprimir y los pasa a la plantilla de vista con la ayuda del contenedor de varia
 
 Luego agregamos el archivo para la plantilla *partial-demo.phtml*:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Partial View Demo');
 ?>
@@ -702,8 +698,7 @@ mayoría de nuestras páginas.
 
 Colocamos el siguiente código en el archivo de plantilla *layout2.phtml*:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php $this->placeholder('content')->captureStart(); ?>
 
 <div class="row">
@@ -958,8 +953,7 @@ estén automáticamente disponibles para todos los usuarios del sitio,
 En el archivo de plantilla de vista *typeahead.phtml* colocamos el siguiente
 código:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Typeahead');
 // Add a JavaScript file
@@ -1104,8 +1098,7 @@ página.
 Para agregar una hoja de estilo CSS externa a la plantilla de vista usamos el
 ayudante de vista `HeadLink`:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headLink()->appendStylesheet('/css/style.css');
 $this->headLink()->appendStylesheet(
@@ -1181,8 +1174,7 @@ archivo *jquery-ui.min.css* en la carpeta *APP_DIR/public/css*. Finalmente,
 agregamos la plantilla de vista *datepicker.phtml* al directorio
 *application/index/static* dentro de la carpeta *view* del módulo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Datepicker');
 
@@ -1326,8 +1318,7 @@ Q> `view/` del módulo.
 
 Luego creamos el esbozo de código para la clase `Menu`:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\View\Helper;
 
@@ -1375,8 +1366,7 @@ iniciar el menú es mediante el método `setItems()` (líneas 22-25). Y el méto
 Luego vamos a agregar el método `render()` que generará el código HTML para
 la barra de navegación y la regresará como una cadena de texto:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Renders the menu.
 public function render()
 {
@@ -1422,8 +1412,7 @@ Para terminar la creación de la clase `Menu` vamos a implementar el método
 `renderItem()`. Este método producirá el código HTML para un solo elemento
 del menú:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Renders an item.
 protected function renderItem($item)
 {
@@ -1506,8 +1495,7 @@ Como planeamos usar el ayudante de vista `Menu` en la plantilla de maqueta
 de vista reemplazamos el código para el menú de navegación que está en el
 archivo *layout.phtml* con el siguiente código:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <!-- Navigation bar -->
 <?php
   $this->mainMenu()->setItems([
@@ -1578,8 +1566,7 @@ ayudante para imprimir las migas de pan. Es completamente análogo al ayudante
 de vista `Menu` por esta razón solo mostramos el código completo de la clase
 `Breadcrumbs`:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\View\Helper;
 
@@ -1655,8 +1642,7 @@ class Breadcrumbs extends AbstractHelper
 Para poder usar el ayudante de vista `Breadcrumbs` tenemos que registrarlo en
 el archivo *module.config.php*:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
 

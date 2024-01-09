@@ -453,8 +453,7 @@ con más detalles omitiendo otras partes obvias (siempre podemos ver el código 
 
 El método `addUser` del `UserManager` permite agregar un nuevo usuario. Su aspecto es este:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 /**
  * This method adds a new user.
  */

@@ -45,8 +45,7 @@ what database connection to use, in which table to store migration history, wher
 store migration classes, etc. To do that,
 add the following lines to your `config/autoload/global.php` file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     'doctrine' => [

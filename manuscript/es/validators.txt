@@ -35,8 +35,7 @@ En Laminas un validador es una clase PHP común que implementa la interfaz
 que pertenece al espacio de nombres @`Laminas\Validator`. La definición de la interfaz
 se presenta abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Laminas\Validator;
 
@@ -352,8 +351,7 @@ revisando los valores de entrada:
 
 **Ejemplo 1. Pasar las opciones al método constructor.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the validator class name.
 use Laminas\Validator\EmailAddress;
@@ -392,8 +390,7 @@ con el método `getMessages()` (línea 19).
 
 **Ejemplo 2. Sin pasar opciones a el constructor.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the validator class name.
 use Laminas\Validator\EmailAddress;
@@ -443,8 +440,7 @@ diseñado para la instanciación, configuración y ejecución automática del va
 Por ejemplo, vamos a considerar como crear el mismo validador @`EmailAddress`,
 configurarlo y llamar a su método `isValid()`:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create and execute the EmailAddress validator through StaticValidator proxy.
 $validatedValue = \Laminas\Validator\StaticValidator::execute('name@example.com',
@@ -488,8 +484,7 @@ de contacto en [Colectar las Entradas del Usuario con Forms](#forms)
 Por ejemplo, vamos a mostrar como construir el mismo filtro @`EmailAddress` con
 la ayuda de una fábrica:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // It is assumed that you call the following code inside of the form model's
 // addInputFilter() method.
@@ -1306,8 +1301,7 @@ Como Laminas no provee un validador estándar que filtre el número de teléfono
 el validador @`Callback`[Laminas\Validator\Callback] como envoltorio. Para conseguirlo, hacemos los siguientes
 cambios al código de nuestra clase `ContactForm`:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 class ContactForm extends Form
@@ -1450,8 +1444,7 @@ el siguiente código dentro del archivo:
                             datos y no guardarlos. Por convención, guardamos el
                             validador personalizado dentro de la carpeta `Validator`.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Validator;
 
@@ -1680,8 +1673,7 @@ necesitamos implementar algunas revisiones de seguridad:
 
 Abajo, podemos encontrar el código del método de acción:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 

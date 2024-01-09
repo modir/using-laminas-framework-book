@@ -441,8 +441,7 @@ in more detail, omitting other obvious parts (you still can see the complete cod
 
 The `addUser()` method of the `UserManager` allows us to add a new user. It looks as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 /**
  * This method adds a new user.
  */

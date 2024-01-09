@@ -112,8 +112,7 @@ L'application Laminas Skeleton vous fournit par défaut une classe `IndexControl
 L'`IndexController` est généralement le contrôleur principal de votre site web.
 Son code est présenté ci-dessous (certaines parties du code ont été omises pour plus de simplicité) :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -248,8 +247,7 @@ avec une brève description.
 
 Pour obtenir simplement une variable GET ou POST à ​​partir d'une requête HTTP, utilisez le code suivant :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Récupération d'une variable passée en GET
 $getVar = $this->params()->fromQuery('var_name', 'default_val');
 
@@ -354,8 +352,7 @@ appellerons `aboutAction()`. L'action "about" affichera la page *A Propos* de no
 créer deux variables contenant des informations de notre site, et retourner ces variables pour le rendu dans une vue à l'aide de
 l'objet @`ViewModel`[Laminas\View\Model\ViewModel] :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // La méthode d'action "about"
 public function aboutAction()
 {
@@ -453,8 +450,7 @@ Toutes les classes contrôleurs appartenant à un module doivent être déclaré
 fichier module.config.php. Si votre contrôleur ne dépend pas de services spécifique (il n'a pas de dépendances), vous pouvez
 le déclarer comme celà :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
@@ -773,8 +769,7 @@ bouton Terminer.
 La vue *about.phtml*sera créée et affichée dans le volet droit de la fenêtre NetBeans.
 Dans ce fichier, entrez ce qui suit :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <h1>A Propos</h1>
 
 <p>
@@ -931,8 +926,7 @@ L'exemple de code suivant montre comment vous pouvez appeler la méthode `setTem
 méthode `indexAction()` de la classe `IndexController` pour forcer Laminas à utiliser le fichier de vues
 *about.phtml* pour le rendu de la page d'accueil au lieu du fichier *index.phtml* :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // L'action Index affiche la page d'accueil de votre site.
 public function indexAction()
 {
@@ -979,8 +973,7 @@ Une exception pour "layout/layout", qui n'inclut pas le nom du module.
 
 Les paramètres d'affichage du résolveur sont stockés dans votre fichier *module.config.php* sous la clé *view_manager* :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1028,8 +1021,7 @@ d'une vue *file.phtml* correspondante car elle ne fait que copier le contenu du 
 Ajoutez le fichier *DownloadController.php* au dossier Controller du module *Application*,
 puis placez le code suivant dans le fichier :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1231,8 +1223,7 @@ lorsqu'une exception non gérée est levée quelque part L'application).
 Le fichier *module.config.php* contient plusieurs paramètres sous la clé *view_manager*, que vous pouvez
 utiliser pour configurer l'apparence de vos templates d'erreur:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1329,8 +1320,7 @@ Les entités sont généralement stockées dans une base de données ou dans un 
 
 Ci-dessous, vous pouvez trouver un exemple d'entité `User`, qui représente un visiteur du site:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // L'entité User représente un visiteur du site
 class User
 {
@@ -1392,8 +1382,7 @@ pas de setters (les value objects sont immuables).
 
 Par exemple, un modèle qui contient un montant en argent peut être traité comme un value object :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 class MoneyAmount
 {
     // Properties
@@ -1440,8 +1429,7 @@ Ci-dessous, un exemple de service `Mailer` est présenté avec sa classe Value O
 Il a la méthode `sendMail()` qui prend un objet de valeur `EmailMessage` et qui envoi e-mail en
 utilisant la fonction standard PHP `mail()` :
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 
 // The Email message value object
@@ -1669,8 +1657,7 @@ Ce contrôleur fournit l'action "convert" dont l'objectif est de convertir une s
 l'USD. L'utilisateur transmet le montant d'argent via la variable GET "amount".
 
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 class CurrencyConverterController extends AbstractActionController
 {
     // Currency converter model

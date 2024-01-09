@@ -107,8 +107,7 @@ Se uma classe não define um namespace, ele vive dentro do namespace *global*
 
 Veja um exemplo real da definição de namespace (tirada do componente @`Laminas\Mvc`):
 
-{line-numbers=on,lang="php"}
-~~~
+~~~php
 <?php
 namespace Laminas\Mvc;
 
@@ -597,8 +596,7 @@ I> todos para acessar todos os arquivos PHP da sua aplicação).
 
 Embora o arquivo *index.php* seja muito importante, é surpreendentemente pequeno (veja abaixo):
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 
 use Laminas\Mvc\Application;
@@ -1175,8 +1173,7 @@ no service manager. Uma das maneiras de registrar um serviço é usando o métod
 Por exemplo, vamos criar e registrar a classe de serviço de conversor de moeda, que
 será usado, por exemplo, em uma página do carrinho de compras para converter moeda EUR em USD
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 // Define a namespace where our custom service lives.
 namespace Application\Service;
@@ -1439,8 +1436,7 @@ W> Não registre o mesmo nome de serviço em módulos diferentes.
 
 A chave de configuração `service_manager` deve se parecer como:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

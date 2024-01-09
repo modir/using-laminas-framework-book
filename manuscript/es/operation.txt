@@ -113,8 +113,7 @@ namespace global).
 Un ejemplo realista de la definición de un namespace, tomado del componente
 @`Laminas\Mvc`, se muestra abajo:
 
-{line-numbers=on,lang="php"}
-~~~
+~~~php
 <?php
 namespace Laminas\Mvc;
 
@@ -601,8 +600,7 @@ I> a todos los archivos PHP de nuestra aplicación).
 
 A pesar de que el archivo *index.php* es muy importante es sorprendentemente pequeño:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 
 use Laminas\Mvc\Application;
@@ -1220,8 +1218,7 @@ usando el método `setService()` del administrador de servicios. Por ejemplo, va
 a crear y registrar la clase de servicio que convierte monedas y que se usa, por ejemplo,
 en una página con carrito de compras para convertir EUR a USD:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 // Define a namespace where our custom service lives.
 namespace Application\Service;
@@ -1506,8 +1503,7 @@ W> No debemos registrar el mismo nombre de servicio en diferentes módulos.
 
 La llave `service_manager` debería verse así:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

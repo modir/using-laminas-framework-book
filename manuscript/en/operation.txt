@@ -106,8 +106,7 @@ If a class does not define a namespace, it lives inside of the *global* namespac
 A real-world example of a namespace definition (taken from @`Laminas\Mvc` component) is presented
 below:
 
-{line-numbers=on,lang="php"}
-~~~
+~~~php
 <?php
 namespace Laminas\Mvc;
 
@@ -578,8 +577,7 @@ I> everyone to access all PHP files of your application).
 
 Although the *index.php* file is very important, it is surprisingly small (see below):
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 
 use Laminas\Mvc\Application;
@@ -1147,8 +1145,7 @@ in the service manager. One of the ways to register a service is using the `setS
 For example, let's create and register the currency converter service class, which
 will be used, for example, on a shopping cart page to convert EUR currency to USD:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 // Define a namespace where our custom service lives.
 namespace Application\Service;
@@ -1407,8 +1404,7 @@ W> Do not register the same service name in different modules.
 
 This `service_manager` key should look like below:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

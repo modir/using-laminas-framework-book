@@ -117,8 +117,7 @@ directory (see figure 6.3 for example).
 Let's look at the *layout.phtml* template file in more details.
 Below, the complete contents of the file is presented:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?= $this->doctype() ?>
 
 <html lang="en">
@@ -293,8 +292,7 @@ file as follows:
 Next, we will use the Bootstrap-provided grid system for arranging the main blocks on the page.
 Replace the HTML code of the `<body>` element (lines 28-63) with the following one:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <body>
   <div class="container">
     <div class="row">
@@ -461,8 +459,7 @@ make the necessary changes.
 When the second layout template is ready, you can switch between layouts for
 a particular controller's action by using the following code:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // A controller's action method that uses an alternative
 // layout template.
 public function indexAction()
@@ -572,8 +569,7 @@ the help of the @`ViewModel`[Laminas\View\Model\ViewModel] variable container.
 
 Next, add the *partial-demo.phtml* template file:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Partial View Demo');
 ?>
@@ -653,8 +649,7 @@ commercial ads on all (or on most) pages of your site.
 
 Put the following code in the *layout2.phtml* template file:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php $this->placeholder('content')->captureStart(); ?>
 
 <div class="row">
@@ -884,8 +879,7 @@ automatically become available to site users.
 
 In the *typeahead.phtml* view template file, put the following content:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Typeahead');
 // Add a JavaScript file
@@ -1022,8 +1016,7 @@ place it on that page's view template.
 
 To add an external CSS stylesheet to a view template, you use the @`HeadLink` view helper:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headLink()->appendStylesheet('/css/style.css');
 $this->headLink()->appendStylesheet(
@@ -1087,8 +1080,7 @@ Put the *jquery-ui.min.js* file to *APP_DIR/public/js*, and *jquery-ui.min.css* 
 *APP_DIR/public/css*. Finally, add the *datepicker.phtml* view template to the *application/index/static*
 directory under the module's *view* directory:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Datepicker');
 
@@ -1222,8 +1214,7 @@ Q> the module's `view/` directory.
 
 Next, create the stub code for the `Menu` class:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\View\Helper;
 
@@ -1271,8 +1262,7 @@ method (lines 28-31) sets the ID of the currently active menu item.
 Next, let's add the `render()` method, which will generate HTML code for
 the whole navigation bar and return it as a text string:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Renders the menu.
 public function render()
 {
@@ -1315,8 +1305,7 @@ method. Finally, the `render()` method returns the resulting HTML code as a text
 To finish with creating the `Menu` class, let's implement the `renderItem()`
 method. This method will produce the HTML code for a single menu item:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Renders an item.
 protected function renderItem($item)
 {
@@ -1397,8 +1386,7 @@ view helper and will be able to access it from any view template.
 Since we plan to use the `Menu` view helper in the layout view template,
 replace the navigation menu markup in *layout.phtml* file with the following code:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <!-- Navigation bar -->
 <?php
   $this->mainMenu()->setItems([
@@ -1466,8 +1454,7 @@ Now that you know how to implement a view helper, let's create the second view
 helper for rendering the breadcrumbs. It is completely analogous to the `Menu`
 view helper, so below we just provide the complete code of the `Breadcrumbs` class:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\View\Helper;
 
@@ -1543,8 +1530,7 @@ class Breadcrumbs extends AbstractHelper
 To be able to use the `Breadcrumbs` view helper, register it in the *module.config.php* file
 as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
 

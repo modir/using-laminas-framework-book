@@ -127,8 +127,7 @@ Laminas Skeleton Application provides you with the default implementation of `In
 class. The `IndexController` is typically the main controller class of the website. Its code
 is presented below (some parts of code were omitted for simplicity):
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -282,8 +281,7 @@ with their brief description.
 
 To simply get a GET or POST variable from an HTTP request, you use the following code:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Get a variable from GET
 $getVar = $this->params()->fromQuery('var_name', 'default_val');
 
@@ -387,8 +385,7 @@ will call the `aboutAction()`. The "about" action will display the *About* page 
 In the action method, we will create two variables containing information about our website,
 and return the variables for rendering in a view with the help of @`ViewModel`[Laminas\View\Model\ViewModel] object:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // The "about" action
 public function aboutAction()
 {
@@ -486,8 +483,7 @@ All controller classes belonging to a module should be registered in the *module
 configuration file. If your controller class doesn't need to use some services (doesn't have dependencies),
 you can register it as follows:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
@@ -813,8 +809,7 @@ In the "New PHP File" dialog that appears (figure 4.7), enter the name *about.ph
 The *about.phtml* view template file will be created and displayed in the right pane of NetBeans window.
 In that file, enter the following:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <h1>About</h1>
 
 <p>
@@ -969,8 +964,7 @@ method from your `IndexController` class' `indexAction()` method to
 force Laminas to use the *about.phtml* view template file for rendering the *Home*
 page, instead of the *index.phtml* file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Index action renders the Home page of your site.
 public function indexAction()
 {
@@ -1014,8 +1008,7 @@ The template name is usually composed of module name followed by controller name
 
 View resolver settings are stored inside of your *module.config.php* file under the *view_manager* key:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1064,8 +1057,7 @@ to PHP standard output stream.
 Add the *DownloadController.php* file to *Controller* directory of *Application* module, then
 put the following code into the file:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1263,8 +1255,7 @@ inside of the application).
 The *module.config.php* file contains several parameters under the *view_manager* key, which you can use
 to configure the appearance of your error templates:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1358,8 +1349,7 @@ Entities are usually stored in a database, in a file system or in any other stor
 
 Below, you can find an example a `User` entity, which represents a site visitor:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // The User entity represents a site visitor
 class User
 {
@@ -1419,8 +1409,7 @@ have setters (value objects are immutable).
 For example, a model wrapping a money amount can be
 treated as a value object:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 class MoneyAmount
 {
     // Properties
@@ -1685,8 +1674,7 @@ class below. This controller provides the "convert" action method whose goal is 
 an amount of money from EUR to USD currency. The user passes the amount of money through the
 "amount" GET variable.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 class CurrencyConverterController extends AbstractActionController
 {
     // Currency converter model

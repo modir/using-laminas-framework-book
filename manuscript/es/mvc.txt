@@ -144,8 +144,7 @@ Laminas Skeleton Application nos provee de una implementación por defecto de la
 principal de un sitio web. El código se presenta abajo (algunas partes se omitieron
 por simplicidad):
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -313,8 +312,7 @@ más ampliamente usados de la clase `Request` junto con una breve descripción.
 
 Para traer una variable GET o POST de la petición HTTP usamos el siguiente código:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Get a variable from GET
 $getVar = $this->params()->fromQuery('var_name', 'default_val');
 
@@ -428,8 +426,7 @@ Vamos a ver un ejemplo de la vida real. Creamos otro método de acción en la cl
 contienen información sobre nuestro sitio web y regresaremos las variables para imprimirlos
 en una vista con la ayuda del objeto `ViewModel`:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // The "about" action
 public function aboutAction()
 {
@@ -533,8 +530,7 @@ Todas las clases controladoras que pertenecen a un módulo deben ser registradas
 de configuración *module.config.php*. Si nuestra clase controladora no necesita usar servicios
 (no tiene dependencias) podemos registrarla de la siguiente manera:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
@@ -890,8 +886,7 @@ nombre para el archivo: *about.phtml*, y hacemos clic en el botón *Finish*.
 El archivo de plantilla de vista *about.phtml* será creado y mostrado en la ventana
 derecha de NetBeans. En este archivo agregamos el siguiente código:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <h1>About</h1>
 
 <p>
@@ -1065,8 +1060,7 @@ desde el método `indexAction()` de la clase `IndexController` para forzar a Lam
 a usar el archivo de template de vista *about.phtml* para imprimir la página
 *Home* en lugar del archivo *index.phtml*:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 // Index action renders the Home page of your site.
 public function indexAction()
 {
@@ -1120,8 +1114,7 @@ que no incluye el nombre del módulo.
 Las configuraciones de los decisores de vista se almacenan dentro de nuestro
 archivo *module.config.php* bajo la llave *view_manager*:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1175,8 +1168,7 @@ de PHP.
 Agregamos el archivo *DownloadController.php* a la carpeta *Controller* del módulo
 *Application* y luego colocamos el siguiente código dentro del archivo:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1386,8 +1378,7 @@ El archivo de configuración *module.config.php* contiene varios parámetros baj
 la llave *view_manager* que podemos usar para configurar la apariencia de nuestras
 plantillas de error:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1493,8 +1484,7 @@ en un archivo del sistema o en cualquier otro almacenamiento.
 Abajo podemos encontrar un ejemplo de la entidad `User` que representa a los
 usuarios del sitio web:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // The User entity represents a site visitor
 class User
 {
@@ -1557,8 +1547,7 @@ pero no tienen métodos setters (los objetos con valor son inmutables).
 Por ejemplo, un modelo que maneja una cantidad de dinero puede ser tratado
 como un objeto con valor:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 class MoneyAmount
 {
     // Properties
@@ -1845,8 +1834,7 @@ Para un ejemplo de un controlador "flaco" miremos más abajo la clase
 "convert" cuyo objetivo es convertir un cantidad de EUR a USD. El usuario pasa
 la cantidad de dinero a través de la variable GET "amount".
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 class CurrencyConverterController extends AbstractActionController
 {
     // Currency converter model

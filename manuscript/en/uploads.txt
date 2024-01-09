@@ -43,8 +43,7 @@ A simple HTML form capable of file uploads is shown in the code example below. T
 encoding type is enabled by setting the `enctype` attribute of the form with the value
 of "multipart/form-data":
 
-{line-numbers=on, lang=html}
-~~~
+~~~html
 <form action="upload" method="POST" enctype="multipart/form-data">
     <input type="file" name="myfile">
     <br/>
@@ -68,8 +67,7 @@ When the site user picks some file and clicks the *Submit* button on the form, t
 an HTTP request to the web server, and the request will contain the data of the file being uploaded.
 The example below illustrates how the HTTP request may look like:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 POST http://localhost/upload HTTP/1.1
 Host: localhost
 Content-Length: 488
@@ -121,8 +119,7 @@ I> to store information about uploaded files.
 For example, for the above mentioned simple upload form, the `$_FILES` super-global array will look
 as follows (the output is generated with the `var_dump()` PHP function):
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 array (size=1)
     'myfile' =>
         array (size=5)
@@ -163,8 +160,7 @@ T> through HTTP POST request, and that the upload process has finished without e
 The following code example shows how to move the file uploaded with the
 simple form we have considered above:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 $destPath = '/path/to/your/upload/dir';
 $result = move_uploaded_file($_FILES['myfile']['tmp_name'], $destPath);
 if(!$result) {
@@ -192,8 +188,7 @@ In your controller class, you typically do not communicate with the `$_FILES`
 array directly, instead you may use the @`Request`[Laminas\Http\Request] class or the @`Params`
 controller plugin, as shown in code example below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class IndexController extends AbstractActionController
@@ -229,8 +224,7 @@ file entry from the `$_FILES` super-global array.
 To add file uploading capability to your form model, you need to add an element
 of the @`Laminas\Form\Element\File` class as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
     // Add the following code inside of form's addElements() method.
 
     // Add the "file" field.
@@ -400,8 +394,7 @@ usual @`Input`[Laminas\InputFilter\Input] class.
 In your form model's `addInputFilter()` private method, you add the validation rules for the
 file input as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
     $inputFilter->add([
         'type'     => 'Laminas\InputFilter\FileInput',
         'name'     => 'file',  // Element's name.
@@ -473,8 +466,7 @@ controller action method. We will attract reader's attention to the aspects spec
 Assume we want to add a web page displaying a form (let's name it `YourForm`) capable of file uploads.
 For that page, we need to add the `uploadAction()` method to a controller class:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class IndexController extends AbstractActionController
@@ -578,8 +570,7 @@ server. The form will have the following fields:
 The code of the `ImageForm` form model is presented below. It should be put to *ImageForm.php* file
 stored in *Form* directory under the module's source directory:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -652,8 +643,7 @@ add those to the `ImageForm` form model class. We want to achieve the following 
 
 To add form validation rules, modify the code of the `ImageForm` class as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -776,8 +766,7 @@ T> the separation of concerns and code reusability.
 Add the *ImageManager.php* file to the *Service* directory under the module's
 source directory. Add the following code to the file:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -808,8 +797,7 @@ Next, we want to add the `getSavedFiles()` public method to the service class. T
 the upload directory and return an array containing the names of the uploaded files. To add the
 `getSavedFiles()` method, modify the code in the following way:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -864,8 +852,7 @@ Next, we add the three methods for getting information about an uploaded file:
 
 To add those three methods, change the code as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -920,8 +907,7 @@ Finally, we want to add the image resizing functionality to the `ImageManager` c
 resizing functionality will be used for creating small thumbnail images. Add the `resizeImage()`
 method to the `ImageManager` class as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class ImageManager
@@ -1006,8 +992,7 @@ will have the following action methods (listed in table 10.4):
 To start, create the *ImageController.php* file in the *Application/Controller* directory under
 the module's source directory. Put the following stub code into the file:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1061,8 +1046,7 @@ image file to the gallery.
 
 Change the *ImageController.php* file as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class ImageController extends AbstractActionController
@@ -1127,8 +1111,7 @@ populate that action method a little bit later.
 Now, its time to add the view template for the "upload" action. Add the *upload.phtml* view template
 file under the *application/image* directory under the module's *view* directory:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
@@ -1178,8 +1161,7 @@ browser.
 
 Change the *ImageController.php* file as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 class ImageController extends AbstractActionController
@@ -1207,8 +1189,7 @@ T> image management functionality to the `ImageManager` service model.
 Add the *index.phtml* view template to *application/image* directory under the module's
 *view* directory. The contents of the file is shown below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <h1>Image Gallery</h1>
 
 <p>
@@ -1291,8 +1272,7 @@ will take two GET parameters:
 
 Change the *ImageController.php* file as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
  <?php
 //...
 class ImageController extends AbstractActionController

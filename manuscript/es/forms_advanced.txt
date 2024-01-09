@@ -134,8 +134,7 @@ arreglo de configuración). Preferimos este método porque se necesita menos có
 escribir. Además, se supone que se está llamando este código dentro del método protegido
 `addElements()` del modelo del formulario:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Add the CAPTCHA field to the form model
 $this->add([
@@ -188,8 +187,7 @@ W> soporte para PNG y tipo de letra FT.
 Para agregar la clase CAPTCHA `Image` al modelo de formulario llamamos al
 método de formulario `add()` de la siguiente manera:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 // ...
@@ -335,8 +333,7 @@ Para usar el elemento CAPTCHA FIGlet en nuestro formulario reemplazamos la
 definición del elemento del formulario del ejemplo anterior con el siguiente
 código:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Add the CAPTCHA field
 $this->add([
@@ -473,8 +470,7 @@ I> pantalla).
 Para insertar un elemento CSRF a nuestro formulario agregamos las siguientes
 líneas dentro del método `addElements()`:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // Add the CSRF field
 $this->add([
   'type'  => 'csrf',

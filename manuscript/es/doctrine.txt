@@ -399,8 +399,7 @@ Una vez que hemos instalado *DoctrineORMModule* y todas sus dependencias necesit
 agregar las siguientes lineas en el archivo *APP_DIR/config/modules.config.php* para
 activar los módulos:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     // Add the Doctrine integration modules.
@@ -502,8 +501,7 @@ I> Esta configuración se comparte por todos los módulos de la aplicación web.
 I> queremos crear una conexión específica de módulo debemos agregar la llave
 I> al archivo *module.config.php*.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
@@ -645,8 +643,7 @@ Por ejemplo, abajo mostramos un ejemplo básico de una clase entidad de Doctrine
 Podemos ver que la clase y sus propiedades se marcan con las anotaciones de Docblock
 usando la etiqueta especial *tags* (una etiqueta que comienza con el carácter '@').
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -746,8 +743,7 @@ Comenzamos con la creación de la entidad `Post`. Creamos el archivo *Post.php* 
 de la carpeta *Entity* del módulo. (Si aún no hemos creado la carpeta *Entity* es
 momento de hacerlo ahora). Colocamos este código dentro del archivo:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -927,8 +923,7 @@ Por analogía con la entidad `Post` creamos las entidades `Comment` y `Tag` en l
 carpeta *Entity*. Para hacer esto, primero, creamos el archivo *Comment.php* y colocamos
 el siguiente código dentro de él:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -1015,8 +1010,7 @@ class Comment
 
 Luego, creamos el archivo *Tag.php* y colocamos el siguiente código dentro de él:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Entity;
 
@@ -1094,8 +1088,7 @@ T> de la documentación de Doctrine.
 Primero vamos a definir la relación uno-a-muchos entre las entidades `Post` y `Comment`.
 Modificamos el archivo *Post.php* y agregamos las siguientes líneas:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Doctrine\Common\Collections\ArrayCollection;
@@ -1321,8 +1314,7 @@ Para permitir que Doctrine conozca donde encontrar las entidades para nuestra m�
 *Application* (o para otro módulo) agregamos las siguientes líneas dentro de nuestro
 archivo *module.config.php*:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -1541,8 +1533,7 @@ por la fecha de creación de manera descendente.
 Para hacer esto agregamos el método constructor y el método `indexAction()` en la
 clase de tipo controlador `IndexController` de la siguiente manera:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1893,8 +1884,7 @@ I> al blog.
 Creamos el archivo *PostManager.php* dentro de la carpeta *Service* dentro del directorio
 fuente del módulo, luego, colocamos el siguiente código dentro del archivo:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -2041,8 +2031,7 @@ las publicaciones) crearemos la clase de tipo controlador `PostController`. Crea
 el método de acción `addAction()` dentro de la clase `PostController` que permitirá
 agregar una nueva publicación al blog (ver el código de abajo):
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 class PostController extends AbstractActionController
 {
     /**
@@ -2302,8 +2291,7 @@ Para implementar esta página necesitamos los siguientes elementos:
 Primero agregamos los métodos `updatePost()` y `convertTagsToString()` al modelo
 de servicio `PostManager` de la siguiente manera:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 //...
 class PostManager
@@ -2640,8 +2628,7 @@ Primero implementaremos el formulario `CommentForm` que permitirá agregar un co
 a una publicación. Creamos el archivo *CommentForm.php* en la carpeta *Form* dentro
 de la carpeta fuente del módulo. Colocamos el siguiente código dentro del archivo:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -3138,8 +3125,7 @@ dentro de la carpeta fuente del módulo. Abajo encontraremos el código de las c
     publicadas que tienen una etiqueta particular asignada (filtrar las publicaciones
     por una etiqueta dada).
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Repository;
 
@@ -3219,8 +3205,7 @@ Para hacerle saber a Doctrine que debe usar un repositorio desarrollado a la med
 para la entidad `Post` modificamos las anotaciones de la entidad de la siguiente
 manera:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -3293,8 +3278,7 @@ normaliza la frecuencia de los valores (colocando los valores entre 0 y 1.0).
 
 Aquí modificaremos la clase `IndexController` para implementar el filtro de etiquetas.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 //...
 class IndexController extends AbstractActionController
@@ -3572,8 +3556,7 @@ T> además, podemos ver el código completo en el Blog de ejemplo.
 Luego modificamos el método `indexAction()` del `IndexController` de la siguiente
 manera:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 

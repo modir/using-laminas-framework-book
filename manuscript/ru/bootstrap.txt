@@ -291,8 +291,7 @@ Twitter Bootstrap. Мы планируем использовать некото
 находиться название вашей организации) и ссылки на основные страницы.
 Чтобы добавить на страницу панель навигации, используйте следующий HTML-код:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">Hello World</a>
@@ -332,8 +331,7 @@ Twitter Bootstrap. Мы планируем использовать некото
 
 Выпадающее меню можно определить заменив элемент *Support* из предыдущего примера следующим образом:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
      Support <b class="caret"></b>
@@ -365,8 +363,7 @@ Twitter Bootstrap. Мы планируем использовать некото
 
 Определить такого рода панель навигации можно следующим образом:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 <nav class="navbar navbar-default" role="navigation">
   <!-- Название организации и переключатель группируются для лучшего отображения на дисплеях мобильных -->
   <div class="navbar-header">

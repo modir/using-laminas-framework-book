@@ -212,8 +212,7 @@ Para mostrar como suscribir un evento vamos a crear un escucha de eventos
 que reaccionará a un evento *Dispatch* y colocará una maqueta de plantilla
 diferente para *todos* los controladores del módulo:
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace YourCompanyModule;
 
@@ -272,8 +271,7 @@ pertenece a nuestro módulo y de ser así cambiamos la maqueta de plantilla
 En este ejemplo, mostraremos como registrar un escucha de eventos que obliga
 al sitio web a usar siempre conexión HTTPS en todas nuestras páginas web.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace YourCompanyModule;
 
@@ -339,8 +337,7 @@ en nuestro sitio web. Reportar excepciones y errores es una tarea importante,
 porque permite hacer a nuestro sitio web más estable, seguro y mejorar la
 experiencia del usuario.
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 namespace YourCompanyModule;
 

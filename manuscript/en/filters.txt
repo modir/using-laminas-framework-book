@@ -29,8 +29,7 @@ rules of your forms (or, if you wish, to filter an arbitrary data outside of for
 Technically, a *filter* is a PHP class implementing the @`FilterInterface`[Laminas\Filter\FilterInterface] interface
 (it belongs to @`Laminas\Filter` namespace). The interface definition is presented below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Laminas\Filter;
 
@@ -189,8 +188,7 @@ of the @`StringTrim` filter, setting its options, and filtering a value.
 
 **Example 1. Passing options to the constructor method.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the filter class name.
 use Laminas\Filter\StringTrim;
@@ -216,8 +214,7 @@ to be trimmed. The expected output of this call is the "name@example.com" string
 
 **Example 2. Without passing options to the constructor.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the filter class name.
 use Laminas\Filter\StringTrim;
@@ -252,8 +249,7 @@ The @`StaticFilter` class is some kind of a "proxy" designed for automatic filte
 instantiation, configuration, and execution. For example, let's consider how to create
 the same @`StringTrim` filter, configure it, and call its `filter()` method:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create and execute the StringTrim filter through the StaticFilter proxy.
 $filteredValue = \Laminas\Filter\StaticFilter::execute(' name@example.com  ',
@@ -281,8 +277,7 @@ validation rules for the feedback form in [Collecting User Input with Forms](#fo
 For example, let's show how to construct the same @`StringTrim` filter with the help
 of the factory:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // It is assumed that you call the following code inside of the form model's
 // addInputFilter() method.
@@ -372,8 +367,7 @@ I> will return it as is.
 
 Below, you can find a code example illustrating the usage of the @`ToInt` filter.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create ToInt filter.
 $filter = new \Laminas\Filter\ToInt();
@@ -784,8 +778,7 @@ classes live in the @`Laminas\Filter\Compress`[Laminas\Filter] namespace.
 
 Below, a code example demonstrating the usage of the @`Compress` filter is provided.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create Compress filter.
 $filter = new \Laminas\Filter\Compress();
@@ -841,8 +834,7 @@ classes live in the @`Laminas\Filter\Encrypt`[Laminas\Filter] namespace.
 
 Below, a code example demonstrating the usage of the @`Encrypt`[Laminas\Filter\Encrypt] filter is provided.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create Encrypt filter.
 $filter = new \Laminas\Filter\Encrypt();
@@ -1111,8 +1103,7 @@ the @`StripTags` filter, which is then followed by the @`StripNewlines` filter.
 
 To construct the filter chain like in figure 8.4, we can use the following code:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Filter\FilterChain;
 
@@ -1225,8 +1216,7 @@ Because Laminas does not provide a standard filter for accomplishing such phone 
 we will use the @`Callback`[Laminas\Filter\Callback] wrapper filter. To do that, we will make the following
 changes to the code of our `ContactForm` class:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 class ContactForm extends Form
@@ -1380,8 +1370,7 @@ into that file:
 [^phone_filter_service]: The `PhoneFilter` class may be considered as a service model because its goal is to
        process data, not to store it. By convention, we store all custom filters under the `Filter` directory.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Filter;
 

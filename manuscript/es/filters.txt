@@ -33,8 +33,7 @@ Técnicamente un *filtro* es una clase PHP que implementa la interfaz `FilterInt
 que pertenece al namespace `Laminas\Filter`. La definición de la interfaz se presenta
 más abajo:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Laminas\Filter;
 
@@ -235,8 +234,7 @@ filtrado de un valor.
 
 **Ejemplo 1. Pasar las opciones al método constructor.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the filter class name.
 use Laminas\Filter\StringTrim;
@@ -263,8 +261,7 @@ para que sea limpiada. La salida esperada de esta llamada es la cadena "name@exa
 
 **Ejemplo 2. Sin pasar opciones al constructor.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the filter class name.
 use Laminas\Filter\StringTrim;
@@ -304,8 +301,7 @@ y ejecución automática de filtros. Por ejemplo, si consideramos la
 manera de crear el mismo filtro `StringTrim`, configurarlo y llamar
 a su método `filter()`:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create and execute the StringTrim filter through the StaticFilter proxy.
 $filteredValue = \Laminas\Filter\StaticFilter::execute(' name@example.com  ',
@@ -335,8 +331,7 @@ reglas de validación para el formulario de contacto en [Colectar las entradas d
 Por ejemplo, vamos a mostrar como construir el mismo filtro `StringTrim` con la
 ayuda de una fábrica:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // It is assumed that you call the following code inside of the form model's
 // addInputFilter() method.
@@ -431,8 +426,7 @@ I> el filtro regresará el arreglo sin modificaciones.
 
 Abajo, encontraremos un ejemplo que ilustra el uso del filtro `ToInt`.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create ToInt filter.
 $filter = new \Laminas\Filter\ToInt();
@@ -878,8 +872,7 @@ Estas clases se encuentran en el espacio de nombres `Laminas\Filter\Compress`.
 
 Abajo, mostramos un ejemplo del uso del filtro `Compress`.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create Compress filter.
 $filter = new \Laminas\Filter\Compress();
@@ -939,8 +932,7 @@ Estas clases están en el espacio de nombres `Laminas\Filter\Encrypt`.
 
 Abajo, tenemos un ejemplo que demuestra el uso del filtro `Encrypt`.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create Encrypt filter.
 $filter = new \Laminas\Filter\Encrypt();
@@ -1234,8 +1226,7 @@ por el filtro `StripNewlines`.
 Para construir una cadena de filtro como la de la figura 8.4 podemos usar el
 siguiente código:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Filter\FilterChain;
 
@@ -1363,8 +1354,7 @@ Como Laminas no provee un filtro estándar para filtrar el teléfono, usaremos e
 de envoltura `Callback`. Para hacerlo, haremos los siguientes cambios en el
 código de la clase `ContactForm`:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 class ContactForm extends Form
@@ -1531,8 +1521,7 @@ siguiente código dentro del archivo:
                          Por convención, guardamos todos los filtros personalizados
                          dentro de la carpeta `Filter`.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Filter;
 

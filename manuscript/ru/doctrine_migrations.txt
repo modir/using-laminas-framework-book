@@ -44,8 +44,7 @@ php composer.phar require doctrine/migrations
 хранить классы миграций и др. Для этого добавьте следующий код в файл `config/autoload/global.php`:
 
 
-{line-numbers=on,lang=php}
-~~~
+~~~php
 <?php
 return [
     'doctrine' => [

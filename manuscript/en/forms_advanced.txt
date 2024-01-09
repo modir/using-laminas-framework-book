@@ -121,8 +121,7 @@ The code example below shows how to use the latter method (passing a configurati
 We prefer this method because it requires less code to write. It is assumed that you call
 this code inside of form model's `addElements()` protected method:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Add the CAPTCHA field to the form model
 $this->add([
@@ -172,8 +171,7 @@ W> support and FT fonts.
 To add the @`Image`[Laminas\Captcha\Image] CAPTCHA to your form model, call the form's `add()`
 method as follows:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 // ...
@@ -308,8 +306,7 @@ the CAPTCHA element as shown below:
 To use the FIGlet CAPTCHA element with your form, replace the form element definition
 from the previous example with the following code:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Add the CAPTCHA field
 $this->add([
@@ -428,8 +425,7 @@ I> The @`Csrf`[Laminas\Form\Element\Csrf] element has no visual representation (
 
 To insert a CSRF element to your form model, add the following lines in its `addElements()` method:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // Add the CSRF field
 $this->add([
   'type'  => 'csrf',

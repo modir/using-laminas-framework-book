@@ -165,8 +165,7 @@ The HTML markup presented above will generate the group as in figure 7.3:
 
 An example of a typical HTML form is presented below:
 
-{line-numbers=on, lang=html}
-~~~
+~~~html
 <form name="contact-form" action="/contactus" method="post">
   <label for="email">E-mail</label>
   <input name="email" type="text">
@@ -235,8 +234,7 @@ When using POST method for submitting the form, the data is
 sent in HTTP request body. For example, when you press the *Submit* button on the
 feedback form, an HTTP request will look like the example below:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 POST http://localhost/contactus HTTP/1.1
 Host: localhost
 Connection: keep-alive
@@ -256,8 +254,7 @@ characters from the ASCII table.
 In comparison, when you set the GET method for the form, an HTTP request will look
 like the example below:
 
-{line-numbers=on, lang=text}
-~~~
+~~~text
 GET http://localhost/contactus?email=name%40example.com&subject=Example+Subject&body=Hello%21&submit=Submit HTTP/1.1
 Host: localhost
 Connection: keep-alive
@@ -390,8 +387,7 @@ template file.
 Then, add the `contactUsAction()` action method to the `IndexController` class. In the action method, we
 want to extract raw data from the feedback form submitted by the site user:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -566,8 +562,7 @@ T> class, and that it inherits methods for setting form attributes from the @`El
 
 Below, we provide a stub model class for the feedback form from our previous examples:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -793,8 +788,7 @@ elements to a form.
 The following code fragment creates an instance of the @`Laminas\Form\Element\Text` class
 and adds the element to the form model:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -888,8 +882,7 @@ I> help of the @`Laminas\Form\Factory` factory class (illustrated by figure 7.13
 
 ![Figure 7.13. The logic of the add() method](images/forms/factory_graph.png)
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -958,8 +951,7 @@ I> method to better structure the form model's code.
 
 The code of the `ContactForm` class is presented below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -1121,8 +1113,7 @@ because it requires less code to write).
 To add an input to the input filter, you use its `add()` method, which takes the single
 argument - an array specification of the input in the following form:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 [
   'name'     => '<name>',
   'type'     => '<type>',
@@ -1162,8 +1153,7 @@ In the above array, we have the following keys:
 
 A typical filter configuration is presented below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 [
   'name' => '<filter_name>',
   'priority' => <priority>,
@@ -1187,8 +1177,7 @@ parameters for configuring the filter.
 
 A typical validator configuration is presented below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 [
   'name' => '<validator_name>',
   'break_chain_on_failure' => <flag>,
@@ -1217,8 +1206,7 @@ and populate it with filters and validators for each form field, let's complete
 our `ContactForm` form model class. Below, we add the `addInputFilter()`
 private method, which defines the filtering/validation rules and stores them in input filter container:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Laminas\InputFilter\InputFilter;
@@ -1395,8 +1383,7 @@ So, a generic form usage workflow is the following:
 The code example below illustrates how to implement this typical workflow in
 your controller's action method:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1506,8 +1493,7 @@ source directory (see figure 7.19 for example).
 
 The following is the code that should be put into the *MailSender.php* file:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -1640,8 +1626,7 @@ return [
 Next, add the constructor, the `contactUsAction()`, `thankYouAction()` and `sendErrorAction()`
 methods to the controller. Below, the complete code is presented:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Application\Service\MailSender;
@@ -2078,8 +2063,7 @@ If you remember, earlier we added the *contact-us.phtml*
 view template in *application/index/* directory under the module's
 *view/* directory. Replace the code in that file with the following:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->prepare();
@@ -2175,8 +2159,7 @@ Twitter Bootstrap CSS classes to give the form a nice, professional-looking
 appearance. To add Bootstrap styling to the form, you have to modify the code in the *.phtml*
 file to make it look like below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->prepare();

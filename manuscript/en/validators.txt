@@ -31,8 +31,7 @@ of errors describing why the check didn't pass.
 In Laminas, a validator is a usual PHP class which implements the @`ValidatorInterface`[Laminas\Validator\ValidatorInterface]
 interface (it belongs to @`Laminas\Validator` namespace). The interface definition is presented below:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Laminas\Validator;
 
@@ -280,8 +279,7 @@ the @`EmailAddress` validator, setting its options and checking an input value:
 
 **Example 1. Passing options to the constructor method.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the validator class name.
 use Laminas\Validator\EmailAddress;
@@ -319,8 +317,7 @@ the `getMessages()` method (line 19).
 
 **Example 2. Without passing options to the constructor.**
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Optionally, define a short alias for the validator class name.
 use Laminas\Validator\EmailAddress;
@@ -366,8 +363,7 @@ The @`StaticValidator` class is some kind of a "proxy" designed for automatic va
 instantiation, configuration and execution. For example, let's consider how to create
 the same @`EmailAddress` validator, configure it and call its `isValid()` method:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // Create and execute the EmailAddress validator through StaticValidator proxy.
 $validatedValue = \Laminas\Validator\StaticValidator::execute('name@example.com',
@@ -409,8 +405,7 @@ validation rules for the feedback form in [Collecting User Input with Forms](#fo
 For example, let's show how to construct the same @`EmailAddress` filter with the help
 of the factory:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // It is assumed that you call the following code inside of the form model's
 // addInputFilter() method.
@@ -1148,8 +1143,7 @@ Because Laminas does not provide a standard validator for accomplishing such pho
 we will use the @`Callback`[Laminas\Validator\Callback] wrapper validator. To do that, we will make the following
 changes to the code of our `ContactForm` class:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 // ...
 class ContactForm extends Form
@@ -1279,8 +1273,7 @@ into that file:
 [^phone_validator_service]: The `PhoneValidator` class may be considered as a service model, because its goal is to
        process data, not to store it. By convention, we store custom validators under the `Validator` directory.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Validator;
 
@@ -1499,8 +1492,7 @@ we need to implement some security checks:
 
 Below, you can find the code of the action method:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 

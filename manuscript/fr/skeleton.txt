@@ -455,8 +455,7 @@ du répertoire, ce qui signifie qu'il n'affecte que son propre dossier et tous s
 
 Le contenu du fichier `.htaccess` est présenté ci-dessous :
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 RewriteEngine On
 # La règle suivante indique à Apache que si le nom de fichier
 # demandé existe, il suffit de le renvoyer.
@@ -541,8 +540,7 @@ un mot de passe pour vous y connecter.
 Pour autoriser l'accès à votre site par nom d'utilisateur et mot de passe, vous pouvez modifier le fichier
 virtual host comme ceci :
 
-{line-numbers=on,lang=text}
-~~~
+~~~text
 ...
 <Directory /home/username/helloworld/public/>
     DirectoryIndex index.php

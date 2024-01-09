@@ -159,8 +159,7 @@ instructions à Laminas sur la façon de procéder.
 
 La configuration de routage pour un module est stockée dans le fichier de configuration *module.config.php* :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Router\Http\TreeRouteStack;
 
@@ -278,8 +277,7 @@ Maintenant que vous savez comment configurer les routes et les organiser dans de
 regardons un exemple concret. Dans l'application Laminas Skeleton, la configuration de routage ressemble à
 ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -344,8 +342,7 @@ Vous utilisez généralement le type *Literal* pour les URL qui doivent être co
 Ci-dessous, la définition de la route nommée "home" est présentée. La route "home" est mappée à l'action
 "index" de IndexController qui pointe vers la page d'accueil de votre site :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'home' => [
     'type' => Literal::class,
     'options' => [
@@ -427,8 +424,7 @@ W> Après avoir installé l'extension, redémarrez Apache pour appliquer vos mod
 
 Tout d'abord, nous définissons la route "barcode" dans le fichier *module.config.php* :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'barcode' => [
     'type' => Segment::class,
     'options' => [
@@ -466,8 +462,7 @@ d'action à exécuter si il y a correspondance.
 
 Ensuite, nous ajoutons la méthode `barcodeAction()` dans la classe `IndexController` :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // On ajoute le nom de l'alias au début du fichier
 use Laminas\Barcode\Barcode;
 
@@ -551,8 +546,7 @@ traitées par l'action unique `IndexController::docAction()`.
 
 Tout d'abord, nous ajoutons la route Regex nommée "doc" au fichier *module.config.php* :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'doc' => [
     'type' => Regex::class,
     'options' => [
@@ -584,8 +578,7 @@ I> `use Laminas\Router\Http\Regex;`
 
 Ensuite, ajoutez l'action suivante à la classe `IndexController` :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 public function docAction()
 {
     $pageTemplate = 'application/index/doc'.
@@ -680,8 +673,7 @@ et imbriquez les routes enfants d'autres types à l'intérieur de celle-ci :
         web centralisée. Les systèmes CMS permettent aux non-programmeurs d'effectuer des tâches quotidiennes
         du site comme la publication de contenu.
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'routename' => [
     'type' => Hostname::class,
     'options' => [
@@ -732,8 +724,7 @@ différentes.
 
 La configuration de route *Scheme* est présentée ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'routename' => [
     'type' => Scheme::class,
     'options' => [
@@ -759,8 +750,7 @@ pour renvoyer certains paramètres lors du matching de route. Dans l'exemple ci-
 Le type de route  *Method* peut être utilisé si vous avez besoin de diriger des requêtes *GET* et *POST* dans
 les actions de différents contrôleurs. Sa configuration typique est présentée ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'routename' => [
     'type' => Method::class,
     'options' => [
@@ -832,8 +822,7 @@ I> l'objet @`RouteMatch`[Laminas\Router\RouteMatch] pour accomplir la même tâc
 Pour obtenir l'objet @`RouteMatch`[Laminas\Router\RouteMatch] de la méthode d'action de votre contrôleur,
 vous pouvez utiliser le code suivant :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 // Un exemple d'action.
 public function someAction()
 {
@@ -899,8 +888,7 @@ vous utilisez généralement une URL relative (sans nom d'hôte) :
 Pour générer des URL dans vos vues (fichiers .phtml), vous pouvez utiliser la classe d'aide de vue
  @`Url`[Laminas\View\Helper\Url], qui prend le nom de la route en argument d'entrée:
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page d'accueil -->
 <a href="<?= $this->url('home'); ?>">Accueil</a>
 
@@ -931,8 +919,7 @@ Une fois que la classe @`PhpRenderer` exécute le code de la vue, le balisage HT
 Si une route utilise des paramètres variables, vous devez les passer à l'aide de vue @`Url`[Laminas\View\Helper\Url]
 en tant que deuxième argument :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page A propos -->
 <a href="<?= $this->url('application', ['action' => 'about']); ?>" >
   A propos
@@ -984,8 +971,7 @@ troisième paramètre à l'aide de vue @`Url`[Laminas\View\Helper\Url]. Le trois
 tableau contenant une ou plusieurs options. Pour assembler l'URL absolue, transmettez l'option
 `force_canonical`, comme dans l'exemple ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page d'Accueil -->
 <a href="<?= $this->url('home', [], ['force_canonical' => true]); ?>" >
   Accueil </a>
@@ -1159,8 +1145,7 @@ Pour commencer, créez le sous-répertoire *Route* dans le répertoire source du
 
 Dans ce fichier, collez le bout de code présenté ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Route;
 
@@ -1208,8 +1193,7 @@ spécifiées par l'interface: `factory()`, `match()`, `assemble()` et `getAssemb
 Ensuite, ajoutons plusieurs propriétés protégées et la méthode constructeur de la classe `StaticRoute`,
 comme indiqué ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -1255,8 +1239,7 @@ initialiser les propriétés protégées.
 Implémentons ensuite la méthode `factory()` pour notre classe de route personnalisée `StaticRoute`.
 La méthode `factory()` sera appelée par le routeur pour instancier la classe route :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -1316,8 +1299,7 @@ de la classe pour instancier et retourner l'objet `StaticRoute`.
 
 La méthode suivante que nous ajoutons à la classe `StaticRoute` est la méthode `match()` :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -1391,8 +1373,7 @@ Pour compléter l'implémentation de notre classe `StaticRoute`, nous ajoutons l
 et `getAssembledParams()` qui seront utilisées pour la génération d'URL par les paramètres de route.
 Le code de ces méthodes est présenté ci-dessous :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -1443,8 +1424,7 @@ générer l'URL (ligne 36).
 Nous avons maintenant terminé notre classe `StaticRoute`. Pour utiliser notre type de route personnalisé,
 nous ajoutons la configuration suivante au fichier de configuration *module.config.php* :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 'static' => [
     'type' => StaticRoute::class,
     'options' => [
@@ -1471,8 +1451,7 @@ I> `use Application\Route\StaticRoute;`
 
 La dernière étape consiste à créer la méthode d'action corresponndante dans la classe `IndexController` :
 
-{line-numbers=on, lang=php}
-~~~
+~~~php
 public function staticAction()
 {
     // On récupère le chemin d'accès aux vues à partir des paramètres de route
