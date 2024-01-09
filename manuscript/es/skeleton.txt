@@ -596,8 +596,7 @@ sitio web.
 Para prohibir el acceso a nuestro sitio web debemos modificar el sitio virtual
 agregando las siguientes líneas:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Require ip <your_ip_address>
 ~~~
 
@@ -658,8 +657,7 @@ En el comando de arriba debemos reemplazar el comodín `<username>` con el
 nombre del usuario. Podemos elegir un nombre arbitrario, por ejemplo, «admin».
 El comando pedirá la contraseña del usuario y la guardará en el archivo:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # htpasswd -c /usr/local/apache/passwd/passwords <username>
 New password:
 Re-type new password:
@@ -682,8 +680,7 @@ un nombre de dominio (como `site1.mydomain.com`). Pero si aún no tenemos un
 nombre de dominio podemos especificar en su lugar un puerto diferente
 (veamos un ejemplo más abajo).
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # Listen directive tells Apache to listen requests on port 8080
 Listen 8080
 
@@ -708,8 +705,7 @@ sitio web en el archivo del sistema `hosts`.
 Primero modificamos el virtual host de Apache para convertirlo en un sitio
 virtual *basado en nombres*:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <VirtualHost *:80>
   # Add the ServerName directive
 	ServerName site1.localhost
@@ -725,8 +721,7 @@ dirección IP en el primer campo de texto seguido por uno o más nombres.
 Para agregar un alias a nuestros sitios web agregamos una línea para cada
 uno de ellos como se muestra abajo:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 127.0.0.1            site1.localhost
 ~~~
 
@@ -756,8 +751,7 @@ usos avanzados de Composer.
 Como ya sabemos, la única llave que es obligatoria en el archivo `composer.json`
 es `require`. Esta llave le dice a Composer que paquetes necesita la aplicación:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 {
     "require": {
         "php": "^5.6 || ^7.0",

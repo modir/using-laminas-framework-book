@@ -7,11 +7,11 @@ testing and production servers. You can greatly simplify
 the task of managing database schema with the concept of *migrations*.
 
 A migration is some kind of atomic change of state of the database schema. You can apply a
-migration to upgrade the schema to its newer state, or you can revert a migration to 
-downgrade schema to its previous state. You create new migrations as you develop your website, 
-and you can have as many migrations as you need. All migrations form a database schema change 
+migration to upgrade the schema to its newer state, or you can revert a migration to
+downgrade schema to its previous state. You create new migrations as you develop your website,
+and you can have as many migrations as you need. All migrations form a database schema change
 history, which is very convenient, because you know when and for what purpose you changed the
-schema. 
+schema.
 
 ## Installing Doctrine\Migrations Component
 
@@ -23,7 +23,7 @@ To install `Doctrine\Migrations` component, type the following command:
 php composer.phar require doctrine/migrations
 ~~~
 
-The command above will download and install the component files to the `vendor` directory 
+The command above will download and install the component files to the `vendor` directory
 and modify your `composer.json` file as follows:
 
 ~~~
@@ -41,15 +41,15 @@ and modify your `composer.json` file as follows:
 ## Configuring Migrations
 
 Before you can use migrations, you'll need to provide the configuration describing
-what database connection to use, in which table to store migration history, where to 
+what database connection to use, in which table to store migration history, where to
 store migration classes, etc. To do that,
 add the following lines to your `config/autoload/global.php` file:
 
 {line-numbers=on,lang=php}
 ~~~
 <?php
-return [    
-    'doctrine' => [        
+return [
+    'doctrine' => [
         // migrations configuration
         'migrations_configuration' => [
             'orm_default' => [
@@ -67,18 +67,18 @@ return [
 As you can see, we have the `doctrine` key and its `migrations_configuration` subkey (line 5). Under this subkey we
 provide the configuration for migrations:
 
-  * In line 6, we provide the name of entity manager to use (`orm_default`). 
+  * In line 6, we provide the name of entity manager to use (`orm_default`).
 
   * In line 7, we tell Doctrine that we want to store migrations under the `APP_DIR/data/Migrations` directory.
-  
+
   * In line 8, we provide a user-friendly name for our migrations.
-  
+
   * In line 9, we tell Doctrine that we want that our migration classes live in `Migrations` namespace.
     You can specify a namespace of your choice.
-  
+
   * In line 10, we tell Doctrine that want to store migration history inside of `migrations` database table.
     Doctrine will create and manage that table automatically.
-    
+
 ## Creating Migrations
 
 A migration is a change set upgrading or downgrading the schema to its next or previous state, respectively.
@@ -89,7 +89,7 @@ cd APP_DIR
 ./vendor/bin/doctrine-module migrations:generate
 ~~~
 
-The commands above make the application directory the current working directory and then 
+The commands above make the application directory the current working directory and then
 run the `migrations:generate` console command.
 
 I> `DoctrineModule` and `DoctrineORMModule` provide several console commands that you can use for various
@@ -104,8 +104,7 @@ The file has a name like `VersionYYYYMMDDHHIISS.php`, where `YYYY` is current ye
 
 If you look into the newly created file, you will find the following content:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Migrations;
@@ -138,13 +137,13 @@ class Version20160901114333 extends AbstractMigration
 }
 ~~~
 
-T> If you do not see the newly created migration in NetBeans IDE, you need to open the menu *Source* and select the 
+T> If you do not see the newly created migration in NetBeans IDE, you need to open the menu *Source* and select the
 T> *Scan for external changes* menu item.
 
 As you can see from the code above, a migration is a usual PHP class inherited from `Doctrine\DBAL\Migrations\AbstractMigration`
 base class. Every migration should have *at least* two methods: `up()` and `down()`. The `up()` method upgrades the schema to a newer state,
 the `down()` method downgrades the schema from its newer state to the previous state. Both `up()` and `down()` methods have a single
-argument of type `Doctrine\DBAL\Schema\Schema`, which can be used for actual database schema modifications. 
+argument of type `Doctrine\DBAL\Schema\Schema`, which can be used for actual database schema modifications.
 
 T> The `Schema` class is a part of `Doctrine\DBAL` component. For more information about the methods it provides, please
 T> refer to Doctrine DBAL documentation. Another, even better way is to look at the code inside your `vendor/doctrine/dbal` directory.
@@ -168,7 +167,7 @@ A migration class may optionally have the following (overridden) methods (table 
 |--------------------------------|---------------------------------------------------------------|
 | `postDown(Schema $schema)`     | This method will be executed after downgrading the schema.    |
 |--------------------------------|---------------------------------------------------------------|
- 
+
 The `AbstractMigration` base class also provides the following useful methods (table 13.2):
 
 {title="Table 13.2. Methods provided by the base migration class"}
@@ -187,7 +186,7 @@ can be used to create a table, to update a table or to remove a table. It can al
 some data to a table (however, inserting data is not a schema change).
 
 I> Doctrine migrations are designed for schema changes, not for inserting data to the database. Although,
-I> inserting some initial data to database is useful in some cases. 
+I> inserting some initial data to database is useful in some cases.
 
 Now that you know how to create a migration, let's create a couple of migrations for our *Blog* sample.
 
@@ -198,8 +197,7 @@ schema and will create four tables: `post`, `comment`, `tag` and `post_tag`.
 
 Modify the migration class we have created in the previous section to look like below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Migrations;
@@ -221,7 +219,7 @@ class Version20160901114333 extends AbstractMigration
         $description = 'This is the initial migration which creates blog tables.';
         return $description;
     }
-    
+
     /**
      * @param Schema $schema
      */
@@ -229,38 +227,38 @@ class Version20160901114333 extends AbstractMigration
     {
         // Create 'post' table
         $table = $schema->createTable('post');
-        $table->addColumn('id', 'integer', ['autoincrement'=>true]);        
+        $table->addColumn('id', 'integer', ['autoincrement'=>true]);
         $table->addColumn('title', 'text', ['notnull'=>true]);
         $table->addColumn('content', 'text', ['notnull'=>true]);
         $table->addColumn('status', 'integer', ['notnull'=>true]);
         $table->addColumn('date_created', 'datetime', ['notnull'=>true]);
         $table->setPrimaryKey(['id']);
         $table->addOption('engine' , 'InnoDB');
-        
+
         // Create 'comment' table
         $table = $schema->createTable('comment');
-        $table->addColumn('id', 'integer', ['autoincrement'=>true]); 
+        $table->addColumn('id', 'integer', ['autoincrement'=>true]);
         $table->addColumn('post_id', 'integer', ['notnull'=>true]);
         $table->addColumn('content', 'text', ['notnull'=>true]);
         $table->addColumn('author', 'string', ['notnull'=>true, 'lenght'=>128]);
         $table->addColumn('date_created', 'datetime', ['notnull'=>true]);
         $table->setPrimaryKey(['id']);
         $table->addOption('engine' , 'InnoDB');
-        
+
         // Create 'tag' table
         $table = $schema->createTable('tag');
-        $table->addColumn('id', 'integer', ['autoincrement'=>true]); 
+        $table->addColumn('id', 'integer', ['autoincrement'=>true]);
         $table->addColumn('name', 'string', ['notnull'=>true, 'lenght'=>128]);
         $table->setPrimaryKey(['id']);
         $table->addOption('engine' , 'InnoDB');
-        
+
         // Create 'post_tag' table
         $table = $schema->createTable('post_tag');
-        $table->addColumn('id', 'integer', ['autoincrement'=>true]); 
+        $table->addColumn('id', 'integer', ['autoincrement'=>true]);
         $table->addColumn('post_id', 'integer', ['notnull'=>true]);
         $table->addColumn('tag_id', 'integer', ['notnull'=>true]);
         $table->setPrimaryKey(['id']);
-        $table->addOption('engine' , 'InnoDB');       
+        $table->addOption('engine' , 'InnoDB');
     }
 
     /**
@@ -276,24 +274,23 @@ class Version20160901114333 extends AbstractMigration
 }
 ~~~
 
-In the code above we have three methods: 
+In the code above we have three methods:
 
   * the `getDescription()` method provides the description of the migration.
   * the `up()` method upgrades the schema to its newer state by adding new tables.
   * the `down()` method drops tables thus downgrading the schema to its previous state.
-  
+
 ### Adding Another Migration
 
-Now assume we decided to improve the performance of our database by adding indexes to our tables. 
+Now assume we decided to improve the performance of our database by adding indexes to our tables.
 
-T> If you want to learn about database indexes in more details and why indexes are so helpful, you can refer to an excellent tutorial 
+T> If you want to learn about database indexes in more details and why indexes are so helpful, you can refer to an excellent tutorial
 T> called [Use the Index, Luke](http://use-the-index-luke.com/).
 
 We can also improve data integrity by adding foreign keys. To do this, we have to add another migration. Generate another
 empty migration with the `migrations:generate` console command. Modify the code to look like below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Migrations;
@@ -315,7 +312,7 @@ class Version20160901114938 extends AbstractMigration
         $description = 'This migration adds indexes and foreign key constraints.';
         return $description;
     }
-    
+
     /**
      * @param Schema $schema
      */
@@ -324,12 +321,12 @@ class Version20160901114938 extends AbstractMigration
         // Add index to post table
         $table = $schema->getTable('post');
         $table->addIndex(['date_created'], 'date_created_index');
-        
+
         // Add index and foreign key to comment table
         $table = $schema->getTable('comment');
         $table->addIndex(['post_id'], 'post_id_index');
         $table->addForeignKeyConstraint('post', ['post_id'], ['id'], [], 'comment_post_id_fk');
-        
+
         // Add indexes and foreign keys to post_tag table
         $table = $schema->getTable('post_tag');
         $table->addIndex(['post_id'], 'post_id_index');
@@ -347,14 +344,14 @@ class Version20160901114938 extends AbstractMigration
         $table->removeForeignKey('post_tag_post_id_fk');
         $table->removeForeignKey('post_tag_tag_id_fk');
         $table->dropIndex('post_id_index');
-        $table->dropIndex('tag_id_index'); 
-        
+        $table->dropIndex('tag_id_index');
+
         $table = $schema->getTable('comment');
-        $table->dropIndex('post_id_index'); 
+        $table->dropIndex('post_id_index');
         $table->removeForeignKey('comment_post_id_fk');
-        
+
         $table = $schema->getTable('post');
-        $table->dropIndex('date_created_index');       
+        $table->dropIndex('date_created_index');
     }
 }
 ~~~
@@ -392,7 +389,7 @@ command's argument as follows:
 ~~~
 
 T> You can also use 'prev', 'next' and 'first' aliases as version IDs which respectively move database to its previous state, next state
-T> or to the state before the first migration (empty database). 
+T> or to the state before the first migration (empty database).
 
 So, with migrations you can easily move through migration history and change the database schema as needed.
 Be careful though that migrations may remove some of your data, so apply them wisely.
@@ -400,12 +397,12 @@ Be careful though that migrations may remove some of your data, so apply them wi
 ## Summary
 
 In this chapter, we have learned about database migrations. Doctrine library provides you a component called `Doctrine\Migrations`
-which allows to implement and apply migrations. 
+which allows to implement and apply migrations.
 
 A migration is some kind of change set which can be applied to database schema. You can apply a
-migration to upgrade the schema to its newer state, or you can revert a migration to 
-downgrade schema to its previous state. 
+migration to upgrade the schema to its newer state, or you can revert a migration to
+downgrade schema to its previous state.
 
-Migrations are useful, because they allow to store the history of schema changes and 
-apply changes in a standard way. With migrations, you can easily keep your schema up-to-date on every development 
+Migrations are useful, because they allow to store the history of schema changes and
+apply changes in a standard way. With migrations, you can easily keep your schema up-to-date on every development
 machine, and on testing, staging and production servers.

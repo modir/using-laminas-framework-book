@@ -143,8 +143,7 @@ For example, look below for possible validation errors that the @`EmailAdrress`[
 returns if you pass it the "abc@ewr" value (the back-slash ('\') character indicates line breaks where
 code doesn't fit book page):
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 array(3) {
   ["emailAddressInvalidHostname"] =>
     string(51) "'ewr' is not a valid hostname for the email address"
@@ -512,8 +511,7 @@ By default all the above are allowed, except the IPv6 literal address.
 
 Below, a code example demonstrating the usage of the @`Ip` validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Ip;
 
@@ -609,8 +607,7 @@ on validator options:
 
 Below, a code example demonstrating the usage of the @`Hostname`[Laminas\Validator\Hostname] validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Hostname;
 
@@ -675,8 +672,7 @@ both are treated as acceptable URI types.
 
 Below, a code example demonstrating the usage of the @`Uri`[Laminas\Validator\Uri] validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Uri;
 
@@ -724,8 +720,7 @@ I> and formatting dates. For available date formats, please refer to the PHP doc
 
 Below, a code example demonstrating the usage of the @`Date`[Laminas\Validator\Date] validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Date;
 
@@ -773,8 +768,7 @@ Below, a code example demonstrating the usage of the @`Regex`[Laminas\Validator\
 regular expression to check if the input string is a valid IPv4 address (such address typically
 consists of four groups of digits separated with dots).
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Regex;
 
@@ -856,8 +850,7 @@ array containing the literal equivalents of those constants.
 
 Below, a code example demonstrating the usage of the @`NotEmpty` validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\NotEmpty;
 
@@ -912,8 +905,7 @@ comparisons (pass `true` as the argument) or exclusive comparisons (pass `false`
 
 Below, a code example demonstrating the usage of the @`Between`[Laminas\Validator\Between] validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Between;
 
@@ -977,8 +969,7 @@ and the values in array. This may be a combination of the following constants:
 
 Below, a code example demonstrating the usage of the @`InArray` validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\InArray;
 
@@ -1040,8 +1031,7 @@ encoding, you should specify it encoding with the `setEncoding()` validator's me
 
 Below, a code example demonstrating the usage of the @`StringLength` validator is provided.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\StringLength;
 
@@ -1102,8 +1092,7 @@ and finally, the @`Date`[Laminas\Validator\Date] validator is run checking that 
 
 To construct the filter chain like in figure 9.2, we can use the following code:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Instantiate the validator chain.
 $validator = new \Laminas\Validator\ValidatorChain();
@@ -1446,8 +1435,7 @@ When the `PhoneValidator` validator class is ready, you can easily start using i
 (or in another form) as follows. It is assumed that you call the following code inside of the
 `ContactForm::addInputFilter()` method:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 $inputFilter->add([
       'name'     => 'phone',
       'required' => true,
@@ -1474,8 +1462,7 @@ If you enter some phone number in an incorrect format, the validator will displa
 
 If you wish, you can use the `PhoneValidator` outside of forms, as shown in code example below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Application\Validator\PhoneValidator;
 

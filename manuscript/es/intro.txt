@@ -88,8 +88,7 @@ T> Para entender el código de abajo necesitamos tener alguna experiencia
 T> con PHP. Si no tenemos experiencia con PHP sería bueno revisar algún
 T> tutorial de PHP como [w3schools.com](http://www.w3schools.com/php/).
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // index.php
 session_start();
@@ -135,8 +134,7 @@ envía el formulario y pasa el proceso de autenticación su identidad se
 guarda en la variable de sesión de PHP. El script podría tener el siguiente
 aspecto:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // login.php
 session_start();
@@ -210,8 +208,7 @@ T> y `Secur1ty` respectivamente.
 Y finalmente vamos a implementar la página *Logout* que limpiará la identidad
 del usuario:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // logout.php
 session_start();
@@ -319,8 +316,7 @@ sitio o en la página *Acerca de*.
 
 Abajo presentamos el texto de la licencia de Laminas Framework.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Copyright (c) 2005-2016, Laminas Technologies USA, Inc.
 All rights reserved.
 

@@ -124,8 +124,7 @@ definiendo el contenedor agregando un elemento `<div>` con la clase CSS
 `.container`. Para agregar una nueva columna a la rejilla usamos un elemento
 `<div>` con la clase CSS `.row`, como se muestra en el ejemplo de abajo:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <div class="row">
   ...
@@ -137,8 +136,7 @@ Para agregar columnas usamos un elemento `<div>` con un nombre de clase CSS
 que varía de `.col-md-1` a `.col-md-12`. El número en el nombre de la clase
 especifica cuantas columnas ocupará cada celda de la rejilla:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <div class="row">
     <div class="col-md-1">Cell 1</div>
@@ -159,8 +157,7 @@ contenido principal (ocupa 7 columnas), la barra lateral (ocupa 3 columnas),
 la barra para la publicidad (2 columnas) y el pie de página. Para producir
 este diseño podemos usar el siguiente código HTML:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <!-- Header -->
   <div class="row">
@@ -219,8 +216,7 @@ clase `.row` y hacemos empezar las columnas `.col-md-*` dentro de una columna
 Para producir una rejilla como la que se muestra en la figura C.5, podemos usar
 el siguiente código HTML:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <div class="row">
     <div class="col-md-2">Cell 1</div>
@@ -472,8 +468,7 @@ Es probable que ya hallamos visto la barra de navegación inversa en el demo
 El estilo inverso se define simplemente remplazando la clase `.navbar-default`
 en el elemento `<nav>` por la clase `.navbar-inverse`:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <nav class="navbar navbar-inverse" role="navigation">
   ...
 </nav>
@@ -496,8 +491,7 @@ previamente o a las páginas del nivel superior.
 Para definir las migas de pan usamos una lista ordenada de elementos `<ol>` con
 la clase CSS `.breadcrumb` (ver un ejemplo abajo):
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="#">Support</a></li>
@@ -519,8 +513,7 @@ páginas y usaremos el componente de paginación para navegar entre las páginas
 Para definir la paginación como se muestra en la figura de arriba usamos el
 siguiente código HTML:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <ul class="pagination">
   <li><a href="#">&laquo; Newest</a></li>
   <li><a href="#">&lt; Newer</a></li>
@@ -544,8 +537,7 @@ Twitter Bootstrap provee un bonito estilo visual para elementos de tipo botón
 Para crear botones como los de la figura de arriba usamos el siguiente código
 HTML:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <p>
   <button type="button" class="btn btn-primary">Save</button>
   <button type="button" class="btn btn-default">Cancel</button>
@@ -563,8 +555,7 @@ Para expresar mejor la utilidad de los botones, Bootstrap provee varias clases a
 no deseados) y `btn-danger` (para botones que llevan a consecuencias irreversibles).
 Para un ejemplo del uso de estos estilos para botones veamos el siguiente código:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <p>
   <button type="button" class="btn btn-default">Default</button>
   <button type="button" class="btn btn-primary">Primary</button>
@@ -583,8 +574,7 @@ Bootstrap incluye 180 iconos (llamados Glyphicons) que se pueden usar junto con
 botones, menus desplegables, enlaces de navegación, etc. Para agregar un icono
 a un botón podemos usar un código como el siguiente:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <p>
   <button type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-plus"></span> Create
@@ -617,8 +607,7 @@ Por ejemplo, en la figura C.16, se muestra un botón grande de *Download*.
 
 Para definir un botón como este podemos usar el siguiente código HTML:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <button type="button" class="btn btn-success btn-lg">
   <span class="glyphicon glyphicon-download"></span> Download
 </button>

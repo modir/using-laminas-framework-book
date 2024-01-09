@@ -81,8 +81,7 @@ solo clic.
 La técnica «convencional» para detectar errores en PHP es colocando la función
 `var_dump()` en el bloque de código que queremos examinar:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 var_dump($var);
 
 exit;

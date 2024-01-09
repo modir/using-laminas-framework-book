@@ -68,8 +68,7 @@ Pour commencer, implémentons la page *Home* du site. Pour ce faire, créez un f
 
 T> Pour comprendre le code ci-dessous, vous devez avoir un peu d'expérience avec PHP. Si ce n'est pas le cas, il serait bon de vous référez à un tutoriel PHP comme ceux du [w3schools.com](http://www.w3schools.com/php/).
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // index.php
 session_start();
@@ -109,8 +108,7 @@ Si vous tapez "http://localhost/index.php" dans votre navigateur (comme Google C
 
 Maintenant, implémentons la page *Connexion*. Ce genre de page devrait présenter un formulaire avec les champs *E-mail* et *Mot de passe*. Une fois que l'utilisateur valide le formulaire, il passe l'authentification et son identité est enregistrée dans la session PHP. Le script ressemblerait alors à ceci :
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // login.php
 session_start();
@@ -181,8 +179,7 @@ T> Pour vous connecter, utilisez `admin@example.com` and `Secur1ty` comme e-mail
 
 Et pour finir, implémentons la page *Déconnexion* qui va effacer l'identité de l'utilisateur enregistré en session:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // logout.php
 session_start();
@@ -254,8 +251,7 @@ Si vous utilisez Laminas Framework, il est également recommandé de le mentionn
 
 Ci-dessous, le texte de la licence Laminas Framework est présenté.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Copyright (c) 2005-2016, Laminas Technologies USA, Inc.
 All rights reserved.
 

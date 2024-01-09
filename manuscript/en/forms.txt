@@ -35,8 +35,7 @@ When the download is complete, unpack the archive to a directory of your choosin
 Then navigate to the `formdemo` directory which contains the complete
 source code of the *Form Demo* web application:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
   /formdemo
   ...
@@ -150,8 +149,7 @@ prevent form submission and ask the user to correct the input error.
 You can group related form fields with the help of the `<fieldset>` tag, as shown in the
 example below. The optional `<legend>` tag allows you to define the caption for the group.
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <fieldset>
   <legend>Choose a payment method:</legend>
   <input type="radio" name="payment" value="paypal">PayPal</input>
@@ -297,8 +295,7 @@ class like `.btn-default`, `.btn-primary`, etc.
 Below, we provide the modified example of the feedback form
 which uses the Bootstrap styling:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <h1>Contact Us</h1>
 
 <p>
@@ -340,8 +337,7 @@ desktops, it makes the form fields as wide as the size of the screen. This may
 make your form too wide and hard to understand. To limit form width,
 you can use the Bootstrap-provided grid, like in the example below:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <div class="row">
   <div class="col-md-6">
     <form>
@@ -440,8 +436,7 @@ Finally, we have to add a literal route to make a short and memorable URL
 for the *Contact Us* page. Add the following `contactus` key to the routing configuration in the
 *module.config.php* file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
   // ...
@@ -479,8 +474,7 @@ Below, an example of the `$data` array (produced with the `var_dump()`
 PHP function) is shown. As you can see, the array contains a key for each form field,
 including the "submit" field.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 array (size=4)
     'email' => string 'name@example.com' (length=16)
     'subject' => string 'Happy New Year!' (length=15)
@@ -1582,8 +1576,7 @@ I> additional information on configuring mail for your particular system online.
 
 Now, register the `MailSender` service in your `module.config.php` file as follows:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 return [
     //...
     'service_manager' => [
@@ -1607,8 +1600,7 @@ I> improves the structure of your code.
 Let's create the factory for the `IndexController` (put it into the `Factory` subdirectory under the `Controller` subdirectory).
 You can see that the only work of the factory class is creating the controller and passing it the dependency.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1632,8 +1624,7 @@ class IndexControllerFactory
 
 Modify the `module.config.php` file to use the custom factory we have just created:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 return [
     //...
     'controllers' => [
@@ -1929,8 +1920,7 @@ As you can see, there are two methods doing the same thing:
     retrieve the form element with the form model's `get()` method (see example below).
   * The `__invoke()` method is a convenience wrapper which results in less code to write.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render the E-mail field with the render() method.
@@ -1942,8 +1932,7 @@ echo $this->formElement($form->get('email'));
 
 When executed, the code above will generate the HTML code as follows:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <input type="text" name="email" id="email" value="">
 ~~~
 
@@ -1960,8 +1949,7 @@ certain element, this view helper does not produce any output.
 
 An example of using the @`FormElementErrors` view helper is presented below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render validation errors for the E-mail field.
@@ -1973,8 +1961,7 @@ of errors using the `<ul>` HTML tag, and the list will contain as many items as
 there are errors for certain field. An example of such list for the E-mail field
 of our feedback form is presented below:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <ul>
   <li>&#039;hostname&#039; is not a valid hostname for the email address</li>
   <li>The input does not match the expected structure for a DNS hostname</li>
@@ -1986,8 +1973,7 @@ of our feedback form is presented below:
 
 The @`FormLabel` helper allows you to render the text label for an element:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render text label for the E-mail field.
@@ -1996,8 +1982,7 @@ echo $this->formLabel($form->get('email'));
 
 When executed, the code above will generate the HTML code as follows:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <label for="email">Your E-mail</label>
 ~~~
 
@@ -2029,8 +2014,7 @@ decoration to the form row. The methods of this view helper class are listed in 
 
 An example of using the @`FormRow` view helper is presented below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render the E-mail field, its label and (possible) validation errors.
@@ -2039,8 +2023,7 @@ echo $this->formRow($form->get('email'));
 
 When executed, the code above will generate the HTML code as follows:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <label for="email">Your E-mail</label>
 <input type="text" name="email" id="email">
 <ul>
@@ -2074,8 +2057,7 @@ class are summarized in table 7.19.
 
 You can render the whole form with the help of the @`Form`[Laminas\Form\Form]'s `render()` method as follows:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // We assume that the form model is stored in $form variable
 
 // Render the whole form
@@ -2084,8 +2066,7 @@ echo $this->form()->render($form);
 
 The same effect can be achieved with the `__invoke` magic method (see example below):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // The same, but with `__invoke`
 echo $this->form($form);
 ~~~
@@ -2151,8 +2132,7 @@ As you can see from the code above, we do the following things to render the for
 
 When the view template renderer evaluates this code, it will produce the HTML output like below:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <form action="/contact" method="post" name="contact-form">
   <label for="email">Your E-mail</label>
   <input type="text" name="email" id="email" value="">
@@ -2177,8 +2157,7 @@ outputted below the field in the form of the `<ul>` unordered HTML list.
 For example, if you enter the "123@hostname" into E-mail form field,
 you would receive the following validation errors:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <label for="email">Your E-mail</label>
 <input type="text" name="email" value="123@hostname">
 <ul>
@@ -2285,8 +2264,7 @@ The error messages on your form, by default, look like a typical unordered list 
 give them a nice visual appearance, we add a couple of CSS rules to the *style.css* file
 in *APP_DIR/public* directory:
 
-{line-numbers=off, lang=css}
-~~~
+~~~css
 form ul {
   list-style-type: none;
   padding: 0px;
@@ -2309,8 +2287,7 @@ for the "Thank You" and "Error Sending Email" pages.
 Add the *thank-you.phtml* view template in *application/index/* directory under
 the module's *view/* directory. Put the following HTML markup into the view template file:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <h1>Thank You!</h1>
 
 <p>
@@ -2323,8 +2300,7 @@ the module's *view/* directory. Put the following HTML markup into the view temp
 Next, add the *send-error.phtml* view template file.
 The HTML markup for the *Error Sending Email* page is presented below:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <h1>Error Sending Email!</h1>
 
 <p>

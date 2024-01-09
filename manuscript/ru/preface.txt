@@ -61,8 +61,7 @@ HTTP-запрос, GET и POST переменные, пространства и
 
 Структура архива представлена ниже.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 using-laminas-book-samples
 	blog
 	helloworld

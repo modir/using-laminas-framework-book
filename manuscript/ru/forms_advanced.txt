@@ -154,8 +154,7 @@ $this->add([
 (принадлежащий пространству имен @`Laminas\Form\View\Helper`[Laminas\Form]). Однако, как вы могли узнать из предыдущей
 главы, как правило, вместо этого используется общий помощник вида @`FormElement`, как показано в коде ниже:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <?= $this->formElement($form->get('captcha')); ?>
 ~~~
 
@@ -254,8 +253,7 @@ class ContactForm extends Form
 Для визуализации поля CAPTCHA добавьте следующие строки в файл шаблона
 представления *contact-us.phtml* :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <div class="form-group">
   <?= $this->formLabel($form->get('captcha')); ?>
   <?= $this->formElement($form->get('captcha')); ?>
@@ -292,8 +290,7 @@ class ContactForm extends Form
 Как только визуализатор PHP обработает шаблон представления, он сгенерирует HTML-разметку
 для элемента CAPTCHA как показано ниже:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="form-group">
   <label for="captcha">Human check</label>
   <img width="350" height="100" alt="CAPTCHA Image"
@@ -348,8 +345,7 @@ $this->add([
 Как только визуализатор PHP обработает шаблон представления, он сгенерирует HTML-разметку
 для элемента CAPTCHA как показано ниже:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="form-group">
   <label for="captcha">Проверка пользователя</label>
     <pre>
@@ -465,16 +461,14 @@ $this->add([
 
 Для визуализации поля CSRF добавьте следующую строку в файл шаблона представления *.phtml*:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?= $this->formElement($form->get('csrf')); ?>
 ~~~
 
 Как только визуализатор PHP обработает шаблон представления, он сгенерирует HTML-разметку
 для поля CSRF как показано ниже:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <input type="hidden" name="csrf" value="1bc42bd0da4800fb55d16e81136fe177">
 ~~~
 
@@ -511,8 +505,7 @@ T> Для данной формы вам понадобится динамиче
 Мы можем элегантно справиться с данной проблемой с использованием группы валидации. Класс @`Form`[Laminas\Form\Form] предоставляет метод `setValidationGroup()`,
 который принимает список полей, которые нужно валидировать; все остальные поля подавляются и не проходят валидацию.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Сначала проверим только поле "payment_method"
 $form->setValidationGroup(['payment_method']);
 if ($form->isValid())
@@ -565,8 +558,7 @@ T> Если вы не знакомы с PHP-сессиями, пожалуйст
 
 Затем измените файл конфигурации *APP_DIR/config/global.php* следующим образом:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Session\Storage\SessionArrayStorage;
 use Laminas\Session\Validator\RemoteAddr;
@@ -599,8 +591,7 @@ return [
 
 Затем добавьте следующий фрагмент кода в *module.config.php* для регистрации контейнера сессии *UserRegistration*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -622,8 +613,7 @@ return [
 Чтобы добавить модель формы, создайте файл *RegistrationForm.php* в каталоге *Form*
 под корневым каталогом модуля *Application*.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -1087,8 +1077,7 @@ class RegistrationForm extends Form
 Далее, мы добавим класс контроллера `RegistrationController`. Для этого создадим файл *RegistrationController.php*
 под каталогом *Controller* и добавим в него следующий код:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1221,8 +1210,7 @@ class RegistrationController extends AbstractActionController
 После этого добавим фабрику для `RegistrationController`. Для этого добавьте файл *RegistrationControllerFactory.php*
 в каталог *Controller/Form* под корневым каталогом модуля. Поместите в него следующий код:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1257,8 +1245,7 @@ T> Не забудьте зарегистрировать контроллер �
 
 Добавьте файл *step1.phtml* в каталог *application/registration* и поместите в него следующий код:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('email')->setAttributes([
     'class'=>'form-control',
@@ -1328,8 +1315,7 @@ $form->prepare();
 
 Затем добавьте файл *step2.phtml* в каталог *application/registration* и поместите в него следующий код:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('phone')->setAttributes([
     'class'=>'form-control',
@@ -1416,8 +1402,7 @@ $form->prepare();
 
 После этого добавьте файл *step3.phtml* в каталог *application/registration* и поместите в него следующий код:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('billing_plan')->setAttributes([
     'class'=>'form-control',
@@ -1463,8 +1448,7 @@ $form->prepare();
 
 И наконец, добавьте файл *review.phtml* в каталог *application/registration* и поместите в него следующий код:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <h1>Регистрация пользователя - Проверка</h1>
 
 <p>Спасибо! Теперь, пожалуйста, проверьте данные, которые вы ввели на предыдуших шагах.</p>
@@ -1478,8 +1462,7 @@ $form->prepare();
 
 Добавьте следующий маршрут в файл конфигурации *module.config.php*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 'registration' => [
     'type'    => Segment::class,
     'options' => [

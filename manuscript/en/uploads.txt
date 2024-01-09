@@ -970,8 +970,7 @@ As the `ImageManager` class is ready, you have to register the `ImageManager` se
 manager component of the web application by adding the following lines to the *module.config.php*
 configuration file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -1379,8 +1378,7 @@ of *factory*.
 Create the `ImageControllerFactory.php` file under the *Controller/Factory* subdirectory under the module's source
 directory. Put the following code into the file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1410,8 +1408,7 @@ class ImageControllerFactory implements FactoryInterface
 
 To let Laminas know about our controller, register the `ImageController` in the *module.config.php* configuration file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1431,8 +1428,7 @@ return [
 We need to add a *route* for our `ImageController` controller. To do that, modify the `module.config.php` file
 as follows:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

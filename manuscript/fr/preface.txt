@@ -61,8 +61,7 @@ Pour télécharger le dossier, cliquez sur le bouton *Clone or Download* qui se 
 
 La structure du dossier est présentée ci-dessous.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 using-laminas-book-samples
 	blog
 	helloworld

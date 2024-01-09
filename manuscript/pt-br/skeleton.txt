@@ -531,8 +531,7 @@ talvez você não queira permitir que o Google ou outros mecanismos de pesquisa 
 
 Para proibir o acesso ao seu site, você pode alterar o virtual host e adicionar a seguinte linha a ele:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Require ip <your_ip_address>
 ~~~
 
@@ -594,8 +593,7 @@ com o nome do usuário. Você pode escolher um nome, por exemplo "admin".
 O comando solicitará a senha do usuário e vai salvar a senha no arquivo:
 
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # htpasswd -c /usr/local/apache/passwd/passwords <username>
 New password:
 Re-type new password:
@@ -615,8 +613,7 @@ vários virtual hosts. Para cada virtual host, você precisa especificar um  dom
 Mas se você atualmente não tem um nome de domínio, você pode especificar uma porta diferente
 (veja o exemplo abaixo).
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # Listen directive tells Apache to listen requests on port 8080
 Listen 8080
 
@@ -637,8 +634,7 @@ virtual host e definir um alias para o seu site no arquivo `hosts` do seu sistem
 
 Primeiro, altere o Arquivo do Apache virtual host para que possa usar host virtual *com nome*:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <VirtualHost *:80>
     # Add the ServerName directive
 	ServerName site1.localhost
@@ -654,8 +650,7 @@ mais nomes do host.
 Para adicionar um alias do seus sites, adicione uma linhas para cada um de seu website como
 mostrado no exemplo abaixo.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 127.0.0.1            site1.localhost
 ~~~
 
@@ -682,8 +677,7 @@ Como já sabemos, a única chave obrigatória no arquivo `composer.json` é a `r
 informa quais pacotes são necessários para a sua aplicativo:
 
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 {
     "require": {
         "php": "^5.6 || ^7.0",

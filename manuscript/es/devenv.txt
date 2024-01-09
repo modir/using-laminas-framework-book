@@ -229,8 +229,7 @@ T> al principio del comando de arriba el comando `sudo`.
 
 En el archivo *phpinfo.php* agregamos el método de PHP `phpinfo()`:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <?php
   phpinfo();
 ?>
@@ -344,8 +343,7 @@ T> una de las diferentes distribuciones de GNU/Linux.
 Tenemos un ejemplo de un servidor virtual en */etc/apache2/sites-available/000-default.conf*
 (ver abajo).
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <VirtualHost *:80>
 	# The ServerName directive sets the request scheme, hostname and port that
 	# the server uses to identify itself. This is used when creating
@@ -430,8 +428,7 @@ Agregamos las siguientes líneas al final del archivo (debemos reemplazar el
 comodín `<remove_ip_address>` con la dirección IP del sitio web que vamos a
 revisar):
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 xdebug.remote_enable=1
 xdebug.remote_handler=dbgp
 xdebug.remote_mode=req
@@ -460,8 +457,7 @@ carpeta */etc/php.d/*:
 Agregamos las siguientes líneas al final del archivo, sin olvidar reemplazar
 el comodín con la dirección IP del sitio que vamos a revisar:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 [xdebug]
 
 Laminas_extension = /usr/lib/php/modules/xdebug.so
@@ -598,8 +594,7 @@ file in Apache document root directory.
 
 In the *phpinfo.php* file, enter the PHP method `phpinfo()` as follows:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <?php
 	phpinfo();
 ?>
@@ -615,16 +610,14 @@ Open the file in your browser. The standard PHP information page should display
 Laminas Framework requires that you have Apache's `mod_rewrite` module enabled.
 To enable `mod_rewrite`, open your the Apache config file (typically *httpd.conf*), then find the following line:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 #LoadModule rewrite_module modules/mod_rewrite.so
 ~~~
 
 and remove the hash (#) sign from the beginning to uncomment the line. It
 should now look like this:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 LoadModule rewrite_module modules/mod_rewrite.so
 ~~~
 
@@ -650,8 +643,7 @@ DLL from [this site](http://www.xdebug.org/download.php).
 
 Then edit your *php.ini* file and add the following line:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Laminas_extension="C:/path/to/your/xdebug.dll"
 ~~~
 

@@ -29,8 +29,7 @@ PHP soporta programación orientada a objetos (POO). En la POO, el principal blo
 Una clase puede tener *propiedades* y *métodos*. Por ejemplo, vamos a crear un script llamado *Person.php* y
 luego definimos un clase muy simple llamada `Person` dentro del archivo:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 
 class Person
@@ -72,8 +71,7 @@ La clase `Person` de arriba tiene un propiedad privada `$fullName` y tres métod
 Una vez que tenemos definidos los métodos de la clase podemos crear *objetos* de la clase con el operador `new`,
 de la siguiente manera:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 
 // Instantiate the Person.
@@ -139,8 +137,7 @@ la barra invertida ('\\').
 En las otras partes del código hacemos referencia a la clase @`Application`[Laminas\Mvc\Application]
 usando su nombre completo (*fully-qualified name*):
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 $application = new \Laminas\Mvc\Application();
 ~~~
@@ -153,8 +150,7 @@ I> namespace, en este caso no usamos la barra invertida inicial.
 Es posible usar *alias* (un nombre corto para la clase) con la ayuda de la sentencia
 `use` de PHP:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // Define the alias in the beginning of the file.
 use Laminas\Mvc\Application;
@@ -173,8 +169,7 @@ un espacio de nombres.
 Por ejemplo, el módulo principal de nuestro sitio web, el módulo *Application* define su
 propio espacio de nombres y este es igual al nombre del módulo:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -193,8 +188,7 @@ al implementar una interface la clase acepta los términos del contrato.
 En Laminas Framework las interfaces son ampliamente usadas. Por ejemplo, la clase @`Application` implementa
 la @`ApplicationInterface`, de esta manera se definen los métodos que cada clase *application* debe proveer:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 namespace Laminas\Mvc;
 
@@ -230,8 +224,7 @@ La clase que implementa una interfaz se llama clase *concreta*. La clase concret
 implementa la @`ApplicationInterface`, lo que significa que provee la implementación de los métodos
 definidos por la interface:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 namespace Laminas\Mvc;
 
@@ -284,8 +277,7 @@ de nuestro código debemos incluir el contenido del archivo *Application.php* (p
 hacer esto con la ayuda de la sentencia `require_once`, pasándole la ruta completa
 del archivo):
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 require_once "/path/to/laminas/laminas-mvc/src/Application.php";
 
@@ -318,8 +310,7 @@ necesario.
 Para dar una idea de como es una función autoloader, mostraremos una implementación
 simplificada de una función autoloader:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // Autoloader function.
 function autoloadFunc($className)
@@ -389,8 +380,7 @@ interoperabilidad entre autoloaders. En dos palabras el estándar dice que:
 Por ejemplo, para la clase @`Laminas\Mvc\Application` tendremos la siguiente estructura
 de directorios:
 
-{line-numbers=off,lang="text"}
-~~~
+~~~text
 /path/to/laminas/laminas-mvc/src
   /Laminas
     /Mvc
@@ -414,8 +404,7 @@ organizar los archivos de la siguiente manera:
 Para que el código esté conforme al estándar PSR-4, podemos escribir y registrar
 un autoloader que llamaremos autoloader «standard»:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 
 // "Standard" autoloader function.
@@ -488,8 +477,7 @@ módulo `Application`) tendremos que especificar la llave `autoload` en nuestro 
 Luego la única cosa que necesitamos hacer es incluir este archivo en nuestro script
 de entrada `index.php`:
 
-{line-numbers=off,lang="php"}
-```
+```php
 // Composer autoloading
 include __DIR__ . '/../vendor/autoload.php';
 ```
@@ -1195,8 +1183,7 @@ Luego podemos recuperar un servicio a partir de su nombre con la ayuda del méto
 `get()` del administrador de servicios. Este método toma un único parámetro que
 representa el nombre del servicio. Veamos el siguiente ejemplo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 // Retrieve the application config array.
@@ -1256,8 +1243,7 @@ Arriba entre las líneas 6 y 15 definimos una clase `CurrencyConverter` de ejemp
 (por simplicidad, implementamos solo un método `convertEURtoUSD()` que es capaz
 de convertir euros a dolares norte americanos).
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Create an instance of the class.
 $service = new CurrencyConverter();
 // Save the instance to service manager.
@@ -1277,8 +1263,7 @@ Una vez que el servicio se almacena en el administrador de servicios podemos rec
 por su nombre en cualquier lugar de la aplicación con la ayuda del método `get()`
 del administrador de servicios. Miremos el siguiente ejemplo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 // Retrieve the currency converter service.
 $service = $serviceManager->get(CurrencyConverter::class);
@@ -1295,8 +1280,7 @@ el mismo servicio que convierte monedas puede ser registrado con diferentes nomb
 para hacer uniforme los nombres, recomendamos registrar un servicio por su nombre
 de clase completo, *fully qualified name*, de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $serviceManager->setService(CurrencyConverter::class);
 ~~~
 
@@ -1332,8 +1316,7 @@ del servicio antes de que realmente lo necesitemos. Si nunca usamos el servicio 
 instanciación del servicio solo derrochará tiempo y memoria. Para resolver esta
 cuestión el administrador de servicios nos provee del método `setInvokableClass()`.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 // Register an invokable class
 $serviceManager->setInvokableClass(CurrencyConverter::class);
@@ -1363,8 +1346,7 @@ de servicios.
 La fábrica más simple es @`InvokableFactory`, esta es análoga al método `setInvokableClass()`
 de la sección anterior.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
@@ -1384,8 +1366,7 @@ compleja se puede encapsular dentro de nuestra propia clase *fábrica* escrita a
 medida. La clase fábrica normalmente implementa a la interfaz
 @`FactoryInterface`[Laminas\ServiceManager\Factory\FactoryInterface]:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Laminas\ServiceManager\Factory;
 
@@ -1414,8 +1395,7 @@ monedas (ver el código de abajo). No usamos una lógica de construcción comple
 nuestro servicio `CurrencyConverter` pero para servicios más complejos necesitaremos
 hacerlo.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service\Factory;
 
@@ -1448,8 +1428,7 @@ cuales nombres de servicios deberían ser registrados. En esta situación podemo
 usar una *fábrica abstracta*. Una fábrica abstracta deberá implementar la interfaz
 @`AbstractFactoryInterface`[Laminas\ServiceManager\Factory\AbstractFactoryInterface]:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Laminas\ServiceManager\Factory;
 
@@ -1483,8 +1462,7 @@ A veces podemos querer definir un *alias* para el servicio. Los alias son como e
 simbólicos: estos hacen referencia a servicios que ya están registrados. Para crear
 un alias usamos el método `setAlias()` del administrador de servicios:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 // Register an alias for the CurrencyConverter service
 $serviceManager->setAlias('CurConv', CurrencyConverter::class);
@@ -1507,8 +1485,7 @@ esto es el @`EventManager`, tendremos una nueva instancia de él cada vez que lo
 Para marcar un servicio como no compartido podemos usar el método del administrador
 de servicios `setShared()`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $serviceManager->setShared('EventManager', false);
 ~~~
 
@@ -1584,8 +1561,7 @@ varias subllaves para registrar servicios de diferentes maneras:
 A manera de ejemplo vamos a registrar nuestro servicio `CurrencyConverter` y crearemos
 un alias para él:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use Application\Service\CurrencyConverter;

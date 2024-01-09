@@ -169,8 +169,7 @@ vista (que pertenece al espacio de nombres `Laminas\Form\View\Helper`). Pero, co
 aprendimos en el capítulo previo generalmente usamos el ayudante de vista
 genérico, de la manera que se muestra más abajo:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <?= $this->formElement($form->get('captcha')); ?>
 ~~~
 
@@ -275,8 +274,7 @@ clase `Image` que esta asociado al elemento del formulario:
 Para imprimir el campo CAPTCHA, agregamos las siguientes líneas a nuestro archivo
 de plantilla de vista *contact-us.phtml*:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <div class="form-group">
   <?= $this->formLabel($form->get('captcha')); ?>
   <?= $this->formElement($form->get('captcha')); ?>
@@ -319,8 +317,7 @@ considera valido de lo contrario la validación del formulario falla.
 Una vez que el renderizador de PHP procesa la plantilla de vista, las etiquetas
 HTML para el elemento CAPTCHA que se generan son las siguientes:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="form-group">
   <label for="captcha">Human check</label>
   <img width="350" height="100" alt="CAPTCHA Image"
@@ -381,8 +378,7 @@ Una vez que el renderizador de PHP procese la plantilla de vista, el código
 HTML para el elemento CAPTCHA que se genera es como el que se muestra a
 continuación.
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="form-group">
   <label for="captcha">Human check</label>
     <pre>
@@ -510,16 +506,14 @@ en 600 segundos (10 minutos) después de su creación.
 Para generar el campo CSRF, en nuestro archivo de plantilla de vista *.phtml*
 agregamos la siguiente línea:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?= $this->formElement($form->get('csrf')); ?>
 ~~~
 
 Cuando el renderizador de PHP evalúa la plantilla de vista genera el código
 HTML para el campo CSRF como se muestra abajo:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <input type="hidden" name="csrf" value="1bc42bd0da4800fb55d16e81136fe177">
 ~~~
 
@@ -566,8 +560,7 @@ La clase `Form` provee el método `setValidationGroup()` que acepta una lista
 de los campos que queremos validar y el resto de campos se suprimen y no se
 validan.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // First, we will validate the "payment_method" field.
 $form->setValidationGroup(['payment_method']);
 if ($form->isValid())
@@ -632,8 +625,7 @@ que debemos instalarlo si aún no lo hemos hecho antes.
 Primero, modificamos el archivo de configuración *APP_DIR/config/global.php*
 de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Session\Storage\SessionArrayStorage;
 use Laminas\Session\Validator\RemoteAddr;
@@ -667,8 +659,7 @@ return [
 Luego, agregamos las siguientes líneas al archivo *module.config.php* para
 registrar el contenedor de sesión *UserRegistration*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -691,8 +682,7 @@ en tres pedazos para permitir usarlo como un formulario de multiples-pasos.
 Para agregar el modelo de formulario, creamos el archivo *RegistrationForm.php*
 en la carpeta *Form* que está dentro de la carpeta fuente del módulo *Application*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -1158,8 +1148,7 @@ Luego, agregaremos la clase controladora `RegistrationController`. Para hacer
 esto, creamos el archivo *RegistrationController.php* dentro de la carpeta
 *Controller* y agregamos las siguientes líneas de código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1298,8 +1287,7 @@ hacer esto, agregamos el archivo *RegistrationControllerFactory.php* dentro
 de la carpeta *Controller/Form* que está dentro de la carpeta fuente del modulo.
 Colocamos el siguiente código dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1336,8 +1324,7 @@ es usada por el método `reviewAction()`.
 Agregamos el archivo *step1.phtml* dentro de la carpeta *application/registration*
 y colocamos el siguiente código dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('email')->setAttributes([
     'class'=>'form-control',
@@ -1408,8 +1395,7 @@ $form->prepare();
 Luego, agregamos el archivo *step2.phtml* dentro de la carpeta *application/registration*
 y colocamos el siguiente código dentro de él:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('phone')->setAttributes([
     'class'=>'form-control',
@@ -1497,8 +1483,7 @@ $form->prepare();
 Luego, agregamos el archivo *step3.phtml* dentro de la carpeta *application/registration*
 y colocamos el siguiente código dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('billing_plan')->setAttributes([
     'class'=>'form-control',
@@ -1545,8 +1530,7 @@ $form->prepare();
 Y finalmente, agregamos el archivo *review.phtml* dentro de la carpeta
 *application/registration* y colocamos el siguiente código dentro de él:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <h1>User Registration - Review</h1>
 
 <p>Thank you! Now please review the data you entered in previous three steps.</p>
@@ -1561,8 +1545,7 @@ Y finalmente, agregamos el archivo *review.phtml* dentro de la carpeta
 Agregamos la siguiente ruta dentro de nuestro archivo de configuración
 *module.config.php*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 'registration' => [
     'type'    => Segment::class,
     'options' => [

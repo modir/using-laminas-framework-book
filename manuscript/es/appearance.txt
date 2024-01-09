@@ -310,8 +310,7 @@ lo que intentamos alcanzar veamos la figura 6.4).
 Vamos a comenzar con el título de la página "Hello World". Reemplazaremos las
 líneas 6 y 7 en el archivo *layout.phtml* de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?= $this->headTitle('Hello World')->setSeparator(' - ')->setAutoEscape(false) ?>
 ~~~
 
@@ -381,8 +380,7 @@ en 5 columnas:
 Luego colocamos la barra de navegación en el espacio de la rejilla que antes
 reservamos para ella:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Navigation bar -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -429,8 +427,7 @@ I> Partir de Rutas* en el capítulo [Routing](#routing).
 
 Luego colocamos las migas de pan en la columna correspondiente de la rejilla:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Breadcrumbs -->
 <ol class="breadcrumb">
   <li class="active">Home</li>
@@ -444,8 +441,7 @@ Queremos que el texto del encabezado "Hello World!" tenga un tamaño de letra m�
 grande y en negritas, además, de un color más bonito. Para hacer esto abrimos
 el archivo *style.css* y añadimos las siguientes líneas al final:
 
-{line-numbers=off,lang=css}
-~~~
+~~~css
 div.app-caption {
   padding: 25px 0px;
   font-size: 3.0em;
@@ -467,8 +463,7 @@ a "fluir" en la página necesitamos remover el relleno del tope del cuerpo de la
 página. Para hacer esto editamos la regla CSS `body` en el archivo `style.css`
 quedando de la siguiente manera:
 
-{line-numbers=off,lang=css}
-~~~
+~~~css
 body {
   padding-bottom: 40px;
 }
@@ -538,8 +533,7 @@ alternativa podemos sobrescribir el método `onDispatch()` de la clase
 `AbstractActionController` y llamar al método `setTemplate()` como se
 muestra en el ejemplo siguiente:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Add this alias in the beginning of the controller file
 use Laminas\Mvc\MvcEvent;
 
@@ -579,8 +573,7 @@ columna de una tabla varias veces.
 
 Primero agregamos el método `partialDemoAction()` al controlador Index:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An action that demonstrates the usage of partial views.
 public function partialDemoAction()
 {
@@ -662,8 +655,7 @@ manera que si los hubiéramos pasado con el contenedor de variables `ViewModel`.
 Finalmente, creamos la plantilla de vista *table-row.phtml* que se usará como
 la plantilla de vista parcial:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <tr>
   <td> <?= $this->product['id'] ?> </td>
   <td> <?= $this->product['name'] ?> </td>
@@ -774,8 +766,7 @@ interactivas. Los scripts se podrían insertar en el archivo HTML entre las
 etiquetas `<script>` y `<\script>`. Abajo presentamos código JavaScript de
 ejemplo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <script type="text/javascript">
   // Show a simple alert window with the "Hello World!" text.
   $(document).ready(function() {
@@ -797,8 +788,7 @@ archivos JavaScript externos se almacenan en el directorio *APP_DIR/public/js/*.
 Para enlazar un archivo JS a nuestra página HTML agregamos el elemento `<script>`
 como se muestra abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <script type="text/javascript" src="/js/yourscript.js"></script>
 ~~~
 
@@ -863,8 +853,7 @@ Para agregar un enlace a un archivo JS externo en la sección `<head>` de la pá
 agregamos el siguiente código PHP al comienzo de nuestro archivo de plantilla de
 vista (*.phtml*):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 $this->headScript()->appendFile('/js/yourscript.js', 'text/javascript');
 ?>
@@ -897,8 +886,7 @@ documento.
                  a este script debería ser `BodyScript` porque él está destinado
                  para insertar scripts en el cuerpo del documento.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 $script = <<<EOT
   $(document).ready(function() {
@@ -924,8 +912,7 @@ el código JavaScript. Para reparar este problema simplemente podemos colocar
 el elemento `<script>` al final de nuestra plantilla de vista como se muestra
 en el ejemplo de abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Page content goes first -->
 
 <!-- Inline script goes last -->
@@ -1031,8 +1018,7 @@ las variables disponibles para la autocompletación.
 Para dar al campo de autocompletación y a su menú desplegable una apariencia
 visual agradable agregamos las siguientes reglas CSS a nuestro archivo *style.css*.
 
-{line-numbers=off, lang=css}
-~~~
+~~~css
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -1090,15 +1076,13 @@ documento HTML directamente o con un enlace a un archivo externo
 (los archivos de hojas de estilo CSS externos se almacenan usualmente en la
 carpeta `APP_DIR/public/css`).
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 ~~~
 
 o como un elemento `<style>` en línea:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <style>
   body {
     padding-top: 60px;
@@ -1291,8 +1275,7 @@ La información que describe un solo elemento del menú se representará con un
 arreglo como el que se muestra abajo (por ejemplo, el elemento *Home* tendrá
 un ID, una etiqueta y una URL para el hiperenlace):
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 [
   'id' => 'home',
   'label' => 'Home',
@@ -1305,8 +1288,7 @@ navegables. Por ejemplo, en el caso del menú desplegable *Soporte* que tiene
 los subelementos *Documentación* y *Ayuda* la descripción del elemento tomará
 la forma siguiente:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 [
   'id' => 'support',
   'label' => 'Support',
@@ -1497,8 +1479,7 @@ Para poder usar el ayudante de vista `Menu` en la plantilla de vista necesitamos
 registrarlo en la configuración. Para hacerlo agregamos la llave `view_helpers`
 al archivo *module.config.php*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
 
@@ -1577,8 +1558,7 @@ método `setActiveItemId()` desde cualquier plantilla de vista. Por ejemplo,
 agregamos el siguiente código al comienzo de la plantilla de vista para la
 página *Acerca de* (*application/index/about.phtml*) de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->mainMenu()->setActiveItemId('about');
 ?>
@@ -1698,8 +1678,7 @@ Como planeamos usar el ayudante de vista `Breadcrumbs` en la plantilla de maquet
 de vista reemplazamos el código HTML que está en el archivo *layout.phtml* por
 el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <!-- Breadcrumbs -->
 <?= $this->pageBreadcrumbs()->render(); ?>
 ~~~
@@ -1712,8 +1691,7 @@ Finalmente necesitamos pasar los elementos para las migas de pan en cada
 plantilla de vista. Es decir, agregamos las siguientes líneas en la plantilla
 de vista de la página *About*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home'),

@@ -48,8 +48,7 @@ Cuando la descarga esta completada desempaquetamos el archivo en algún director
 Luego navegamos hasta el directorio `userdemo` que contiene el código fuente
 de la aplicación web de demostración de usuarios:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
   /userdemo
   ...
@@ -174,8 +173,7 @@ a la tabla `user`. Es una típica clase entidad de Doctrine.
 Se crea el archivo *User.php* dentro del directorio *Entity* bajo el directorio principal del módulo y se coloca
 el siguiente código dentro:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Entity;
 
@@ -520,8 +518,7 @@ Cuando un usuario inicia sesión necesitamos revisar si el hash de la contraseñ
 es el mismo que el hash generado con la contraseña introducida por el visitante. Podemos hacer esto con la ayuda
 del método `verify()` provisto por la clase `Bcrypt`, de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Checks that the given password is correct.
  */
@@ -545,8 +542,7 @@ El otro elemento importante que hay que notar en el `UserManager` es como creamo
 I> El usuario Admin es un usuario inicial que se crea automáticamente cuando no existen usuarios
 I> en la base de datos permitiendo que iniciemos sesión por primera vez.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This method checks if at least one user presents, and if not, creates
  * 'Admin' user with email 'admin@example.com' and password 'Secur1ty'.
@@ -593,8 +589,7 @@ El algoritmo que genera el token de reinicio de contraseña se implementa dentro
 `generatePassworkResetToken()` del `UserManager`. Para generar una cadena de caracteres aleatoria
 usamos la clase `Rand` provista por el componente `Laminas\Math`.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Generates a password reset token for the user. This token is then stored in database and
  * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is
@@ -667,8 +662,7 @@ método `validatePasswordResetToken()`. Revisamos que el *hash* del token es el
 mismo que el guardado en base de datos y que el token no ha vencido (el token
 vence un día después de su creación).
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Checks whether the given password reset token is a valid one.
  */
@@ -706,8 +700,7 @@ public function validatePasswordResetToken($email, $passwordResetToken)
 
 Finalmente `setPasswordByToken()` permite colocar una nueva contraseña para el usuario.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This method sets new password by password reset token.
  */
@@ -841,8 +834,7 @@ I> relacionada con la autenticación y el administrador de usuario para ese modu
 
 Coloca el siguiente código dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Service;
 
@@ -958,8 +950,7 @@ El `AuthenticationService` de Laminas debe ser registrado en el administrador de
 Primero que todo, crearemos una factory para él. Agregar el archivo *AuthenticationServiceFactory.php*
 dentro del directorio *Service/Factory* y colocar el código siguiente:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Service\Factory;
 
@@ -999,8 +990,7 @@ dependencias (administrador de almacenamiento y el adaptador).
 
 Registramos el `AuthenticationService` en nuestro archivo de configuración de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     'service_manager' => [
@@ -1029,8 +1019,7 @@ La clase `AuthController` tendrá dos acciones:
 
 El código del controlador `AuthController` se presenta a abajo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace User\Controller;
@@ -1181,8 +1170,7 @@ Cuando el usuario inicia sesión es redireccionado a la página original automá
 
 La plantilla (el archivo *.phtml*) para el inicio de sesión se ve de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Sign in');
 
@@ -1252,8 +1240,7 @@ El método `login()` (ver abajo) usa el `AuthenticationService` y el `AuthAdapte
 para ejecutar la autenticación del usuario. El método adicionalmente acepta el argumento `$remenberMe` que permite
 extender la vida de la cookie de sesión hasta 30 días.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Performs a login attempt. If $rememberMe argument is true, it forces the session
  * to last for one month (otherwise the session expires on one hour).
@@ -1286,8 +1273,7 @@ public function login($email, $password, $rememberMe)
 
 El método `logout()` remueve la identidad del usuario de la sesión y de esta manera el visitante deja de estar autenticado.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Performs user logout.
  */
@@ -1329,8 +1315,7 @@ por el filtro de acceso. La llave contiene una lista de controladores y nombres 
 se permitirá o ver la página a cualquiera o ver la página solo a los usuarios autorizados. Un ejemplo de la
 estructura de la llave se muestra abajo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // The 'access_filter' key is used by the User module to restrict or permit
 // access to certain controller actions for unauthenticated visitors.
 'access_filter' => [
@@ -1374,8 +1359,7 @@ Prestaremos antención especialmente al evento *Dispatch*. El evento *Dispatch* 
 cuando el controllador y la acción son determinados. Para implementar el listener modificamos el archivo *Module.php*
 del modulo *User* de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User;
 
@@ -1457,8 +1441,7 @@ class Module
 El event listener `onDispatch()` llama al método `filterAccess()` del servicio `AuthManager` para determinar
 si la página puede ser vista o no. Mostramos abajo el código del método `filterAccess()`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This is a simple access control filter. It allows vistors to visit certain pages only,
  * the rest requiring the user to be authenticated.
@@ -1525,8 +1508,7 @@ I> `php composer.phar require laminas/laminas-mvc-plugins`
 
 En nuestro método de acción del controlador podemos revisar si el usuario ha iniciado sesión de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if ($this->identity()!=null) {
     // User is logged in
 
@@ -1537,8 +1519,7 @@ if ($this->identity()!=null) {
 
 Desde nuestra plantilla de vista podemos usar el view helper `Identity` para el mismo propósito.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Echo user identity
 <?= $this->escapeHtml($this->identity()) ?>
 ~~~

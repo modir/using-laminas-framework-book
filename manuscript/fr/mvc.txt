@@ -32,8 +32,7 @@ Lorsque le téléchargement est terminé, décompressez l'archive dans un réper
 
 Accédez ensuite au répertoire `helloworld` contenant le code source complet de l'exemple * Hello World *:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
    /helloworld
      ...
@@ -201,8 +200,7 @@ Pour cela, Laminas Framework vous fournit la classe  @`Laminas\Http\Request`, qu
 
 Pour obtenir l'objet de requête HTTP, dans votre méthode d'action, vous pouvez utiliser le code suivant :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Récupération de l'objet de requete HTTP
 $request = $this->getRequest();
 ~~~
@@ -324,15 +322,13 @@ Le tableau 4.4 contient les méthodes les plus importantes de cette classe :
 
 Par exemple, utilisez le code suivant pour définir le statut code 404 d'une réponse:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $this->getResponse()->setStatusCode(404);
 ~~~
 
 Utilisez le code suivant pour ajouter un en-tête à la réponse :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $headers = $this->getResponse()->getHeaders();
 $headers->addHeaderLine(
              "Content-type: application/octet-stream");
@@ -340,8 +336,7 @@ $headers->addHeaderLine(
 
 Utilisez le code suivant pour définir le contenu de la réponse :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $this->getResponse()->setContent('Some content');
 ~~~
 
@@ -413,8 +408,7 @@ navigateur:  *http://localhost/posts/view?id=10000*. Son intention est d'affiche
 Si l'article correspondant n'existe pas, nous ne pouvons pas l'afficher et nous allons utiliser le code 400(Page introuvable) comme
 code d'état dans la réponse:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // L'action "view" affiche un article de blog avec l'ID spécifié
 public function viewAction()
 {
@@ -446,8 +440,7 @@ Nous parlerons des pages d'erreur plus tard dans ce chapitre.
 
 Une autre façon de générer une erreur (critique) est de déclancher une exception, par exemple, comme ceci:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 throw new \Exception("L'article dont l'ID=$id est introuvable");
 ~~~
 
@@ -502,8 +495,7 @@ Cette procédure est généralement implémentée dans une classe factory. Par e
 contrôleur doit utiliser un service `CurrencyConverter` qui convertira de l'argent en USD en EUR. La classe
 factory de notre contrôleur ressemblera à ci-dessous:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -528,8 +520,7 @@ class IndexControllerFactory implements FactoryInterface
 
 Ensuite, vous déclarez le contrôleur de la même manière, mais spécifiez la classe factory que nous venons d'écrire:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -561,8 +552,7 @@ demandé pour les transmettre au constructeur.
 
 Par exemple, pour injecter le service `CurrencyConverter` dans votre contrôleur, assurez-vous que son constructeur ressemble à :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 namespace Application\Controller;
 
 use Application\Service\CurrencyConverter;
@@ -582,8 +572,7 @@ class IndexController extends AbstractActionController
 
 Ensuite, vous déclarez le contrôleur de la même manière, mais spécifiez la classe factory @`LazyControllerAbstractFactory` :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Mvc\Controller\LazyControllerAbstractFactory;
 
@@ -659,8 +648,7 @@ dans l'un de nos exemples précédents.
 
 À l'intérieur de la méthode d'action du contrôleur, vous accédez à un plugin de la façon suivante :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Accès au plugin Url
 $urlPlugin = $this->url();
 
@@ -674,8 +662,7 @@ $redirectPlugin = $this->redirect();
 Comme alternative, vous pouvez appeler un plugin par son nom complet avec la méthode `plugin()` fournie par le contrôleur de base,
 comme ceci :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 use Laminas\Mvc\Controller\Plugin\Url;
 
 // Dans l'action de votre contrôleur, utilisez la méthode plugin().
@@ -693,8 +680,7 @@ Le plugin de contrôleur doit alors être dérivé de la classe @`AbstractPlugin
 Les plugins sont généralement situé dans leur propre namespace `Plugin`, qui est imbriqué dans le namespace du
 `Controller` :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Plugin;
 
@@ -716,8 +702,7 @@ Pour que Laminas Framework ai connaissance de votre plugin, vous devez le décla
 *module.config.php* sous la clé `controller_plugins`.
 Voir ci-dessous pour l'exemple:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -741,8 +726,7 @@ I> par son nom abrégé.
 Après cela, vous serez en mesure d'accéder à votre plugin personnalisé depuis toutes les actions de votre contrôleur,
 comme ceci :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Vérifiez si l'utilisateur du site est autorisé à accédeder à la page "index"
 $isAllowed = $this->access()->checkAccess('index');
 ~~~
@@ -890,8 +874,7 @@ Vous pouvez le faire avec l'aide de vue @`HeadTitle`.
 Par exemple, vous pouvez définir le titre de la page *A Propos* en ajoutant le code PHP suivant au début du
 de la vue *about.phtml* :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('A Propos');
 ?>
@@ -1116,8 +1099,7 @@ Enfin, il renvoie l'objet @`Response`[Laminas\Http\PhpEnvironment\Response] pour
 
 Déclarez la classe `DownloadController` en ajoutant la ligne suivante à votre fichier *module.config.php* :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -1135,8 +1117,7 @@ Vous devrez également ajouter une *route* à votre module.config.php (une route
 doit correspondre à l'action du contrôleur).
 Modifiez la clé des `routes` du fichier de configuration comme suit :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
   // ...
@@ -1191,8 +1172,7 @@ du contrôleur.
 
 D'abord, vous devez *déclarer* la stratégie dans le fichier de configuration module.config.php :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1210,8 +1190,7 @@ return [
 Ensuite renvoyez un @`JsonModel` (au lieu de l'habituel @`ViewModel`[Laminas\View\Model\ViewModel])
 depuis la méthode d'action de votre controleur :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 namespace Application\Controller;
 
 use Laminas\Mvc\Controller\ActionController;
@@ -1497,8 +1476,7 @@ class EmailMessage
     }
 }
 ~~~
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 // The Mailer service, which can send messages by E-mail
@@ -1542,8 +1520,7 @@ de certaines marchandises, et que le service `PurchaseManager` utilise un autre 
 Écrivons une classe de fabrique pour `PurchaseManager`, qui instancierait le service et lui passerait la
 dépendance :
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service\Factory;
 

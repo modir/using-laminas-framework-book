@@ -286,8 +286,7 @@ at the bottom (see figure 6.4 for an example of what we are trying to achieve).
 Let's start with the "Hello World" page title. We replace the lines 6-7 in the *layout.phtml*
 file as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?= $this->headTitle('Hello World')->setSeparator(' - ')->setAutoEscape(false) ?>
 ~~~
 
@@ -351,8 +350,7 @@ the `<div>` elements of the grid inside of it. The grid consists of 5 rows:
 
 Next, we put the navigation bar in the corresponding grid row:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Navigation bar -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -398,8 +396,7 @@ I> in [Routing](#routing).
 
 Next, put the breadcrumbs component to the corresponding grid row:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Breadcrumbs -->
 <ol class="breadcrumb">
   <li class="active">Home</li>
@@ -412,8 +409,7 @@ look and feel. We define our own CSS rules in the *style.css* stylesheet.
 We want to make the "Hello World!" header text to use larger bold font and use a nice looking color.
 To do this, open the *style.css* file, and append the following lines to the end:
 
-{line-numbers=off,lang=css}
-~~~
+~~~css
 div.app-caption {
   padding: 25px 0px;
   font-size: 3.0em;
@@ -432,8 +428,7 @@ Since in our Hello World example we've unpinned the navigation bar from top of t
 placed it in page flow, we need to remove the padding from page body top. To do that, edit
 the `body` CSS rule in the `style.css` file and make it look like the one below:
 
-{line-numbers=off,lang=css}
-~~~
+~~~css
 body {
   padding-bottom: 40px;
 }
@@ -497,8 +492,7 @@ If all action methods of a controller class need to use the same alternative lay
 you can override the `onDispatch()` method of the @`AbstractActionController`
 class and call the `setTemplate()` method there, as shown in the example below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Add this alias in the beginning of the controller file
 use Laminas\Mvc\MvcEvent;
 
@@ -536,8 +530,7 @@ view template to render a single row of the table several times.
 
 First, let's add the `partialDemoAction()` method to the Index controller:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An action that demonstrates the usage of partial views.
 public function partialDemoAction()
 {
@@ -619,8 +612,7 @@ them with the @`ViewModel`[Laminas\View\Model\ViewModel] variable container.
 Finally, create the *table-row.phtml* view template, which will be used as the partial
 view template:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <tr>
   <td> <?= $this->product['id'] ?> </td>
   <td> <?= $this->product['name'] ?> </td>
@@ -723,8 +715,7 @@ JavaScript code can be inserted into HTML pages and make them interactive.
 Scripts should be inserted to an HTML file between `<script>` and `</script>` tags.
 Below, an example JavaScript code is presented:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <script type="text/javascript">
   // Show a simple alert window with the "Hello World!" text.
   $(document).ready(function() {
@@ -743,8 +734,7 @@ External files typically contain code that is designed to be used by
 several web pages. Typically, external JavaScript files are stored in *APP_DIR/public/js/* directory. To link
 an external JS file to your HTML page, you add the `<script>` element like below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <script type="text/javascript" src="/js/yourscript.js"></script>
 ~~~
 
@@ -800,8 +790,7 @@ you use the @`HeadScript` view helper. Its methods are summarized by table 6.1:
 To add a link to external JS file to the `<head>` section, of a page, you add the following PHP
 code in the beginning of your view template (*.phtml*) file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 $this->headScript()->appendFile('/js/yourscript.js', 'text/javascript');
 ?>
@@ -831,8 +820,7 @@ inline JavaScript code to the end of document body:
                  view helper would be `BodyScript`, because it is intended for inserting scripts in
                  document body.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 $script = <<<EOT
   $(document).ready(function() {
@@ -854,8 +842,7 @@ Moreover, NetBeans IDE syntax checker will be stuck on the Heredoc notation
 and will not recognize the JavaScript code. To fix this, you can simply put the `<script>`
 element at the bottom of your view template, as shown in the example below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Page content goes first -->
 
 <!-- Inline script goes last -->
@@ -956,8 +943,7 @@ auto-completion variants.
 To give the auto-completion field and its dropdown menu a nice-looking visual
 appearance, add the following CSS rules to your *style.css* file.
 
-{line-numbers=off, lang=css}
-~~~
+~~~css
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -1012,15 +998,13 @@ T> by typing the URL "http://localhost/typeahead" in your browser.
 CSS stylesheets are typically placed to the `<head>` section of an HTML document, either as a link to an
 external file (external CSS stylesheet files are usually stored in `APP_DIR/public/css` directory.)
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 ~~~
 
 or as an inline `<style>` element
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <style>
   body {
     padding-top: 60px;
@@ -1191,8 +1175,7 @@ The information describing a single menu item will be represented by
 an array like below (for example, the *Home* item will have an ID, text
 label and an URL for a hyperlink):
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 [
   'id' => 'home',
   'label' => 'Home',
@@ -1204,8 +1187,7 @@ We also want to add the support for dropdown menus as navigation items. For exam
 in case of the *Support* dropdown menu having the *Documentation* and *Help* sub-items,
 the item description will take the following form:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 [
   'id' => 'support',
   'label' => 'Support',
@@ -1390,8 +1372,7 @@ To be able to use the `Menu` view helper in a view template, it is required
 to register it in configuration. To do that, add the following `view_helpers`
 key in the *module.config.php* file:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
 
@@ -1467,8 +1448,7 @@ To set the active item for the navigation bar, we can call the `setActiveItemId(
 method from any view template. For example, add the following code to the beginning of
 the view template for the *About* page (*application/index/about.phtml*) as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->mainMenu()->setActiveItemId('about');
 ?>
@@ -1585,8 +1565,7 @@ return [
 Since we plan to use the `Breadcrumbs` view helper in the layout view template,
 replace the breadcrumbs markup in *layout.phtml* file with the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <!-- Breadcrumbs -->
 <?= $this->pageBreadcrumbs()->render(); ?>
 ~~~
@@ -1598,8 +1577,7 @@ the HTML code of the breadcrumbs.
 Finally, you need to pass the breadcrumbs items for each view template.
 For example, add the following lines in the view template for the *About* page:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home'),

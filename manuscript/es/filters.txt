@@ -527,8 +527,7 @@ literal de las constantes. Las posibles constantes aceptadas por el método
 
 El código siguiente muestra dos maneras equivalentes de llamar al método `setType()`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Filter\Boolean;
 
@@ -548,8 +547,7 @@ es la cadena de caracteres que identifica la Configuración Regional y el *valor
 es su representación booleana. El siguiente ejemplo muestra como usar el método
 `setTranlsations()`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 $filter->setTranslations([
   'yes' => true,    // English 'yes'
@@ -563,8 +561,7 @@ $filter->setTranslations([
 
 Abajo, mostramos un ejemplo que ilustra el uso del filtro `Boolean`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create ToBoolean filter.
 $filter = new \Laminas\Filter\Boolean();
@@ -634,8 +631,7 @@ equivalentes literales.
 
 El siguiente ejemplo ilustra dos maneras equivalentes de llamar al método `setType()`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Filter\ToNull;
 
@@ -648,8 +644,7 @@ $filter->setType(['zero', 'string']);
 
 Abajo, mostramos un ejemplo de como usar el filtro `ToNull`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create ToNull filter.
 $filter = new \Laminas\Filter\ToNull();
@@ -689,8 +684,7 @@ Los métodos públicos del filtro se muestran en la tabla 8.7.
 En el ejemplo de abajo mostramos como crear un filtro, pasarle una cadena de
 caracteres con una fecha y convertirla al formato deseado:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create DateTimeFormatter filter.
 $filter = new \Laminas\Filter\DateTimeFormatter();
@@ -721,8 +715,7 @@ carpeta y regresa el último nombre del que está compuesto.
 
 Abajo, podemos encontrar un ejemplo del uso del filtro `BaseName`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create BaseName filter.
 $filter = new \Laminas\Filter\BaseName();
@@ -748,8 +741,7 @@ I> regresará el arreglo sin modificaciones.
 
 Abajo mostramos un ejemplo que demuestra el uso del filtro `Dir`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create Dir filter.
 $filter = new \Laminas\Filter\Dir();
@@ -792,8 +784,7 @@ llamar al método `setExists()` con el parámetro `false`.
 
 Abajo mostramos un ejemplo que demuestra el uso del filtro `RealPath`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create RealPath filter.
 $filter = new \Laminas\Filter\RealPath();
@@ -1009,8 +1000,7 @@ I> se producirá un `E_USER_WARNING` indicando que no se pudo filtrar.
 
 Abajo, mostramos un ejemplo de como usar el filtro `StringToLower`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create StringToLower filter.
 $filter = new \Laminas\Filter\StringToLower();
@@ -1056,8 +1046,7 @@ en la tabla 8.13 más abajo.
 
 Abajo, se muestra un ejemplo de como usar el filtro @`PregReplace`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create PregReplace filter.
 $filter = new \Laminas\Filter\PregReplace();
@@ -1101,8 +1090,7 @@ Los métodos públicos del filtro `StripTags` se listan en la tabla 8.14.
 
 Abajo, mostramos un ejemplo de como usar el filtro `StripTags`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create StripTags filter.
 $filter = new \Laminas\Filter\StripTags();
@@ -1128,8 +1116,7 @@ de entrada sin los caracteres de control de nueva línea ("\r", "\n").
 
 Abajo, mostramos un código de ejemplo que muestra como usar el filtro `StripNewlines`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create StripNewlines filter.
 $filter = new \Laminas\Filter\StripNewlines();
@@ -1188,8 +1175,7 @@ esquema.
 
 Abajo, mostramos un ejemplo de como usar el filtro `UriNormalize`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Create UriNormalize filter.
 $filter = new \Laminas\Filter\UriNormalize();
@@ -1671,8 +1657,7 @@ usarla en el formulario de contacto (o en otro formulario) de la siguiente
 manera. Estamos suponiendo que llamamos el siguiente código dentro del método
 `ContactForm::addInputFilter()`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 $inputFilter->add([
       'name'     => 'phone',
       'required' => true,
@@ -1698,8 +1683,7 @@ teléfono.
 Si lo deseamos podemos usar la clase `PhoneFilter` fuera de los formularios como
 se muestra más abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Application\Filter\PhoneFilter;
 

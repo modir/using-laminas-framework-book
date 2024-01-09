@@ -522,8 +522,7 @@ de recherche indexer votre site.
 
 Pour interdire l'accès à votre site, vous pouvez modifier l'hôte virtuel et lui ajouter la ligne suivante :
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Require ip <your_ip_address>
 ~~~
 
@@ -580,8 +579,7 @@ Dans la commande ci-dessus, vous devez remplacer l'espace `<username>` par le no
 Vous pouvez choisir un nom arbitraire, par exemple "admin". La commande demandera le mot de passe de
 l'utilisateur et écrira le mot de passe dans le fichier:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # htpasswd -c /usr/local/apache/passwd/passwords <username>
 New password:
 Re-type new password:
@@ -600,8 +598,7 @@ Lorsque vous développez plusieurs sites sur la même machine, vous devez créer
 Pour chaque hôte virtuel, vous devez spécifier un nom de domaine (comme `site1.mydomain.com`).
 Si vous n'avez pas de nom de domaine, vous pouvez spécifier un autre port (voir l'exemple ci-dessous).
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # La directive Listen  indique à Apache d'écouter les requêtes sur le port 8080
 Listen 8080
 
@@ -622,8 +619,7 @@ alias pour votre site dans votre fichier système `hosts`.
 
 Tout d'abord, modifiez votre fichier hôte virtuel Apache pour qu'il soit un hôte virtuel basé sur le nom :
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <VirtualHost *:80>
     # Ajouter la directive ServerName
 	ServerName site1.localhost
@@ -638,8 +634,7 @@ consistant en une adresse IP dans le premier champ de texte suivi par un ou plus
 Pour ajouter un alias à vos sites locaux, ajoutez des lignes pour chacun de vos sites internet, comme indiqué
 dans l'exemple ci-dessous.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 127.0.0.1            site1.localhost
 ~~~
 
@@ -665,8 +660,7 @@ Décrivons maintenant brièvement quelques exemples d'utilisation avancés de Co
 Comme nous le savons déjà, la seule clé requise dans le fichier `composer.json` est `require`. Cette clé
 indique quels sont les paquetages requis par votre application :
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 {
     "require": {
         "php": "^5.6 || ^7.0",

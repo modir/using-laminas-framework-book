@@ -194,8 +194,7 @@ A typical route has the *name*, *type* and *options*:
 
 Configuration for each route under the `routes` subkey may have the following format:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -229,8 +228,7 @@ in the following sections of this chapter.
 To organize routes in a subtree, you add the `child_routes` key to the route definition,
 and add your child routes under that key, like below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -247,8 +245,7 @@ and add your child routes under that key, like below:
 If you need to organize the routes in a chain (degenerated subtree), you add the
 `chain_routes` key to your route configuration:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -371,8 +368,7 @@ created earlier in the *Views* section of the chapter [Model-View-Controller](#m
 the following lines right after the "home" route definition inside of your
 *module.config.php* file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 'about' => [
     'type' => Literal::class,
     'options' => [
@@ -619,8 +615,7 @@ the Table of Contents page (`contents.phtml`) and the Introduction page (`introd
 Create the *doc* subdirectory under the *view/application/index* directory of the `Application` module and
 put the *contents.phtml* view template there:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Table of Contents</h1>
 
 <ul>
@@ -639,8 +634,7 @@ in this chapter).
 
 Then add the *introduction.phtml* page into the same *doc* directory:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Introduction</h1>
 
 <p>Some introductory materials.</p>
@@ -707,8 +701,7 @@ this sub-domain parameter must match. The *Hostname* route will differentiate yo
 domains, so each site will behave differently, depending on the value of the
 `subdomain` parameter returned:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An example of an action that uses parameters returned by
 // Hostname route.
 public function someAction()
@@ -798,8 +791,7 @@ return if the parameter is not present.
 The `fromRoute()` method can also be used to retrieve all parameters at once as an array.
 To do that, call the `fromRoute()` without arguments, as shown in the example below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An example action.
 public function someAction()
 {
@@ -864,8 +856,7 @@ the HTTP request, and in line 11 we retrieve all the parameters from the route.
 The @`MvcEvent` class can also be used for retrieving the router (the top-level route class). You can
 do this with the `getRouter()` method of the @`MvcEvent` class, as below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
     // Call this inside of your action method
     // to retrieve the RouteStackInterface for the router class.
     $router = $this->getEvent()->getRouter();
@@ -919,8 +910,7 @@ I> the @`Literal`[Laminas\Router\Http\Literal] route to assemble the URL string 
 After the @`PhpRenderer` class executes the view template's
 code, the output HTML markup will be the following:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Home page -->
 <a href="/">Home page</a>
 
@@ -958,8 +948,7 @@ in the route string with the "about" string.
 After the @`PhpRenderer` class executes the view template's
 code, the output HTML markup will be the following:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to About page -->
 <a href="/application/about" > About page </a>
 
@@ -970,8 +959,7 @@ code, the output HTML markup will be the following:
 As another example, let's try to generate a URL for our *Regex* route
 (the one which serves our "static" pages):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Introduction page -->
 <a href="<?= $this->url('doc', ['page'=>'introduction']); ?>">
  Introduction </a>
@@ -979,8 +967,7 @@ As another example, let's try to generate a URL for our *Regex* route
 
 This will generate the following HTML markup:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Introduction page -->
 <a href="/doc/introduction.html"> Introduction </a>
 ~~~
@@ -1010,8 +997,7 @@ as the third argument for generating the URL of the About page.
 
 The resulting HTML markup of the code above will be as follows:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Home page -->
 <a href="http://localhost/" > Home page </a>
 
@@ -1027,8 +1013,7 @@ action in some controller (and a route mapped to this action), and you want to p
 per page. The URL for this action would be like this: "http://localhost/search?q=topic&count=10".
 To generate such a URL, you can use the following code:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <a href="<?= $this->url('search', [], ['force_canonical' => true,
          'query'=>['q'=>'topic', 'count'=>10]]); ?>" >
   Search </a>
@@ -1043,8 +1028,7 @@ You can generate URLs inside your controller's action methods using the `Url` co
 plugin. To generate a URL, you call the @`Url`[Laminas\Mvc\Controller\Plugin\Url] controller plugin's `fromRoute()` method, as in the example
 below:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An example action method
 public function someAction()
 {
@@ -1071,8 +1055,7 @@ the sequence of the percentage character and two digits.
 For example, let's try to generate a URL for our *Regex* route and pass it the "page" parameter
 with the value "/chapter1/introduction".
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Introduction page -->
 <a href="<?= $this->url('doc', ['page'=>'chapter1/introduction']); ?>">
   Introduction </a>
@@ -1082,8 +1065,7 @@ We could assume it generates the URL like "/doc/chapter1/introduction.html". But
 because the slash ('/') character is unsafe, it will be replaced with the "%2F" characters
 for security reasons, and we will have the following HTML code:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <!-- A hyperlink to Introduction page -->
 <a href="/doc/chapter1%2Fintroduction.html"> Introduction </a>
 ~~~
@@ -1519,8 +1501,7 @@ the Help page (`help.phtml`) and the introduction page (`intro.phtml`).
 Create the *static* subdirectory under the *view/application/index* directory
 of the `Application` module and put the *help.phtml* view template there:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Help</h1>
 
 <p>
@@ -1532,8 +1513,7 @@ of the `Application` module and put the *help.phtml* view template there:
 Then create the *chapter1* subdirectory in the *static* directory and
 put the following *chapter1/intro.phtml* file in there:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Introduction</h1>
 
 <p>

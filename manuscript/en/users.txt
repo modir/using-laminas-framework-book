@@ -45,8 +45,7 @@ When download is complete, unpack the archive to some directory.
 Then navigate to the `userdemo` directory containing the
 source code of the *User Demo* web application:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
   /userdemo
   ...
@@ -164,8 +163,7 @@ onto the `user` database table. It is a typical Doctrine entity class.
 Create the *User.php* file inside the *Entity* directory under the module's source directory. Put
 the following code into that file:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Entity;
 
@@ -507,8 +505,7 @@ When a user logs in, you'll need to check if the password hash stored in the dat
 calculated by the password entered by the visitor. You do that with the help of the `verify()` method provided
 by the @`Bcrypt` class, as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Checks that the given password is correct.
  */
@@ -532,8 +529,7 @@ The next important thing to note in `UserManager` is how we create the Admin use
 I> The Admin user is an initial user that is created automatically when there are not existing users
 I> in the database and allows you to login for the first time.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This method checks if at least one user presents, and if not, creates
  * 'Admin' user with email 'admin@example.com' and password 'Secur1ty'.
@@ -577,8 +573,7 @@ I> Even if some malicious hacker steals the DB, they won't be able to reset pass
 The password reset token generation algorithm is implemented inside the `generatePasswordResetToken()` method of `UserManager`.
 To generate a random string, we use the @`Rand` class provided by @`Laminas\Math` component.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Generates a password reset token for the user. This token is then stored in database and
  * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is
@@ -649,8 +644,7 @@ Password reset token validation is implemented inside the `validatePasswordReset
 We check that the token's hash is the same as we saved in database and that the token has not expired
 (it expires in 1 day since creation).
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Checks whether the given password reset token is a valid one.
  */
@@ -688,8 +682,7 @@ public function validatePasswordResetToken($email, $passwordResetToken)
 
 And finally, the `setPasswordByToken()` allows to set new password for the user.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This method sets new password by password reset token.
  */
@@ -814,8 +807,7 @@ I> and user management to that module.
 
 Put the following code into that file:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Service;
 
@@ -931,8 +923,7 @@ Laminas's @`AuthenticationService` should be registered in the service manager b
 First of all, we will create a factory for it. Add the *AuthenticationServiceFactory.php* file under the
 *Service/Factory* directory and put the following code there:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Service\Factory;
 
@@ -972,8 +963,7 @@ an instance of `AuthAdapter`. Finally, we instantiate the @`AuthenticationServic
 
 Register the @`AuthenticationService` in your *module.config.php* config file as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     'service_manager' => [
@@ -1002,8 +992,7 @@ The `AuthController` class will have two actions:
 
 The code of the `AuthController` controller class is presented below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace User\Controller;
@@ -1154,8 +1143,7 @@ is redirected back to the original page automatically, improving user experience
 
 The view template (*.phtml* file) for our *Login* page looks as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('Sign in');
 
@@ -1225,8 +1213,7 @@ The `login()` method (see below) uses the Laminas's @`AuthenticationService` and
 for performing user authentication. The method additionally accepts the `$rememberMe` argument which
 extends the session cookie lifetime to 30 days.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Performs a login attempt. If $rememberMe argument is true, it forces the session
  * to last for one month (otherwise the session expires on one hour).
@@ -1259,8 +1246,7 @@ public function login($email, $password, $rememberMe)
 
 The `logout()` method removes the user identity from session, so the visitor becomes unauthenticated.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Performs user logout.
  */
@@ -1302,8 +1288,7 @@ by the access filter. It will contain the list of controllers and action names, 
 action it will either allow to anyone to see the page or allow to authenticated users only to see the page. An example structure
 of the key is presented below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // The 'access_filter' key is used by the User module to restrict or permit
 // access to certain controller actions for unauthenticated visitors.
 'access_filter' => [
@@ -1347,8 +1332,7 @@ Particularly, we will listen to the *Dispatch* event. The *Dispatch* event is tr
 controller and action are already determined. To implement the listener, we modify the *Module.php* file of the *User* module
 as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User;
 
@@ -1430,8 +1414,7 @@ class Module
 The `onDispatch()` event listener calls the `filterAccess()` method of `AuthManager` service to determine
 if the page can be seen or not. The code of the `filterAccess()` method is presented below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This is a simple access control filter. It allows vistors to visit certain pages only,
  * the rest requiring the user to be authenticated.
@@ -1496,8 +1479,7 @@ I> `php composer.phar require laminas/laminas-mvc-plugins`
 
 In your controller action method, you can check if user is logged in with the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if ($this->identity()!=null) {
     // User is logged in
 
@@ -1508,8 +1490,7 @@ if ($this->identity()!=null) {
 
 In your view template, you can use @`Identity`[Laminas\View\Helper\Identity] view helper for the same purpose:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Echo user identity
 <?= $this->escapeHtml($this->identity()) ?>
 ~~~

@@ -119,8 +119,7 @@ segundos del momento de creación.
 Si vemos el contenido del archivo creado recientemente encontraremos el siguiente
 contenido:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Migrations;
@@ -236,8 +235,7 @@ que se vea como se muestra a continuación:
 
 Modify the migration class we have created in the following section to look like below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Migrations;
@@ -335,8 +333,7 @@ hacer esto tenemos que agregar otra migración. Generamos otra migración con
 el comando de consola `migrations:generate` y modificamos el código hasta que
 quede de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Migrations;

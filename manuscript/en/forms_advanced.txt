@@ -154,8 +154,7 @@ view helper class (belonging to @`Laminas\Form\View\Helper`[Laminas\Form] namesp
 learn from the previous chapter, typically you use the generic @`FormElement` view helper instead,
 like shown in the code below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <?= $this->formElement($form->get('captcha')); ?>
 ~~~
 
@@ -253,8 +252,7 @@ parameters for configuring the @`Image`[Laminas\Captcha\Image] CAPTCHA algorithm
 To render the CAPTCHA field, add the following lines to your *contact-us.phtml*
 view template file:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <div class="form-group">
   <?= $this->formLabel($form->get('captcha')); ?>
   <?= $this->formElement($form->get('captcha')); ?>
@@ -293,8 +291,7 @@ are identical, the form is considered valid; otherwise form validation fails.
 Once the PHP renderer processes the view template, it generates HTML markup for
 the CAPTCHA element as shown below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="form-group">
   <label for="captcha">Human check</label>
   <img width="350" height="100" alt="CAPTCHA Image"
@@ -349,8 +346,7 @@ you should see a page like in the figure 11.4 below.
 Once the PHP renderer processes the view template, it generates HTML markup for
 the CAPTCHA element like shown below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="form-group">
   <label for="captcha">Human check</label>
     <pre>
@@ -462,16 +458,14 @@ which means the CSRF check expires in 600 seconds (10 minutes) after form creati
 
 To render the CSRF field, in your view template *.phtml* file, add the following line:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?= $this->formElement($form->get('csrf')); ?>
 ~~~
 
 When the PHP renderer evaluates the view template, it generates the HTML markup
 for the CSRF field like shown below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <input type="hidden" name="csrf" value="1bc42bd0da4800fb55d16e81136fe177">
 ~~~
 
@@ -506,8 +500,7 @@ only when `payment_method` is the "bank transfer".
 We can handle this case elegantly with the validation group. The @`Form`[Laminas\Form\Form] class provides the `setValidationGroup()` method,
 which accepts the list of fields that you want to validate; all other fields will be suppressed and not validated.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // First, we will validate the "payment_method" field.
 $form->setValidationGroup(['payment_method']);
 if ($form->isValid())
@@ -560,8 +553,7 @@ Session support is implemented in @`Laminas\Session` component, so you have to i
 
 Next, modify your *APP_DIR/config/global.php* config file as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Session\Storage\SessionArrayStorage;
 use Laminas\Session\Validator\RemoteAddr;
@@ -594,8 +586,7 @@ return [
 
 Then add the following lines to your *module.config.php* to register the *UserRegistration* session container:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -617,8 +608,7 @@ thus allowing to use it as a multi-step form.
 To add the form model, create the *RegistrationForm.php* file
 in the *Form* directory under the *Application* module's source directory:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Form;
 
@@ -1082,8 +1072,7 @@ in its constructor allowing to specify what form elements to use on the current 
 Next, we'll add the `RegistrationController` controller class. To do that, create the *RegistrationController.php*
 file under the *Controller* directory and add the following code into it:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 
@@ -1216,8 +1205,7 @@ In the class above, we have three methods:
 Next, we add the factory for the `RegistrationController`. To do that, add the *RegistrationControllerFactory.php* file
 inside the *Controller/Form* directory under the module's source directory. Put the following code into it:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1251,8 +1239,7 @@ Now, let's add the view templates for the controller actions. We have four view 
 
 Add *step1.phtml* file inside the *application/registration* directory and put the following code into it:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('email')->setAttributes([
     'class'=>'form-control',
@@ -1322,8 +1309,7 @@ $form->prepare();
 
 Next, add *step2.phtml* file inside the *application/registration* directory and put the following code into it:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('phone')->setAttributes([
     'class'=>'form-control',
@@ -1410,8 +1396,7 @@ $form->prepare();
 
 Next, add *step3.phtml* file inside the *application/registration* directory and put the following code into it:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form->get('billing_plan')->setAttributes([
     'class'=>'form-control',
@@ -1457,8 +1442,7 @@ $form->prepare();
 
 And finally, add *review.phtml* file inside the *application/registration* directory and put the following code into it:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <h1>User Registration - Review</h1>
 
 <p>Thank you! Now please review the data you entered in previous three steps.</p>
@@ -1472,8 +1456,7 @@ And finally, add *review.phtml* file inside the *application/registration* direc
 
 Add the following route inside your *module.config.php* config file:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 'registration' => [
     'type'    => Segment::class,
     'options' => [

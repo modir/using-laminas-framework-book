@@ -32,16 +32,14 @@ From PHP application developer's point of view, the work with sessions is simple
 calling `session_start()` PHP function. Then, use `$_SESSION` super-global array for setting/retrieving session data.
 For example, to save some data to session, use the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 session_start();
 $_SESSION['my_var'] = 'Some data';
 ~~~
 
 To later retrieve the data from session, use the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 session_start();
 if (isset($_SESSION['my_var']))
     $sessionVar = $_SESSION['my_var'];
@@ -51,8 +49,7 @@ else
 
 To clear the data, use the `unset()` PHP function, as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 unset($_SESSION['my_var']);
 ~~~
 
@@ -60,8 +57,7 @@ Note that sessions do not last forever (they expire sooner or later when the use
 cleans up the session storage files). How long the session lasts is defined in *php.ini* configuration file. It is possible to
 override the default expiration parameters with the help of `ini_set()` function, as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Set session cookie lifetime (in seconds) to be 1 hour.
 ini_set('session.cookie_lifetime', 60*60*1);
 
@@ -101,8 +97,7 @@ Laminas provides a special service called @`SessionManager` which belongs to @`L
 is a usual Laminas service and is automatically registered in service manager. You can get an instance of the @`SessionManager`
 service in a factory class with the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Use alias for the SessionManager class.
 use Laminas\Session\SessionManager;
 
@@ -152,8 +147,7 @@ The @`SessionManager` class on initialization reads the application configuratio
 so you can set up the session parameters conveniently. To do that, modify your `APP_DIR/config/autoload/global.php`
 as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Session\Storage\SessionArrayStorage;
 use Laminas\Session\Validator\RemoteAddr;
@@ -207,8 +201,7 @@ uses session to save messages between HTTP requests). To let such components use
 "the default one" by instantiating it as early as possible. For example, you can instantiate the session manager in your
 module's `onBootstrap()` method, as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -259,8 +252,7 @@ let a factory do that for you. The second one is easier, so we recommend it.
 You can just create a session container with the `new` operator, but you need to pass an instance of
 the session manager service to container's constructor:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 use Laminas\Session\Container;
 
 // We assume that $sessionManager variable is an instance of the session manager.
@@ -276,8 +268,7 @@ This method is equivalent to the first one, but the session container is created
 You just need to register what container namespaces you need. To do that,
 add the `session_containers` key to your `module.config.php` file as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -292,8 +283,7 @@ You may list the allowable container names under this key. Choosing a container 
 Once you registered a container name (or several container names), you can create the container and work with it.
 You typically do that in a factory with the help of the service manager:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // The $container variable is the service manager.
 $sessionContainer = $container->get('ContainerNamespace');
 ~~~
@@ -304,15 +294,13 @@ As you can see, you retrieve a session container from the service manager by its
 
 When you created the session container, you are able to save data to it as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $sessionContainer->myVar = 'Some data';
 ~~~
 
 To retrieve the data from session container, you use the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if(isset($sessionContainer->myVar))
     $myVar = $sessionContainer->myVar;
 else
@@ -321,8 +309,7 @@ else
 
 To remove data from session, use the following code:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 unset($sessionContainer->myVar);
 ~~~
 

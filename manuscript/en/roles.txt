@@ -41,8 +41,7 @@ When download is complete, unpack the archive to some directory.
 Then navigate to the `roledemo` directory containing the
 source code of the *Role Demo* web application:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
   /roledemo
   ...
@@ -123,8 +122,7 @@ with permissions.
 
 For example, let's create an @`Rbac` container for the Blog application and fill it with roles and permissions:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 use Laminas\Permissions\Rbac\Rbac;
 
 // Create Rbac container.
@@ -166,8 +164,7 @@ Permissions are assigned to the created role with the help of role's `addPermiss
 When you have an @`Rbac` container set up, you can query if the role has certain permission
 with the `isGranted()` method, as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // The following will return false, because the Viewer can't delete posts
 $rbac->isGranted('Viewer', 'post.delete');
 
@@ -229,8 +226,7 @@ To implement dynamic assertions in the *Role Demo* sample, we will use a special
 This assertion manager will be implemented as the `RbacAssertionManager` class, which lives in the
 `Application\Service` namespace and looks like the following:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service;
 
@@ -308,8 +304,7 @@ We will create the following tables (see figure 17.2):
 You can find a database migration, which creates these tables, in the *Role Demo* sample application. To run migrations,
 type the following command:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 ./vendor/bin/doctrine-module migrations:migrate
 ~~~
 
@@ -328,8 +323,7 @@ Those are typical Doctrine entity classes.
 Create the *Role.php* file inside the *Entity* directory under the *User* module's source directory. Put
 the following code into that file:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Entity;
 
@@ -498,8 +492,7 @@ annotated properties and getter and setter methods for retrieving/setting those 
 Next, create the *Permission.php* file inside the *Entity* directory under the *User* module's source directory. Put
 the following code into that file:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Entity;
 
@@ -602,8 +595,7 @@ class Permission
 Finally, we will slightly extend the `User` entity that already created in the *User Demo* website and add
 the property and methods related to roles:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Entity;
 
@@ -1006,8 +998,7 @@ php composer.phar require laminas/laminas-serializer
 
 Finally, edit the *config/autoload/global.php* and add the following lines:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 use Laminas\Cache\Storage\Adapter\Filesystem;
 
 return [
@@ -1061,8 +1052,7 @@ The `RbacManager` class will have two methods:
 The `RbacManager` class will read the configuration and look for the `rbac_manager` key.
 The key should contain the `assertions` subkey, in which you can register all assertion managers that you have.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 return [
     //...
 
@@ -1075,8 +1065,7 @@ return [
 
 The code of the `RbacManager` class living in `User\Service` namespace is presented below.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Service;
 
@@ -1239,8 +1228,7 @@ class RbacManager
 
 The factory for the `RbacManager` class looks like the following:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Service\Factory;
 
@@ -1351,8 +1339,7 @@ to permit access to:
 
 For example, here how the `access_filter` key would look like for the *User* module:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1387,8 +1374,7 @@ return [
 
 Below you can find the source code of the `filterAccess()` method of the `AuthManager` service:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This is a simple access control filter. It is able to restrict unauthorized
  * users to visit certain pages.
@@ -1476,8 +1462,7 @@ Next, we will modify the `Module` class living in `User` namespace and
 particularly its `onDispatch()` method. The main goal of this is that if the access filter
 returns `ACCESS_DENIED`, we redirect the user to the *Not Authorized* page.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User;
 
@@ -1556,8 +1541,7 @@ create the `Access` controller plugin.
 The plugin code will be located inside the `AccessPlugin.php` file inside the *Controller/Plugin* directory
 of the *User* module's source directory:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Controller\Plugin;
 
@@ -1589,8 +1573,7 @@ class AccessPlugin extends AbstractPlugin
 
 The `Access` plugin's factory looks like the following:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\Controller\Plugin\Factory;
 
@@ -1616,8 +1599,7 @@ class AccessPluginFactory implements FactoryInterface
 
 The plugin is registered inside the *module.config.php* file as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // We register module-provided controller plugins under this key.
 'controller_plugins' => [
     'factories' => [
@@ -1631,8 +1613,7 @@ The plugin is registered inside the *module.config.php* file as follows:
 
 So, in your controller's action, you can easily call this plugin like the following:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if (!$this->access('profile.own.view', ['user'=>$user])) {
     return $this->redirect()->toRoute('not-authorized');
 }
@@ -1647,8 +1628,7 @@ we will implement the `Access` view helper.
 The view helper's code will be located inside the `Access.php` file inside the *View/Helper* directory
 of the *User* module's source directory:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\View\Helper;
 
@@ -1675,8 +1655,7 @@ class Access extends AbstractHelper
 
 The `Access` view helper's factory looks like the following:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace User\View\Helper\Factory;
 
@@ -1702,8 +1681,7 @@ class AccessFactory implements FactoryInterface
 
 The view helper is registered inside the *module.config.php* config file as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // We register module-provided view helpers under this key.
 'view_helpers' => [
     'factories' => [
@@ -1717,8 +1695,7 @@ The view helper is registered inside the *module.config.php* config file as foll
 
 So, you can easily call the view helper from any of your view templates as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if ($this->access('profile.own.view, ['user'=>$user]))) {
    // do something...
 }
@@ -1739,8 +1716,7 @@ Then edit the *module.config.php* configuration configuration file in your modul
 
   An example of that key is presented below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // This key stores configuration for RBAC manager.
 'rbac_manager' => [
     'assertions' => [Service\RbacAssertionManager::class],
@@ -1749,8 +1725,7 @@ Then edit the *module.config.php* configuration configuration file in your modul
 
   * the `access_filter` key stores the access rules for the pages of your website. It typically looks like below:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 'access_filter' => [
     'options' => [
         'mode' => 'restrictive'
@@ -1778,8 +1753,7 @@ subkeys to look as follows. We allow access to the page to:
 If your website has some dynamic assertions, extend the `assert()` method of the
 existing `RbacAssertionManager` class (or write and register your own assertion manager):
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 public function assert(Rbac $rbac, $permission, $params)
 {
     $currentUser = $this->entityManager->getRepository(User::class)
@@ -1797,8 +1771,7 @@ public function assert(Rbac $rbac, $permission, $params)
 
 If you want to check permissions in a controller action, you can use the `Access` controller plugin as follows:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if (!$this->access('profile.own.view', ['user'=>$user])) {
     return $this->redirect()->toRoute('not-authorized');
 }
@@ -1806,8 +1779,7 @@ if (!$this->access('profile.own.view', ['user'=>$user])) {
 
 If you want to check permissions in a view template, you can use the `Access` view helper:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if ($this->access('profile.own.view', ['user'=>$user))) {
    // do something...
 }

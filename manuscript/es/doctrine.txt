@@ -49,8 +49,7 @@ Cuando la descarga esta lista desempaquetamos el archivo en algún directorio.
 
 Luego navegamos hasta el directorio `blog` que contiene el código fuente de la aplicación *Blog*.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
   /blog
   ...
@@ -84,8 +83,7 @@ Luego preguntará por la contraseña, escribimos la contraseña del usuario *roo
 del usuario *root* es la que especificamos durante la instalación del servidor MySQL). Si el
 inicio es exitoso deberíamos ver el siguiente mensaje de bienvenida:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 4
 Server version: 5.7.13-0ubuntu0.16.04.2 (Ubuntu)
@@ -111,8 +109,7 @@ I> Si queremos salir de la consola de MySQL escribimos `quit` y presionamos Ente
 Vamos a crear una base de datos y la llamaremos `blog`. Para hacer esto escribimos la
 siguiente sentencia SQL y presionamos Enter:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 CREATE DATABASE blog;
 ~~~
 
@@ -127,8 +124,7 @@ T> ya que es una convención.
 Luego, creamos el nombre de usuario `blog` y concederle todos los privilegios para acceder
 y modificar la base de datos `blog` y todas sus tablas:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 GRANT ALL PRIVILEGES ON blog.* TO blog@localhost IDENTIFIED BY '<passwd>';
 ~~~
 
@@ -149,8 +145,7 @@ presionando Enter:
 Deberíamos ser capaces de ver un salida como la siguiente (nos interesa la linea `blog` de la
 lista de base de datos).
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 +--------------------+
 | Database           |
 +--------------------+
@@ -177,8 +172,7 @@ Nos colocamos sobre la base de datos `blog` escribiendo el siguiente comando en 
 
 Para crear la tabla `post` escribimos la siguiente sentencia SQL:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 CREATE TABLE `post` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `title` text NOT NULL,
@@ -198,8 +192,7 @@ La salida esperada para este comando es la siguiente:
 
 Luego, creamos la tabla `comment` escribiendo lo siguiente:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 CREATE TABLE `comment` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `post_id` int(11) NOT NULL,
@@ -211,8 +204,7 @@ CREATE TABLE `comment` (
 
 Luego, creamos la tabla `tag`;
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 CREATE TABLE `tag` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `name` VARCHAR(128)
@@ -221,8 +213,7 @@ CREATE TABLE `tag` (
 
 Y finalmente creamos la tabla `post_tag`:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 CREATE TABLE `post_tag` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `post_id` int(11) NOT NULL,
@@ -232,8 +223,7 @@ CREATE TABLE `post_tag` (
 
 Vamos a llenar las tablas que hemos creado con datos de ejemplo:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 INSERT INTO tag(`name`) VALUES('Laminas');
 INSERT INTO tag(`name`) VALUES('book');
 INSERT INTO tag(`name`) VALUES('magento');
@@ -302,8 +292,7 @@ Cuando pida la contraseña, escribimos la contraseña del usuario root y presion
 Una vez que esto esta listo iniciamos sesión en el cliente de MySQL y escribimos
 los siguientes comandos:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 use blog;
 
 show tables;
@@ -311,8 +300,7 @@ show tables;
 
 Deberíamos ver la lista de tablas creadas, algo como lo siguiente:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 +----------------+
 | Tables_in_blog |
 +----------------+
@@ -370,8 +358,7 @@ como una dependencia de nuestra aplicación web y que la descargue e instale.
 Una vez que ejecutamos los comandos de arriba Composer primero modifica el archivo
 *composer.json* y crea una linea como la de abajo dentro de la llave `require`:
 
-{line-numbers=off,lang=json}
-~~~
+~~~json
 {
   ...
   "require": {
@@ -639,8 +626,7 @@ y dos asteriscos (*). Estos caracteres de "entrada" son obligatorios, de lo cont
 Doctrine no reconocerá las anotaciones. Un ejemplo de anotaciones se encuentra mas
 abajo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * This is Docblock annotation comment.
  */
@@ -1186,8 +1172,7 @@ como un típico arreglo de PHP.
 Y vice versa, definimos el otro lado de la relación para esto modificamos la entidad
 `Comment` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 // ...
 use Doctrine\Common\Collections\ArrayCollection;
@@ -1235,8 +1220,7 @@ Para esta relación usamos indirectamente la tabla auxiliar `post_tag`.
 
 Modificamos la entidad `Post` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 use Application\Entity\Tag;
@@ -1293,8 +1277,7 @@ En el código de arriba se hace lo siguiente:
 
 Finalmente, modificamos la entidad `Tag` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 use Doctrine\Common\Collections\ArrayCollection;
@@ -1390,8 +1373,7 @@ administrador de servicios de la siguiente manera (si necesitamos una conexión
 diferente a la `orm_default`, solamente reemplazamos `orm_default` con el nombre
 de la conexión a la base de datos adecuada):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Get Doctrine entity manager
 $entityManager = $container->get('doctrine.entitymanager.orm_default');
 ~~~
@@ -1430,8 +1412,7 @@ cambios en memoria pero no aplica los cambios en la base de datos automáticamen
 Por ejemplo, el código de ejemplo de abajo muestra como crear una instancia de la
 entidad `Post` y como guardarla en la base de datos:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Create new Post entity.
 $post = new Post();
 $post->setTitle('Top 10+ Books about Laminas Framework');
@@ -1456,8 +1437,7 @@ El método `getRepository()` del administrador de entidades esta diseñado para 
 el repositorio a partir del nombre de la clase de tipo entidad. Podemos ver abajo,
 por ejemplo, como se trae el repositorio para la entidad `Post`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 $repository = $entityManager->getRepository(Post::class);
 ~~~
 
@@ -1499,8 +1479,7 @@ Los métodos más usado que provee la clase `EntityRepository` se listan en la t
 El método `findAll()` trae todas las entidades desde el repositorio. Un ejemplo
 simple sobre como usarla se muestra abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Find all posts from repository
 $posts = $entityManager->getRepository(Post::class)->findAll();
 ~~~
@@ -1510,8 +1489,7 @@ una entidad a partir de su ID (llave primaria).
 
 En el ejemplo de abajo seleccionamos la publicación con ID = 1.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Find post by primary key (ID)
 $post = $entityManager->getRepository(Post::class)->find(1);
 ~~~
@@ -1524,8 +1502,7 @@ pero este solo regresa la primera entidad que se ajusta al criterio de búsqueda
 En el código de abajo usamos el método `findBy()` para seleccionar las 50 publicaciones
 publicadas más recientes:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Find 50 most recent published posts
 $posts = $entityManager->getRepository(Post::class)->findBy(
            ['status'=>Post::STATUS_PUBLISHED],
@@ -1537,8 +1514,7 @@ que nos permiten consultar entidades mediante el nombre del atributo, es decir,
 con los métodos `findByX` y `FindOneByX` (donde X debe reemplazarse con el nombre
 del atributo):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Query a single post by ID attribute
 $post = $entityManager->getRepository(Post::class)->findOneById(1);
 
@@ -1619,8 +1595,7 @@ Luego creamos la factory para el `IndexController`. Para hacer esto agregamos el
 archivo *IndexControllerFactory.php* dentro de la carpeta *Controller/Factory* en
 el directorio fuente del módulo. Colocamos el siguiente código en el archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1651,8 +1626,7 @@ de Doctrine e inyectarlo dentro del controlador.
 No olvidemos registrar nuestro controlador de tipo factory dentro del archivo
 `module.config.php`. Para hacer esto agregamos lo siguiente:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 //...
 return [
     //...
@@ -1670,8 +1644,7 @@ return [
 Luego modificamos la plantilla de vista *index.phtml* en la carpeta *application/index*
 dentro directorio *view* del módulo y colocamos el siguiente contenido dentro de ella:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <h1>Posts</h1>
 
 <?php foreach($posts as $post): ?>
@@ -1720,8 +1693,7 @@ con la publicación y el estado (publicado o borrador). Para hacer esto creamos 
 archivo *PostForm.php* en la carpeta *Form* dentro de directorio fuente del modulo.
 Colocamos el siguiente contenido dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 namespace Application\Form;
@@ -2019,8 +1991,7 @@ Luego agregamos una factory para el servicio `PostManager`. Para hacer esto agre
 el archivo *PostManagerFactory.php* en la carpeta *Service/Factory* dentro del
 directorio fuente del módulo. Y colocamos el siguiente contenido dentro del archivo.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service\Factory;
 
@@ -2048,8 +2019,7 @@ class PostManagerFactory implements FactoryInterface
 Finalmente registramos el servicio `PostManager` modificando el archivo de configuración
 *module.config.php* de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 return [
@@ -2146,8 +2116,7 @@ Para instanciar el `PostController` necesitaremos una factory. Creamos el contro
 de tipo factory agregando el archivo *PostControllerFactory.php* dentro de la carpeta
 *Controller/Factory* del directorio fuente del módulo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -2176,8 +2145,7 @@ class PostControllerFactory implements FactoryInterface
 
 Luego registramos el controlador `PostController` dentro del archivo *modulo.config.php*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 return [
@@ -2196,8 +2164,7 @@ return [
 Luego agregamos la ruta *posts* para el nuevo controlador modificando el archivo
 *module.config.php* de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 return [
@@ -2229,8 +2196,7 @@ Finalmente, agregamos la plantilla de vista. Creamos el archivo *add.phtml* en l
 carpeta *application/post* dentro de la carpeta *view* del módulo y colocamos el
 siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->get('title')->setAttributes([
@@ -2394,8 +2360,7 @@ una lista de etiquetas separadas por coma.
 
 Luego agregamos a la clase de tipo controlador `PostController` el método `editAction()`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller;
 //...
@@ -2471,8 +2436,7 @@ el formulario con los datos POST. Luego, usamos el método `updatePost()` del se
 Finalmente creamos el archivo *application/post/edit.phtml* dentro de la carpeta
 *view* del módulo. Colocamos el siguiente código allí:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->get('title')->setAttributes([
@@ -2564,8 +2528,7 @@ Primero agregaremos el método `removePost()` en el servicio `PostManager`. Este
 método removerá la publicación y los comentarios asociados. Además, borrará las
 asociaciones entre la publicación y las etiquetas.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 class PostManager
@@ -2609,8 +2572,7 @@ Y aplicamos los cambios a la base de datos con el método `flush()`.
 
 Aquí esta el código del método `Post::removeTagAssociation()`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Removes association between this post and the given tag.
 public function removeTagAssociation($tag)
 {
@@ -2625,8 +2587,7 @@ será borrada y revisa si es un ID de publicación valido. Si es valido se llama
 método `PostManager::removePost()` para remover la publicación y aplicar los cambios
 en la base de datos. Finalmente, redireccionamos al visitante a la página *Admin*.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 //..
@@ -2802,8 +2763,7 @@ Aquí agregaremos dos métodos:
   * El método `addCommentToPost()` se usará para agregar nuevos comentarios a una
     publicación.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 
@@ -2852,8 +2812,7 @@ class PostManager
 Ahora agregamos el método `PostController::viewAction()` colocando el siguiente
 código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 use Application\Form\CommentForm;
@@ -2918,8 +2877,7 @@ class PostController extends AbstractActionController
 Finalmente agregamos el archivo con la plantilla de vista *view.phtml* colocando el
 siguiente código dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $form = $this->form;
 $form->get('author')->setAttributes([
@@ -3014,8 +2972,7 @@ publicadas como los borradores) y permite ver, editar y borrar las publicaciones
 Para implementar esta página agregamos un método de tipo acción llamado `adminAction()`
 dentro de la clase `PostController` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 //..
@@ -3046,8 +3003,7 @@ a una cadena de caracteres se puede implementar con el método `getPostStatusAsS
 del servicio `PostManager`. Agregamos el método `getPostStatusAsString()` a la clase
 `PostManager` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 /**
  * Returns status as a string.
  */
@@ -3066,8 +3022,7 @@ Finalmente agregamos el archivo de plantilla de vista correspondiente *admin.pht
 a la carpeta *application/post* dentro de la carpeta *view* del directorio del
 módulo.
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <h1>Manage Posts</h1>
 
 <p>
@@ -3288,8 +3243,7 @@ para decirle a Doctrine que debe usar el repositorio `PostRepository`.
 La lógica de negocio para la característica de nube de etiquetas se guardará dentro
 del método `PostManager::getTagCloud()` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 //...
 class PostManager
@@ -3406,8 +3360,7 @@ I> factory para hacer esto.
 Finalmente modificamos el archivo *index.phtml* para que quede de la siguiente
 manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <h1>Posts</h1>
 
 <div class="row">
@@ -3535,8 +3488,7 @@ de Laminas.
 Por ejemplo, asumiendo que tenemos un `Query` con un DQL que selecciona todas las
 publicaciones. Para paginar estos resultados podemos usar el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
@@ -3570,8 +3522,7 @@ un objeto `Query` como entrada.
 
 Agregamos el siguiente método a la clase `PostRepository`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 public function findPublishedPosts()
 {
     $entityManager = $this->getEntityManager();
@@ -3591,8 +3542,7 @@ public function findPublishedPosts()
 Y cambiamos el método `findPostsByTag()` porque queremos que también regrese un
 objeto `Query` en lugar de un `arreglo`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 public function findPostsByTag($tagName)
 {
     $entityManager = $this->getEntityManager();
@@ -3695,8 +3645,7 @@ Para hacer esto con el bonito aspecto de Bootstrap necesitamos primero crear una
 plantilla de vista parcial *view/application/partial/paginator.phtml* y colocar
 el siguiente código dentro del archivo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php if ($this->pageCount): ?>
 
 <nav>
@@ -3754,8 +3703,7 @@ widget se verá.
 Vamos a mostrar el widget en nuestra plantilla de vista *view/application/index/index.phtml*
 debajo de la lista de publicaciones de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?= $this->paginationControl($posts,
             'Sliding',
             'application/partial/paginator',

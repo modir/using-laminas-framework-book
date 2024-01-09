@@ -211,8 +211,7 @@ Una ruta típica tiene un *name*, un *type* y unas *options*:
 La configuración para cada ruta bajo la subllave `routes` puede tener el siguiente
 formato:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -250,8 +249,7 @@ en la siguiente sección de este capítulo.
 Para organizar rutas en subárboles agregamos la llave `child_routes` a la definición
 de la ruta y agregamos las rutas hijas debajo de esta llave, de la siguiente manera:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -268,8 +266,7 @@ de la ruta y agregamos las rutas hijas debajo de esta llave, de la siguiente man
 Si necesitamos organizar las rutas en una cadena (subárbol degenerativo) agregamos
 la llave `chain_routes` a la configuración de la ruta.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -397,8 +394,7 @@ la página *About* que hemos creado antes en la sección *Vistas* del capítulo
 [Modelo-Vista-Controlador](#mvc). Para crear un ruta, agregamos las siguientes líneas
 después de la definición de la ruta "home" dentro de nuestro archivo *module.config.php*:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 'about' => [
     'type' => Literal::class,
     'options' => [
@@ -654,8 +650,7 @@ la página para la Tabla de Contenidos (`contents.phtml`) y la página de Introd
 *view/application/index* del modulo `Application` y colocamos la plantilla de vista
 *contents.phtml* ahí:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Table of Contents</h1>
 
 <ul>
@@ -675,8 +670,7 @@ las siguientes secciones de este capítulo).
 
 Luego agregamos la página *introduction.phtml* dentro de la misma carpeta *doc*:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Introduction</h1>
 
 <p>Some introductory materials.</p>
@@ -745,8 +739,7 @@ La llave `constraints` define la expresión regular con la que el parámetro sub
 debe coincidir. La ruta *Hostname* diferenciará nuestro dominio y cada sitio se
 comportará diferente dependiendo del valor del parámetro `subdomain` regresado:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An example of an action that uses parameters returned by
 // Hostname route.
 public function someAction()
@@ -840,8 +833,7 @@ Además, el método `fromRoute()` se puede usar para recuperar todos los paráme
 en un solo arreglo. Para hacer esto llamamos al método `fromRoute()` sin argumentos
 como se muestra en el ejemplo de abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An example action.
 public function someAction()
 {
@@ -912,8 +904,7 @@ Además, la clase `MvcEvent` se puede usar para recuperar la ruta (la clase ruta
 de primer nivel). Podemos hacer esto con el método `getRouter()` de la clase `MvcEvent`,
 como se muestra más abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
     // Call this inside of your action method
     // to retrieve the RouteStackInterface for the router class.
     $router = $this->getEvent()->getRouter();
@@ -974,8 +965,7 @@ I> de la ruta.
 Luego de que la clase `PhpRenderer` ejecuta el código de la plantilla de vista la
 salida HTML será la siguiente:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Home page -->
 <a href="/">Home page</a>
 
@@ -1012,8 +1002,7 @@ cadena "about".
 Después que la clase `PhpRenderer` ejecuta el código de la plantilla de vista la
 salida HTML será como la siguiente:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to About page -->
 <a href="/application/about" > About page </a>
 
@@ -1024,8 +1013,7 @@ salida HTML será como la siguiente:
 Como otro ejemplo vamos a intentar generar una URL para nuestra ruta *Regex*
 (una que sirve nuestras páginas "estáticas"):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Introduction page -->
 <a href="<?= $this->url('doc', ['page'=>'introduction']); ?>">
  Introduction </a>
@@ -1033,8 +1021,7 @@ Como otro ejemplo vamos a intentar generar una URL para nuestra ruta *Regex*
 
 Esto genera el siguiente código HTML:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Introduction page -->
 <a href="/doc/introduction.html"> Introduction </a>
 ~~~
@@ -1065,8 +1052,7 @@ About.
 
 El resultado HTML del código de arriba se mostrará de la siguiente manera:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Home page -->
 <a href="http://localhost/" > Home page </a>
 
@@ -1098,8 +1084,7 @@ Podemos generar URLs dentro de nuestro método de acción en el controlador usad
 el controlador complementario `Url`. Para generar una URL llamamos al método `fromRoute()`
 del controlador complementario `Url` como en el ejemplo de abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // An example action method
 public function someAction()
 {
@@ -1128,8 +1113,7 @@ constituida por el carácter porcentaje y dos dígitos.
 Por ejemplo, vamos a intentar generar una URL para nuestra ruta *Regex* y pasarla
 con el parámetro "page" que tendrá el valor "/chapter1/introduction".
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- A hyperlink to Introduction page -->
 <a href="<?= $this->url('doc', ['page'=>'chapter1/introduction']); ?>">
   Introduction </a>
@@ -1139,8 +1123,7 @@ Podemos asumir que se generará una URL como "/doc/chapter1/introduction.html". 
 como la barra ('/') es un carácter inseguro será reemplazado por seguridad por
 los caracteres "%2F" con lo que se obtiene un código HTML como el siguiente:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <!-- A hyperlink to Introduction page -->
 <a href="/doc/chapter1%2Fintroduction.html"> Introduction </a>
 ~~~
@@ -1587,8 +1570,7 @@ la página de ayuda (`help.phtml`) y la página de introducción (`intro.phtml`)
 Creamos la subcarpeta *static* dentro del directorio *view/application/index* del
 módulo `Application` y colocamos plantilla de vista *help.phtml* allí:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Help</h1>
 
 <p>
@@ -1600,8 +1582,7 @@ módulo `Application` y colocamos plantilla de vista *help.phtml* allí:
 Luego creamos la subcarpeta *chapter1* dentro del directorio *static* y colocamos
 el archivo *chapter1/intro.phtml* allí:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Introduction</h1>
 
 <p>

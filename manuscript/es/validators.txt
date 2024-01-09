@@ -186,8 +186,7 @@ el valor «abc@ewr» (el carácter
 barra invertida, «\», indica una nueva línea donde el código no se ajusta a la
 página):
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 array(3) {
   ["emailAddressInvalidHostname"] =>
     string(51) "'ewr' is not a valid hostname for the email address"
@@ -604,8 +603,7 @@ excepción de la dirección IPv6 literal.
 
 Abajo tenemos un código de ejemplo que demuestra el uso del validador @`Ip`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Ip;
 
@@ -709,8 +707,7 @@ omitir dependiendo de las opciones del validador:
 
 Abajo, mostramos un código de ejemplo que demuestra el uso del validador @`Hostname`[Laminas\Validator\Hostname].
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Hostname;
 
@@ -782,8 +779,7 @@ son tratadas como tipos de URI aceptables.
 
 Abajo, un código de ejemplo muestra el uso del validador @`Uri`[Laminas\Validator\Uri].
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Uri;
 
@@ -835,8 +831,7 @@ I> disponibles los podemos conseguir en la documentación de PHP de la clase `Da
 
 Abajo, un código de ejemplo demuestra el uso del validador @`Date`[Laminas\Validator\Date].
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Date;
 
@@ -888,8 +883,7 @@ usamos una expresión regular para revisar si la cadena de caracteres de entrada
 una dirección IPv4 valida (una dirección consiste típicamente consiste en cuatro
 grupos de dígitos separados por puntos).
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Regex;
 
@@ -986,8 +980,7 @@ literales de estas constantes.
 
 Abajo, mostramos un código de ejemplo que demuestra el uso del validador @`NotEmpty`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\NotEmpty;
 
@@ -1045,8 +1038,7 @@ comparación exclusiva (pasando `false` como argumento).
 
 Abajo, se muestra un ejemplo del uso del validador `Between`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\Between;
 
@@ -1114,8 +1106,7 @@ de las siguientes constantes:
 
 Abajo, demostramos con un ejemplo el uso del validador @`InArray`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\InArray;
 
@@ -1182,8 +1173,7 @@ especificarla con el método del validador `setEncoding()`.
 
 Abajo, mostramos un código de ejemplo del uso del validador `StringLength`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Validator\StringLength;
 
@@ -1255,8 +1245,7 @@ de entrada es una fecha con formato «YYYY-MM-DD».
 Para construir una cadena de validación como la de la figura 9.2, podemos usar
 el siguiente código:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // Instantiate the validator chain.
 $validator = new \Laminas\Validator\ValidatorChain();
@@ -1623,8 +1612,7 @@ Cuando la clase validadora `PhoneValidator` está lista, podemos fácilmente com
 a usarla en el formulario de contacto (o en otro formulario) de la siguiente manera.
 Se asume que llamamos el siguiente código dentro del método `ContactForm::addInputFilter()`:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 $inputFilter->add([
       'name'     => 'phone',
       'required' => true,
@@ -1653,8 +1641,7 @@ de teléfono en un formato incorrecto, el validador mostrara un error (ver figur
 Si lo deseamos, podemos usar la clase `PhoneValidator` fuera de los formularios
 como se muestra en el código de ejemplo más abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 use Application\Validator\PhoneValidator;
 

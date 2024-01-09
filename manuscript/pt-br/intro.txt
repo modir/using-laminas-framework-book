@@ -75,8 +75,7 @@ T> Para entender o código abaixo, você precisa ter alguma experiência com PHP
 T> com PHP, caso tenha duvidas ou necessite de algum tutorial de PHP,
 T> recomendamos [w3schools.com](http://www.w3schools.com/php/).
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // index.php
 session_start();
@@ -120,8 +119,7 @@ Em seguida, vamos implementar a página * Login *. Essa página teria um formul�
 e * Senha * . Depois que o usuário envia o formulário, ele será autenticado e vamos salvar os seus dados na
 na sessão do PHP. O Código ficaria:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // login.php
 session_start();
@@ -192,8 +190,7 @@ T> Para efetuar login, use o `admin@example.com` e `Secur1ty` como seu E-mail e 
 
 E finalmente, vamos implementar a página * Logout * que irá limpar os dados do usuário e da sessão:
 
-{line-numbers=off,lang="php"}
-~~~
+~~~php
 <?php
 // logout.php
 session_start();
@@ -279,8 +276,7 @@ Se você usa o Laminas Framework, também é recomendável mencionar isso na doc
 
 Segue abaixo, a licença do Laminas Framework:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Copyright (c) 2005-2016, Laminas Technologies USA, Inc.
 All rights reserved.
 

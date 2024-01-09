@@ -40,8 +40,7 @@ en alguna carpeta.
 Luego navegamos hasta el directorio `helloworld` que contiene el código fuente
 completo del ejemplo *Hello World*:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
    /helloworld
      ...
@@ -254,8 +253,7 @@ HTTP, etc). Para este proposíto, Laminas Framework nos provee con la clase
 Para tener el objeto de la petición HTTP dentro de nuestro método de acción podemos
 usar el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Get HTTP request object
 $request = $this->getRequest();
 ~~~
@@ -395,15 +393,13 @@ La tabla 4.4 contiene los métodos más importantes de esta clase:
 
 Por ejemplo, usamos el siguiente código para colocar el código de estado 404 en la respuesta:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $this->getResponse()->setStatusCode(404);
 ~~~
 
 Usamos el siguiente código para agregar un encabezado a la respuesta:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $headers = $this->getResponse()->getHeaders();
 $headers->addHeaderLine(
              "Content-type: application/octet-stream");
@@ -411,8 +407,7 @@ $headers->addHeaderLine(
 
 Usamos el siguiente código para agregar contenido a la respuesta:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $this->getResponse()->setContent('Some content');
 ~~~
 
@@ -491,8 +486,7 @@ de esta petición es mostrar la publicación del blog que tiene el ID=10000. Si 
 con este ID no existe no podemos mostrarla y usamos el siguiente código PHP para colocar un
 código de estado 404 (Page Not Found) en la respuesta:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // The "view" action displays a blog post with the given ID
 public function viewAction()
 {
@@ -526,8 +520,7 @@ capítulo.
 Otra manera de expresar una condición (critica) de error es lanzando una `Exception`, por
 ejemplo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 throw new \Exception("Post with ID=$id could not be found");
 ~~~
 
@@ -584,8 +577,7 @@ Este procedimiento se implementa típicamente dentro de la clase fábrica. Por e
 que nuestra clase controladora necesita usar el servicio `CurrencyConverter` que convierte
 dinero de USD a EUR. La clase fábrica de nuestro controlador tendrá el siguiente aspecto:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -612,8 +604,7 @@ class IndexControllerFactory implements FactoryInterface
 Luego registramos el controlador de la misma manera que antes pero especificando
 la clase fábrica que hemos escrito antes:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -650,8 +641,7 @@ T> recuperará por si misma los servicios necesarios y los pasará al constructo
 Por ejemplo, para inyectar el servicio `CurrencyConverter` en nuestro controlador nos aseguramos
 de que el constructor se vea de esta manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 namespace Application\Controller;
 
 use Application\Service\CurrencyConverter;
@@ -672,8 +662,7 @@ class IndexController extends AbstractActionController
 Luego registramos el controlador de la misma manera pero especificando la fábrica
 `LazyControllerAbstractFactory`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Mvc\Controller\LazyControllerAbstractFactory;
 
@@ -768,8 +757,7 @@ ejemplos anteriores.
 Dentro de un método de acción en un controlador podemos acceder a un complemento
 de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Access Url plugin
 $urlPluguin = $this->url();
 
@@ -783,8 +771,7 @@ $redirectPlugin = $this->redirect();
 Como alternativa podemos invocar un complemento por medio de su nombre completo
 con el método `plugin()` que provee la clase controladora base, de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 use Laminas\Mvc\Controller\Plugin\Url;
 
 // Inside your controller's action use the plugin() method.
@@ -803,8 +790,7 @@ El complemento para controladores se debería derivar de la clase `AbstractPlugi
 Los complementos típicamente se encuentran en su propio namespace: `Plugin`, que
 está anidado en el namespace `Controller`:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Plugin;
 
@@ -826,8 +812,7 @@ Para informar a Laminas Framework sobre el nuevo complemento necesitamos registr
 en el archivo *module.config.php* con la llave `controller_plugins`. Veamos el
 ejemplo más abajo:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -851,8 +836,7 @@ I> capaces de traer el complemento por medio de su nombre corto.
 Después de esto seremos capaces de acceder a nuestro complemento desarrollado a
 la medida desde todas las acciones del controlador de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Check if site user is allowed to visit the "index" page
 $isAllowed = $this->access()->checkAccess('index');
 ~~~
@@ -1018,8 +1002,7 @@ de una página web. Generalmente es necesario dar un título diferente para cada
 página web. Podemos colocar el título para la página *Acerca de* agregando el
 siguiente código PHP al comienzo de la plantilla de vista *about.phtml*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 $this->headTitle('About');
 ?>
@@ -1265,8 +1248,7 @@ la impresión de la vista por defecto.
 Registramos la clase `DownloadController` agregando la siguiente línea al archivo
 *module.config.php*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -1284,8 +1266,7 @@ Además, necesitaremos agregar la *ruta* al archivo *module.config.php* (una rut
 le dice a Laminas a que URL le corresponde que acción en el controlador). Modificamos
 la llave `routes` del archivo de configuración de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
   // ...
@@ -1344,8 +1325,7 @@ JSON desde la acción en el controlador.
 Primero, necesitaremos *registrar* la estrategia en el archivo de configuración
 *module.config.php*:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1363,8 +1343,7 @@ return [
 Luego regresamos `JsonModel` (en lugar de `ViewModel` usual) desde nuestro método
 de acción del controlador:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 namespace Application\Controller;
 
 use Laminas\Mvc\Controller\ActionController;
@@ -1627,8 +1606,7 @@ Abajo un ejemplo del servicio `Mailer` se presenta. Este tiene el método `sendM
 que toma el objeto `EmailMessage` como valor y enviá un mensaje de correo electrónico
 usando la función estándar `mail()` de PHP:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 
 // The Email message value object
@@ -1704,8 +1682,7 @@ usa otro servicio llamado `CurrencyConverter` que se puede conectar a un servici
 externo que provee las tasas de cambio. Vamos a escribir una clase de tipo fábrica
 para el `PurchaseManager` que instanciará el servicio y lo pasará como dependencia:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Service\Factory;
 

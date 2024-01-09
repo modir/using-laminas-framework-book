@@ -202,8 +202,7 @@ Un itinéraire *basique* a un *name*, *type* et des *options* :
 
 La configuration de chaque route de la sous-clé `routes` peut avoir le format suivant :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -237,8 +236,7 @@ sections suivantes de ce chapitre.
 Pour organiser les itinéraires dans un sous-arbre, vous ajoutez la clé `child_routes` à la définition de
 la route et ajoutez vos routes enfants sous cette clé, comme ci-dessous :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -255,8 +253,7 @@ la route et ajoutez vos routes enfants sous cette clé, comme ci-dessous :
 Si vous devez organiser les routes dans une chaîne (sous-arbre dégénéré), vous ajoutez la clé
 `chain_routes` à votre configuration :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 '<route_name>' => [
     'type' => '<route_type_class>',
     'priority' => <priority>,
@@ -379,8 +376,7 @@ avons créée précédemment dans la section *Views* du chapitre [Model-View-Con
 Pour créer la route, ajoutez les lignes suivantes juste après la définition de la route "home" dans votre
 fichier *module.config.php* :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 'about' => [
     'type' => Literal::class,
     'options' => [
@@ -624,8 +620,7 @@ Table des matières (`contents.phtml`) et la page Introduction (`introduction.ph
 Créez le sous-dossier *doc* dans le répertoire *view/application/index* du module `Application` et placez y
 la vue *contents.phtml* :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Table des matières</h1>
 
 <ul>
@@ -644,8 +639,7 @@ l'aide `Url`[Laminas\View\Helper\Url], voir les autres sections de ce chapitre).
 
 Ajoutez ensuite la page *introduction.phtml* dans le même dossier *doc* :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Introduction</h1>
 
 <p>Quelques documents d'introduction</p>
@@ -711,8 +705,7 @@ qui peut prendre différentes valeurs de sous-domaine. La clé `constraints` dé
 de facon à ce que chaque site se comportera différemment en fonction de la valeur du paramètre `subdomain`
 retourné :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Un exemple d'action utilisant des paramètres renvoyés par
 // une route Hostname.
 public function someAction()
@@ -801,8 +794,7 @@ La méthode `fromRoute()` peut également être utilisée pour récupérer tous 
 tant que tableau. Pour ce faire, appelez `fromRoute()` sans arguments, comme indiqué dans l'exemple
 ci-dessous :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Un exemple d'action.
 public function someAction()
 {
@@ -869,8 +861,7 @@ correspondant à la requête HTTP, et à la ligne 11, nous récupérons tous les
 La classe @`MvcEvent` peut également être utilisée pour récupérer le routeur (la classe route de niveau
 supérieur). Vous pouvez le faire avec la méthode `getRouter()` de la classe @`MvcEvent`, comme ci-dessous :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
     // Appelé à l'intérieur de votre méthode d'action
     // pour récupérer le RouteStackInterface pour la classe de routage.
     $router = $this->getEvent()->getRouter();
@@ -927,8 +918,7 @@ I> assembler l'URL en fonction du nom de la route.
 
 Une fois que la classe @`PhpRenderer` exécute le code de la vue, le balisage HTML de sortie sera le suivant :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Le lien vers la page d'accueil -->
 <a href="/">Home page</a>
 
@@ -963,8 +953,7 @@ remplacer le caractère générique correspondant dans la route par la chaîne "
 
 Une fois que la classe @`PhpRenderer` aura exécuté le code de la vue, le code HTML de sortie sera le suivant :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page A propos -->
 <a href="/application/about" > A propos </a>
 
@@ -975,8 +964,7 @@ Une fois que la classe @`PhpRenderer` aura exécuté le code de la vue, le code 
 Comme autre exemple, essayons de générer une URL pour notre route *Regex* (celle qui sert nos pages
 "statiques") :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page Introduction -->
 <a href="<?= $this->url('doc', ['page'=>'introduction']); ?>">
  Introduction </a>
@@ -984,8 +972,7 @@ Comme autre exemple, essayons de générer une URL pour notre route *Regex* (cel
 
 Cela générera le code HTML suivant :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page Introduction -->
 <a href="/doc/introduction.html"> Introduction </a>
 ~~~
@@ -1015,8 +1002,7 @@ pour générer l'URL de la page À propos.
 
 Le code HTML résultant du code ci-dessus sera le suivant :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page d'Accueil -->
 <a href="http://localhost/" > Accueil </a>
 
@@ -1032,8 +1018,7 @@ dans un contrôleur (et une route mappée à cette action), et que vous souhaiti
 recherche et un nombre de résultats par page. L'URL de cette action serait la suivante:
 "http://localhost/search?q=topic&count=10". Pour générer cette URL, vous utilisez le code suivant :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <a href="<?= $this->url('search', [], ['force_canonical' => true,
          'query'=>['q'=>'topic', 'count'=>10]]); ?>" >
   Search </a>
@@ -1048,8 +1033,7 @@ Vous pouvez générer des URL dans les méthodes d'action de votre contrôleur �
 `Url`. Pour générer une URL, vous appelez la méthode `fromRoute()` du plugin `Url`, comme dans l'exemple
 ci-dessous :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // Un exemple de méthode d'action
 public function someAction()
 {
@@ -1077,8 +1061,7 @@ caractères dangereux, ces caractères seront remplacés par un pourcentage suiv
 Par exemple, essayons de générer une URL pour notre route *Regex* et passons le paramètre "page" avec la
 valeur "/chapter1/introduction".
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <!-- Un lien vers la page Introduction -->
 <a href="<?= $this->url('doc', ['page'=>'chapter1/introduction']); ?>">
   Introduction </a>
@@ -1088,8 +1071,7 @@ Nous pourrions supposer qu'il génère une URL comme "/doc/chapter1/introduction
 caractère slash ('/') est dangereux, il sera remplacé par les caractères "%2F" pour des raisons de sécurité
 et nous aurons le code HTML suivant :
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <!-- Un lien vers la page Introduction -->
 <a href="/doc/chapter1%2Fintroduction.html"> Introduction </a>
 ~~~
@@ -1519,8 +1501,7 @@ Pour voir le système en action, ajoutons quelques pages d'affichage "statiques"
 Créez le sous-dossier *static* sous le répertoire *view/application/index* du module `Application`
 et placez la vue *help.phtml* :
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Aide</h1>
 
 <p>
@@ -1532,8 +1513,7 @@ et placez la vue *help.phtml* :
 Créez ensuite le sous-dossier *chapter1* dans le répertoire *static* et placez le fichier
 *chapter1/intro.phtml* suivant:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <h1>Introduction</h1>
 
 <p>

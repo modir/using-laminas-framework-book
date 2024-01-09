@@ -62,8 +62,7 @@ To download the archive, click the *Clone or Download* button that can be found 
 
 The structure of the code archive is presented below.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 using-laminas-book-samples
 	blog
 	helloworld

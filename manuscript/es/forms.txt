@@ -37,8 +37,7 @@ carpeta.
 Luego navegamos hasta la carpeta `formdemo` que contiene el código fuente
 completo de la aplicación web *Form Demo*:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 /using-laminas-book-samples
   /formdemo
   ...
@@ -161,8 +160,7 @@ En el formulario podemos agrupar campos relacionados con la ayuda de la etiqueta
 `<fieldset>` como se muestra en el ejemplo de abajo. La etiqueta opcional
 `<legend>` nos permite definir el título para el grupo.
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <fieldset>
   <legend>Choose a payment method:</legend>
   <input type="radio" name="payment" value="paypal">PayPal</input>
@@ -323,8 +321,7 @@ CSS `.btn` más una clase de tema como `.btn-default`, `.btn-primary`, etc.
 Abajo mostramos el formulario de contacto modificado para usar
 los estilos de Bootstrap:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <h1>Contact Us</h1>
 
 <p>
@@ -367,8 +364,7 @@ que nuestro formulario sea muy ancho y difícil de ver. Para limitar el ancho
 del formulario podemos usar las rejillas que provee Bootstrap, como se muestra
 el siguiente ejemplo:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <div class="row">
   <div class="col-md-6">
     <form>
@@ -475,8 +471,7 @@ Finalmente debemos agregar una ruta de tipo literal para hacer una URL corta
 y fácil de recordar para la página *Contactanos*. Agregamos la siguiente llave
 `contactus` a la configuración de rutas en el archivo *module.config.php*:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
   // ...
@@ -515,8 +510,7 @@ Abajo se muestra una ejemplo del arreglo `$data` (producido con la función
 PHP `var_dump()`). Como podemos ver el arreglo contiene una llave para cada
 campo incluyendo el campo "submit".
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 array (size=4)
     'email' => string 'name@example.com' (length=16)
     'subject' => string 'Happy New Year!' (length=15)
@@ -1745,8 +1739,7 @@ I> servidor de correo electrónico para nuestra sistema en particular.
 Ahora vamos a registrar el servicio `MailSender` en nuestro archivo
 `module.config.php` de la siguiente manera:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 return [
     //...
     'service_manager' => [
@@ -1775,8 +1768,7 @@ subcarpeta `Factory` que esta dentro de la subcarpeta `Controller`. Como podemos
 ver el único trabajo de la clase fábrica es crear el controlador y pasarle la
 dependencia.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1801,8 +1793,7 @@ class IndexControllerFactory
 Modificamos el archivo `module.config.php` para usar la fábrica ajustada a la
 medida que acabamos de crear:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 return [
     //...
     'controllers' => [
@@ -2113,8 +2104,7 @@ Como podemos ver existen dos métodos que hacen la misma cosa:
   * El método `__invoke()` es un envoltorio conveniente que reduce el código que
     es necesario escribir.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render the E-mail field with the render() method.
@@ -2126,8 +2116,7 @@ echo $this->formElement($form->get('email'));
 
 Cuando se ejecuta el código de arriba genera el siguiente código HTML:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <input type="text" name="email" id="email" value="">
 ~~~
 
@@ -2145,8 +2134,7 @@ producen ninguna salida.
 
 Un ejemplo del uso del ayudante de vista @`FormElementErrors` se presenta abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render validation errors for the E-mail field.
@@ -2158,8 +2146,7 @@ de errores usando la etiqueta HTML `<ul>` y la lista contendrá tantos elementos
 como errores existan para el campo. Un ejemplo de una lista como esta para el
 campo de correo electrónico del formulario de contacto se muestra abajo.
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <ul>
   <li>&#039;hostname&#039; is not a valid hostname for the email address</li>
   <li>The input does not match the expected structure for a DNS hostname</li>
@@ -2171,8 +2158,7 @@ campo de correo electrónico del formulario de contacto se muestra abajo.
 
 El ayudante @`FormLabel` permite imprimir la etiqueta de texto para un elemento:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render text label for the E-mail field.
@@ -2181,8 +2167,7 @@ echo $this->formLabel($form->get('email'));
 
 Cuando se ejecuta el código de arriba se genera el siguiente código HTML:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <label for="email">Your E-mail</label>
 ~~~
 
@@ -2217,8 +2202,7 @@ en la tabla 7.18.
 
 Un ejemplo de uso del ayudante de vista @`FormRow` se presenta abajo:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 // We assume that the form model is stored in $form variable.
 // Render the E-mail field, its label and (possible) validation errors.
@@ -2227,8 +2211,7 @@ echo $this->formRow($form->get('email'));
 
 Cuando se ejecuta el código de arriba se genera un código HTML como el siguiente:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <label for="email">Your E-mail</label>
 <input type="text" name="email" id="email">
 <ul>
@@ -2263,8 +2246,7 @@ la tabla 7.19.
 
 Podemos imprimir todo el formulario con la ayuda del método `render()` de `Form`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // We assume that the form model is stored in $form variable
 
 // Render the whole form
@@ -2273,8 +2255,7 @@ echo $this->form()->render($form);
 
 El mismo efecto se consigue con el método mágico `__invoke` (ver más abajo):
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 // The same, but with `__invoke`
 echo $this->form($form);
 ~~~
@@ -2346,8 +2327,7 @@ imprimir el formulario:
 Cuando la plantilla de vista impresa evalúa este código producirá una salida
 HTML como la siguiente:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <form action="/contact" method="post" name="contact-form">
   <label for="email">Your E-mail</label>
   <input type="text" name="email" id="email" value="">
@@ -2373,8 +2353,7 @@ debajo del campo del formulario en una lista HTML no ordenada `<ul>`.
 Por ejemplo, si colocamos el correo electrónico "123@hostname" dentro del campo
 para el correo electrónico recibiremos el siguiente error de validación.
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <label for="email">Your E-mail</label>
 <input type="text" name="email" value="123@hostname">
 <ul>
@@ -2489,8 +2468,7 @@ típica lista no ordenada (`<ul>`). Para dar a la lista de errores una bonita
 apariencia, agregamos un par de reglas CSS al archivo *style.css* que está en
 la carpeta *APP_DIR/public*:
 
-{line-numbers=off, lang=css}
-~~~
+~~~css
 form ul {
   list-style-type: none;
   padding: 0px;
@@ -2514,8 +2492,7 @@ Agregamos la plantilla *thank-you.phtml* al directorio *application/index/*
 que esta dentro de la carpeta *view/* del modulo. Colocamos el siguiente código
 HTML dentro del archivo de plantilla de vista:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <h1>Thank You!</h1>
 
 <p>
@@ -2528,8 +2505,7 @@ HTML dentro del archivo de plantilla de vista:
 Luego agregamos el archivo para la plantilla de vista *send-error.phtml*. El
 código HTML para la página *Error al enviar el mensaje* se muestra abajo:
 
-{line-numbers=off, lang=html}
-~~~
+~~~html
 <h1>Error Sending Email!</h1>
 
 <p>

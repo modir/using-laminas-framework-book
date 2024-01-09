@@ -1094,8 +1094,7 @@ Cuando la clase `ImageManager` está lista debemos registrar el servicio en el
 componente de administración de servicios de la aplicación agregando las siguientes
 líneas al archivo de configuración *module.config.php*.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -1526,8 +1525,7 @@ ayuda de una *fábrica*.
 Creamos el archivo `ImageControllerFactory.php` dentro de la subcarpeta
 *Controller/Factory* que está dentro de la carpeta fuente del módulo.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1558,8 +1556,7 @@ class ImageControllerFactory implements FactoryInterface
 Para que Laminas conozca la existencia de nuestro controlador `ImageController` lo
 registramos en el archivo de configuración *module.config.php*.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1579,8 +1576,7 @@ return [
 Necesitamos agregar una *ruta* hacia nuestro controlador `ImageController`.
 Para hacer esto modificamos el archivo `module.config.php`.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

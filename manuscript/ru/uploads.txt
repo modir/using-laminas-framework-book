@@ -964,8 +964,7 @@ class ImageManager
 Как только класс `ImageManager` будет готов, нужно зарегистрировать сервис `ImageManager` в менеджере
 сервисов веб-приложения, добавив следующие строки в файл конфигурации *module.config.php*.
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -1373,8 +1372,7 @@ I> по умолчанию для этого метода действия. По
 Создайте файл `ImageControllerFactory.php` под подкаталогом *Controller/Factory*  под корневым каталогом
 модуля. Поместите в этот файл следующий код:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 namespace Application\Controller\Factory;
 
@@ -1404,8 +1402,7 @@ class ImageControllerFactory implements FactoryInterface
 
 Чтобы дать Laminas знать о нашем контроллере, зарегистрируем `ImageController` в файле конфигурации *module.config.php*:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     //...
@@ -1425,8 +1422,7 @@ return [
 Также нам нужно добавить *маршрут* для контроллера `ImageController`. Для этого просто измените файл `module.config.php`
 следующим образом:
 
-{line-numbers=off, lang=php}
-~~~
+~~~php
 <?php
 return [
     //...

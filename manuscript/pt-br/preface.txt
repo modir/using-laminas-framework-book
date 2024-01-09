@@ -68,8 +68,7 @@ Para baixar o arquivo, clique no botão * Clone ou Download * que pode ser encon
 
 A estrutura do códigos é apresentada abaixo.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 using-laminas-book-samples
 	blog
 	helloworld

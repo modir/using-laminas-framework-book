@@ -108,8 +108,7 @@ container by adding a `<div>` element having the `.container` CSS class.
 To add a new row to the grid, use a `<div>` element having the `.row`
 CSS class, as shown in the example below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <div class="row">
   ...
@@ -121,8 +120,7 @@ To add columns, you use `<div>` elements with CSS class names varying from `.col
 to `.col-md-12`. The number in the class name specifies how many columns each grid cell
 will span:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <div class="row">
     <div class="col-md-1">Cell 1</div>
@@ -141,8 +139,7 @@ The layout has the header (logo spans 3 columns), the main content area (spans 7
 the sidebar (spans 3 columns), the advertisements bar (2 columns) and the footer. To produce
 this layout, we can use the following HTML code:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <!-- Header -->
   <div class="row">
@@ -198,8 +195,7 @@ To nest your content, you add a new `<div>` element containing `.row` class, and
 
 To produce the grid as shown in figure C.5, you can use the following HTML code:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <div class="container">
   <div class="row">
     <div class="col-md-2">Cell 1</div>
@@ -428,8 +424,7 @@ and the *inverse* theme. The inverse theme makes the navbar elements be displaye
 The inverse theme is defined by simply replacing the `.navbar-default` class of the `<nav>`
 element by the `.navbar-inverse` class:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <nav class="navbar navbar-inverse" role="navigation">
   ...
 </nav>
@@ -450,8 +445,7 @@ return to the page he visited previously, and to the upper-level pages.
 To define the breadcrumbs, you use the ordered list `<ol>` element with the `.breadcrumb`
 CSS class (see an example below):
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="#">Support</a></li>
@@ -470,8 +464,7 @@ pages, and use the pagination component for navigation between the pages (figure
 
 To define the pagination like in figure above, use the following HTML code:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <ul class="pagination">
   <li><a href="#">&laquo; Newest</a></li>
   <li><a href="#">&lt; Newer</a></li>
@@ -493,8 +486,7 @@ Twitter Bootstrap provides a nice visual style for button elements (figure C.13)
 
 To create the buttons like in the figure above, use the following HTML code:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <p>
   <button type="button" class="btn btn-primary">Save</button>
   <button type="button" class="btn btn-default">Cancel</button>
@@ -512,8 +504,7 @@ additional button classes: `.btn-success` (for buttons applying some change on t
 effect), and `.btn-danger` (for buttons that may lead to irreversible consequences).
 For an example of using these button styles, look at the code below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <p>
   <button type="button" class="btn btn-default">Default</button>
   <button type="button" class="btn btn-primary">Primary</button>
@@ -532,8 +523,7 @@ Bootstrap includes 180 icons (called Glyphicons) that you can use together with 
 dropdown menus, navigation links, etc. To add an icon on a button,
 you can use the code like the one below:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <p>
   <button type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-plus"></span> Create
@@ -565,8 +555,7 @@ button is presented.
 
 To define such a button, you can use the following HTML code:
 
-{line-numbers=off, lang=text}
-~~~
+~~~text
 <button type="button" class="btn btn-success btn-lg">
   <span class="glyphicon glyphicon-download"></span> Download
 </button>

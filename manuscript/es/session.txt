@@ -32,16 +32,14 @@ Desde el punto de vista del desarrollador de la aplicación el trabajo con sesio
 llamando a la función de PHP `session_start()`. Luego, se usa el arreglo super-global `$_SESSION` para colocar o recuperar la información
 de sesión. Por ejemplo, para guardar alguna información de sesión se usa el siguiente comando:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 session_start();
 $_SESSION['my_var'] = 'Some data';
 ~~~
 
 Luego recuperamos la información de sesión, con el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 session_start();
 if (isset($_SESSION['my_var']))
     $sessionVar = $_SESSION['my_var'];
@@ -51,8 +49,7 @@ else
 
 Para limpiar la información, usamos la función de PHP `unset()`, de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 unset($_SESSION['my_var']);
 ~~~
 
@@ -60,8 +57,7 @@ Advierta que las sesiones no duran para siempre (ellas expiran tarde o temprano,
 limpia los archivos de sesión guardados). El tiempo que dura la sesión se define en el archivo de configuración *php.ini*. Es posible sobreescribir
 el parámetro de expiración por defecto con la ayuda de la función `ini_set()`, de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Set session cookie lifetime (in seconds) to be 1 hour.
 ini_set('session.cookie_lifetime', 60*60*1);
 
@@ -101,8 +97,7 @@ ZFE provee un servicio especial llamando `SessionManager` que pertenece al espac
 es un servicio común de Laminas y se registra automáticamente en el manejador de servicios. Podemos tener una instancia del servicio
 `SessionManager` en una factory class con el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // Use alias for the SessionManager class.
 use Laminas\Session\SessionManager;
 
@@ -152,8 +147,7 @@ La clase `SessionManager` al inicializar lee la configuración de la aplicación
 así podemos poner los parámetros de sesión convenientemente. Para hacer esto modificamos nuestro `APP_DIR/config/autoload/global.php`
 de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 use Laminas\Session\Storage\SessionArrayStorage;
 use Laminas\Session\Validator\RemoteAddr;
@@ -207,8 +201,7 @@ sesiones para guardar mensajes entre peticiones HTTP). Para permitir que cada co
 tendremos que hacerlo "predeterminado" instanciando al manejador tan pronto como sea posible. Por ejemplo, podemos
 instanciar el manejador de sesiones en nuestro método de modulo `onBootstrap()`, de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -260,8 +253,7 @@ o dejar la tarea a una factory. La segunda es más fácil y es la que recomendam
 Podemos crear un contenedor de sesión con el operador `new` pero necesitamos pasar una instancia del
 servicio de manejo de sesiones al constructor del contenedor:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 use Laminas\Session\Container;
 
 // We assume that $sessionManager variable is an instance of the session manager.
@@ -277,8 +269,7 @@ Este método es equivalente al primero, pero el contenedor de sesión es creado 
 Necesitamos registrar el espacio de nombres del contenedor que usaremos. Para hacer esto
 agregamos la llave `session_containers` en nuestro archivo `module.config.php` de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 <?php
 return [
     // ...
@@ -293,8 +284,7 @@ Nosotros podemos escribir los nombres de contenedores permitidos dentro de esta 
 Una vez registrado un nombre de contenedor (o varios nombres de contenedores) podemos crear el contenedor y trabajar con él.
 Que es lo que típicamente hacemos en una factory con la ayuda del manejador de servicio:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 // The $container variable is the service manager.
 $sessionContainer = $container->get('ContainerNamespace');
 ~~~
@@ -305,15 +295,13 @@ Como podemos ver se recupera un contenedor de sesión desde el manejador de serv
 
 Cuando se crea el contenedor de sesión, nosotros podemos guardar la información en él de la siguiente manera:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 $sessionContainer->myVar = 'Some data';
 ~~~
 
 Para recuperar la información del contenedor de sesiones podemos usar el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 if(isset($sessionContainer->myVar))
     $myVar = $sessionContainer->myVar;
 else
@@ -322,8 +310,7 @@ else
 
 Para remover la información de sesión usamos el siguiente código:
 
-{line-numbers=off,lang=php}
-~~~
+~~~php
 unset($sessionContainer->myVar);
 ~~~
 

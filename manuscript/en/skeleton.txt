@@ -512,8 +512,7 @@ you may not want to let Google or other search engines to index your website.
 
 To forbid access to your site, you can modify the virtual host and add the following line to it:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 Require ip <your_ip_address>
 ~~~
 
@@ -572,8 +571,7 @@ In the command above, you should replace the `<username>` placeholder
 with the name of the user. You can choose an arbitrary name, for example "admin".
 The command will request the user's password and write the password to the file:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # htpasswd -c /usr/local/apache/passwd/passwords <username>
 New password:
 Re-type new password:
@@ -594,8 +592,7 @@ several virtual hosts. For each virtual host you need to specify a domain name (
 But if you currently don't have a domain name, you can specify a different port instead
 (see the example below).
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 # Listen directive tells Apache to listen requests on port 8080
 Listen 8080
 
@@ -616,8 +613,7 @@ virtual host and define an alias for your website in your system `hosts` file.
 
 First, modify your Apache virtual host file to be *name-based* virtual host:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 <VirtualHost *:80>
     # Add the ServerName directive
 	ServerName site1.localhost
@@ -633,8 +629,7 @@ more host names.
 To add an alias for your local websites, add lines for each of your website as
 shown in the example below.
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 127.0.0.1            site1.localhost
 ~~~
 
@@ -660,8 +655,7 @@ Now let's briefly describe some advanced Composer usage examples.
 As we already know, the only required key in the `composer.json` file is `require`. This key
 tells what packages are required by your application:
 
-{line-numbers=off,lang=text}
-~~~
+~~~text
 {
     "require": {
         "php": "^5.6 || ^7.0",
