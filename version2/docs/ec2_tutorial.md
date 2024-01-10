@@ -1,4 +1,4 @@
-# Appendix E. Installing a Laminas Web Application to Amazon EC2 {#ec2-tutorial}
+# Appendix E. Installing a Laminas Web Application to Amazon EC2
 
 Once you have developed a laminas-based website, you'll need to install it on some publicly acessible web server
 to make it visible to other people.
@@ -79,11 +79,11 @@ The first of them is the *Choose an Amazon Machine Image (AMI)* page (shown in t
 On the page that appears, you need to select the Linux distribution you want to run on the virutal machine.
 In this tutorial, we choose *Amazon Linux AMI, 64-bit*.
 
-I> Amazon Linux is a distribution from Red Hat Linux and Cent OS family. The installation instructions are
+> Amazon Linux is a distribution from Red Hat Linux and Cent OS family. The installation instructions are
 common between these distributions. For example, all these distributions use the yum package manager. So, if
 you know how to install a program in Cent OS, you will be able to apply the same steps to install it in Amazon Linux.
 
-T> In this tutorial, we use Amazon Linux, but you may select another distribution, if you wish.
+> In this tutorial, we use Amazon Linux, but you may select another distribution, if you wish.
 
 Click the *Select* button at the right side of the *Amazon Linux AMI* option.
 
@@ -227,9 +227,9 @@ First, it is recommended that you update the system by typing the following shel
 
 `sudo yum update`
 
-T> You do not have to type all commands manually, instead you can copy and paste them.
-T> Select the command in this window and copy it into the clipboard (CTRL+C), then click
-T> your mouse's right button over the PuTTY terminal window to insert the text.
+> You do not have to type all commands manually, instead you can copy and paste them.
+> Select the command in this window and copy it into the clipboard (CTRL+C), then click
+> your mouse's right button over the PuTTY terminal window to insert the text.
 
 To install Apache HTTP Server, type the following command:
 

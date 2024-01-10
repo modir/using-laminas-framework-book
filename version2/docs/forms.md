@@ -1,4 +1,4 @@
-# Collecting User Input with Forms {#forms}
+# Collecting User Input with Forms
 
 In this chapter, you will become familiar with using web forms for gathering data
 entered by website users. In Laminas Framework, functionality
@@ -41,10 +41,10 @@ source code of the *Form Demo* web application:
   ...
 ~~~
 
-T> To install the example, you can either edit your default virtual host file
-T> or create a new one. After editing the file, restart the Apache HTTP Server
-T> and open the web site in your web browser. For additional information on
-T> Apache virtual hosts, you can refer to [Appendix A. Configuring Web Development Environment](#devenv).
+> To install the example, you can either edit your default virtual host file
+> or create a new one. After editing the file, restart the Apache HTTP Server
+> and open the web site in your web browser. For additional information on
+> Apache virtual hosts, you can refer to [Appendix A. Configuring Web Development Environment](#devenv).
 
 ## About HTML Forms
 
@@ -556,9 +556,9 @@ As you can see from the figure, the @`Form`[Laminas\Form\Form] class extends the
 The @`Fieldset` class, in turn, is derived from the @`Element` class which represents a single
 form field and its attributes.
 
-T> This class inheritance may look strange at first sight, but everything becomes logical
-T> if you remember that the @`Form`[Laminas\Form\Form] class inherits methods for adding form fields from the @`Fieldset`
-T> class, and that it inherits methods for setting form attributes from the @`Element` class.
+> This class inheritance may look strange at first sight, but everything becomes logical
+> if you remember that the @`Form`[Laminas\Form\Form] class inherits methods for adding form fields from the @`Fieldset`
+> class, and that it inherits methods for setting form attributes from the @`Element` class.
 
 Below, we provide a stub model class for the feedback form from our previous examples:
 
@@ -606,11 +606,11 @@ attribute.
 You also can set the form's "action" attribute (line 19) with the `setAttribute()` method, analogous to the way
 you did with the "method" attribute. Actually, as you will see later, setting the form's "action" attribute is optional.
 
-I> Setting the "action" attribute for the form is optional, because empty
-I> form action forces the browser to submit form data to the URL of the
-I> current page. This is sufficient in most scenarios, because usually
-I> you use the single controller action for both displaying the form
-I> and processing its data.
+> Setting the "action" attribute for the form is optional, because empty
+> form action forces the browser to submit form data to the URL of the
+> current page. This is sufficient in most scenarios, because usually
+> you use the single controller action for both displaying the form
+> and processing its data.
 
 Form fields are typically created inside of the form model's constructor
 (look at line 21). In the next section, we will learn which form fields
@@ -876,9 +876,9 @@ The second example below (equivalent to the first one) shows how to use an
 array specification to add an element to form. This method is preferable, because
 it requires less code to write.
 
-I> When using array specification for adding an element to a form, the element will
-I> be instantiated and configured automatically. Internally, this is accomplished with the
-I> help of the @`Laminas\Form\Factory` factory class (illustrated by figure 7.13).
+> When using array specification for adding an element to a form, the element will
+> be instantiated and configured automatically. Internally, this is accomplished with the
+> help of the @`Laminas\Form\Factory` factory class (illustrated by figure 7.13).
 
 ![Figure 7.13. The logic of the add() method](images/forms/factory_graph.png)
 
@@ -946,8 +946,8 @@ We will have two methods in our form class:
 * `addElements()` private method will contain the actual code for
   adding form elements and will be called by the constructor.
 
-I> We put the field creation logic into the `addElements()` private
-I> method to better structure the form model's code.
+> We put the field creation logic into the `addElements()` private
+> method to better structure the form model's code.
 
 The code of the `ContactForm` class is presented below:
 
@@ -1095,9 +1095,9 @@ The @`InputFilter`[Laminas\InputFilter\InputFilter] class is defined in the @`La
 The input filter is a container for so called *inputs*. Typically, you add an input
 per each form model's field you have.
 
-I> An input may consist of filters and/or validators and some additional information.
-I> For example, an input may contain the flag telling if the field is required or if its value may
-I> be missing from HTTP request.
+> An input may consist of filters and/or validators and some additional information.
+> For example, an input may contain the flag telling if the field is required or if its value may
+> be missing from HTTP request.
 
 Analogous to adding a form model's fields, there are two possible ways of adding
 inputs to the input filter container: either via passing an instance of an input
@@ -1321,9 +1321,9 @@ filter we've created.
 
 ![Figure 7.17. The input filter for ContactForm](images/forms/input_filter.png)
 
-T> Above, we briefly described how to create an input filter for the form model.
-T> For detailed information about the above mentioned (and other) filters and validators and their
-T> usage examples, please refer to [Transforming Input Data with Filters](#filters) and
+> Above, we briefly described how to create an input filter for the form model.
+> For detailed information about the above mentioned (and other) filters and validators and their
+> usage examples, please refer to [Transforming Input Data with Filters](#filters) and
 [Checking Input Data with Validators](#validators).
 
 ## Using the Form in a Controller's Action
@@ -1450,8 +1450,8 @@ The @`Redirect` plugin's `toRoute()` method takes two parameters: the first para
 name of the route ("application"), and the second one is the array of parameters
 to pass to the router. These identify the web page where you redirect the user.
 
-I> We will prepare the controller's action and view template for the *Thank You*
-I> page a little bit later.
+> We will prepare the controller's action and view template for the *Thank You*
+> page a little bit later.
 
 In line 37, we pass the form model through the `$form` variable to the view template. The view template
 will access this variable and will use it for rendering the form (and possible
@@ -1468,8 +1468,8 @@ it to send the E-mail message to the recipient.
 [^service]: In DDD terms, the `MailSender` can be related to service models, because its goal
             is to manipulate data, not to store data.
 
-T> Reading this section is optional and intended mostly for beginners. You may skip it
-T> and refer directly to the next section *Form Presentation*.
+> Reading this section is optional and intended mostly for beginners. You may skip it
+> and refer directly to the next section *Form Presentation*.
 
 The `MailSender` model will internally use the @`Laminas\Mail` component. The @`Laminas\Mail` component
 is a component provided by Laminas Framework and designed to give you the convenient functionality
@@ -1477,14 +1477,14 @@ for composing mail messages (the @`Laminas\Mail\Message` class) and several clas
 transports for sending mail (in this example, we will use the @`Laminas\Mail\Transport\Sendmail` class which
 uses the *sendmail* program for delivering E-mails).
 
-I> Install the @`Laminas\Mail` component with Composer by typing the following command:
-I>
-I> `php composer.phar require laminas/laminas-mail`
+> Install the @`Laminas\Mail` component with Composer by typing the following command:
+>
+> `php composer.phar require laminas/laminas-mail`
 
-I> The [sendmail](http://www.sendmail.com/sm/open_source/) program is a free open-source mail transfer agent for Linux/Unix operating systems.
-I> It accepts messages that a PHP script passes to it, deciding based upon the message header which
-I> delivery method it should use, and then passes the message through the SMTP protocol to the
-I> appropriate mail server (like Google Mail) for delivery to the recipient.
+> The [sendmail](http://www.sendmail.com/sm/open_source/) program is a free open-source mail transfer agent for Linux/Unix operating systems.
+> It accepts messages that a PHP script passes to it, deciding based upon the message header which
+> delivery method it should use, and then passes the message through the SMTP protocol to the
+> appropriate mail server (like Google Mail) for delivery to the recipient.
 
 Start with creating the *MailSender.php* file under the *Service* directory under the module's
 source directory (see figure 7.19 for example).
@@ -1553,12 +1553,12 @@ block of code with the `try`-`catch` exception handler.
 The `sendMail()` method will return `true` if the E-mail message sent successfully; otherwise
 it will return `false` (line 33).
 
-I> Configuring mail system for your web server is a rather complex task. It typically
-I> requires installing sendmail and configuring the server's MX DNS record to use certain
-I> mail server (either local mail server, e.g. [Postfix](http://www.postfix.org/),
-I> or remote server, like Google Mail).
-I> Because of the complexity of the topic, it is not discussed in this book. You can find
-I> additional information on configuring mail for your particular system online.
+> Configuring mail system for your web server is a rather complex task. It typically
+> requires installing sendmail and configuring the server's MX DNS record to use certain
+> mail server (either local mail server, e.g. [Postfix](http://www.postfix.org/),
+> or remote server, like Google Mail).
+> Because of the complexity of the topic, it is not discussed in this book. You can find
+> additional information on configuring mail for your particular system online.
 
 Now, register the `MailSender` service in your `module.config.php` file as follows:
 
@@ -1578,10 +1578,10 @@ return [
 Later, you can instantiate the `MailSender` model in your `IndexController::contactUsAction()`
 method and pass it the validated form data.
 
-I> Because we use the `MailSender` service in our controller, this service is a *dependency* for the controller.
-I> So, we will need to create a factory for the controller and *inject* the dependency into controller's constructor.
-I> Looks complex at the first sight, but as you improve your skills, you will find this is rather simple and greatly
-I> improves the structure of your code.
+> Because we use the `MailSender` service in our controller, this service is a *dependency* for the controller.
+> So, we will need to create a factory for the controller and *inject* the dependency into controller's constructor.
+> Looks complex at the first sight, but as you improve your skills, you will find this is rather simple and greatly
+> improves the structure of your code.
 
 Let's create the factory for the `IndexController` (put it into the `Factory` subdirectory under the `Controller` subdirectory).
 You can see that the only work of the factory class is creating the controller and passing it the dependency.
@@ -1731,11 +1731,11 @@ Additionally, you will have to display error messages if the form validation
 failed. Because this work is rather boring, Laminas Framework provides you
 with special view helpers intended for rendering the form.
 
-T> For simple forms (which do not show error messages), you can use raw HTML tags
-T> for rendering the form and ignore laminas-provided form view helpers.
-T> But, form view helpers are really unavoidable
-T> when rendering complex forms that may display validation errors and/or add
-T> fields dynamically.
+> For simple forms (which do not show error messages), you can use raw HTML tags
+> for rendering the form and ignore laminas-provided form view helpers.
+> But, form view helpers are really unavoidable
+> when rendering complex forms that may display validation errors and/or add
+> fields dynamically.
 
 ### Preparing the Form Model for Rendering
 
@@ -1921,10 +1921,10 @@ When executed, the code above will generate the HTML code as follows:
 <input type="text" name="email" id="email" value="">
 ~~~
 
-T> Typically, there is no need to call view helpers for concrete HTML (or HTML5)
-T> fields (e.g. @`FormText`, @`FormSubmit`, etc.)
-T> Instead, you can use the generic @`FormElement` view helper which determines the
-T> field type automatically and produces the needed HTML code.
+> Typically, there is no need to call view helpers for concrete HTML (or HTML5)
+> fields (e.g. @`FormText`, @`FormSubmit`, etc.)
+> Instead, you can use the generic @`FormElement` view helper which determines the
+> field type automatically and produces the needed HTML code.
 
 ### Rendering an Element's Validation Errors
 
@@ -2131,10 +2131,10 @@ When the view template renderer evaluates this code, it will produce the HTML ou
 </form>
 ~~~
 
-I> In the code above, we mostly used the @`FormElement`, @`FormElementErrors`
-I> and @`FormLabel` view helpers. You may use the generic @`FormRow` or @`Form`[Laminas\Form\View\Helper\Form] view
-I> helpers if you want to reduce the amount of code to write, but this
-I> may result in less control of form decoration.
+> In the code above, we mostly used the @`FormElement`, @`FormElementErrors`
+> and @`FormLabel` view helpers. You may use the generic @`FormRow` or @`Form`[Laminas\Form\View\Helper\Form] view
+> helpers if you want to reduce the amount of code to write, but this
+> may result in less control of form decoration.
 
 If certain fields have validation errors, those errors will be
 outputted below the field in the form of the `<ul>` unordered HTML list.
@@ -2234,12 +2234,12 @@ CSS class (lines 35, 41, 47).
 We put a form inside of the 6-column-width grid cell, which makes the form half
 the width of the screen (look at lines 31-32).
 
-T> Sometimes it is impossible to use Twitter Bootstrap styling with standard Laminas form view helpers.
-T> For example, standard view helpers @`FormCheckbox` and @`FormRadio` can't be tweaked to support
-T> Bootstrap styles. Fortunately, there is a third-party module [neilime/zf2-twb-bundle](https://github.com/neilime/zf2-twb-bundle)
-T> that you can install with Composer (do not be confused with module's name - it supports Laminas as well). This module provides convenient view helpers for rendering Laminas forms
-T> and applying Bootstrap styling to them. It works transparently, so once you installed the module, standard Laminas form view helpers
-T> become replaced with module-provided form view helpers, so you don't need to change your view template code.
+> Sometimes it is impossible to use Twitter Bootstrap styling with standard Laminas form view helpers.
+> For example, standard view helpers @`FormCheckbox` and @`FormRadio` can't be tweaked to support
+> Bootstrap styles. Fortunately, there is a third-party module [neilime/zf2-twb-bundle](https://github.com/neilime/zf2-twb-bundle)
+> that you can install with Composer (do not be confused with module's name - it supports Laminas as well). This module provides convenient view helpers for rendering Laminas forms
+> and applying Bootstrap styling to them. It works transparently, so once you installed the module, standard Laminas form view helpers
+> become replaced with module-provided form view helpers, so you don't need to change your view template code.
 
 ### Styling the Validation Errors List
 
@@ -2316,8 +2316,8 @@ On a sending failure, you will see the *Error Sending Email* page (see figure 7.
 
 ![Figure 7.23. Error Sending Email page](images/forms/send_error_page.png)
 
-T> You can see the *Contact Us* form in action in the *Form Demo* sample
-T> application bundled with this book.
+> You can see the *Contact Us* form in action in the *Form Demo* sample
+> application bundled with this book.
 
 ## Summary
 

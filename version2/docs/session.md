@@ -1,4 +1,4 @@
-# Working with Sessions {#session}
+# Working with Sessions
 
 In this chapter, you will learn about *sessions*. The HTTP protocol is stateless, so you can't
 share data between two HTTP requests by default. PHP sessions allow to workaround this by saving data on server during
@@ -178,7 +178,7 @@ return [
 ];
 ~~~
 
-T> We modify `global.php` file here, because sessions may be used by any module in your website and do not
+> We modify `global.php` file here, because sessions may be used by any module in your website and do not
 depend on environment.
 
 As you can see, the session configuration is stored under three keys:
@@ -227,8 +227,8 @@ class Module
 }
 ~~~
 
-T> Making the session manager the default one is very important, because otherwise you'll have to explicitly pass it to every component
-T> depending on the session manager, which is rather boring.
+> Making the session manager the default one is very important, because otherwise you'll have to explicitly pass it to every component
+> depending on the session manager, which is rather boring.
 
 ## Session Containers
 
@@ -241,8 +241,8 @@ which the data will be stored. A container namespace may contain upper-case and 
 underscores and back-slashes. So, for example, "Session\ContainerName", "session_container_name" and "SessionContainerName" are all
 valid container namespaces.
 
-I> Session containers work closely with the session manager. When you create a session container, it calls the session
-I> manager's `start()` method automatically, so session is started and initialized.
+> Session containers work closely with the session manager. When you create a session container, it calls the session
+> manager's `start()` method automatically, so session is started and initialized.
 
 Now let's start using containers. You can create a container using two equivalent ways: either manually instantiating a container or
 let a factory do that for you. The second one is easier, so we recommend it.
@@ -313,7 +313,7 @@ To remove data from session, use the following code:
 unset($sessionContainer->myVar);
 ~~~
 
-T> For some practical examples of using session containers, please refer to [Implementing Multi-Step Forms](#multi-step-forms)
+> For some practical examples of using session containers, please refer to [Implementing Multi-Step Forms](#multi-step-forms)
    section.
 
 ## Summary

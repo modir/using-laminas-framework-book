@@ -1,4 +1,4 @@
-# Advanced Usage of Forms {#advanced-forms}
+# Advanced Usage of Forms
 
 In previous chapters, you've learned about form usage basics: what
 HTML forms are and how you define form models and form presentation in Laminas Framework.
@@ -56,10 +56,10 @@ submission by an automated process (so called robot). Usually, such
 robots send spam messages to forums, hack passwords on site login forms,
 or perform some other malicious actions.
 
-I> The CAPTCHA test allows to reliably distinguish humans from robots, because
-I> humans are easily able to recognise and reproduce characters from the
-I> distorted image, while robots are not (at the current stage of evolution of
-I> computer vision algorithms).
+> The CAPTCHA test allows to reliably distinguish humans from robots, because
+> humans are easily able to recognise and reproduce characters from the
+> distorted image, while robots are not (at the current stage of evolution of
+> computer vision algorithms).
 
 #### CAPTCHA Types
 
@@ -398,9 +398,9 @@ Figure 11.5 illustrates an example CSRF attack on a payment gateway website:
    performs the "session riding" and can act on behalf of the logged in user.
    It is now able to submit the payment form to the payment gateway site.
 
-I> The above described CSRF attack is possible it the web form on the payment gateway site
-I> does not check the source of the HTTP request. The people who maintain the payment
-I> gateway site must put more attention in making its forms more secure.
+> The above described CSRF attack is possible it the web form on the payment gateway site
+> does not check the source of the HTTP request. The people who maintain the payment
+> gateway site must put more attention in making its forms more secure.
 
 To prevent CSRF attacks to a form, one has to require a special token with the form, as follows:
 
@@ -412,16 +412,16 @@ To prevent CSRF attacks to a form, one has to require a special token with the f
 3. Once the form is submitted by the user, compare the hidden value passed in the form
    with the token saved server-side. If they match, consider the form data secure.
 
-I> If a malicious user will try to attack the site by submitting the form, he
-I> will not be able to put right token in the form submissions, because the token
-I> is not stored in cookies.
+> If a malicious user will try to attack the site by submitting the form, he
+> will not be able to put right token in the form submissions, because the token
+> is not stored in cookies.
 
 #### Example: Adding a CSRF Element to Form
 
 In Laminas Framework, to add a CSRF protection to your form model,
 you use the @`Laminas\Form\Element\Csrf` form element class.
 
-I> The @`Csrf`[Laminas\Form\Element\Csrf] element has no visual representation (you will not see it on the screen).
+> The @`Csrf`[Laminas\Form\Element\Csrf] element has no visual representation (you will not see it on the screen).
 
 To insert a CSRF element to your form model, add the following lines in its `addElements()` method:
 
@@ -465,9 +465,9 @@ for the CSRF field like shown below:
 <input type="hidden" name="csrf" value="1bc42bd0da4800fb55d16e81136fe177">
 ~~~
 
-T> As you can see from the HTML markup code above, the form now contains a hidden field with a
-T> randomly generated token. Since the attacker script doesn't know this token, it won't
-T> be able to submit its correct value, thus the CSRF attack becomes prevented.
+> As you can see from the HTML markup code above, the form now contains a hidden field with a
+> randomly generated token. Since the attacker script doesn't know this token, it won't
+> be able to submit its correct value, thus the CSRF attack becomes prevented.
 
 Q> **What happens if CSRF element validation fails?**
 Q>
@@ -481,13 +481,13 @@ Q> what's wrong with the form).
 Sometimes it may be useful to temporarily disable validation of some form elements. You can do that with a feature
 called *validation groups*.
 
-I> By default, all form elements are validated. A validation group allows to disable validation of certain fields.
+> By default, all form elements are validated. A validation group allows to disable validation of certain fields.
 
 For example, assume you implement a form named `PaymentForm`, which allows you to select a payment method of several alternatives (credit card, bank transfer and cash).
 If the user selects *credit card*, you also want him to enter the credit card number; else if user selects *bank transfer*, you
 want him to enter bank account number; and finally, if the *cash* is selected, user does not need to enter additional information.
 
-T> For this form, you will have to dynamically hide and display dependent fields in client's browser with JavaScript.
+> For this form, you will have to dynamically hide and display dependent fields in client's browser with JavaScript.
 
 How would you validate such form in your controller's action? The problem is that some fields *depend* on others. The `card_number` field is required
 only when `payment_method` is the "credit card", otherwise it is optional. The same is for the `bank_account` field - it is required
@@ -521,8 +521,8 @@ if ($form->isValid())
 }
 ~~~
 
-T> You can see this example in action in the *Form Demo* sample web application bundled with this book. Just type
-T> "http://localhost/payment" URL in your browser.
+> You can see this example in action in the *Form Demo* sample web application bundled with this book. Just type
+> "http://localhost/payment" URL in your browser.
 
 ## Implementing Multi-Step Forms {#multi-step-forms}
 
@@ -530,20 +530,20 @@ In this section, we will provide instructions on how to implement a *multi-step*
 is a form having a lot of fields, and which is displayed in several steps. To store the current step and user-entered data
 between page requests, PHP *sessions* are utilized.
 
-I> For example, user registration can be performed in several steps: on the first step you display the page allowing to enter
-I> login and password, on the second step you display the page where the site visitor can enter his personal information,
-I> and on the third step, the visitor can enter billing information.
-I>
-I> Another example of a multi-step form is a Survey form. This form would display a question and possible variants of the answer.
-I> This form would have as many steps as many questions are in the survey.
+> For example, user registration can be performed in several steps: on the first step you display the page allowing to enter
+> login and password, on the second step you display the page where the site visitor can enter his personal information,
+> and on the third step, the visitor can enter billing information.
+>
+> Another example of a multi-step form is a Survey form. This form would display a question and possible variants of the answer.
+> This form would have as many steps as many questions are in the survey.
 
 In this section we will implement the *User Registration* form allowing to collect information about the user being registered.
 
-T> You can see this complete working example in action as part of *Form Demo* sample web application bundled with this book.
+> You can see this complete working example in action as part of *Form Demo* sample web application bundled with this book.
 
 ### Enabling Sessions
 
-T> If you are new to the PHP sessions feature, please refer to [Working with Sessions](#session) before reading this section.
+> If you are new to the PHP sessions feature, please refer to [Working with Sessions](#session) before reading this section.
 
 Session support is implemented in @`Laminas\Session` component, so you have to install it if you hadn't done that before.
 
@@ -1226,7 +1226,7 @@ class RegistrationControllerFactory implements FactoryInterface
 }
 ~~~
 
-T> Do not forget to register the controller in the *module.config.php* file!
+> Do not forget to register the controller in the *module.config.php* file!
 
 ### Adding View Templates
 
@@ -1490,7 +1490,7 @@ Clicking *Next* results in displaying the *Review* page allowing to see the data
 
 ![Figure 11.9. User Registration - Review](images/forms_advanced/registration_review.png)
 
-T> You can find this complete example in the *Form Demo* sample application bundled with this book.
+> You can find this complete example in the *Form Demo* sample application bundled with this book.
 
 ## Summary
 

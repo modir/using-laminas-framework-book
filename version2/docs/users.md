@@ -1,4 +1,4 @@
-# User Management, Authentication and Access Filtering {#users}
+# User Management, Authentication and Access Filtering
 
 Most websites on the Internet allow their visitors to register on the site and create a profile. After that, the
 visitor can log in and have a personalized experience. For example, in a E-commerce
@@ -53,7 +53,7 @@ source code of the *User Demo* web application:
 
 The *User Demo* is a website which can be installed on your machine.
 
-I> Detailed instructions on how to install the *User Demo* sample can be found in *README.md* file located in the sample directory.
+> Detailed instructions on how to install the *User Demo* sample can be found in *README.md* file located in the sample directory.
 
 ## Creating the User Module
 
@@ -65,10 +65,10 @@ The *User* module will have very few dependencies on other
 modules of the website. The idea behind the *User* module is to give you a reusable unit that you can use in your own web
 application, without any changes or with some modifications.
 
-T> Ideally, you will be able to use the *User* module in your own website without any changes. But, in real-life
-T> websites, you'll probably have to add some fields to the `user` table, modify the user creation workflow, or
-T> modify the access filtering algorithm. It this case, you'll have to customize the code of the *User* module
-T> to feet your needs.
+> Ideally, you will be able to use the *User* module in your own website without any changes. But, in real-life
+> websites, you'll probably have to add some fields to the `user` table, modify the user creation workflow, or
+> modify the access filtering algorithm. It this case, you'll have to customize the code of the *User* module
+> to feet your needs.
 
 The *User* module will have the following structure (see figure 16.1 below):
 
@@ -128,7 +128,7 @@ The `user` table contains the following fields:
   * the `date_created` contains date and time when the user was created.
   * the `pwd_reset_token` and `pwd_reset_token_creation_date` fields are used for password resetting (when the user forgets his/her password and needs to reset it).
 
-T> In your own website, you will likely want to add more fields to the `user` table.
+> In your own website, you will likely want to add more fields to the `user` table.
 In this sample, we only define some minimum set of fields.
 
 You can create the `user` table with the following SQL statement:
@@ -150,7 +150,7 @@ CREATE TABLE `user` (
 
 You can find a migration, which creates the `user` table, in the *User Demo* sample application.
 
-T> If you are new to migrations, refer to chapter [Database Migrations](#migrations).
+> If you are new to migrations, refer to chapter [Database Migrations](#migrations).
 
 ## Implementing User Entity
 
@@ -488,11 +488,11 @@ What is interesting here is how we save the user's password to the database. For
 save the password as is, but calculate a hash of it with the @`Bcrypt` class provided by @`Laminas\Crypt` component of
 Laminas Framework (lines 18-19) .
 
-T> You can install @`Laminas\Crypt` with the following command:
-T>
-T>   `php composer.phar require laminas/laminas-crypt`
-T>
-T> The @`Laminas\Crypt` component also requires that you have `mcrypt` PHP extension installed.
+> You can install @`Laminas\Crypt` with the following command:
+>
+>   `php composer.phar require laminas/laminas-crypt`
+>
+> The @`Laminas\Crypt` component also requires that you have `mcrypt` PHP extension installed.
 
 W> The *Bcrypt* algorithm is a hashing algorithm that is widely used and recommended by the security community for storing user's password.
 W> Encrypting password with @`Bcrypt` is considered secure nowadays. Some developers still encrypt passwords
@@ -525,8 +525,8 @@ public function validatePassword($user, $password)
 
 The next important thing to note in `UserManager` is how we create the Admin user.
 
-I> The Admin user is an initial user that is created automatically when there are not existing users
-I> in the database and allows you to login for the first time.
+> The Admin user is an initial user that is created automatically when there are not existing users
+> in the database and allows you to login for the first time.
 
 ~~~php
 /**
@@ -566,8 +566,8 @@ securely change the password. Password resetting works as follows:
   * The website validates the password reset token and checks it hasn't expired.
   * The user is directed to the form allowing him to enter new password.
 
-I> You typically do not store raw password reset tokens in database. Instead, you store a *hash* of the token. This is done for security reasons.
-I> Even if some malicious hacker steals the DB, they won't be able to reset passwords of the users.
+> You typically do not store raw password reset tokens in database. Instead, you store a *hash* of the token. This is done for security reasons.
+> Even if some malicious hacker steals the DB, they won't be able to reset passwords of the users.
 
 The password reset token generation algorithm is implemented inside the `generatePasswordResetToken()` method of `UserManager`.
 To generate a random string, we use the @`Rand` class provided by @`Laminas\Math` component.
@@ -636,8 +636,8 @@ public function generatePasswordResetToken($user)
 }
 ~~~
 
-I> Configuring mail system for your web server typically
-I> requires acquiring subscription of some mail service (like [SendGrid](https://sendgrid.com/) or [Amazon SES](https://aws.amazon.com/en/ses)).
+> Configuring mail system for your web server typically
+> requires acquiring subscription of some mail service (like [SendGrid](https://sendgrid.com/) or [Amazon SES](https://aws.amazon.com/en/ses)).
 
 Password reset token validation is implemented inside the `validatePasswordResetToken()` method.
 We check that the token's hash is the same as we saved in database and that the token has not expired
@@ -720,7 +720,7 @@ public function setNewPasswordByToken($email, $passwordResetToken, $newPassword)
 are correct. Authentication typically means you check your database for the given login, and if such login exists, you
 check if the hash calculated by the given password matches the hash of the password stored in the database.
 
-I> You typically do not store raw passwords in database. Instead, you store a *hash* of the password. This is done for security reasons.
+> You typically do not store raw passwords in database. Instead, you store a *hash* of the password. This is done for security reasons.
 
 Once the authentication algorithm determines that the login and password are correct, it returns user *identity* - a unique
 ID of the user. The identity is typically stored to session, so the visitor doesn't need to pass authentication for every
@@ -733,8 +733,8 @@ You can install this component with Composer by typing the following command:
 php composer.phar require laminas/laminas-authentication
 ```
 
-T> For authentication to work, you also need to have @`Laminas\Session` component installed and session manager configured. For information
-T> on how to do that, refer to [Working with Sessions](#session) chapter.
+> For authentication to work, you also need to have @`Laminas\Session` component installed and session manager configured. For information
+> on how to do that, refer to [Working with Sessions](#session) chapter.
 
 ### AuthenticationService
 
@@ -801,8 +801,8 @@ that we will use to pass user email and password to the adapter.
 
 To create the authentication adapter, add the file *AuthAdapter.php* to the *Service* directory of the module's source directory.
 
-I> In the *User Demo* sample, we create a separate module called *User* and add functionality related to authentication
-I> and user management to that module.
+> In the *User Demo* sample, we create a separate module called *User* and add functionality related to authentication
+> and user management to that module.
 
 Put the following code into that file:
 
@@ -1195,8 +1195,8 @@ $form->get('password')->setAttributes([
 </div>
 ~~~
 
-T> The view template uses the *Sign In* page template provided by Bootstrap CSS Framework.
-T> You can find the original template [here](https://getbootstrap.com/examples/signin/).
+> The view template uses the *Sign In* page template provided by Bootstrap CSS Framework.
+> You can find the original template [here](https://getbootstrap.com/examples/signin/).
 
 ### Adding AuthManager Service
 
@@ -1318,9 +1318,9 @@ Under the `access_filter` key, we have two subkeys:
     character (*) means that everyone will be able to access the web page. The "at" character (@) means that only authenticated
     users will be able to access the page.
 
-I> The access filter implementation is very simple. It can't, for example, allow access based on username or by user role. However,
-I> you can easily modify and extend it as you wish. If you plan to introduce role-based access control (RBAC), refer to the
-I> [Role-Based Access Control](#roles) chapter.
+> The access filter implementation is very simple. It can't, for example, allow access based on username or by user role. However,
+> you can easily modify and extend it as you wish. If you plan to introduce role-based access control (RBAC), refer to the
+> [Role-Based Access Control](#roles) chapter.
 
 ### Adding Dispatch Event Listener
 
@@ -1472,9 +1472,9 @@ will direct you to *Login* page. However, you can easily visit the "http://local
 One last thing we will discuss is how to check in your website if the user is logged in
 or not and retrieve the user identity. You can do that with the help of the @`Identity`[Laminas\Mvc\Plugin\Identity] controller plugin and the @`Identity`[Laminas\View\Helper\Identity] view helper.
 
-I> To use the @`Identity`[Laminas\Mvc\Plugin\Identity] plugin, you need to install `laminas/laminas-mvc-plugins` package with Composer, as follows:
-I>
-I> `php composer.phar require laminas/laminas-mvc-plugins`
+> To use the @`Identity`[Laminas\Mvc\Plugin\Identity] plugin, you need to install `laminas/laminas-mvc-plugins` package with Composer, as follows:
+>
+> `php composer.phar require laminas/laminas-mvc-plugins`
 
 In your controller action method, you can check if user is logged in with the following code:
 

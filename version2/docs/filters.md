@@ -1,12 +1,12 @@
-# Transforming Input Data with Filters {#filters}
+# Transforming Input Data with Filters
 
 In this chapter, we will provide an overview of standard filters that
 can be used with your web forms. A filter is a class which takes some input data, processes it,
 and produces some output data. We will also show how to write a custom filter.
 
-I> In general, you can even use filters *outside* forms to process an arbitrary data.
-I> For example, filters may be used in a controller action to transform the data passed
-I> as GET and/or POST variables to certain format.
+> In general, you can even use filters *outside* forms to process an arbitrary data.
+> For example, filters may be used in a controller action to transform the data passed
+> as GET and/or POST variables to certain format.
 
 Laminas components covered in this chapter:
 
@@ -44,8 +44,8 @@ As you can see, the @`FilterInterface`[Laminas\Filter\FilterInterface] interface
 which takes the single parameter `$value`. The method transforms the input data and finally
 returns the resulting (filtered) value.
 
-T> A concrete filter class implementing the @`FilterInterface`[Laminas\Filter\FilterInterface] interface may have additional methods.
-T> For example, many filter classes have methods allowing configuration of the filter (set filtering options).
+> A concrete filter class implementing the @`FilterInterface`[Laminas\Filter\FilterInterface] interface may have additional methods.
+> For example, many filter classes have methods allowing configuration of the filter (set filtering options).
 
 ## Standard Filters Overview
 
@@ -66,9 +66,9 @@ the @`FilterInterface`[Laminas\Filter\FilterInterface] interface [^filter_inheri
       And, the @`Decompress` filter inherits from the @`Compress` filter, because these filters are in fact very similar.
       By analogy, the @`Decrypt`[Laminas\Filter\Decrypt] filter inherits from the @`Encrypt`[Laminas\Filter\Encrypt] filter, because they are the "mirror reflection" of each other as well.
 
-I> You may notice that there is a strange filter called @`StaticFilter` which does not inherit from @`AbstractFilter`
-I> base class. This is because the @`StaticFilter` class is actually a "wrapper" (it is designed to be a proxy
-I> to another filter without explicit instantiation of that filter).
+> You may notice that there is a strange filter called @`StaticFilter` which does not inherit from @`AbstractFilter`
+> base class. This is because the @`StaticFilter` class is actually a "wrapper" (it is designed to be a proxy
+> to another filter without explicit instantiation of that filter).
 
 Standard filters provided by the @`Laminas\Filter` component, along with a brief description of each, are listed in table 8.1.
 
@@ -155,10 +155,10 @@ filter by using the methods it provides, and call the `filter()` method on the f
 For example, let's consider the usage of the @`StringTrim` filter which removes the
 white space characters from the beginning and the end of a string.
 
-I> The @`StringTrim` filter is useful for filtering user-entered string data (E-mail addresses, user
-I> names, etc.) because site visitors tend to make typos in those data. For example, a user may
-I> unintentionally enter a trailing space in an E-mail field, thus making an E-mail invalid. With
-I> the @`StringTrim` filter, you will easily cope with such input errors and improve user experience.
+> The @`StringTrim` filter is useful for filtering user-entered string data (E-mail addresses, user
+> names, etc.) because site visitors tend to make typos in those data. For example, a user may
+> unintentionally enter a trailing space in an E-mail field, thus making an E-mail invalid. With
+> the @`StringTrim` filter, you will easily cope with such input errors and improve user experience.
 
 The methods provided by the filter are listed in table 8.2:
 
@@ -180,8 +180,8 @@ the constructor method which you can (optionally) pass with the complete list of
 initialize the filter, and the `setCharList()` and `getCharList()` methods which can be used for
 setting specific filter options.
 
-I> All standard filters have the constructor method (optionally) accepting an array of options
-I> for configuring the filter when instantiating it manually.
+> All standard filters have the constructor method (optionally) accepting an array of options
+> for configuring the filter when instantiating it manually.
 
 Below, we provide two code examples showing equivalent methods of manually creating an instance
 of the @`StringTrim` filter, setting its options, and filtering a value.
@@ -313,7 +313,7 @@ In the previous example, you saw that you can use either the fully qualified fil
 name or its short alias when instantiating the filter from the array. The short aliases for
 the standard filters are defined by the @`FilterPluginManager`[Laminas\Filter\FilterPluginManager] class.
 
-I> The @`FilterPluginManager`[Laminas\Filter\FilterPluginManager] class defines the short aliases for the standard filters.
+> The @`FilterPluginManager`[Laminas\Filter\FilterPluginManager] class defines the short aliases for the standard filters.
 
 A standard filter's alias is typically the same as the class name. For example, the class
 @`Laminas\Filter\StringTrim` has the short alias @`StringTrim`.
@@ -337,8 +337,8 @@ This behavior can be seen in @`DateTimeFormatter` filter.
 Some filters (e.g., @`ToInt` or @`StringToLower`) may rise a PHP warning if the
 value provided is in incorrect format and cannot be filtered.
 
-T> It is recommended to read filter's documentation carefully to know what to expect
-T> of the filter you plan to use in your form.
+> It is recommended to read filter's documentation carefully to know what to expect
+> of the filter you plan to use in your form.
 
 ## Filter Usage Examples
 
@@ -362,8 +362,8 @@ text field containing an amount of something).
 
 The @`ToInt` class has the single `filter()` method.
 
-I> The @`ToInt` filter will not cast a non-scalar value. If you pass it an array, it
-I> will return it as is.
+> The @`ToInt` filter will not cast a non-scalar value. If you pass it an array, it
+> will return it as is.
 
 Below, you can find a code example illustrating the usage of the @`ToInt` filter.
 
@@ -579,10 +579,10 @@ $filteredValue3 = $filter->filter(false); // Returns null.
 The @`DateTimeFormatter` filter accepts a date in an arbitrary format and converts it into
 the desired format.
 
-I> This filter can accept a string (e.g., '2014-03-22 15:36'), an integer timestamp
-I> (like the `time()` PHP function returns) or an instance of the `DateTime` PHP class.
-I> The @`DateTimeFormatter` filter may throw a @`Laminas\Filter\Exception\InvalidArgumentException`
-I> exception if you pass it a date in an incorrect format.
+> This filter can accept a string (e.g., '2014-03-22 15:36'), an integer timestamp
+> (like the `time()` PHP function returns) or an instance of the `DateTime` PHP class.
+> The @`DateTimeFormatter` filter may throw a @`Laminas\Filter\Exception\InvalidArgumentException`
+> exception if you pass it a date in an incorrect format.
 
 Filter's public methods are listed in table 8.7.
 
@@ -614,9 +614,9 @@ $filteredValue = $filter->filter('2014-03-22 15:36');
 // The expected output is 'March 22, 2014 3:36 PM'.
 ~~~
 
-I> Internally, the @`DateTimeFormatter` filter uses the `DateTime` class from the PHP standard
-I> library for converting and formatting dates. For available date formats, please refer to the
-I> PHP documentation for the `DateTime` class.
+> Internally, the @`DateTimeFormatter` filter uses the `DateTime` class from the PHP standard
+> library for converting and formatting dates. For available date formats, please refer to the
+> PHP documentation for the `DateTime` class.
 
 ### Filters Performing Manipulations on a File Path
 
@@ -642,8 +642,8 @@ $filteredValue = $filter->filter('/var/log/httpd/error.log');
 // The expected filter's output is the 'error.log'.
 ~~~
 
-I> The @`BaseName` filter will not process a non-scalar value. If you pass it an array, it
-I> will return the array as is and raise a PHP warning.
+> The @`BaseName` filter will not process a non-scalar value. If you pass it an array, it
+> will return the array as is and raise a PHP warning.
 
 #### Dir Filter
 
@@ -651,8 +651,8 @@ The @`Dir` filter class is just a wrapper on the `dirname()` PHP function.
 It takes a string containing the path to a file or directory and returns the parent
 directory's path.
 
-I> The @`Dir` filter will not process a non-scalar value. If you pass it an array, it
-I> will return the array as is.
+> The @`Dir` filter will not process a non-scalar value. If you pass it an array, it
+> will return the array as is.
 
 Below, a code example demonstrating the usage of the @`Dir` filter is provided.
 
@@ -673,7 +673,7 @@ The @`RealPath` filter takes an absolute or a relative file path as a string inp
 expands all symbolic links and resolves references to '/./', '/../' and extra '/' characters
 in the input path and returns the canonicalized absolute pathname.
 
-I> The @`RealPath` filter is a wrapper over the `realpath()` PHP function.
+> The @`RealPath` filter is a wrapper over the `realpath()` PHP function.
 
 Filter's public methods are listed in table 8.8.
 
@@ -711,8 +711,8 @@ $filteredValue = $filter->filter('./error.log');
 // The expected filter's output is the '/var/log/httpd/error.log'.
 ~~~
 
-I> The @`RealPath` filter will not process a non-scalar value. If you pass it an array, it
-I> will return the array as is.
+> The @`RealPath` filter will not process a non-scalar value. If you pass it an array, it
+> will return the array as is.
 
 ### Filters Performing Compression and Encryption of Input Data
 
@@ -799,8 +799,8 @@ In the code above, we create the instance of the @`Compress` filter (line 3), se
 expected result, the *example.zip* archive file, will be created in the current directory. The
 archive will contain the *testfile.txt* file.
 
-I> The @`Decompress` filter is a "mirror reflection" of the @`Compress` filter and can be
-I> used by analogy. By that reason, we do not cover the @`Decompress` filter in this section.
+> The @`Decompress` filter is a "mirror reflection" of the @`Compress` filter and can be
+> used by analogy. By that reason, we do not cover the @`Decompress` filter in this section.
 
 #### Encrypt Filter
 
@@ -848,8 +848,8 @@ $filteredValue = $filter->filter('some data to encrypt');
 
 The expected result is a string encrypted with the block cipher.
 
-I> The @`Decrypt`[Laminas\Filter\Decrypt] filter is a "mirror reflection" of the @`Encrypt`[Laminas\Filter\Encrypt] filter and can be
-I> used by analogy. By that reason, we do not cover the @`Decrypt`[Laminas\Filter\Decrypt] filter in this section.
+> The @`Decrypt`[Laminas\Filter\Decrypt] filter is a "mirror reflection" of the @`Encrypt`[Laminas\Filter\Encrypt] filter and can be
+> used by analogy. By that reason, we do not cover the @`Decrypt`[Laminas\Filter\Decrypt] filter in this section.
 
 ### Filters Manipulating String Data
 
@@ -884,8 +884,8 @@ filter to behave like the `mb_strtolower()` PHP function. By contrast to `strtol
 is determined by the Unicode character properties. Thus, the behavior of this function is not affected
 by locale settings, and it can convert any characters that have 'alphabetic' property, such as A-umlaut (Ä).
 
-I> If the value provided is non-scalar, the value will remain unfiltered,
-I> and an `E_USER_WARNING` will be raised indicating it cannot be filtered.
+> If the value provided is non-scalar, the value will remain unfiltered,
+> and an `E_USER_WARNING` will be raised indicating it cannot be filtered.
 
 Below, a code example showing how to use the @`StringToLower` filter is provided:
 
@@ -903,9 +903,9 @@ $filteredValue = $filter->filter('How to Start a Business in 10 Days');
 // The expected filter's output is the 'how to start a business in 10 days'.
 ~~~
 
-I> The @`StringToUpper` filter (converting a string to uppercase letters) is a "mirror reflection"
-I> of the @`StringToLower` filter and can be used by analogy. By that reason, we do not cover the @`StringToUpper`
-I> filter in this section.
+> The @`StringToUpper` filter (converting a string to uppercase letters) is a "mirror reflection"
+> of the @`StringToLower` filter and can be used by analogy. By that reason, we do not cover the @`StringToUpper`
+> filter in this section.
 
 #### PregReplace Filter
 
@@ -989,8 +989,8 @@ $filteredValue = $filter->filter(
 // '<p>Please click the following link.</p>;'
 ~~~
 
-I> The @`StripTags` will not process a non-scalar value. If the value passed to the
-I> filter is non-scalar, the value will remain unfiltered.
+> The @`StripTags` will not process a non-scalar value. If the value passed to the
+> filter is non-scalar, the value will remain unfiltered.
 
 #### StripNewlines Filter
 
@@ -1010,8 +1010,8 @@ $filteredValue = $filter->filter("A multi line\r\n string");
 // The expected filter's output is the 'A multi line string'.
 ~~~
 
-I> The @`StripNewlines` will not process a non-scalar value. If the value passed to the
-I> filter is non-scalar, the value will remain unfiltered.
+> The @`StripNewlines` will not process a non-scalar value. If the value passed to the
+> filter is non-scalar, the value will remain unfiltered.
 
 #### UriNormalize Filter
 
@@ -1072,8 +1072,8 @@ such a compound filter is run, the value filtered by the first filter is passed 
 the second one, and then the value filtered by the second filter will be passed to the third one,
 and so on.
 
-I> The @`FilterChain`[Laminas\Filter\FilterChain] class is internally used by the @`InputFilter`[Laminas\InputFilter\InputFilter] container class for storing the
-I> sequence of filters attached to the form model's field.
+> The @`FilterChain`[Laminas\Filter\FilterChain] class is internally used by the @`InputFilter`[Laminas\InputFilter\InputFilter] container class for storing the
+> sequence of filters attached to the form model's field.
 
 Public methods provided by the @`FilterChain`[Laminas\Filter\FilterChain] class are presented in table 8.16:
 
@@ -1161,9 +1161,9 @@ The @`Callback`[Laminas\Filter\Callback] filter is designed as a wrapper for you
 be useful when a standard filter is not suitable, and you need to apply your own filtering
 algorithm to the data.
 
-I> You implement your custom filtering algorithm as a callback function or a callback class method.
-I> A *callback* is a function or a public method of a class which is called by the @`Callback`[Laminas\Filter\Callback] filter
-I> and is passed the value to be filtered and, optionally, user-defined argument(s).
+> You implement your custom filtering algorithm as a callback function or a callback class method.
+> A *callback* is a function or a public method of a class which is called by the @`Callback`[Laminas\Filter\Callback] filter
+> and is passed the value to be filtered and, optionally, user-defined argument(s).
 
 The public methods provided by the @`Callback`[Laminas\Filter\Callback] filter are listed in table 8.17.
 
@@ -1345,8 +1345,8 @@ forms of your web application (or, if you wish, outside a form).
 To demonstrate how to create your own filter, we will write the `PhoneFilter` class encapsulating
 the phone filtering algorithm we used with the @`Callback`[Laminas\Filter\Callback] filter example.
 
-I> As you may remember, the base concrete class for all standard filters is the @`AbstractFilter`
-I> class. By analogy, we will also derive our custom `PhoneFilter` filter from that base class.
+> As you may remember, the base concrete class for all standard filters is the @`AbstractFilter`
+> class. By analogy, we will also derive our custom `PhoneFilter` filter from that base class.
 
 We plan to have the following methods in our `PhoneFilter` filter class (see table 8.18):
 

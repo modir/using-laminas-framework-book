@@ -1,4 +1,4 @@
-# Laminas Skeleton Application {#skeleton}
+# Laminas Skeleton Application
 
 Laminas Framework provides you with the so called "skeleton application" to make it easier to create
 your new websites from scratch. In this chapter, we will show how to install the skeleton
@@ -31,7 +31,7 @@ php -r "unlink('composer-setup.php');"
 The commands above change your working directory to be your home directory, download the `composer-setup.php` installer script
 to your working directory, run it, and, finally, remove the installer.
 
-T> Once you run the commands above, you should have the `composer.phar` file in your working directory.
+> Once you run the commands above, you should have the `composer.phar` file in your working directory.
 
 Now, type the following command from your command prompt:
 
@@ -128,14 +128,14 @@ cd helloworld
 php composer.phar development-enable
 ~~~
 
-I> The development mode is typically used when you *develop* your application. When you enable the development
-I> mode additional "development" configuration files are created in your web application's `config` directory. In this
-I> mode your application may optionally load additional "development" modules. Configuration caching
-I> is also disabled in this mode allowing you to change your website's configuration files and see the changes immediately.
-I>
-I> Once you have finished the development, you can enable the *production* mode by typing the following:
-I>
-I> `php composer.phar development-disable`
+> The development mode is typically used when you *develop* your application. When you enable the development
+> mode additional "development" configuration files are created in your web application's `config` directory. In this
+> mode your application may optionally load additional "development" modules. Configuration caching
+> is also disabled in this mode allowing you to change your website's configuration files and see the changes immediately.
+>
+> Once you have finished the development, you can enable the *production* mode by typing the following:
+>
+> `php composer.phar development-disable`
 
 Congratulations! The hard work is done. Now let's look inside the `helloworld` directory.
 
@@ -196,8 +196,8 @@ Laminas Framework library files. This directory is typically populated by Compos
 The `public` directory contains data publicly accessible by the web-user. As you can see, web-users
 will mainly communicate with the `index.php`, which is also called the *entry point* of your website.
 
-I>Your website will have a single entry point, *index.php*, because this is more secure than allowing
-I>anyone to access all your PHP files.
+>Your website will have a single entry point, *index.php*, because this is more secure than allowing
+>anyone to access all your PHP files.
 
 Inside of the `public` directory, you can also find hidden `.htaccess` file. Its main purpose is to define
 URL rewriting rules.
@@ -311,10 +311,10 @@ directory (figure 2.2).
 
 ![Figure 2.2. Vendor directory](images/skeleton/vendor_dir.png)
 
-I> In some other frameworks, another (conventional) way of dependency installation is used.
-I> You just download the dependency library as an archive, unpack it and put it somewhere inside of your
-I> directory structure (typically, to `vendor` directory). This approach was used in Laminas Framework 1.
-I> But, in Laminas Framework, you are recommended to install dependencies with Composer.
+> In some other frameworks, another (conventional) way of dependency installation is used.
+> You just download the dependency library as an archive, unpack it and put it somewhere inside of your
+> directory structure (typically, to `vendor` directory). This approach was used in Laminas Framework 1.
+> But, in Laminas Framework, you are recommended to install dependencies with Composer.
 
 ## Apache Virtual Host
 
@@ -329,9 +329,9 @@ working on the same machine or on different ones.
 Currently, we have the skeleton application inside of your home directory. To let Apache know
 about it, we need to edit the virtual host file.
 
-I> Virtual host file may be located at a different path, depending on your operating system type.
-I> For example, in Linux Ubuntu it is located in `/etc/apache2/sites-available/000-default.conf` file.
-I> For OS- and server-specific information about virtual hosts, please refer to [Appendix A. Configuring Web Development Environment](#devenv).
+> Virtual host file may be located at a different path, depending on your operating system type.
+> For example, in Linux Ubuntu it is located in `/etc/apache2/sites-available/000-default.conf` file.
+> For OS- and server-specific information about virtual hosts, please refer to [Appendix A. Configuring Web Development Environment](#devenv).
 
 Let's now edit the default virtual host file to make it look like below (we assume you use Apache v2.4):
 
@@ -375,7 +375,7 @@ W> web-users to entry script of your website. Please ensure that your web server
 W> has `mod_rewrite` module enabled. For instructions on how to enable the module, please
 W> refer to [Appendix A. Configuring Web Development Environment](#devenv).
 
-T> After editing the config file, do not forget to restart Apache to apply your changes.
+> After editing the config file, do not forget to restart Apache to apply your changes.
 
 ## Opening the Website in Your Browser
 
@@ -434,11 +434,11 @@ Please refer to [Appendix B. Introduction to PHP Development in NetBeans IDE](#n
 for more NetBeans usage tips, including launching and interactively debugging
 laminas-based websites.
 
-T> **It's time for some advanced stuff...**
-T>
-T> Congratulations! We've done the hard work of installing and running
-T> the Laminas Skeleton Application, and now it's time to have a rest
-T> and read about some advanced things in the last part of this chapter.
+> **It's time for some advanced stuff...**
+>
+> Congratulations! We've done the hard work of installing and running
+> the Laminas Skeleton Application, and now it's time to have a rest
+> and read about some advanced things in the last part of this chapter.
 
 ## Hypertext Access File (.htaccess)
 
@@ -579,9 +579,9 @@ Adding password for user <username>
 When the user tries to visit the site, he/she sees the HTTP authentication dialog.
 To log into your site, the visitor should enter the correct username and password.
 
-I> For additional information on HTTP authentication, you can refer to
-I> [Authentication and Authorization](http://httpd.apache.org/docs/current/howto/auth.html)
-I> topic of Apache documentation.
+> For additional information on HTTP authentication, you can refer to
+> [Authentication and Authorization](http://httpd.apache.org/docs/current/howto/auth.html)
+> topic of Apache documentation.
 
 ## Having Multiple Virtual Hosts
 
@@ -601,7 +601,7 @@ Listen 8080
 
 To access the website, in your browser's navigation bar, enter "http://localhost:8080".
 
-T> After editing the virtual host config file, you should restart Apache to apply changes.
+> After editing the virtual host config file, you should restart Apache to apply changes.
 
 ## Hosts File
 
@@ -634,16 +634,16 @@ shown in the example below.
 So now you'll be able to simply enter "site1.localhost" in your browser's address bar
 instead of remembering the port number.
 
-I> In Linux, the hosts file is located in `/etc/hosts`.
-I> In Windows, the file is typically located in `C:\Windows\System32\drivers\etc\hosts`.
-I> To edit the file, you need to be an administrator. Please also note that some
-I> anti-virus software may block changes to hosts file, so you'll have to temporarily disable
-I> your anti-virus to edit the file, and enable it after.
+> In Linux, the hosts file is located in `/etc/hosts`.
+> In Windows, the file is typically located in `C:\Windows\System32\drivers\etc\hosts`.
+> To edit the file, you need to be an administrator. Please also note that some
+> anti-virus software may block changes to hosts file, so you'll have to temporarily disable
+> your anti-virus to edit the file, and enable it after.
 
-I> If you have purchased a real domain name for your website (like `example.com`), you do not
-I> need to modify your `hosts` file, because Apache will be able to resolve the IP address of
-I> your website using the DNS system. You modify your `hosts` file only when DNS system knows nothing
-I> about the domain name and can't resolve the IP address of your website.
+> If you have purchased a real domain name for your website (like `example.com`), you do not
+> need to modify your `hosts` file, because Apache will be able to resolve the IP address of
+> your website using the DNS system. You modify your `hosts` file only when DNS system knows nothing
+> about the domain name and can't resolve the IP address of your website.
 
 ## Advanced Composer Usage
 

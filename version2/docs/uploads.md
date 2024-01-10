@@ -1,4 +1,4 @@
-# Uploading Files with Forms {#uploads}
+# Uploading Files with Forms
 
 In this chapter, you will learn about uploading files with forms. First, we will review the basic
 theory like HTTP file upload capability and binary content transfer encoding, and then provide a
@@ -112,9 +112,9 @@ When a site visitor uploads some files to your Apache Web Server, the files are 
 (usually to system temporary directory that is */tmp* in Linux and *C:\\Windows\\Temp* in Windows).
 The PHP script receives the file information to the special super-global array named `$_FILES`.
 
-I> The `$_FILES` array is analogous to the `$_GET` and `$_POST` super-globals. The latter two
-I> are used to store the GET and POST variables, respectively, while the first one is used
-I> to store information about uploaded files.
+> The `$_FILES` array is analogous to the `$_GET` and `$_POST` super-globals. The latter two
+> are used to store the GET and POST variables, respectively, while the first one is used
+> to store information about uploaded files.
 
 For example, for the above mentioned simple upload form, the `$_FILES` super-global array will look
 as follows (the output is generated with the `var_dump()` PHP function):
@@ -151,11 +151,11 @@ you need to utilize the `move_uploaded_file()` PHP function. The `move_uploaded_
 takes two arguments: the first one is the name of the temporary file, and the second one is the
 destination file name.
 
-T> You might be confused why you cannot use the usual `rename()` PHP function for moving the
-T> temporary uploaded file to its destination path. PHP has special function for moving
-T> uploaded files for security reasons. The `move_uploaded_file()` function is analogous to
-T> `rename()` function, but it takes some additional checks to ensure the file was really transferred
-T> through HTTP POST request, and that the upload process has finished without errors.
+> You might be confused why you cannot use the usual `rename()` PHP function for moving the
+> temporary uploaded file to its destination path. PHP has special function for moving
+> uploaded files for security reasons. The `move_uploaded_file()` function is analogous to
+> `rename()` function, but it takes some additional checks to ensure the file was really transferred
+> through HTTP POST request, and that the upload process has finished without errors.
 
 The following code example shows how to move the file uploaded with the
 simple form we have considered above:
@@ -174,9 +174,9 @@ uploaded file.
 In line 2, we call the `move_uploaded_file()` function and pass it two arguments: the path to the
 temporary file and the destination path.
 
-T> Specifying the directory name as the second argument of the `move_uploaded_file()` function
-T> is suitable when you do not want to rename the file. If you need to save the uploaded file
-T> under another name than its original name, you can specify the full file path instead of the directory name.
+> Specifying the directory name as the second argument of the `move_uploaded_file()` function
+> is suitable when you do not want to rename the file. If you need to save the uploaded file
+> under another name than its original name, you can specify the full file path instead of the directory name.
 
 In line 3, we check the returned value of the function. If the operation is successful,
 the function will return `true`. If some error occurs (for example, if directory permissions
@@ -317,9 +317,9 @@ As you can see from the table above, file validators may be roughly divided in t
 [^hash]: A file hash is used for checking file data integrity (for example, to ensure that
          file data is not corrupted). There are several hash algorithms available (MD5, SHA-1, CRC32, etc.)
 
-T> Please note that since file validators live in @`Laminas\Validator\File`[Laminas\Validator] namespace, their short aliases
-T> (that you use when creating a validator with the factory) start with `File` prefix. For example,
-T> the @`IsImage` validator has `FileIsImage` alias.
+> Please note that since file validators live in @`Laminas\Validator\File`[Laminas\Validator] namespace, their short aliases
+> (that you use when creating a validator with the factory) start with `File` prefix. For example,
+> the @`IsImage` validator has `FileIsImage` alias.
 
 We will show how to use some of these file validators in the *Image Gallery*
 code example later in this chapter.
@@ -352,9 +352,9 @@ From the table, you can see that filters can be divided into the following group
   * filters for encryption and decryption of files;
   * filters for converting text files to upper-case and lower-case letters.
 
-T> Please note that since file filters live in @`Laminas\Filter\File`[Laminas\Filter] namespace, their short aliases
-T> (that you use when creating a filter with the factory) start with `File` prefix. For example,
-T> the @`RenameUpload` filter has `FileRenameUpload` alias.
+> Please note that since file filters live in @`Laminas\Filter\File`[Laminas\Filter] namespace, their short aliases
+> (that you use when creating a filter with the factory) start with `File` prefix. For example,
+> the @`RenameUpload` filter has `FileRenameUpload` alias.
 
 The @`Encrypt`[Laminas\Filter\File\Encrypt] and @`Decrypt`[Laminas\Filter\File\Decrypt] filters allow to apply various encryption/decryption algorithms
 to the uploaded file (concrete algorithm is attached by specifying the certain adapter). The @`LowerCase` and
@@ -427,8 +427,8 @@ The behaviour of @`FileInput` class differs from the @`Input`[Laminas\InputFilte
 For usual form fields, the filters are typically executed *before* validators, and validators are
 executed *after* filters. However, for file uploads, this sequence is opposite.
 
-I> For file uploads, validators are executed *before* filters. This behaviour is inverse to the usual
-I> behaviour.
+> For file uploads, validators are executed *before* filters. This behaviour is inverse to the usual
+> behaviour.
 
 When working with uploaded files, we first need to check that data extracted from `$_FILES`
 super-global array is correct, and then do anything else with the files (moving the file into a
@@ -452,8 +452,8 @@ happens on each of its steps:
    and validated data from the input filter attached to form.
  * On failure, call the `getMessages()` to retrieve the validation error messages.
 
-I> Please note that for @`FileInput` input, the attached filters are only run if the `getData()`
-I> method is called.
+> Please note that for @`FileInput` input, the attached filters are only run if the `getData()`
+> method is called.
 
 When you use both @`Input`[Laminas\InputFilter\Input] and @`FileInput` inputs in your form's input filter (which is a common case),
 the filters are still executed first for usual inputs, but validators are executed first for file inputs.
@@ -529,10 +529,10 @@ with **bold**):
 
   * On success, in line 31, we redirect the user to the "index" action of the controller.
 
-I> In the controller action above, you should remember three things: 1) merge `$_POST` and `$_FILES` super-global
-I> arrays before you pass them to the form's `setData()` method; 2) use `isValid()` form's method to
-I> check uploaded files for correctness (run validators); 3) use `getData()` form's method to run
-I> file filters.
+> In the controller action above, you should remember three things: 1) merge `$_POST` and `$_FILES` super-global
+> arrays before you pass them to the form's `setData()` method; 2) use `isValid()` form's method to
+> check uploaded files for correctness (run validators); 3) use `getData()` form's method to run
+> file filters.
 
 ## Example: Image Gallery
 
@@ -540,8 +540,8 @@ To demonstrate the usage of file uploads in Laminas Framework, we will create an
 will consist of two web pages: the image upload page allowing to upload an image (figure 10.2); and
 the gallery page containing the list of uploaded images (figure 10.3).
 
-T> You can see the working *Image Gallery* example in the *Form Demo* sample application
-T> bundled with this book.
+> You can see the working *Image Gallery* example in the *Form Demo* sample application
+> bundled with this book.
 
 {width=80%}
 ![Figure 10.2. Image Upload Page](images/uploads/upload_image_form.png)
@@ -627,9 +627,9 @@ in its understanding. We just want to attract the attention of the reader that i
 the "multipart/form-data" value for the "enctype" attribute of the form to make the form use binary
 encoding for its data.
 
-T> Actually, explicitly setting the "enctype" attribute in form's constructor is optional, because
-T> @`Laminas\Form\Element\File` element performs that automatically when you call form's `prepare()`
-T> method.
+> Actually, explicitly setting the "enctype" attribute in form's constructor is optional, because
+> @`Laminas\Form\Element\File` element performs that automatically when you call form's `prepare()`
+> method.
 
 ### Adding Validation Rules to ImageForm Model
 
@@ -759,9 +759,9 @@ The `ImageManager` service class will have the following public methods (listed 
 | `resizeImage($filePath, $desiredWidth)` | Resizes the image, keeping its aspect ratio.             |
 |---------------------------------|------------------------------------------------------------------|
 
-T> In fact, we could put the code we plan to add into the service into the controller actions, but that
-T> would make the controller fat and poorly testable. By introducing the service class, we improve
-T> the separation of concerns and code reusability.
+> In fact, we could put the code we plan to add into the service into the controller actions, but that
+> would make the controller fat and poorly testable. By introducing the service class, we improve
+> the separation of concerns and code reusability.
 
 Add the *ImageManager.php* file to the *Service* directory under the module's
 source directory. Add the following code to the file:
@@ -1148,9 +1148,9 @@ apply nice-looking Twitter Bootstrap styles to the form's *Submit* button.
 Then, we render the form with the common view helpers that we discussed in [Collecting User Input with Forms](#forms).
 For rendering the "file" field, we use the generic @`FormElement` view helper.
 
-I> Typically, you use the @`FormElement` generic view helper for rendering the file field.
-I> The @`FormElement` internally calls the @`FormFile` view helper, which performs the actual
-I> rendering.
+> Typically, you use the @`FormElement` generic view helper for rendering the file field.
+> The @`FormElement` internally calls the @`FormFile` view helper, which performs the actual
+> rendering.
 
 #### Adding Index Action & Corresponding View Template
 
@@ -1183,8 +1183,8 @@ class ImageController extends AbstractActionController
 In the code above, we use the `getSavedFiles()` method of the `ImageManager` class for retrieving
 the list of uploaded images and pass them to the view for rendering.
 
-T> Please note how "slim" and clear this controller action is! We achieved this by moving the
-T> image management functionality to the `ImageManager` service model.
+> Please note how "slim" and clear this controller action is! We achieved this by moving the
+> image management functionality to the `ImageManager` service model.
 
 Add the *index.phtml* view template to *application/image* directory under the module's
 *view* directory. The contents of the file is shown below:
@@ -1252,8 +1252,8 @@ the query part of the URL: the image name and thumbnail flag.
 
 For styling the thumbnails, we use the Twitter Bootstrap provided ".img-thumbnail" CSS class.
 
-T> For additional information about these Twitter Bootstrap styles, please refer to the
-T> Bootstrap official documentation.
+> For additional information about these Twitter Bootstrap styles, please refer to the
+> Bootstrap official documentation.
 
 Below each thumbnail, we put the "Show in Natural Size" link, which points to the "file" action
 of our `ImageController` controller. When site visitor clicks the link, he will be shown with the
@@ -1346,8 +1346,8 @@ Finally, we create a @`Response`[Laminas\Http\PhpEnvironment\Response] object, f
 set its content with data of the image file (lines 32-45), and return the @`Response`[Laminas\Http\PhpEnvironment\Response] object from the controller
 action (line 53).
 
-I> Note that returning the @`Response`[Laminas\Http\PhpEnvironment\Response] object disables the default rendering of the view template for
-I> this action method. By this reason, we do not create the *file.phtml* view template file.
+> Note that returning the @`Response`[Laminas\Http\PhpEnvironment\Response] object disables the default rendering of the view template for
+> this action method. By this reason, we do not create the *file.phtml* view template file.
 
 #### Creating Factory for the Controller
 
@@ -1469,8 +1469,8 @@ open the image in a new browser tab (see the figure 10.6 below for example).
 {width=80%}
 ![Figure 10.6. Opening an Image in Natural Size](images/uploads/image_preview.png)
 
-T> You may find the *Image Gallery* complete example in the *Form Demo* sample web application
-T> bundled with this book.
+> You may find the *Image Gallery* complete example in the *Form Demo* sample web application
+> bundled with this book.
 
 ## Summary
 

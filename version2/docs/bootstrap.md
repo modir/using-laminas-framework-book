@@ -1,4 +1,4 @@
-# Appendix C. Introduction to Twitter Bootstrap {#bootstrap}
+# Appendix C. Introduction to Twitter Bootstrap
 
 Twitter Bootstrap (shortly, Bootstrap) is a popular CSS framework allowing to make
 your web site professionally looking and visually appealing, even if you don't have
@@ -22,11 +22,11 @@ The minification is the process of removing all unnecessary characters from the
 source code without changing its functionality. The minified Bootstrap file is
 called *bootstrap.min.css*.
 
-T> It is generally recommended to use the minified file, especially in
-T> production environment, because it reduces the page load time. However,
-T> if you plan to dig into Bootstrap code to understand how it works, you better
-T> use the usual (non-minified) file, or even download the original source files
-T> (not concatenated ones).
+> It is generally recommended to use the minified file, especially in
+> production environment, because it reduces the page load time. However,
+> if you plan to dig into Bootstrap code to understand how it works, you better
+> use the usual (non-minified) file, or even download the original source files
+> (not concatenated ones).
 
 Let's look in more details at the files stored inside
 the *APP_DIR/public* directory and its subdirectories (figure C.1).
@@ -225,10 +225,10 @@ Twitter Bootstrap is designed to support different devices varying from wide
 displays to tablets and mobile phones. By this reason, the layout grid is adapted
 to different screen resolutions.
 
-T> This is also called the *responsiveness*, or the "mobile first" concept.
-T> Bootstrap is mobile-first, which means your website will be viewable
-T> and usable on any-sized screen. However, this does not free you of painstaking
-T> preparation and planning the layout.
+> This is also called the *responsiveness*, or the "mobile first" concept.
+> Bootstrap is mobile-first, which means your website will be viewable
+> and usable on any-sized screen. However, this does not free you of painstaking
+> preparation and planning the layout.
 
 This adaptation is performed in two ways. The first way is that the column width
 within the grid is flexible. For example, if you increase the size of the browser
@@ -255,24 +255,20 @@ class makes the grid always horizontal, not depending on the screen width.
 
 Table C.1 provides the summary of available grid classes and their breakdown page width.
 
-{title="Table C.1. CSS classes for defining layout grid"}
-|--------------------------------|---------------------------------------------------------------|
 | *Class name*                   | *Breakdown width*                                             |
 |--------------------------------|---------------------------------------------------------------|
 | `.col-xs-*`                     | <768px                                                       |
-|--------------------------------|---------------------------------------------------------------|
 | `.col-sm-*`                     | >=768px                                                      |
-|--------------------------------|---------------------------------------------------------------|
 | `.col-md-*`                     | >=992px                                                      |
-|--------------------------------|---------------------------------------------------------------|
 | `.col-lg-*`                     | >=1200px                                                     |
-|--------------------------------|---------------------------------------------------------------|
 
-I> Bootstrap's grid system greatly simplifies the positioning of elements
-I> on a web page. However, using the grid system is not mandatory. For example,
-I> sometimes you may need a much more complex layout, and the simple grid system will be
-I> insufficient. In such a case, you can create and use your custom layout by using
-I> `<table>` or `<div>` HTML elements.
+Table C.1. CSS classes for defining layout grid
+
+> Bootstrap's grid system greatly simplifies the positioning of elements
+> on a web page. However, using the grid system is not mandatory. For example,
+> sometimes you may need a much more complex layout, and the simple grid system will be
+> insufficient. In such a case, you can create and use your custom layout by using
+> `<table>` or `<div>` HTML elements.
 
 ## Bootstrap's Interface Components
 
@@ -573,10 +569,10 @@ You can also remove some unused JavaScript code components from the resulting *b
 Additionally, you can choose different CSS parameters like background color, base text color and font family,
 and so on. There are more than a hundred customizable parameters available.
 
-I> CSS customization is possible, because Bootstrap source files are stored in LESS [^less]
-I> format, which allows to define variable parameters (like `@bodyBackground` or `@textColor`).
-I> Once the parameters are defined, the LESS files are compiled into usual CSS files, minified
-I> and made available for downloading.
+> CSS customization is possible, because Bootstrap source files are stored in LESS [^less]
+> format, which allows to define variable parameters (like `@bodyBackground` or `@textColor`).
+> Once the parameters are defined, the LESS files are compiled into usual CSS files, minified
+> and made available for downloading.
 
 When you have finished with tuning parameters, you can scroll the
 *Customize* page down and press the *Compile and Download*

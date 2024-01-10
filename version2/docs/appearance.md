@@ -1,4 +1,4 @@
-# Page Appearance and Layout {#appearance}
+# Page Appearance and Layout
 
 In this chapter you will learn how to make your web pages attractive and
 professionally looking with the help of Twitter Bootstrap CSS Framework and
@@ -10,13 +10,10 @@ capabilities.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Mvc`                     | Support of MVC pattern. Implements base controller classes, controller plugins, etc. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\View`                    | Implements the functionality for variable containers, rendering a web page and common view helpers. |
-|--------------------------------|---------------------------------------------------------------|
 
 ## About CSS Stylesheets and Twitter Bootstrap
 
@@ -41,10 +38,10 @@ you can define your own custom CSS rules on top of Bootstrap to customize your s
 appearance). Bootstrap is freely distributed under the
 [Apache License v.2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-T> Twitter Bootstrap is shipped with Laminas Skeleton Application, so you
-T> can use it out of the box. Alternatively, you can download the newest
-T> version of Bootstrap from the project's [official page](http://getbootstrap.com/).
-T> At the moment of writing this book, the latest version is v.3.x.
+> Twitter Bootstrap is shipped with Laminas Skeleton Application, so you
+> can use it out of the box. Alternatively, you can download the newest
+> version of Bootstrap from the project's [official page](http://getbootstrap.com/).
+> At the moment of writing this book, the latest version is v.3.x.
 
 Generally, the Bootstrap does the following things:
 
@@ -71,9 +68,9 @@ Generally, the Bootstrap does the following things:
 
 ![Figure 6.1. Main page of the skeleton app and its layout](images/appearance/skeleton-layout.png)
 
-T> If you are new to Twitter Bootstrap, it is recommended that you refer to
-T> [Appendix C. Introduction to Twitter Bootstrap](#bootstrap), where you can find more information about using
-T> Twitter Bootstrap and its components.
+> If you are new to Twitter Bootstrap, it is recommended that you refer to
+> [Appendix C. Introduction to Twitter Bootstrap](#bootstrap), where you can find more information about using
+> Twitter Bootstrap and its components.
 
 ## Page Layout in Laminas Framework
 
@@ -389,8 +386,8 @@ Next, we put the navigation bar in the corresponding grid row:
 In the code above, we used the navbar interface component provided by the Bootstrap.
 We also used the @`Url`[Laminas\View\Helper\Url] view helper to insert the links to the navigation items.
 
-I> We discussed the usage of the @`Url`[Laminas\View\Helper\Url] view helper in the *Generating URLs from Route* section
-I> in [Routing](#routing).
+> We discussed the usage of the @`Url`[Laminas\View\Helper\Url] view helper in the *Generating URLs from Route* section
+> in [Routing](#routing).
 
 Next, put the breadcrumbs component to the corresponding grid row:
 
@@ -437,9 +434,9 @@ open the site in your browser, you should see the page as in figure 6.4. You can
 the links in navigation bar to visit the pages like *About* or *Documentation*, etc.
 The content of a particular page is put into the content placeholder of our layout.
 
-T> The result can be seen in action in
-T> the *Hello World* sample application that is part of this book's example
-T> code available on GitHub.
+> The result can be seen in action in
+> the *Hello World* sample application that is part of this book's example
+> code available on GitHub.
 
 ## Switching between Layouts
 
@@ -479,9 +476,9 @@ that allows to access the instance of the @`ViewModel`[Laminas\View\Model\ViewMo
 layout template. To change the layout template for this particular action method,
 we called the `setTemplate()` method provided by the `ViewModel` class.
 
-T> In addition to the @`Layout`[Laminas\Mvc\Controller\Plugin\Layout] controller plugin, there is the @`Layout`[Laminas\View\Helper\Layout] view helper
-T> which provides the same capabilities. With the @`Layout`[Laminas\View\Helper\Layout] view helper, you can, for
-T> example, switch layout from the "static" page which has no specific controller action.
+> In addition to the @`Layout`[Laminas\Mvc\Controller\Plugin\Layout] controller plugin, there is the @`Layout`[Laminas\View\Helper\Layout] view helper
+> which provides the same capabilities. With the @`Layout`[Laminas\View\Helper\Layout] view helper, you can, for
+> example, switch layout from the "static" page which has no specific controller action.
 
 ### Setting Layout for All Actions of a Controller
 
@@ -760,27 +757,19 @@ To avoid this, you can add such a script for the desired page only.
 To add a page-specific script which will be put in the `<head>` section of the web page,
 you use the @`HeadScript` view helper. Its methods are summarized by table 6.1:
 
-{title="Table 6.1. Methods provided by the HeadScript view helper"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `appendFile()`                 | Puts a link to external JS file after all others.             |
-|--------------------------------|---------------------------------------------------------------|
 | `offsetSetFile()`              | Inserts a link to external JS file in a given list position.  |
-|--------------------------------|---------------------------------------------------------------|
 | `prependFile()`                | Puts a link to external JS file before all others.            |
-|--------------------------------|---------------------------------------------------------------|
 | `setFile()`                    | Clears the list of scripts and puts the single external JS file in it. |
-|--------------------------------|---------------------------------------------------------------|
 | `appendScript()`               | Puts an inline script after all others.                       |
-|--------------------------------|---------------------------------------------------------------|
 | `offsetSetScript()`            | Inserts an inline script to a given list position.            |
-|--------------------------------|---------------------------------------------------------------|
 | `prependScript()`              | Puts an inline script before all others.                      |
-|--------------------------------|---------------------------------------------------------------|
 | `setScript()`                  | Clears the list of inline scripts and puts the single inline  |
 |                                | script in it.                                                 |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 6.1
 
 To add a link to external JS file to the `<head>` section, of a page, you add the following PHP
 code in the beginning of your view template (*.phtml*) file:
@@ -852,10 +841,10 @@ element at the bottom of your view template, as shown in the example below:
 This ensures the same effect is achieved as with @`InlineScript` view helper, but allows for
 better script readability and automatic syntax checking in NetBeans IDE.
 
-I> For @`HeadScript` and @`InlineScript` view helpers to work, you should ensure their content
-I> is echoed in layout view template (look at lines 23 and 62 of *layout.phtml* file). If
-I> you remove those lines from the layout template, the scripts won't be inserted in the
-I> web page.
+> For @`HeadScript` and @`InlineScript` view helpers to work, you should ensure their content
+> is echoed in layout view template (look at lines 23 and 62 of *layout.phtml* file). If
+> you remove those lines from the layout template, the scripts won't be inserted in the
+> web page.
 
 ### Example
 
@@ -984,8 +973,8 @@ variants (figure 6.7).
 
 ![Figure 6.7. Auto-complete feature](images/appearance/typeahead.png)
 
-T> You can see this example working in the *Hello World* sample bundled with this book
-T> by typing the URL "http://localhost/typeahead" in your browser.
+> You can see this example working in the *Hello World* sample bundled with this book
+> by typing the URL "http://localhost/typeahead" in your browser.
 
 ## Adding CSS Stylesheets to a Web Page
 
@@ -1029,34 +1018,26 @@ a path to local CSS file (line 2) or a URL to CSS file located on another server
 
 The summary of @`HeadLink` view helper's methods is provided in table 6.2.
 
-{title="Table 6.2. Methods provided by HeadLink view helper"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `appendStylesheet()`           | Puts a link to CSS stylesheet file after all others.          |
-|--------------------------------|---------------------------------------------------------------|
 | `offsetSetStylesheet()`        | Inserts a link to CSS stylesheet file in a given list position.|
-|--------------------------------|---------------------------------------------------------------|
 | `prependStylesheet()`          | Puts a link to external CSS stylesheet file before all others.|
-|--------------------------------|---------------------------------------------------------------|
 | `setStylesheet()`              | Clears the list and puts the single CSS file instead.         |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 6.2
 
 If you want to add an inline `<style>` element in the head section of the document, you can
 use the @`HeadStyle` view helper. Its methods are presented in table 6.3 below:
 
-{title="Table 6.3. Methods of the HeadStyle view helper"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `appendStyle()`                | Adds a CSS stylesheet inline after all others.                |
-|--------------------------------|---------------------------------------------------------------|
 | `offsetSetStyle()`             | Inserts a CSS stylesheet inline in a given list position.     |
-|--------------------------------|---------------------------------------------------------------|
 | `prependStyle()`               | Puts a CSS stylesheet inline before all others.               |
-|--------------------------------|---------------------------------------------------------------|
 | `setStyle()`                   | Clears the list and puts the single CSS stylesheet inline instead.|
-|--------------------------------|---------------------------------------------------------------|
+
+Table 6.3
 
 ### Example
 
@@ -1148,20 +1129,15 @@ code of the navigation bar. The `Menu` class will provide several methods allowi
 to set menu items in a form of array, set the active menu item and render the menu
 (see table 6.4 for method summary).
 
-{title="Table 6.4. Methods of the Menu view helper"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | `__construct($items)`            | Class constructor.                                            |
-|----------------------------------|---------------------------------------------------------------|
 | `setItems($items)`               | Method for setting the menu items.                            |
-|----------------------------------|---------------------------------------------------------------|
 | `setActiveItemId($activeItemId)` | Method for setting the currently active menu item.            |
-|----------------------------------|---------------------------------------------------------------|
 | `render()`                       | Renders the menu.                                             |
-|----------------------------------|---------------------------------------------------------------|
 | `renderItem($item)`              | Renders a single menu item.                                   |
-|----------------------------------|---------------------------------------------------------------|
+
+Table 6.4
 
 The information describing a single menu item will be represented by
 an array like below (for example, the *Home* item will have an ID, text
@@ -1610,32 +1586,21 @@ The resulting process of page rendering is the following:
 Table 6.5 gives the summary of the methods provided by the @`ViewModel`[Laminas\View\Model\ViewModel] class for the purpose
 of page composition:
 
-{title="Table 6.5. Methods of the ViewModel class for page composition"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `addChild()`                   | Adds a child view model.                                      |
-|--------------------------------|---------------------------------------------------------------|
 | `getChildren()`                | Gets the list of child view models.                           |
-|--------------------------------|---------------------------------------------------------------|
 | `hasChildren()`                | Tests if the view model has children or not.                  |
-|--------------------------------|---------------------------------------------------------------|
 | `clearChildren()`              | Removes all child view models.                                |
-|--------------------------------|---------------------------------------------------------------|
 | `count()`                      | Returns count of child view models.                           |
-|--------------------------------|---------------------------------------------------------------|
 | `getIterator()`                | Returns the iterator for child view models.                   |
-|--------------------------------|---------------------------------------------------------------|
 | `setTerminal()`                | Sets the terminal flag.                                       |
-|--------------------------------|---------------------------------------------------------------|
 | `terminate()`                  | Tests whether the view model is terminal.                     |
-|--------------------------------|---------------------------------------------------------------|
 | `setCaptureTo()`               | Sets the name of the variable for capturing the output.       |
-|--------------------------------|---------------------------------------------------------------|
 | `setAppend()`                  | Sets the append flag.                                         |
-|--------------------------------|---------------------------------------------------------------|
 | `isAppend()`                   | Tests whether to append this view model to another one.       |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 6.5. Methods of the ViewModel class for page composition
 
 Below, we provide the brief description of the methods presented in the table above.
 
@@ -1657,11 +1622,11 @@ and the renderer returns the output of the view template to the application, oth
 its parents are rendered as well. The method `terminate()` tests whether the view model is terminal
 or not.
 
-T> The `setTerminal()` method is very useful in some situations, because with its help you
-T> can disable the rendering of the layout view template. If you return from controller the
-T> view model marked as terminal, the layout will not be applied. This can be used, for example,
-T> when you want to load part of a page asynchronously by an AJAX [^ajax] request and need to insert
-T> its HTML code in the DOM tree of an existing page.
+> The `setTerminal()` method is very useful in some situations, because with its help you
+> can disable the rendering of the layout view template. If you return from controller the
+> view model marked as terminal, the layout will not be applied. This can be used, for example,
+> when you want to load part of a page asynchronously by an AJAX [^ajax] request and need to insert
+> its HTML code in the DOM tree of an existing page.
 
 [^ajax]: AJAX (stands for Asynchronous JavaScript and XML) is a capability provided by modern browsers
          which can be used to send data to, and retrieve data from, a server asynchronously

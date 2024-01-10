@@ -1,5 +1,6 @@
 site_name: Using Laminas Framework
 site_url: https://laminas.huanga.com/
+repo_url: https://github.com/modir/using-laminas-framework-book
 nav:
   - index.md
   - intro.md

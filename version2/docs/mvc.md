@@ -1,4 +1,4 @@
-# Model-View-Controller {#mvc}
+# Model-View-Controller
 
 In this chapter, you will learn about the models, views and controllers (the MVC design pattern).
 A web application uses the MVC pattern to separate business logic from presentation.
@@ -60,8 +60,8 @@ In MVC, classes implementing your business logic are called *models*, code snipp
 rendering HTML pages are called *views*, and the classes responsible for interacting with user
 are called *controllers*.
 
-I> Views are implemented as *code snippets*, not as classes. This is because
-I> views are typically very simple and contain only the mixture of HTML and inline PHP code.
+> Views are implemented as *code snippets*, not as classes. This is because
+> views are typically very simple and contain only the mixture of HTML and inline PHP code.
 
 The main objective of the MVC concept is to separate the business logic (models)
 from its visualization (views). This is also called the *separation of concerns*, when each layer
@@ -152,8 +152,8 @@ A controller is a usual PHP class derived from the @`AbstractActionController`[L
 By default, the controller class contains the single *action method* called `indexAction()` (see lines 9-12).
 Typically, you will create other action methods in your controller classes.
 
-T> Laminas automatically recognizes the action methods by the `Action` suffix.
-T> If a controller method's name does not have that suffix, it is considered as a usual method, not an action.
+> Laminas automatically recognizes the action methods by the `Action` suffix.
+> If a controller method's name does not have that suffix, it is considered as a usual method, not an action.
 
 As its name assumes, an action method performs some site action,
 which typically results in producing a single web page. Index controller usually
@@ -300,8 +300,8 @@ function to test if the variable exists.
 In line 5 we use the `fromPost()` method to retrieve the variable from POST. The meaning
 of this method's parameters is the same as for the `fromQuery()` method.
 
-T> In Laminas, you must not access request parameters through traditional PHP `$_GET` and `$_POST`
-T> global arrays. Instead, you use laminas-provided API for retrieving the request data.
+> In Laminas, you must not access request parameters through traditional PHP `$_GET` and `$_POST`
+> global arrays. Instead, you use laminas-provided API for retrieving the request data.
 
 ## Putting Data to HTTP Response
 
@@ -508,10 +508,10 @@ like `\Application\Controller\IndexController` (we can use the PHP `::class` key
 and value should be the name of a factory class that would create the controller class for use. In our case,
 we use the standard @`InvokableFactory`, but you can create your own if you need.
 
-I> By using the @`InvokableFactory`, you tell Laminas Framework
-I> that it can invoke the controller by instantiating it with the `new` operator. This is the most
-I> simple way of instantiating the controller. As an alternative, you can register your own factory
-I> to create the controller instance, and inject dependencies into controller.
+> By using the @`InvokableFactory`, you tell Laminas Framework
+> that it can invoke the controller by instantiating it with the `new` operator. This is the most
+> simple way of instantiating the controller. As an alternative, you can register your own factory
+> to create the controller instance, and inject dependencies into controller.
 
 ### Registering a Controller Factory
 
@@ -563,19 +563,19 @@ return [
 ];
 ~~~
 
-I> If you have some experience with Laminas Framework 2, you may notice that the things are now a little different than before.
-I> In ZF2, there was `getServiceLocator()` method in the @`AbstractActionController`[Laminas\Mvc\Controller\AbstractActionController] base class allowing to get dependencies of the controller even without the factory.
-I> In Laminas, you have to pass dependencies explicitly. It is a little more boring,
-I> but it removes "hidden" dependencies and makes your code more clear and easier to understand.
+> If you have some experience with Laminas Framework 2, you may notice that the things are now a little different than before.
+> In ZF2, there was `getServiceLocator()` method in the @`AbstractActionController`[Laminas\Mvc\Controller\AbstractActionController] base class allowing to get dependencies of the controller even without the factory.
+> In Laminas, you have to pass dependencies explicitly. It is a little more boring,
+> but it removes "hidden" dependencies and makes your code more clear and easier to understand.
 
 ### LazyControllerAbstractFactory
 
 Writing a factory for almost every controller may seem boring at first sight. If you are so lazy that you
 don't want to do that, you can use the standard @`LazyControllerAbstractFactory` factory class.
 
-T> The @`LazyControllerAbstractFactory` factory uses *reflection* to determine which services your controller
-T> wants to use. You just need to *typehint* the arguments of controller's constructor, and the factory will
-T> itself retrieve the needed services and pass it to the constructor.
+> The @`LazyControllerAbstractFactory` factory uses *reflection* to determine which services your controller
+> wants to use. You just need to *typehint* the arguments of controller's constructor, and the factory will
+> itself retrieve the needed services and pass it to the constructor.
 
 For example, to inject the `CurrencyConverter` service in your controller, make sure its constructor looks like below:
 
@@ -622,7 +622,7 @@ When your site grows in size, you should create new controller classes instead o
 all actions to `IndexController`. The Index controller is used for defining the actions
 which work for your entire site.
 
-T> It is not recommended to create huge controllers with hundreds of actions, because they are difficult to understand and support.
+> It is not recommended to create huge controllers with hundreds of actions, because they are difficult to understand and support.
 
 It is recommended to create new controller class for each model (or for most important ones) of your business logic domain.
 
@@ -639,13 +639,13 @@ etc.
 
 A *controller plugin* is a class which extends the functionality of *all controllers* in some way.
 
-I> Without plugins, to extend the functionality of all controllers, you would have to
-I> create a custom base class, say `BaseController`, and
-I> derive other controllers from that base class. This way can also be used, but from Laminas creators' point of view, plugins are better
-I> solution, because they use *class composition* [^foo], which provides better flexibility comparing
-I> to class inheritance. You register your plugin controller and it automatically becomes
-I> accessible from all controllers of your app (@`AbstractActionController` base class uses PHP's `__call()`
-I> magic method to proxy calls to registered controller plugins).
+> Without plugins, to extend the functionality of all controllers, you would have to
+> create a custom base class, say `BaseController`, and
+> derive other controllers from that base class. This way can also be used, but from Laminas creators' point of view, plugins are better
+> solution, because they use *class composition* [^foo], which provides better flexibility comparing
+> to class inheritance. You register your plugin controller and it automatically becomes
+> accessible from all controllers of your app (@`AbstractActionController` base class uses PHP's `__call()`
+> magic method to proxy calls to registered controller plugins).
 
 [^foo]: *Composition* is a relationship between two classes that is best described as a "has-a" and
         "whole/part" relationship. The owner class contains a reference to another class (plugin).
@@ -756,8 +756,8 @@ return [
 ];
 ~~~
 
-I> Please note that we also register an alias for the plugin to be able to get
-I> the plugin by its short name.
+> Please note that we also register an alias for the plugin to be able to get
+> the plugin by its short name.
 
 After that, you'll be able to access your custom plugin from
 all of your controller's actions in this way:
@@ -829,10 +829,10 @@ As you can see, the view template is a usual HTML page with several PHP code fra
 A view script just renders the data you pass to it with a @`ViewModel`[Laminas\View\Model\ViewModel] variable container.
 For example, in line 8 we get the value of `$appName` variable and print it into the standard output stream.
 
-T> Inside the view template, you easily can access the variables that were passed from the controller's action.
-T> For example, to get the value of the application name variable, use either
-T> `$appName` or `$this->appName` syntax. These two ways of accessing the variable are equivalent, but the first one
-T> requires less writing, so we will use it in the future.
+> Inside the view template, you easily can access the variables that were passed from the controller's action.
+> For example, to get the value of the application name variable, use either
+> `$appName` or `$this->appName` syntax. These two ways of accessing the variable are equivalent, but the first one
+> requires less writing, so we will use it in the future.
 
 Please note that we are using @`EscapeHtml` view helper to *escape* the string printed to the web page
 to make the website resistant to hacker attacks.
@@ -840,7 +840,7 @@ to make the website resistant to hacker attacks.
 W> You should always escape variables that you print to your web page. Escaping allows to be sure that no malicious code
 W> is injected on your page.
 
-I> In your view script, you can also use simple flow control operations (like `if`, `foreach` or `switch`) to
+> In your view script, you can also use simple flow control operations (like `if`, `foreach` or `switch`) to
 make the appearance of the page different depending on variable's value.
 
 Now let's look at how the page looks like in the web browser. Type "http://localhost/application/about"
@@ -848,10 +848,10 @@ URL in your browser's navigation bar. The *About* page should appear (see figure
 
 ![Figure 4.8. About Page](images/mvc/about_page.png)
 
-T> In general, the PHP code you use inside of views must be as simple as possible.
-T> Views typically do not modify the data you pass from controller.
-T> For example, a view can use the model you pass to it to walk through database table rows and render
-T> the items to an HTML page, but it should never create database tables or modify them itself.
+> In general, the PHP code you use inside of views must be as simple as possible.
+> Views typically do not modify the data you pass from controller.
+> For example, a view can use the model you pass to it to walk through database table rows and render
+> the items to an HTML page, but it should never create database tables or modify them itself.
 
 ## View Helpers
 
@@ -859,9 +859,9 @@ A *view helper* is typically a (relatively) simple PHP class whose goal is to re
 You can invoke view helpers from any view template. With view helpers, you can create reusable widgets
 (like menus, navigation bars, etc.) for your web pages.
 
-I> View helpers are analogous to controller plugins: the controller plugins allow to "extend"
-I> the functionality of controllers, and view helpers allow to "extend" the functionality of view
-I> templates.
+> View helpers are analogous to controller plugins: the controller plugins allow to "extend"
+> the functionality of controllers, and view helpers allow to "extend" the functionality of view
+> templates.
 
 Laminas provides many standard view helpers out of the box. In the table 4.7, some of them are
 presented with a brief description:
@@ -922,8 +922,8 @@ below for an example):
 
 ![Figure 4.9. Setting page title for the About page](images/mvc/about_title.png)
 
-I> We will discuss the view helpers in more details and provide
-I> more usage examples in the chapter [Page Appearance and Layout](#appearance).
+> We will discuss the view helpers in more details and provide
+> more usage examples in the chapter [Page Appearance and Layout](#appearance).
 
 ## View Template Names
 
@@ -932,13 +932,13 @@ action method, Laminas Framework somehow knows the name of the corresponding vie
 file. For example, for your `IndexController`'s `aboutAction()` method,
 Laminas automatically uses the *about.phtml* view template.
 
-I> Laminas determines the correct view template name by module name, controller name and action name.
-I> For example, `IndexController::aboutAction()` action belonging to `Application` module will
-I> have the `application/index/about.phtml` view template by default.
+> Laminas determines the correct view template name by module name, controller name and action name.
+> For example, `IndexController::aboutAction()` action belonging to `Application` module will
+> have the `application/index/about.phtml` view template by default.
 
-T> If your your controller or action name consists of several words in camel-case (like `UserRegistrationController` and `registrationStep1Action`),
-T> the corresponding view template will be *application/user-registration/registration-step-1.phtml* (camel-cased names
-T> are converted to lower-case and words are separated by dashes).
+> If your your controller or action name consists of several words in camel-case (like `UserRegistrationController` and `registrationStep1Action`),
+> the corresponding view template will be *application/user-registration/registration-step-1.phtml* (camel-cased names
+> are converted to lower-case and words are separated by dashes).
 
 ### Overriding Default View Template Name
 
@@ -983,7 +983,7 @@ is actually a relative path to the `about.phtml` file, minus file extension.
 
 Finally, we returned the view model object from the action method (line 7).
 
-I> However, calling the `setTemplate()` method in every action method is optional.
+> However, calling the `setTemplate()` method in every action method is optional.
 If you don't do that, Laminas will determine the view template name automatically
 by concatenating the current module name, controller name and action method name.
 
@@ -1181,9 +1181,9 @@ page, the *.phtml* view template is rendered with the help of @`PhpRenderer` cla
 namespace. This strategy works well in 99% of cases. But sometimes you may need to return something else, for example, a
 JSON response or a RSS feed response.
 
-I> A response in JSON format is typically returned when you implement some kind of API (Application Programming Interface).
-I> API is used to retrieve some the data in machine-readable format.
-I> A response in RSS feed format is typically used to publish frequently changing information, like blog posts or news.
+> A response in JSON format is typically returned when you implement some kind of API (Application Programming Interface).
+> API is used to retrieve some the data in machine-readable format.
+> A response in RSS feed format is typically used to publish frequently changing information, like blog posts or news.
 
 So, Laminas provides three view rendering strategies out of the box:
 
@@ -1283,10 +1283,10 @@ return [
 * The *not_found_template* defines the template name for the 404 error.
 * The *exception_template* specifies the template name for the unhandled exception error.
 
-T> You typically set the *display_not_found_reason* and *display_exceptions* parameters
-T> to `false` in production systems, because you don't want site visitors see the details
-T> about errors in your site. However, you will still be able to retrieve the detailed
-T> information from Apache's `error.log` file.
+> You typically set the *display_not_found_reason* and *display_exceptions* parameters
+> to `false` in production systems, because you don't want site visitors see the details
+> about errors in your site. However, you will still be able to retrieve the detailed
+> information from Apache's `error.log` file.
 
 ## Models
 
@@ -1307,7 +1307,7 @@ Models can have some behavior. For example, a mailer model
 may send E-mail messages, the currency converter model may
 be able to convert money and so on.
 
-I> With Laminas, you represent models as usual PHP classes.
+> With Laminas, you represent models as usual PHP classes.
 Properties are implemented as class fields, and
 the behaviors are implemented as class methods.
 
@@ -1333,9 +1333,9 @@ stored in its own subdirectory (see table 4.9):
 |                                | For example, controller factories would be stored in `APP_DIR/module/Application/src/Controller/Factory`     |
 |--------------------------------|----------------------------------------------------------|
 
-I> Separation of models into different types make it easier to design your business logic domain.
-I> This is also called the "Domain Driven Design" (or shortly, DDD). The person who proposed DDD was Eric Evans
-I> in his famous book called *Domain-Driven Design — Tackling Complexity in the Heart of Software*.
+> Separation of models into different types make it easier to design your business logic domain.
+> This is also called the "Domain Driven Design" (or shortly, DDD). The person who proposed DDD was Eric Evans
+> in his famous book called *Domain-Driven Design — Tackling Complexity in the Heart of Software*.
 
 Below, we will describe the principal model types further.
 
@@ -1383,10 +1383,10 @@ define the properties using the private access type, and make
 them available to the caller through *getter* and *setter* public methods
 (like `getLogin()` and `setLogin()`, etc).
 
-I> Model's behavior methods are not limited by getters and setters.
-I> You can create other methods which manipulate model's data.
-I> For example, you can define the `getFullName()` convenience method,
-I> which would return the user's full name, like "Mr. John Doe".
+> Model's behavior methods are not limited by getters and setters.
+> You can create other methods which manipulate model's data.
+> For example, you can define the `getFullName()` convenience method,
+> which would return the user's full name, like "Mr. John Doe".
 
 ### Repositories
 
@@ -1396,8 +1396,8 @@ for retrieving `User` entities. You typically use repositories when storing enti
 in a database. With repositories, you can encapsulate SQL query logic in the
 single place and easily maintain and test it.
 
-I> We will learn about repositories in more details in [Database Management with Doctrine](#doctrine), when
-I> talking about Doctrine library.
+> We will learn about repositories in more details in [Database Management with Doctrine](#doctrine), when
+> talking about Doctrine library.
 
 ### Value Objects
 
@@ -1510,7 +1510,7 @@ class Mailer
 }
 ~~~
 
-T> In Laminas Framework, you typically register your service models in Service Manager.
+> In Laminas Framework, you typically register your service models in Service Manager.
 
 ### Factories
 
@@ -1640,8 +1640,8 @@ So, eventually you will have the following typical directory structure of your w
             /Factory
 ~~~
 
-I> It is possible to have arbitrarily many model subtypes. The more complex is your application, the more model subtypes
-I> you may have.
+> It is possible to have arbitrarily many model subtypes. The more complex is your application, the more model subtypes
+> you may have.
 
 ## Skinny Controllers, Fat Models, Simple Views
 

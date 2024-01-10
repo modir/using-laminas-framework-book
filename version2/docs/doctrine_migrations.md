@@ -1,4 +1,4 @@
-# Database Migrations {#migrations}
+# Database Migrations
 
 When you are developing your website, you are constantly modifying your database schema: some tables
 are being added, others are being modified, unneeded tables are being deleted. Managing database schema
@@ -91,11 +91,11 @@ cd APP_DIR
 The commands above make the application directory the current working directory and then
 run the `migrations:generate` console command.
 
-I> `DoctrineModule` and `DoctrineORMModule` provide several console commands that you can use for various
-I> database maintenance tasks (like generating or executing migrations). For the list of available commands,
-I> you can use the `list` command:
-I>
-I> `./vendor/bin/doctrine-module list`
+> `DoctrineModule` and `DoctrineORMModule` provide several console commands that you can use for various
+> database maintenance tasks (like generating or executing migrations). For the list of available commands,
+> you can use the `list` command:
+>
+> `./vendor/bin/doctrine-module list`
 
 Once you run the `migrations:generate` command, you will be able to find the newly created migration under the `APP_DIR/data/Migrations` directory.
 The file has a name like `VersionYYYYMMDDHHIISS.php`, where `YYYY` is current year, `MM` is current month, `DD` is current day,
@@ -136,56 +136,47 @@ class Version20160901114333 extends AbstractMigration
 }
 ~~~
 
-T> If you do not see the newly created migration in NetBeans IDE, you need to open the menu *Source* and select the
-T> *Scan for external changes* menu item.
+> If you do not see the newly created migration in NetBeans IDE, you need to open the menu *Source* and select the
+> *Scan for external changes* menu item.
 
 As you can see from the code above, a migration is a usual PHP class inherited from `Doctrine\DBAL\Migrations\AbstractMigration`
 base class. Every migration should have *at least* two methods: `up()` and `down()`. The `up()` method upgrades the schema to a newer state,
 the `down()` method downgrades the schema from its newer state to the previous state. Both `up()` and `down()` methods have a single
 argument of type `Doctrine\DBAL\Schema\Schema`, which can be used for actual database schema modifications.
 
-T> The `Schema` class is a part of `Doctrine\DBAL` component. For more information about the methods it provides, please
-T> refer to Doctrine DBAL documentation. Another, even better way is to look at the code inside your `vendor/doctrine/dbal` directory.
+> The `Schema` class is a part of `Doctrine\DBAL` component. For more information about the methods it provides, please
+> refer to Doctrine DBAL documentation. Another, even better way is to look at the code inside your `vendor/doctrine/dbal` directory.
 
 A migration class may optionally have the following (overridden) methods (table 13.1):
 
-{title="Table 13.1. Methods a migration class may have"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method*                       | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `isTransactional()`            | If this function returns true (default) the migration will be executed in one transaction, |
 |                                | otherwise non-transactional state will be used to execute each of the migration SQLs.|
-|--------------------------------|---------------------------------------------------------------|
 | `getDescription()`             | This method should return a string describing the migration (for what purpose this schema change is done) |
-|--------------------------------|---------------------------------------------------------------|
 | `preUp(Schema $schema)`        | This method will be executed before upgrading the schema.     |
-|--------------------------------|---------------------------------------------------------------|
 | `postUp(Schema $schema)`       | This method will be executed after upgrading the schema.      |
-|--------------------------------|---------------------------------------------------------------|
 | `preDown(Schema $schema)`      | This method will be executed before downgrading the schema.   |
-|--------------------------------|---------------------------------------------------------------|
 | `postDown(Schema $schema)`     | This method will be executed after downgrading the schema.    |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 13.1. Methods a migration class may have
 
 The `AbstractMigration` base class also provides the following useful methods (table 13.2):
 
-{title="Table 13.2. Methods provided by the base migration class"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method*                       | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `addSql($sql, array $params = [], array $types = [])` | This method allows to execute an arbitrary SQL request. |
-|--------------------------------|---------------------------------------------------------------|
 | `write($message)`              | This helper method prints a (debug or explanatory) message to screen. |
-|--------------------------------|---------------------------------------------------------------|
 | `throwIrreversibleMigrationException($message = null)` | This helper method is typically called inside of `down()` method to signal that the migration cannot be undone. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 13.2. Methods provided by the base migration class
 
 As you can see from table 13.2, you can also modify the schema by calling `addSql()` method. This method
 can be used to create a table, to update a table or to remove a table. It can also be used, for example, to insert
 some data to a table (however, inserting data is not a schema change).
 
-I> Doctrine migrations are designed for schema changes, not for inserting data to the database. Although,
-I> inserting some initial data to database is useful in some cases.
+> Doctrine migrations are designed for schema changes, not for inserting data to the database. Although,
+> inserting some initial data to database is useful in some cases.
 
 Now that you know how to create a migration, let's create a couple of migrations for our *Blog* sample.
 
@@ -283,8 +274,8 @@ In the code above we have three methods:
 
 Now assume we decided to improve the performance of our database by adding indexes to our tables.
 
-T> If you want to learn about database indexes in more details and why indexes are so helpful, you can refer to an excellent tutorial
-T> called [Use the Index, Luke](http://use-the-index-luke.com/).
+> If you want to learn about database indexes in more details and why indexes are so helpful, you can refer to an excellent tutorial
+> called [Use the Index, Luke](http://use-the-index-luke.com/).
 
 We can also improve data integrity by adding foreign keys. To do this, we have to add another migration. Generate another
 empty migration with the `migrations:generate` console command. Modify the code to look like below:
@@ -355,7 +346,7 @@ class Version20160901114938 extends AbstractMigration
 }
 ~~~
 
-T> You can find the migrations we have just created inside of the *Blog* sample bundled with this book.
+> You can find the migrations we have just created inside of the *Blog* sample bundled with this book.
 
 ## Executing Migrations
 
@@ -387,8 +378,8 @@ command's argument as follows:
 ./vendor/bin/doctrine-module migrations:migrate 20160901114333
 ~~~
 
-T> You can also use 'prev', 'next' and 'first' aliases as version IDs which respectively move database to its previous state, next state
-T> or to the state before the first migration (empty database).
+> You can also use 'prev', 'next' and 'first' aliases as version IDs which respectively move database to its previous state, next state
+> or to the state before the first migration (empty database).
 
 So, with migrations you can easily move through migration history and change the database schema as needed.
 Be careful though that migrations may remove some of your data, so apply them wisely.

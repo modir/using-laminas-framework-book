@@ -1,4 +1,4 @@
-# Introduction to Laminas Framework {#intro}
+# Introduction to Laminas Framework
 
 In this chapter you will learn about Laminas Framework, its main principles and components.
 
@@ -16,7 +16,7 @@ site you will notice that a large portion of the code you have already written f
 can be used again with small modifications. This code can be separated
 in a library. This is how frameworks appeared.
 
-I> A framework is some kind of a library, a piece of software (also written in PHP)
+> A framework is some kind of a library, a piece of software (also written in PHP)
 providing web developers with code base and consistent standardized ways of creating
 web applications.
 
@@ -55,20 +55,20 @@ To demonstrate you how difficult it is to write a website *without* a PHP framew
 will write a very simple website consisting of three HTML pages: *Home*, *Login* and *Logout*.
 For this example, we won't use any framework and will try to use only "pure" PHP.
 
-I> Don't be confused - writing a website with a PHP framework may also be difficult, but
-I> with a framework you will do that in a consistent and secure manner.
+> Don't be confused - writing a website with a PHP framework may also be difficult, but
+> with a framework you will do that in a consistent and secure manner.
 
 ### Home Page
 
-I> When you write a website in PHP, you put your code into a file with the *.php* extension. Such a file is called
+> When you write a website in PHP, you put your code into a file with the *.php* extension. Such a file is called
 a PHP *script*.
 
 First, let's implement the *Home* page for the website. To do that, create the *index.php* file in your Apache
 document root directory and put the following code into it:
 
-T> To understand the code below, you need to have some experience with PHP. If you have no experience
-T> with PHP, it would be good if you refer to some PHP tutorial,
-T> like [w3schools.com](http://www.w3schools.com/php/).
+> To understand the code below, you need to have some experience with PHP. If you have no experience
+> with PHP, it would be good if you refer to some PHP tutorial,
+> like [w3schools.com](http://www.w3schools.com/php/).
 
 ~~~php
 <?php
@@ -179,7 +179,7 @@ If you open the "http://localhost/login.php" URL in your browser, you should see
 
 ![A simple Login page](images/intro/simple_login_page.png)
 
-T> To log in, use the `admin@example.com` and `Secur1ty` as your E-mail and password, respectively.
+> To log in, use the `admin@example.com` and `Secur1ty` as your E-mail and password, respectively.
 
 ### Logout Page
 
@@ -195,8 +195,8 @@ header('Location: index.php');
 exit;
 ~~~
 
-T> The complete code of this simple website can be found in
-T> [Pure PHP](https://github.com/olegkrivtsov/using-laminas-book-samples/tree/master/purephp) sample bundled with this book.
+> The complete code of this simple website can be found in
+> [Pure PHP](https://github.com/olegkrivtsov/using-laminas-book-samples/tree/master/purephp) sample bundled with this book.
 
 ### Reviewing the Code
 
@@ -257,7 +257,7 @@ The above problems are easily solved when you write a website within a framework
 7. Laminas provides you many components that you can use in your website: a component for authentication, a component
    for working with forms, and so on.
 
-T> Now you may have some idea of the advantages of Laminas Framework and what it can do for you. In the next
+> Now you may have some idea of the advantages of Laminas Framework and what it can do for you. In the next
    sections, we will describe Laminas in more details.
 
 ## License
@@ -319,7 +319,7 @@ It includes beginner's tutorials and programmers manual.
 
 *API Reference* can be found by [this link](https://olegkrivtsov.github.io/laminas-api-reference/html/).
 
-*Community Forum*. You can ask a question about using Laminas Framework at [StackOverflow](https://stackoverflow.com/search?q=Laminas+framework+3).
+*Community Forum*. You can ask a question about using Laminas Framework at [StackOverflow](https://stackoverflow.com/search?q=Laminas).
 Your questions will be answered by the large community of Laminas developers like you.
 
 *Webinars* are video tutorials covering various Laminas Framework features. Complete list of webinars
@@ -341,9 +341,9 @@ competitive PHP job market. Certifications can be found [here](http://www.Lamina
 The source code of Laminas Framework is stored in GitHub [repositories](https://github.com/laminas).
 There is a separate repository per each Laminas component.
 
-I> In most cases you won't need to get the code of Laminas Framework manually.
-I> Instead, you will install it with Composer dependency manager. We will
-I> become familiar with Composer later in a chapter called [Laminas Skeleton Application](#skeleton).
+> In most cases you won't need to get the code of Laminas Framework manually.
+> Instead, you will install it with Composer dependency manager. We will
+> become familiar with Composer later in a chapter called [Laminas Skeleton Application](#skeleton).
 
 ### Coding Standards
 
@@ -351,8 +351,8 @@ It is a good practice to introduce some common coding standard for all your code
 rules, code formatting rules, etc. Laminas Framework defines such standard [here](https://github.com/laminas/laminas/wiki/Coding-Standards).
 All the code in Laminas follows the rules described in that document.
 
-T> If you plan to write a laminas-based website, it is recommended that you follow the same standard for your own code. This will
-T> make your code consistent and easier to extend and support by other people.
+> If you plan to write a laminas-based website, it is recommended that you follow the same standard for your own code. This will
+> make your code consistent and easier to extend and support by other people.
 
 ## Supported Operating Systems
 
@@ -403,9 +403,9 @@ for your web sites. Laminas creators release security patches once the community
 finds a problem. You can incorporate those fixes with a single command through Composer dependency
 manager.
 
-I> Practice shows that using a framework for writing your website is more secure than using "pure"
-I> PHP, because you don't need to reinvent the wheel. Most security vulnerabilities in frameworks
-I> are already known and fixed by the community of users.
+> Practice shows that using a framework for writing your website is more secure than using "pure"
+> PHP, because you don't need to reinvent the wheel. Most security vulnerabilities in frameworks
+> are already known and fixed by the community of users.
 
 Laminas provides the following features allowing to make your web site secure:
 

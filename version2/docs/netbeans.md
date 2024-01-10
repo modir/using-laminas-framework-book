@@ -1,4 +1,4 @@
-# Appendix B. Introduction to PHP Development in NetBeans IDE {#netbeans}
+# Appendix B. Introduction to PHP Development in NetBeans IDE
 
 In this book, we use NetBeans IDE for developing Laminas Framework
 based applications. In [Appendix A. Configuring Web Development Environment](#devenv), we have installed NetBeans IDE.
@@ -145,9 +145,9 @@ to the left of it (shown in figure B.7):
 
 ![Figure B.7. Setting a breakpoint](images/netbeans/breakpoint.png)
 
-T> Be careful not to set a breakpoint on an empty line or on a comment line.
-T> Such a breakpoint will be ignored by XDebug, and it will be marked by the "broken"
-T> square (see figure B.8 for example):
+> Be careful not to set a breakpoint on an empty line or on a comment line.
+> Such a breakpoint will be ignored by XDebug, and it will be marked by the "broken"
+> square (see figure B.8 for example):
 
 ![Figure B.8. Inactive breakpoint](images/netbeans/breakpoint_on_comment.png)
 
@@ -353,14 +353,14 @@ The coloured bar at the top of the page displays the contribution of different f
 * *Green* shows the contribution of your own class methods;
 * *Orange* denotes time taken on traditional "procedural" functions (functions that are not part of a PHP classes).
 
-T> Please note that the profiler creates a new data file in your */tmp* directory for each HTTP request to your website.
-T> This may cause disk space exhaustion, which can be fixed only by rebooting your system.
-T> So, when you've finished profiling your application, it is recommended to disable the profiling
-T> by editing the *php.ini* file, commenting the `xdebug.profiler_enable` parameter as follows,
-T> and then restarting the Apache web server.
-T>
-T> `;xdebug.profiler_enable = 0`
-T>
+> Please note that the profiler creates a new data file in your */tmp* directory for each HTTP request to your website.
+> This may cause disk space exhaustion, which can be fixed only by rebooting your system.
+> So, when you've finished profiling your application, it is recommended to disable the profiling
+> by editing the *php.ini* file, commenting the `xdebug.profiler_enable` parameter as follows,
+> and then restarting the Apache web server.
+>
+> `;xdebug.profiler_enable = 0`
+>
 
 ## Summary
 

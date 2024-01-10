@@ -1,4 +1,4 @@
-# Creating a New Module {#modules}
+# Creating a New Module
 
 When your website grows in size, you can benefit from using Laminas Framework feature called *modules*.
 Modular applications consist of pieces that have relatively few dependencies on each other. This allows
@@ -11,9 +11,9 @@ A module is an *autonomous* and *reusable* unit of your application. By default 
 the single *Application* module. And it is normal to put your models, views and controllers in
 this module, especially in a simple website.
 
-I> A module can contain models, views, controllers and assets. Module classes typically live in a separate
-I> namespace (the same as module name). Module has its own configuration file where you can register routes,
-I> controllers, controller plugins, services, view helpers and so on.
+> A module can contain models, views, controllers and assets. Module classes typically live in a separate
+> namespace (the same as module name). Module has its own configuration file where you can register routes,
+> controllers, controller plugins, services, view helpers and so on.
 
 You may need to create a new module when any of the following is true:
 
@@ -113,7 +113,7 @@ Next run the following command to update Composer autloader files:
 php composer.phar dump-autoload
 ~~~
 
-I> The `dump-autoload` command just regenerates autoloader code without installing or updating any dependencies.
+> The `dump-autoload` command just regenerates autoloader code without installing or updating any dependencies.
 
 Great! The module is now ready for use. You can add controllers, models and views into it. Do not forget to
 modify the `module.config.php` file and register your routes, services, controllers, controller plugins, view helpers, etc.

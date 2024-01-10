@@ -1,4 +1,4 @@
-# Appendix D. Introduction to Doctrine {#doctrine-intro}
+# Appendix D. Introduction to Doctrine
 
 In this appendix, we provide overview of the Doctrine library, such as its
 architecture and components. Since in this book we concentrate mainly on Doctrine's Object Relational Mapper (ORM)
@@ -62,8 +62,8 @@ This programming interface is implemented in two levels:
 Typically, you use the API provided by high-level ORM component. At the same time, you can easily
 work with lower-level DBAL component, if you find that more suitable for your particular needs.
 
-I> Doctrine is database-agnostic. In theory, when you use Doctrine you are able to abstract of database type
-I> and switch between databases more easily than when you use your database-dependent solution.
+> Doctrine is database-agnostic. In theory, when you use Doctrine you are able to abstract of database type
+> and switch between databases more easily than when you use your database-dependent solution.
 
 #### SQL vs. DQL
 
@@ -71,15 +71,15 @@ When using a relational database system, you typically use *SQL language* as a s
 database data and managing database schema. However, each DBMS usually has it own specific SQL language
 extensions (dialects).
 
-I> Doctrine library is designed to work with all major relational database systems that use SQL language,
-I> but it is obvious that it supports only some subset of their functionality and SQL language capabilities.
+> Doctrine library is designed to work with all major relational database systems that use SQL language,
+> but it is obvious that it supports only some subset of their functionality and SQL language capabilities.
 
 Doctrine is built on top of PHP PDO extension (and other database-specific PHP extensions, like `sqlite`, `mysqli`,
 `oci8`, etc.). Those extensions provide drivers for all major relational database systems. You specify which
 driver to use when configuring a database connection.
 
-T> If you are not familiar with SQL, a good point for learning its syntax is
-T> [W3Schools Tutorials](http://www.w3schools.com/sql/default.asp).
+> If you are not familiar with SQL, a good point for learning its syntax is
+> [W3Schools Tutorials](http://www.w3schools.com/sql/default.asp).
 
 [^pdo]: The PHP Data Objects (PDO) extension defines a lightweight, consistent interface for accessing
         databases in PHP. To make it in database-agnostic way, PDO uses the concept of database drivers.
@@ -119,7 +119,7 @@ databases can be divided in the following groups:
 
   * and others.
 
-I> Doctrine provides support only to the Document Store subset of the NoSQL database systems. Column
+> Doctrine provides support only to the Document Store subset of the NoSQL database systems. Column
    store and key-value store database systems typically have very specific field of applications, and not covered by
    Doctrine.
 
@@ -134,7 +134,7 @@ The `post` document would have fields named `id`, `title`, `content`, `author`, 
 and the `comment` document would have fields named `id`, `author`, `content` and `date_created`. This
 is very similar to the tables you would have in a relational database.
 
-I> In this book, we do not address the Doctrine-provided API to the NoSQL document databases. If you
+> In this book, we do not address the Doctrine-provided API to the NoSQL document databases. If you
    want to learn about these capabilities, please refer to the corresponding sections of Doctrine project
    documentation.
 
@@ -163,7 +163,7 @@ for other top-level components. The `DBAL` component provides an abstraction lay
 And on top of all that there is the `ORM` component providing API for working with data in object-oriented
 way. `DoctrineModule` and `DoctrineORMModule` components are designed for integration with Laminas Framework.
 
-I> Doctrine ORM component uses the so called [Data Mapper](http://en.wikipedia.org/wiki/Data_mapper_pattern)
+> Doctrine ORM component uses the so called [Data Mapper](http://en.wikipedia.org/wiki/Data_mapper_pattern)
    pattern. This pattern tells that a database table can be represented as a PHP entity class. The database
    in this pattern is considered as some kind of repository (storage of entities). When you retrieve an
    entity from the repository, an SQL query is performed internally, and an instance of the PHP entity class

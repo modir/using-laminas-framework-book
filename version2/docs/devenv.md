@@ -1,6 +1,4 @@
-{backmatter}
-
-# Appendix A. Configuring Web Development Environment {#devenv}
+# Appendix A. Configuring Web Development Environment
 
 Here we will provide instructions on how to prepare your environment
 for developing laminas-based applications. If you already have the configured environment,
@@ -20,8 +18,8 @@ for an easier navigation, editing and debugging of your PHP application.
 The NetBeans IDE is written in Java and can be installed in Windows, Linux and other
 platforms supporting a compatible Java machine.
 
-I> We also provide instructions for beginners on how to install a Laminas website to Amazon EC2 cloud in
-I> [Appendix E. Installing a Laminas Web Application to Amazon EC2](#ec2-tutorial).
+> We also provide instructions for beginners on how to install a Laminas website to Amazon EC2 cloud in
+> [Appendix E. Installing a Laminas Web Application to Amazon EC2](#ec2-tutorial).
 
 ## Installing Apache, PHP and MySQL in Linux
 
@@ -69,22 +67,17 @@ upgrading every 9 months, choose the latest LTS release.
 For your information, table A.1 lists PHP versions available for installation
 from repository in different Linux distributions:
 
-{title="Table A.1. Available PHP versions in different Linux distributions"}
-|------------------------------------------|----------------------------|
 | Linux Distribution                       |	PHP Version             |
 |------------------------------------------|----------------------------|
 | Linux Ubuntu 16.04 Xenial Xerus LTS      |	7.0                     |
-|------------------------------------------|----------------------------|
 | Linux Ubuntu 15.10 Wily Werewolf         |	5.6                     |
-|------------------------------------------|----------------------------|
 | Linux Ubuntu 15.04 Vivid Vervet          |	5.6                     |
-|------------------------------------------|----------------------------|
 | Linux Ubuntu 14.10 Utopic Unicorn        |	5.5                     |
-|------------------------------------------|----------------------------|
 | Linux Ubuntu 14.04 Trusty Tahr           |	5.5                     |
-|------------------------------------------|----------------------------|
 
-I> As you can see from the table above, for the purpose of Laminas development, you'll have to install
+Table A.1. Available PHP versions in different Linux distributions
+
+> As you can see from the table above, for the purpose of Laminas development, you'll have to install
 Ubuntu 15.04 or later.
 
 When choosing between 32-bit and 64-bit versions of the system, remember that
@@ -92,7 +85,7 @@ the 64 bit version of Linux Ubuntu will have more compatibility issues than its
 32-bit counterpart. The support of drivers can also cause problems on the
 64-bit platform.
 
-T> If you are new to Linux Ubuntu, watch these excellent video tutorials by
+> If you are new to Linux Ubuntu, watch these excellent video tutorials by
 [LearnLinux.tv](https://www.youtube.com/channel/UCxQKHvKbmSzGMvUrVtJYnUA) YouTube user:
 [Tutorial - Installing Ubuntu 16.04 LTS](https://www.youtube.com/watch?v=ajYMQ69S4pg) (this
 one shows how to install Ubuntu Desktop Edition)
@@ -128,8 +121,8 @@ The `sudo` command (stands for "Super User DO") allows to run another command,
 `apt-get` in our case, as system administrator (root). You typically use `sudo` when you
 need to elevate your privileges to install a package or edit some configuration file.
 
-T> The `sudo` command may request you for password. When prompted, enter the password
-T> under which you log into the system and press Enter.
+> The `sudo` command may request you for password. When prompted, enter the password
+> under which you log into the system and press Enter.
 
 Next, from a command shell, run the following commands:
 
@@ -144,8 +137,8 @@ sudo apt-get install libapache2-mod-php
 The commands above download from repository and install the latest available
 versions of Apache HTTP Server, PHP engine and PHP extension module for Apache.
 
-I> The commands above may ask you for confirmation when installing a package.
-I> It is recommended to answer Yes (press "y" and then press Enter).
+> The commands above may ask you for confirmation when installing a package.
+> It is recommended to answer Yes (press "y" and then press Enter).
 
 **Fedora, CentOS or Red Hat Linux**
 
@@ -187,23 +180,23 @@ file in Apache document root directory.
 The *document root* is a directory where you can (by default) store the web files.
 Typically, the Apache document root directory is */var/www/html*.
 
-T> To be able to navigate the directory structure and edit files, it is
-T> recommended to install Midnight Commander (convenient file manager and text editor).
-T> To install Midnight Commander in Debian or Linux Ubuntu, type the following:
-T>
-T> `sudo apt-get install mc`
-T>
-T>  The following command installs Midnight Commander in Fedora, CentOS or Red Hat Linux:
-T>
-T> `sudo yum install mc`
-T>
-T> After installation, you can launch the file manager with the `mc` command, and edit a
-T> text file with the command like this:
-T>
-T> `mcedit /path/to/file`
-T>
-T> If you need administrative permissions to edit the file, prepend the `sudo` command
-T> to the command above.
+> To be able to navigate the directory structure and edit files, it is
+> recommended to install Midnight Commander (convenient file manager and text editor).
+> To install Midnight Commander in Debian or Linux Ubuntu, type the following:
+>
+> `sudo apt-get install mc`
+>
+>  The following command installs Midnight Commander in Fedora, CentOS or Red Hat Linux:
+>
+> `sudo yum install mc`
+>
+> After installation, you can launch the file manager with the `mc` command, and edit a
+> text file with the command like this:
+>
+> `mcedit /path/to/file`
+>
+> If you need administrative permissions to edit the file, prepend the `sudo` command
+> to the command above.
 
 In the *phpinfo.php* file, enter the PHP method `phpinfo()` as follows:
 
@@ -223,14 +216,14 @@ Open the file in your web browser. The standard PHP information page should disp
 To configure PHP for your development environment, you need to edit the
 PHP config file (*php.ini*) and adjust some parameters.
 
-T> In different distributions of Linux, PHP configuration file can be located in different paths.
-T> To edit the PHP config file in Debian or Linux Ubuntu, type the following:
-T>
-T> `sudo mcedit /etc/php/7.0/apache2/php.ini`
-T>
-T> Type the following to edit *php.ini* in Fedora, CentOS or Red Hat Linux:
-T>
-T> `sudo mcedit /etc/php.ini`
+> In different distributions of Linux, PHP configuration file can be located in different paths.
+> To edit the PHP config file in Debian or Linux Ubuntu, type the following:
+>
+> `sudo mcedit /etc/php/7.0/apache2/php.ini`
+>
+> Type the following to edit *php.ini* in Fedora, CentOS or Red Hat Linux:
+>
+> `sudo mcedit /etc/php.ini`
 
 For the development environment, it is recommended to set the following
 error handling and logging parameters as below. This will force PHP to
@@ -242,8 +235,8 @@ display errors on your PHP pages to screen.
 
 `display_startup_errors = On`
 
-T> To conveniently search within the file, press `F7` in Midnight Commander's editor window and
-T> enter the search string (the name of the parameter to search for).
+> To conveniently search within the file, press `F7` in Midnight Commander's editor window and
+> enter the search string (the name of the parameter to search for).
 
 Set your time zone settings (replace `<your_time_zone>` placeholder with your time zone,
 for example, `UTC` or `America/New_York`):
@@ -305,9 +298,9 @@ The virtual sites are differentiated by domain name (like
 host has its own document root directory, allowing you to place
 your web files anywhere on the system (not only to */var/www/html* directory).
 
-T> Please note that right now you don't need to create a virtual host,
-T> we'll do that in chapter [Laminas Skeleton Application](#skeleton). Now you just need to have an idea of
-T> how virtual hosts are created in different Linux distributions.
+> Please note that right now you don't need to create a virtual host,
+> we'll do that in chapter [Laminas Skeleton Application](#skeleton). Now you just need to have an idea of
+> how virtual hosts are created in different Linux distributions.
 
 **In Debian or Ubuntu Linux**
 
@@ -362,10 +355,10 @@ your command shell:
 
 `sudo a2ensite 001-vhost2.conf`
 
-I> The virtual host's name starts with a prefix (like *000*, *010*, etc.), which defines
-I> the priority. Apache web server tries to direct
-I> an HTTP request to each virtual host in turn (first to *000-default*, then to *001-vhost2*),
-I> and if a certain virtual host cannot serve the request, the next one is tried and so on.
+> The virtual host's name starts with a prefix (like *000*, *010*, etc.), which defines
+> the priority. Apache web server tries to direct
+> an HTTP request to each virtual host in turn (first to *000-default*, then to *001-vhost2*),
+> and if a certain virtual host cannot serve the request, the next one is tried and so on.
 
 **In Fedora, CentOS or Red Hat Linux**
 
@@ -596,9 +589,9 @@ and *site2.mydomain.com*)
 
 Please consult to your WAMP or XAMPP documentation for information on how to create virtual hosts.
 
-T> Right now, you don't need to edit virtual host file, we'll do that in chapter [Laminas Skeleton Application](#skeleton)
-T> when installing the Hello World application. Now you just need to understand
-T> how to create virtual hosts.
+> Right now, you don't need to edit virtual host file, we'll do that in chapter [Laminas Skeleton Application](#skeleton)
+> when installing the Hello World application. Now you just need to understand
+> how to create virtual hosts.
 
 ### Installing XDebug PHP extension
 
@@ -698,7 +691,7 @@ When the PHP plugin installation is complete, restart the IDE.
 Then you should be able to create new PHP projects
 from menu `New->New Project...`.
 
-T>It is also recommended to update NetBeans IDE to the latest version
+>It is also recommended to update NetBeans IDE to the latest version
 by opening menu `Help->Check for updates`.
 
 ## Installing NetBeans IDE in Windows
