@@ -230,8 +230,7 @@ With Composer, you can identify the packages that your app requires and have Com
 
 The dependencies of the skeleton application are declared in `APP_DIR/composer.json` file (see below):
 
-{line-numbers=off,lang=text, title="Contents of composer.json file"}
-~~~
+~~~text
 {
     "name": "laminas/skeleton-application",
     "description": "Skeleton Application for Laminas Framework laminas-mvc applications",
@@ -295,8 +294,7 @@ dependencies, download and install them into the `vendor` subdirectory. If at an
 that you need to install another dependency, you can do that by editing `composer.json` and adding your dependency in it,
 and then typing the following commands from your command shell:
 
-{line-numbers=off}
-~~~
+~~~bash
 php composer.phar self-update
 php composer.phar install
 ~~~
@@ -335,8 +333,7 @@ about it, we need to edit the virtual host file.
 
 Let's now edit the default virtual host file to make it look like below (we assume you use Apache v2.4):
 
-{line-numbers=on,lang=text, title="Virtual host file"}
-~~~
+~~~text
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
 

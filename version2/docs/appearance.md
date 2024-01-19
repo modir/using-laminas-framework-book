@@ -78,8 +78,7 @@ Pages of your web site typically have some common structure that can be shared a
 For example, a typical page has the `<!DOCTYPE>` declaration to identify the HTML document,
 and the `<head>` and `<body>` elements:
 
-{line-numbers=off, lang=html, title="Typical page structure"}
-~~~
+~~~html
 <!DOCTYPE html>
 <html lang="en">
   <head>

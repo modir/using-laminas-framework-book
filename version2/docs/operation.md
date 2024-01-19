@@ -443,8 +443,7 @@ located in `APP_DIR/vendor` directory are correctly autoloaded.
 To autoload PHP classes located in your own modules (like `Application` module), you'll have to specify
 the `autoload` key in your `composer.json` file:
 
-{line-numbers=off,lang="json",title="Autoload key of composer.json file"}
-~~~
+~~~json
 "autoload": {
     "psr-4": {
         "Application\\": "module/Application/src/"
@@ -505,8 +504,7 @@ web page on the screen.
 
 A typical HTTP request is presented below:
 
-{line-numbers=on,lang="text",title="An HTTP request example"}
-~~~
+~~~text
 GET http://www.w3schools.com/ HTTP/1.1
 Host: www.w3schools.com
 Connection: keep-alive
@@ -532,8 +530,7 @@ present in the request, because it indicates its type and URL.
 
 The server response for the above request is presented below:
 
-{line-numbers=on,lang="text",title="An HTTP response example"}
-~~~
+~~~text
 HTTP/1.1 200 OK
 Cache-Control: private
 Content-Type: text/html

@@ -72,8 +72,7 @@ run toolbar allows you to do that in a single click.
 The "conventional" debugging technique in PHP is putting the `var_dump()` function
 in the code block that you want to examine:
 
-{lang="php"}
-~~~
+~~~php
 var_dump($var);
 
 exit;
@@ -276,8 +275,7 @@ Webgrind's installation is very straightforward.
 First, you need to download webgrind from its project page and unpack it to some folder.
 In Linux, you can do this with the following commands:
 
-{lang="bash"}
-~~~
+~~~bash
 $ cd ~
 
 $ wget https://github.com/jokkedk/webgrind/archive/master.zip
