@@ -711,7 +711,3 @@ Apache HTTP Server, PHP engine and MySQL database in both Linux and Windows plat
 We've also provided instructions for installing NetBeans integrated development environment (IDE),
 which is a convenient integrated development environment for PHP development. It allows you
 to navigate, edit and debug your laminas-based application in an effective manner.
-
-> **These installation instructions do not work for me. What do I do?**
->
-> Please leave a comment below this page and describe your problem.

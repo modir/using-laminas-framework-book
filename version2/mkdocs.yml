@@ -27,4 +27,10 @@ nav:
   - bootstrap.md
   - doctrine_intro.md
   - ec2_tutorial.md
-theme: readthedocs
+theme:
+  name: readthedocs
+  features:
+    - content.code.copy
+markdown_extensions:
+  - footnotes
+  - admonition

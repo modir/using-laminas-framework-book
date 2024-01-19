@@ -16,9 +16,10 @@ site you will notice that a large portion of the code you have already written f
 can be used again with small modifications. This code can be separated
 in a library. This is how frameworks appeared.
 
-> A framework is some kind of a library, a piece of software (also written in PHP)
-> providing web developers with code base and consistent standardized ways of creating
-> web applications.
+!!! note "What is a Framework?"
+    A framework is some kind of a library, a piece of software (also written in PHP)
+    providing web developers with code base and consistent standardized ways of creating
+    web applications.
 
 Laminas Framework is a free and open-source PHP framework.
 Its development is guided (and sponsored) by Laminas Technologies, who is also known as the vendor of the PHP
