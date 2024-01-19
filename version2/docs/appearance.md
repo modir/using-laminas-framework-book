@@ -1179,13 +1179,13 @@ module's source directory (figure 6.10).
 
 ![Figure 6.10. View helper directory](images/appearance/view_helper_dir.png)
 
-Q> **Why do we place the view helper class under module's source directory?**
-Q>
-Q> View helpers (unlike `.phtml` view templates) are stored under module's `src/` directory,
-Q> because they are usual PHP classes and require to be resolved by a PHP
-Q> class auto-loading feature. On the other hand, view templates are resolved by the special Laminas class
-Q> called *view resolver*, and for this reason, view templates are stored under
-Q> the module's `view/` directory.
+> **Why do we place the view helper class under module's source directory?**
+>
+> View helpers (unlike `.phtml` view templates) are stored under module's `src/` directory,
+> because they are usual PHP classes and require to be resolved by a PHP
+> class auto-loading feature. On the other hand, view templates are resolved by the special Laminas class
+> called *view resolver*, and for this reason, view templates are stored under
+> the module's `view/` directory.
 
 Next, create the stub code for the `Menu` class:
 

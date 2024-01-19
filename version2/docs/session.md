@@ -66,15 +66,15 @@ ini_set('session.gc_maxlifetime', 60*60*24*30);
 There are several other "advanced" session-related PHP configuration settings in *php.ini*. We do not
 cover them here, because they are usually not needed.
 
-Q> **So, if PHP sessions is so simple, why do I need additional wrapper provided by Laminas Framework?**
-Q>
-Q> laminas-provided wrapper around the PHP sessions is useful, because:
-Q>
-Q>   * Laminas session wrapper is object-oriented, so you can use it consistently in your MVC application.
-Q>   * Laminas provides the concept of session namespaces, so different models can store data without naming conflicts.
-Q>   * Laminas provides security features (session validators), so it is more difficult for a malicious user to hack and substitute your session data.
-Q>   * Using `$_SESSION` super-global array directly is not good, because it makes testing your website more difficult. When you use a wrapper around PHP sessions, it is easier to supply test data.
-Q>   * With Laminas session classes, it is possible to implement custom session data storages (for example, store session data in database instead of files).
+> **So, if PHP sessions is so simple, why do I need additional wrapper provided by Laminas Framework?**
+>
+> laminas-provided wrapper around the PHP sessions is useful, because:
+>
+>   * Laminas session wrapper is object-oriented, so you can use it consistently in your MVC application.
+>   * Laminas provides the concept of session namespaces, so different models can store data without naming conflicts.
+>   * Laminas provides security features (session validators), so it is more difficult for a malicious user to hack and substitute your session data.
+>   * Using `$_SESSION` super-global array directly is not good, because it makes testing your website more difficult. When you use a wrapper around PHP sessions, it is easier to supply test data.
+>   * With Laminas session classes, it is possible to implement custom session data storages (for example, store session data in database instead of files).
 
 ## Installing Laminas\Session Component
 

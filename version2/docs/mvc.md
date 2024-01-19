@@ -694,13 +694,13 @@ of the module (see figure 4.5):
 
 ![Figure 4.5. View directory](images/mvc/views_dir.png)
 
-Q> **Why are view template files not stored under module's source directory?**
-Q>
-Q> View templates (`.phtml` files) are not stored under module's `src/` directory,
-Q> because they are not usual PHP classes and do not need to be resolved by a PHP
-Q> class autoloading feature. View templates are resolved by the special Laminas class
-Q> called *view resolver*, and for this reason, view templates are stored under
-Q> the module's `view` directory.
+> **Why are view template files not stored under module's source directory?**
+>
+> View templates (`.phtml` files) are not stored under module's `src/` directory,
+> because they are not usual PHP classes and do not need to be resolved by a PHP
+> class autoloading feature. View templates are resolved by the special Laminas class
+> called *view resolver*, and for this reason, view templates are stored under
+> the module's `view` directory.
 
 View templates can have different behaviors, based on variables you pass to them from the controller's
 action method. Data is passed to view templates with the help of a @`ViewModel`[Laminas\View\Model\ViewModel] variable container.
@@ -1448,12 +1448,12 @@ method of the service being instantiated.
 
 ## Determining the Correct Model Type
 
-Q> **Isn't it confusing to have so many model types?**
-Q>
-Q> Well, yes and no. At first, it may be a little difficult to determine
-Q> the correct model type, but as soon you improve your
-Q> skills, you will be able to do that intuitively. Just remember that model types improve the
-Q> structure of your domain models.
+> **Isn't it confusing to have so many model types?**
+>
+> Well, yes and no. At first, it may be a little difficult to determine
+> the correct model type, but as soon you improve your
+> skills, you will be able to do that intuitively. Just remember that model types improve the
+> structure of your domain models.
 
 When writing your own application, you may be confused
 when trying to decide to which model type your class belongs (whether it is an entity,
@@ -1477,11 +1477,11 @@ when writing your own application:
 * Your model is a *Factory*:
     * if it can create other objects and can do nothing else
 
-Q> **Hmm... what if I just store all my models in a single Model directory?**
-Q>
-Q> Of course, you can, if you strongly wish. But, when you use Doctrine ORM
-Q> library, you will notice that it utilizes DDD principles as well, so using DDD
-Q> makes your application well-organized.
+> **Hmm... what if I just store all my models in a single Model directory?**
+>
+> Of course, you can, if you strongly wish. But, when you use Doctrine ORM
+> library, you will notice that it utilizes DDD principles as well, so using DDD
+> makes your application well-organized.
 
 ## Other Model Types
 

@@ -1,13 +1,9 @@
 # Preface
 
 "Using Laminas Framework" is a free and open-source book about programming
-web applications with Laminas Framework.
+web applications with Laminas Framework. This book uses [Creative Commons Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 
-## About this Book
-
-"Using Laminas Framework" book is a free and open-source book about creating
-websites with Laminas Framework.
-This book uses [Creative Commons Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+## About Laminas
 
 Laminas is a modern PHP framework
 intended for building professional, scalable and secure websites.
@@ -15,11 +11,17 @@ Such websites are easy to test and maintain. The framework utilizes the best
 practices and common design patterns inspired by the evolution of the web development
 industry. This includes the *Model-View-Controller* pattern allowing an application's code to be organized in a consistent and standard way.
 
+The Laminas Framework started as Zend Framework. After Zend Framework version 3 it got renamed to Laminas.
+
+## About this Book
+
 This book is not only about Laminas Framework, but also about closely related
 libraries. Although Laminas Framework has a dedicated component for accessing the
 database, in this book we use a third-party library called Doctrine ORM which is a de-facto
 standard object-oriented way to perform database management. In the sample applications we will create in chapters of this
 book, Twitter Bootstrap CSS Framework is used to produce nicely styled and laid out web pages.
+
+This book was initially written by Oleg Krivtsov as a Zend 3 book. As nobody took care of it Raffael Luthiger took over and rewrote it as a Laminas book.
 
 ## Intended Audience
 
@@ -54,7 +56,7 @@ see Laminas Framework in action. You can even use the samples as a base for your
 All the source code is stored on GitHub. The code is publicly available, and you can download the entire code
 archive by visiting [this page](https://github.com/olegkrivtsov/using-laminas-book-samples).
 To download the archive, click the *Clone or Download* button that can be found on the page
-(see the figure below).
+(see the figure below). (Attention: This is still the link to the original code where it is still every "Zend".)
 
 ![Samples can be downloaded from GitHub](images/preface/samples_on_github.png)
 
@@ -71,11 +73,11 @@ using-laminas-book-samples
 ## Your Feedback
 
 Thank you for reading this book and helping to make it better. You are encouraged to point out errors and
-make suggestions and critical remarks. You can write the author through the comments section
-located under every page. Alternatively, you can contact the author through his e-mail address
-(`olegkrivtsov@gmail.com`). Your feedback is highly appreciated.
+make suggestions and critical remarks. You can edit the code of this book directly on github with the buttons
+on the top of each page. Furthermore you can write to the current maintainer through his e-mail address
+(`r.luthiger@huanga.com`). Your feedback is highly appreciated.
 
-## About the Author
+## About the Original Author
 
 Oleg Krivtsov is a C++ and PHP developer. He has been developing software professionally
 since 2005. Oleg is a Certified Laminas Framework 2 Architect

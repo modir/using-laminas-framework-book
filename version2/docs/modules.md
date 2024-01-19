@@ -141,16 +141,16 @@ chapter, the application has several life stages represented by events. You may 
 register it in your module entry point. When an event is triggered, your listener method (or class) will be called allowing you to
 do something useful.
 
-Q> **Why would I want to register an event listener?**
-Q>
-Q> Here are several practical applications of event listening that you may find useful:
-Q>
-Q>   * Listen to *Route* event to force the use of HTTPS secure connection.
-Q>   * When your website is in maintenance mode, listen to *Route* event to catch all requests and redirect user to the single page.
-Q>   * Listen to *Dispatch* event to redirect a user to a different page. For example, if user is not authenticated, redirect him to the login page.
-Q>   * Listen to *Dispatch* event to override the default layout template for all controllers belonging to the module.
-Q>   * Listen to *Dispatch Error* event to log and/or report any exception or error happening in your website.
-Q>   * Listen to *Render* event to modify the content of the resulting web page.
+> **Why would I want to register an event listener?**
+>
+> Here are several practical applications of event listening that you may find useful:
+>
+>   * Listen to *Route* event to force the use of HTTPS secure connection.
+>   * When your website is in maintenance mode, listen to *Route* event to catch all requests and redirect user to the single page.
+>   * Listen to *Dispatch* event to redirect a user to a different page. For example, if user is not authenticated, redirect him to the login page.
+>   * Listen to *Dispatch* event to override the default layout template for all controllers belonging to the module.
+>   * Listen to *Dispatch Error* event to log and/or report any exception or error happening in your website.
+>   * Listen to *Render* event to modify the content of the resulting web page.
 
 There are two ways to register an event listener within the `Module` class: either with the help of `Module`'s `init()` method or with the
 help of its `onBootstrap()` method. The difference between `init()` method and `onBootstrap()` method is that the `init()` method is called

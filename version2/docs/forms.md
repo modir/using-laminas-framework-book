@@ -994,12 +994,12 @@ If a certain field is invalid, a validator raises an error flag. In that case, t
 typically shown to the user again, and the user is asked to correct any input errors and resend
 the form to server.
 
-Q> **What happens if I don't add a validation rule for a certain form field?**
-Q>
-Q> If you do not add a validation rule then the user-submitted field value
-Q> will not be checked, leaving a hole in your site's security. It is recommended
-Q> to always add a validation rule per each form field entered by user and add as many
-Q> checks per each field as needed to keep your form secure.
+> **What happens if I don't add a validation rule for a certain form field?**
+>
+> If you do not add a validation rule then the user-submitted field value
+> will not be checked, leaving a hole in your site's security. It is recommended
+> to always add a validation rule per each form field entered by user and add as many
+> checks per each field as needed to keep your form secure.
 
 ### Input Filter
 

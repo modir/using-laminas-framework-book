@@ -520,12 +520,12 @@ Table 12.1. Often Used Database Driver Classes
 > controlled, because you usually do not want other people on your team (or other people having
 > access to your code repository) seeing the actual password.
 
-Q> **What happens if I need several database connections?**
-Q>
-Q> You can easily add more database connections by adding other keys below the `orm_default` key.
-Q> For example, let's assume that you have another database for testing purposes. To let
-Q> Doctrine know about this database, you create the `orm_test` subkey below the `orm_default` key
-Q> and fill it with connection parameters.
+> **What happens if I need several database connections?**
+>
+> You can easily add more database connections by adding other keys below the `orm_default` key.
+> For example, let's assume that you have another database for testing purposes. To let
+> Doctrine know about this database, you create the `orm_test` subkey below the `orm_default` key
+> and fill it with connection parameters.
 
 ## About Doctrine Entities
 

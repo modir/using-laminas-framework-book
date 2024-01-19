@@ -463,12 +463,12 @@ for the CSRF field like shown below:
 > randomly generated token. Since the attacker script doesn't know this token, it won't
 > be able to submit its correct value, thus the CSRF attack becomes prevented.
 
-Q> **What happens if CSRF element validation fails?**
-Q>
-Q> If during the form validation the CSRF check fails, the form is considered
-Q> invalid and the user will see it again to fix input errors, but he won't see
-Q> the error message for the CSRF element (we don't want hackers to know for sure
-Q> what's wrong with the form).
+> **What happens if CSRF element validation fails?**
+>
+> If during the form validation the CSRF check fails, the form is considered
+> invalid and the user will see it again to fix input errors, but he won't see
+> the error message for the CSRF element (we don't want hackers to know for sure
+> what's wrong with the form).
 
 ## Using Validation Groups
 

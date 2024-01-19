@@ -5,12 +5,12 @@ based applications. In [Appendix A. Configuring Web Development Environment](#de
 Here we will provide some useful tips on using NetBeans for PHP programming.
 We will learn how to launch and interactively debug a laminas-based website.
 
-Q> *What if I want to use another IDE (not NetBeans) for developing my applications?*
-Q>
-Q> Well, you can use any IDE you want. The problem is that it is impossible to cover
-Q> all IDEs for PHP development in this book. The author only provides instructions
-Q> for NetBeans IDE. It would be easier for a beginner to use NetBeans IDE. Advanced
-Q> developers may use an IDE of their choices.
+> *What if I want to use another IDE (not NetBeans) for developing my applications?*
+>
+> Well, you can use any IDE you want. The problem is that it is impossible to cover
+> all IDEs for PHP development in this book. The author only provides instructions
+> for NetBeans IDE. It would be easier for a beginner to use NetBeans IDE. Advanced
+> developers may use an IDE of their choices.
 
 ## Run Configuration
 

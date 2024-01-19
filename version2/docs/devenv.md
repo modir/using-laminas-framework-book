@@ -712,6 +712,6 @@ We've also provided instructions for installing NetBeans integrated development 
 which is a convenient integrated development environment for PHP development. It allows you
 to navigate, edit and debug your laminas-based application in an effective manner.
 
-Q> **These installation instructions do not work for me. What do I do?**
-Q>
-Q> Please leave a comment below this page and describe your problem.
+> **These installation instructions do not work for me. What do I do?**
+>
+> Please leave a comment below this page and describe your problem.

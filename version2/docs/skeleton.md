@@ -210,11 +210,11 @@ The `public` directory contains several subdirectories also publicly accessible 
 * and `js` subdirectory stores publicly accessible JavaScript files used by your web-pages.
   Typically, files of [jQuery](http://jquery.com/) library are placed here, but you can put your own JavaScript files here, too.
 
-Q> **What is jQuery library?**
-Q>
-Q> jQuery is a JavaScript library which was created to simplify the client-side scripting of HTML
-Q> pages. jQuery's selector mechanism allows to easily attach event handlers to certain HTML elements, making
-Q> it really simple to make your HTML pages interactive.
+> **What is jQuery library?**
+>
+> jQuery is a JavaScript library which was created to simplify the client-side scripting of HTML
+> pages. jQuery's selector mechanism allows to easily attach event handlers to certain HTML elements, making
+> it really simple to make your HTML pages interactive.
 
 Because the Laminas Skeleton Application is stored on GitHub, inside of the directory structure,
 you can find hidden `.gitignore` file. This is a [GIT](http://git-scm.com/) version control
@@ -273,12 +273,12 @@ The dependencies of the skeleton application are declared in `APP_DIR/composer.j
 }
 ~~~
 
-Q> **What is JSON?**
-Q>
-Q>JSON (JavaScript Object Notation), is a text-based file format used for human-readable
-Q>representation of simple structures and nested associative arrays. Although JSON
-Q>originates from JavaScript, it is used in PHP and in other languages, because
-Q>it is convenient for storing configuration data.
+> **What is JSON?**
+>
+>JSON (JavaScript Object Notation), is a text-based file format used for human-readable
+>representation of simple structures and nested associative arrays. Although JSON
+>originates from JavaScript, it is used in PHP and in other languages, because
+>it is convenient for storing configuration data.
 
 In that file, we see some basic info on the skeleton application (its name,
 description, license, keywords and home page). You will typically change this info for your future
@@ -506,11 +506,11 @@ To forbid access to your site, you can modify the virtual host and add the follo
 Require ip <your_ip_address>
 ~~~
 
-Q> **How do I determine my IP address?**
-Q>
-Q> You can use the [http://www.whatismyip.com](http://www.whatismyip.com/) website to determine
-Q> your external IP address. The external IP address is the address by which other
-Q> computers on the Internet may access your site.
+> **How do I determine my IP address?**
+>
+> You can use the [http://www.whatismyip.com](http://www.whatismyip.com/) website to determine
+> your external IP address. The external IP address is the address by which other
+> computers on the Internet may access your site.
 
 ## HTTP Authentication
 
@@ -694,13 +694,13 @@ Table 2.2. Package Version Definitions
 We've seen how to use the `php composer.phar install` command to install our dependencies. As soon as you call this
 command, Composer will find, download and install the dependencies to your `vendor` subdirectory.
 
-Q> **Is it safe to install dependencies with Composer?**
-Q>
-Q> Well, some people may be afraid of Composer-style dependency management,
-Q> because they think someone can update the dependencies system-wide by mistake or intentionally,
-Q> causing the web application to
-Q> break. Note, that Composer *never* installs these
-Q> system-wide, instead it installs them into your `APP_DIR/vendor/` directory.
+> **Is it safe to install dependencies with Composer?**
+>
+> Well, some people may be afraid of Composer-style dependency management,
+> because they think someone can update the dependencies system-wide by mistake or intentionally,
+> causing the web application to
+> break. Note, that Composer *never* installs these
+> system-wide, instead it installs them into your `APP_DIR/vendor/` directory.
 
 After installation, Composer also creates the `APP_DIR/composer.lock` file. This file now contains
 actual versions of the packages that were installed. If you run the `install` command again,
@@ -718,12 +718,12 @@ If you want to update only a single dependency, type its name as the following:
 
 After the `update` command, your `composer.lock` file will be updated, too.
 
-Q> **What do I do if I want to roll back to a previous version of the package?**
-Q>
-Q> If the update procedure resulted in unwanted problems with your system, you can roll back
-Q> by reverting the changes to your `composer.lock` file and issuing the `install` command again.
-Q> Reverting changes to `composer.lock` is easy if you use a version control system, like GIT or SVN.
-Q> If you don't use a version control system, make a backup copy of `composer.lock` before updating.
+> **What do I do if I want to roll back to a previous version of the package?**
+>
+> If the update procedure resulted in unwanted problems with your system, you can roll back
+> by reverting the changes to your `composer.lock` file and issuing the `install` command again.
+> Reverting changes to `composer.lock` is easy if you use a version control system, like GIT or SVN.
+> If you don't use a version control system, make a backup copy of `composer.lock` before updating.
 
 ### Adding a New Dependency
 
@@ -768,12 +768,12 @@ This is useful in development teams having more than one developer, because all
 developers should have the same code to avoid unwanted issues with environment
 misconfiguration.
 
-Q> **What if some dependence will be declared obsolete and removed from Packagist.org?**
-Q>
-Q> Well, the possibility of package removal is minimum. All packages are free and open-source,
-Q> and the community of users can always restore the dependency even if it is removed from packagist.
-Q> By the way, the same concept of dependency installation is used in Linux (remember APT or RPM manager?),
-Q> so did anyone see any Linux package lost?
+> **What if some dependence will be declared obsolete and removed from Packagist.org?**
+>
+> Well, the possibility of package removal is minimum. All packages are free and open-source,
+> and the community of users can always restore the dependency even if it is removed from packagist.
+> By the way, the same concept of dependency installation is used in Linux (remember APT or RPM manager?),
+> so did anyone see any Linux package lost?
 
 But there may be situations when you *should* store some dependent libraries under
 version control:

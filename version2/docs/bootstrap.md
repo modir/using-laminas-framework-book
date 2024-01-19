@@ -94,12 +94,12 @@ and each cell spans a single column. In the bottom row,
 the first cell spans 2 columns, the second and the third ones span 4 columns each, and the fourth
 cell spans 2 columns (in total we have 12 columns).
 
-Q> **Why does Bootstrap's grid consist of only 12 columns?**
-Q>
-Q> Probably because 12 columns are enough for most websites. If you have more fine-grained grid with
-Q> lots of columns, it would be more difficult to compute column spans without the calculator.
-Q> Fortunately, Bootstrap allows for customizing the count of columns per row, so you can have as many
-Q> columns as you wish.
+> **Why does Bootstrap's grid consist of only 12 columns?**
+>
+> Probably because 12 columns are enough for most websites. If you have more fine-grained grid with
+> lots of columns, it would be more difficult to compute column spans without the calculator.
+> Fortunately, Bootstrap allows for customizing the count of columns per row, so you can have as many
+> columns as you wish.
 
 ### Defining the Grid
 

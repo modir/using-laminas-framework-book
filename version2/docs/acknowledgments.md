@@ -1,6 +1,6 @@
 # Acknowledgments
 
-Thanks to Raffael Luthiger for migrating the book from Zend to Laminas
+## From the Original Zend 3 Book
 
 Thanks to Edu Torres, a 2D artist from Spain, for making the cover for this book.
 
@@ -19,3 +19,7 @@ Yuri Aya, Dmitriy Halytskiy, Denis Krupnov, Vladimír Náprstek,
 Renato Mendes, Mulot, Paolo Bernardi, Behzad Moradi, @bitwombat, Rodion Abdurakhimov,
 Fadel Chafai, Moriancumer Richard Uy and Charles Naylor for helping to find and fix
 mistakes in the text.
+
+## For the New Laminas Book
+
+Thanks to Raffael Luthiger for migrating the book from Zend to Laminas
