@@ -9,11 +9,9 @@ PHP sessions, so you don't access `$_SESSION` super-global array directly.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Session`                 | Implements a wrapper around PHP sessions.                     |
-|--------------------------------|---------------------------------------------------------------|
 
 ## PHP Sessions
 
@@ -108,34 +106,22 @@ $sessionManager = $container->get(SessionManager::class);
 So, what does the @`SessionManager` do? Actually, it does everything for session to run.
 The summary of its most useful methods is provided in the table 15.1 below:
 
-{title="Table 15.1. Methods provided by the SessionManager class"}
-|------------------------------------|--------------------------------------------------|
 | *Method*                           | *Description*                                    |
 |------------------------------------|--------------------------------------------------|
 | `sessionExists()`                  | Checks whether session exists and currently active. |
-|------------------------------------|--------------------------------------------------|
 | `start($preserveStorage = false)`  | Starts the session (if not started yet).         |
-|------------------------------------|--------------------------------------------------|
 | `destroy(array $options = null)`   | Ends the session.                                |
-|------------------------------------|--------------------------------------------------|
 | `getId()`                          | Returns session ID.                              |
-|------------------------------------|--------------------------------------------------|
 | `setId()`                          | Sets session ID.                                 |
-|------------------------------------|--------------------------------------------------|
 | `regenerateId()`                   | Regenerates the session ID.                      |
-|------------------------------------|--------------------------------------------------|
 | `getName()`                        | Returns session name.                            |
-|------------------------------------|--------------------------------------------------|
 | `setName()`                        | Overrides the default session name from *php.ini*. |
-|------------------------------------|--------------------------------------------------|
 | `rememberMe($ttl = null)`          | Sets session cookie lifetime (in seconds).       |
-|------------------------------------|--------------------------------------------------|
 | `forgetMe()`                       | Set a zero lifetime for the session cookie (the cookie will expire when browser is closed).      |
-|------------------------------------|--------------------------------------------------|
 | `expireSessionCookie()`            | Expires the session cookie immediately.          |
-|------------------------------------|--------------------------------------------------|
 | `isValid()`                        | Executes session validators.                     |
-|------------------------------------|--------------------------------------------------|
+
+Table 15.1. Methods provided by the SessionManager class
 
 As you can see from the table above, the @`SessionManager` can start the session and end it, check if session exists, and set session parameters
 (such as cookie expiration). It also provides a validator chain that may contain session validators (those

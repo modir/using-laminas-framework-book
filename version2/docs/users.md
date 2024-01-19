@@ -15,15 +15,11 @@ All code discussed in this chapter is part of this sample application.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Authentication`          | Provides user authentication feature.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Crypt`                   | Provides functionality for password encryption.               |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Math`                    | Provides functionality for generating secure random tokens.   |
-|--------------------------------|---------------------------------------------------------------|
 
 ## Get User Demo Sample from GitHub
 
@@ -741,26 +737,18 @@ php composer.phar require laminas/laminas-authentication
 The @`Laminas\Authentication` component provides the special service class called `AuthenticationService` living
 in @`Laminas\Authentication` namespace. Most useful methods of this service are shown in table 16.1 below.
 
-{title="Table 16.1. Methods of AuthenticationService class"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method*                       | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `authenticate()`               | Performs user authentication using the adapter.               |
-|--------------------------------|---------------------------------------------------------------|
 | `getAdapter()`                 | Gets authentication adapter.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `setAdapter()`                 | Sets authentication adapter implementing the actual authentication algorithm. |
-|--------------------------------|---------------------------------------------------------------|
 | `getStorage()`                 | Returns storage handler.                                      |
-|--------------------------------|---------------------------------------------------------------|
 | `setStorage()`                 | Sets storage handler.                                         |
-|--------------------------------|---------------------------------------------------------------|
 | `hasIdentity()`                | Returns `true` if user identity is already stored in session. |
-|--------------------------------|---------------------------------------------------------------|
 | `getIdentity()`                | Retrieves user identity from session.                         |
-|--------------------------------|---------------------------------------------------------------|
 | `clearIdentity()`              | Removes user identity from session.                           |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 16.1. Methods of AuthenticationService class
 
 As you can see from the table, you can use the `authenticate()` method to perform user authentication.
 Besides that you can use `hasIdentity()`, `getIdentity()` and `clearIdentity()` methods for testing,

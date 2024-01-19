@@ -10,13 +10,10 @@ and produces some output data. We will also show how to write a custom filter.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Filter`                  | Contains various filters classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\InputFilter`             | Implements a container for filters/validators.                |
-|--------------------------------|---------------------------------------------------------------|
 
 ## About Filters
 
@@ -80,60 +77,36 @@ As you can see from the table, the standard filters can be roughly divided into 
  * filters manipulating string data (case conversion, trimming, character replacement and removal, URL normalizing, etc.); and
  * proxy filters wrapping other filters (@`Callback`[Laminas\Filter\Callback], @`FilterChain`[Laminas\Filter\FilterChain] and @`StaticFilter`).
 
-{title="Table 8.1. Standard filters"}
-|--------------------------------|---------------------------------------------------------------|
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Boolean`[Laminas\Filter\Boolean]                      | Returns a boolean representation of `$value`.                 |
-|--------------------------------|---------------------------------------------------------------|
 | @`ToInt`                        | Casts the input `$value` to `int`.                            |
-|--------------------------------|---------------------------------------------------------------|
 | @`Digits`[Laminas\Filter\Digits]                       | Returns the string `$value`, removing all but digit characters. |
-|--------------------------------|---------------------------------------------------------------|
 | @`ToNull`                       | Returns `null` if the input value can be treated as null; otherwise returns the `$value` itself.     |
-|--------------------------------|---------------------------------------------------------------|
 | @`DateTimeFormatter`            | Takes a date & time string in an arbitrary format and produces a date & time string in a given format. |
-|--------------------------------|---------------------------------------------------------------|
 | @`BaseName`                     | Given a string containing the path to a file or directory, this filter will return the trailing name component. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Dir`                          | Given a string containing the path of a file or directory, this filter will return the parent directory's path. |
-|--------------------------------|---------------------------------------------------------------|
 | @`RealPath`                     | Returns canonicalized absolute pathname.                      |
-|--------------------------------|---------------------------------------------------------------|
 | @`Compress`                     | Compresses the input data with the specified algorithm (GZ by default). |
-|--------------------------------|---------------------------------------------------------------|
 | @`Decompress`                   | Decompresses the input data with the specified algorithm (the effect is inverse to the `Compress` filter). |
-|--------------------------------|---------------------------------------------------------------|
 | @`Encrypt`[Laminas\Filter\Encrypt]                      | Encrypts the input data with the specified cryptographic algorithm. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Decrypt`[Laminas\Filter\Decrypt]                      | Decrypts the input data previously encrypted with the specified cryptographic algorithm. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Inflector`                    | Performs the modification of a word to express different grammatical categories such as tense, mood, voice, aspect, person, number, gender, and case. |
-|--------------------------------|---------------------------------------------------------------|
 | @`PregReplace`                  | Performs a regular expression search and replace.             |
-|--------------------------------|---------------------------------------------------------------|
 | @`StringToLower`                | Converts the string to lowercase letters.                    |
-|--------------------------------|---------------------------------------------------------------|
 | @`StringToUpper`                | Converts the string to uppercase letters.                    |
-|--------------------------------|---------------------------------------------------------------|
 | @`StringTrim`                   | Removes white spaces (space, tabs, etc.) from the beginning and the end of the string. |
-|--------------------------------|---------------------------------------------------------------|
 | @`StripNewlines`                | Removes new line characters from string (ASCII codes #13, #10).|
-|--------------------------------|---------------------------------------------------------------|
 | @`HtmlEntities`                 | Returns the string, converting characters to their            |
 |                                | corresponding HTML entity equivalents where they exist.       |
-|--------------------------------|---------------------------------------------------------------|
 | @`StripTags`                    | Removes tags (e.g., `<a></a>`) and comments (e.g., `<!-- -->`).|
-|--------------------------------|---------------------------------------------------------------|
 | @`UriNormalize`                 | Converts a URL string to the "normalized" form and prepends the schema part (e.g., converts *www.example.com* to *http://www.example.com*). |
-|--------------------------------|---------------------------------------------------------------|
 | @`Callback`[Laminas\Filter\Callback]                     | Allows to use a callback function as a filter.                |
-|--------------------------------|---------------------------------------------------------------|
 | @`FilterChain`[Laminas\Filter\FilterChain]                  | Allows to organize several filters in a chain.                |
-|--------------------------------|---------------------------------------------------------------|
 | @`StaticFilter`                 | Returns a value filtered through a specified filter class     |
 |                                | without requiring separate instantiation of the filter object.|
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.1. Standard filters
 
 ## Instantiating a Filter
 
@@ -162,18 +135,14 @@ white space characters from the beginning and the end of a string.
 
 The methods provided by the filter are listed in table 8.2:
 
-{title="Table 8.2. Public methods of the StringTrim filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($charlistOrOptions)` | Constructs the filter. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Removes the predefined characters from the beginning and the end of the string. |
-|--------------------------------|---------------------------------------------------------------|
 | `setCharList($charList)`       | Defines the list of characters to strip off.                  |
-|--------------------------------|---------------------------------------------------------------|
 | `getCharList()`                | Returns the list of characters to strip off.                  |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.2. Public methods of the StringTrim filter
 
 As you can see from the table, the @`StringTrim` filter, in addition to the `filter()` method, provides
 the constructor method which you can (optionally) pass with the complete list of options to
@@ -390,24 +359,17 @@ The @`Boolean`[Laminas\Filter\Boolean] class is a filter that is designed to cas
 
 Its public methods are listed in table 8.3.
 
-{title="Table 8.3. Public methods of the Boolean filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Returns a boolean representation of `$value`.                 |
-|--------------------------------|---------------------------------------------------------------|
 | `setCasting($flag)`            | Sets casting flag.                                            |
-|--------------------------------|---------------------------------------------------------------|
 | `getCasting()`                 | Returns the casting flag.                                     |
-|--------------------------------|---------------------------------------------------------------|
 | `setType($type)`               | Sets types from which to cast.                                |
-|--------------------------------|---------------------------------------------------------------|
 | `getType()`                    | Returns types.                                                |
-|--------------------------------|---------------------------------------------------------------|
 | `setTranslations($translations)`| Sets translations.                                           |
-|--------------------------------|---------------------------------------------------------------|
 | `getTranslations()`            | Returns the translations.                                     |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.3. Public methods of the Boolean filter
 
 The filter provides several methods allowing to set filtering options (`setCasting()`, `setType()`,
 and `setTranslations()`).
@@ -422,32 +384,21 @@ single argument `$type`, which can be either an OR combination of `TYPE_`-prefix
 array containing the literal equivalents of the constants. Possible constants accepted by the
 `setType()` method and their literal equivalents are listed in table 8.4:
 
-{title="Table 8.4. Type constants"}
-|----------------------|--------------------|----------------------|----------------------------------------|
 | *Constant*           | *Numeric Value*    | *Literal Equivalent* | *Description*                          |
 |----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_BOOLEAN`       | 1                  | "boolean"            | Returns a boolean value as is.         |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_INTEGER`       | 2                  | "integer"            | Converts an integer 0 value to `false`.|
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_FLOAT`         | 4                  | "float"              | Converts a float 0.0 value to `false`.   |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_STRING`        | 8                  | "string"             | Converts an empty string '' to `false`.  |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_ZERO_STRING`   | 16                 | "zero"               | Converts a string containing the single character zero ('0') to `false`. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_EMPTY_ARRAY`   | 32                 | "array"              | Converts an empty array to `false`.    |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_NULL`          | 64                 | "null"               | Converts a `null` value to `false`.   |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_PHP`           | 127                | "php"                | Converts values according to PHP when casting them to boolean. (This is the default behavior.) |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_FALSE_STRING`  | 128                | "false"              | Converts a string containing the word "false" to a boolean `false`. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_LOCALIZED`     | 256                | "localized"          | Converts a localized string which contains certain word to boolean. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `TYPE_ALL`           | 511                | "all"                | Converts all above types to boolean.   |
-|----------------------|--------------------|----------------------|----------------------------------------|
+
+Table 8.4. Type constants
 
 The following code example shows two equivalent ways you can call the `setType()` method:
 
@@ -508,16 +459,13 @@ of any other type. If the value cannot be treated as `null`, the filter will ret
 
 The @`ToNull` filter's public methods are listed in table 8.5.
 
-{title="Table 8.5. Public methods of the ToNull filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Casts the `$value` to `null`, if possible; otherwise returns values as is. |
-|--------------------------------|---------------------------------------------------------------|
 | `setType($type)`               | Defines from which types to cast.                             |
-|--------------------------------|---------------------------------------------------------------|
 | `getType()`                    | Returns defined types.                                        |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.5. Public methods of the ToNull filter
 
 By default, the `ToNull` filter behaves like PHP's `empty()` function: if the `empty()` function
 returns a boolean `true` on the input data, then the filter will return the `null` value on that
@@ -527,24 +475,17 @@ The `setType()` method can be used to set the type from which the filter will ca
 This method takes a single parameter, which can either be a combination of `TYPE_`-prefixed
 constants listed in table 8.6 or an array of their literal equivalents.
 
-{title="Table 8.6. Type constants"}
-|---------------------|-----------------|----------------------|----------------------------------------|
 | *Constant*          | *Numeric Value* | *Literal Equivalent* | *Description*                          |
 |---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_BOOLEAN`      | 1               | "boolean"            | Converts a boolean `false` value to `null`.|
-|---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_INTEGER`      | 2               | "integer"            | Converts an integer 0 value to `null`. |
-|---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_EMPTY_ARRAY`  | 4               | "array"              | Converts an empty array to `null`.     |
-|---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_STRING`       | 8               | "string"             | Converts an empty string '' to `null`.   |
-|---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_ZERO_STRING`  | 16              | "zero"               | Converts a string containing the single character zero ('0') to `null`. |
-|---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_FLOAT`        | 32              | "float"              | Converts a float 0.0 value to `null`.   |
-|---------------------|-----------------|----------------------|----------------------------------------|
 | `TYPE_ALL`          | 63              | "all"                | Converts all above types to `null`. This is the default behavior. |
-|---------------------|-----------------|----------------------|----------------------------------------|
+
+Table 8.6. Type constants
 
 The following code example illustrates two equivalent ways you can call the `setType()` method:
 
@@ -586,16 +527,13 @@ the desired format.
 
 Filter's public methods are listed in table 8.7.
 
-{title="Table 8.7. Public methods of the DateTimeFormatter filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Transforms the date into the desired format.                  |
-|--------------------------------|---------------------------------------------------------------|
 | `setFormat($format)`           | Sets the date format.                                         |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.7. Public methods of the DateTimeFormatter filter
 
 In the code example below, we show how to create the filter, pass it a string date, and
 convert it to the desired format:
@@ -677,20 +615,14 @@ in the input path and returns the canonicalized absolute pathname.
 
 Filter's public methods are listed in table 8.8.
 
-{title="Table 8.8. Public methods of the RealPath filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Returns canonicalized absolute pathname.                      |
-|--------------------------------|---------------------------------------------------------------|
-| `setExists($flag)`             | Specifies if the path must exist for this filter to succeed.  |
-|                                | The value `true` means the path must exist; the value `false` |
-|                                | means a nonexisting path can be given.                        |
-|--------------------------------|---------------------------------------------------------------|
+| `setExists($flag)`             | Specifies if the path must exist for this filter to succeed. The value `true` means the path must exist; the value `false` means a nonexisting path can be given. |
 | `getExists()`                  | Returns `true` if the filtered path must exist.               |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.8. Public methods of the RealPath filter
 
 The @`RealPath` filter returns a boolean `false` on failure, e.g., if the file does not
 exist. If a nonexisting path is allowed, you can call the `setExists()` method with the
@@ -727,26 +659,18 @@ example, you can use this filter to compress the data and save it as an archive 
 
 Filter's public methods are listed in table 8.9.
 
-{title="Table 8.9. Public methods of the Compress filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Performs data compression using the specified algorithm.      |
-|--------------------------------|---------------------------------------------------------------|
 | `getAdapter()`                 | Returns the current adapter, instantiating it if necessary.   |
-|--------------------------------|---------------------------------------------------------------|
 | `getAdapterName()`             | Retrieves adapter name.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `setAdapter($adapter)`         | Sets compression adapter.                                     |
-|--------------------------------|---------------------------------------------------------------|
 | `getAdapterOptions()`          | Retrieves adapter options.                                     |
-|--------------------------------|---------------------------------------------------------------|
 | `setAdapterOptions($options)`  | Sets adapter options.                                          |
-|--------------------------------|---------------------------------------------------------------|
 | `getOptions($option)`          | Gets individual or all options from underlying adapter.        |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.9. Public methods of the Compress filter
 
 The @`Compress` filter itself cannot compress data. Instead, it uses a so-called *adapter* class.
 The adapter class must implement the @`CompressionAlgorithmInterface` interface. You attach an
@@ -755,24 +679,17 @@ adapter to the @`Compress` filter, and the adapter implements the concrete compr
 There are several standard adapter classes available (see figure 8.2 and table 8.10 below). Those
 classes live in the @`Laminas\Filter\Compress`[Laminas\Filter] namespace.
 
-{title="Table 8.10. Compression adapters"}
-|--------------------------------|---------------------------------------------------------------|
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Bz2`                          | [Bzip2](http://www.bzip.org/) (Burrows–Wheeler) compression algorithm. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Gz`                           | [Gzip](http://www.gzip.org/) compression algorithm is based on the Deflate algorithm, which is a combination of LZ77 and Huffman coding. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Zip`                          | ZIP is a compression algorithm widely used in Windows operating system. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Tar`                          | [Tarball](http://www.gnu.org/software/tar/tar.html) file format is now commonly used to collect many files into one larger file for archiving while preserving file system information such as user and group permissions, dates, and directory structures. Widely used in Linux operating system. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Lzf`                          | LZF is a very fast compression algorithm, ideal for saving space with only slight speed cost. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Snappy`                       | [Snappy](https://code.google.com/p/snappy/) is a fast data compression and decompression library developed by Google based on ideas from LZ77. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Rar`                          | RAR is an archive file format that supports data compression, error recovery, and file spanning. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.10. Compression adapters
 
 ![Figure 8.2. Compression algorithm adapter inheritance](images/filters/compression_algorithm_inheritance.png)
 
@@ -807,18 +724,14 @@ archive will contain the *testfile.txt* file.
 The @`Encrypt`[Laminas\Filter\Decrypt] filter's purpose is encrypting the input data with the specified algorithm.
 Filter's public methods are listed in table 8.11.
 
-{title="Table 8.11. Public methods of the Encrypt filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Performs data encrypting using the specified algorithm.      |
-|--------------------------------|---------------------------------------------------------------|
 | `getAdapter()`                 | Returns the current adapter, instantiating it if necessary.   |
-|--------------------------------|---------------------------------------------------------------|
 | `setAdapter($adapter)`         | Sets encrypting adapter.                                     |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.11. Public methods of the Encrypt filter
 
 The @`Encrypt`[Laminas\Filter\Encrypt] filter uses *adapter* classes to perform actual data encryption. You attach an
 adapter to the @`Encrypt`[Laminas\Filter\Encrypt] filter with the `setAdapter()` method, and the adapter performs the
@@ -861,18 +774,14 @@ to manipulating string data.
 The @`StringToLower` filter class is designed for converting the input string data to lowercase
 letters. The public methods of the filter are provided in table 8.12 below.
 
-{title="Table 8.12. Public methods of the StringToLower filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Converts the string to lowercase letters.                    |
-|--------------------------------|---------------------------------------------------------------|
 | `setEncoding($encoding)`       | Sets the input encoding for the given string.                 |
-|--------------------------------|---------------------------------------------------------------|
 | `getEncoding()`                | Returns the encoding.                                         |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.12. Public methods of the StringToLower filter
 
 By default, the filter behaves like the `strtolower()` PHP function. Given a string, it returns
 the string with all alphabetic characters converted to lowercase. The "alphabetic characters" are
@@ -912,22 +821,16 @@ $filteredValue = $filter->filter('How to Start a Business in 10 Days');
 The @`PregReplace` filter can be used for performing a regular expression search and replace in a string data.
 This filter is a wrapper over the `preg_replace()` PHP function. The public methods of the filter are provided in table 8.13 below.
 
-{title="Table 8.13. Public methods of the PregReplace filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Performs a regular expression search and replace.             |
-|--------------------------------|---------------------------------------------------------------|
 | `setPattern($pattern)`         | Sets the pattern to search for. It can be either a string or an array with strings. |
-|--------------------------------|---------------------------------------------------------------|
 | `getPattern()`                 | Returns the pattern.                                          |
-|--------------------------------|---------------------------------------------------------------|
 | `setReplacement($replacement)` | Sets the string or an array with strings to replace.               |
-|--------------------------------|---------------------------------------------------------------|
 | `getReplacement()`             | Gets currently set replacement value.                          |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.13. Public methods of the PregReplace filter
 
 Below, a code example showing how to use the @`PregReplace` filter is provided:
 
@@ -954,22 +857,16 @@ it provides an ability to specify which attributes are allowed across all allowe
 
 Public methods of the @`StripTags` filter are listed in table 8.14.
 
-{title="Table 8.14. Public methods of the StripTags filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Returns the value with tags stripped off it.                  |
-|--------------------------------|---------------------------------------------------------------|
 | `getAttributesAllowed()`       | Returns the list of attributes allowed for the tags.          |
-|--------------------------------|---------------------------------------------------------------|
 | `setAttributesAllowed($attributesAllowed)` | Sets the list of attributes allowed for the tags. |
-|--------------------------------|---------------------------------------------------------------|
 | `getTagsAllowed()`             | Returns the list of tags allowed.                             |
-|--------------------------------|---------------------------------------------------------------|
 | `setTagsAllowed($tagsAllowed)` | Sets the list of tags allowed.                                |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.14. Public methods of the StripTags filter
 
 Below, a code example showing how to use the @`StripTags` filter is provided:
 
@@ -1018,16 +915,13 @@ $filteredValue = $filter->filter("A multi line\r\n string");
 The @`UriNormalize` filter can be used for normalizing a URL string and (optionally) applying
 a scheme part to it. The public methods of the filter are provided in table 8.15 below.
 
-{title="Table 8.15. Public methods of the UriNormalize filter"}
-|------------------------------------|---------------------------------------------------------------|
 | *Method name*                      | *Description*                                                 |
 |------------------------------------|---------------------------------------------------------------|
 | `filter($value)`                   | Filter the URL by normalizing it and applying a default scheme if set. |
-|------------------------------------|---------------------------------------------------------------|
 | `setDefaultScheme($defaultScheme)` | Set the default scheme to use when parsing schemeless URIs.  |
-|------------------------------------|---------------------------------------------------------------|
 | `setEnforcedScheme($enforcedScheme)` | Set a URI scheme to enforce on schemeless URIs.             |
-|------------------------------------|---------------------------------------------------------------|
+
+Table 8.15. Public methods of the UriNormalize filter
 
 The URL normalization procedure typically consists of the following steps:
 
@@ -1077,24 +971,17 @@ and so on.
 
 Public methods provided by the @`FilterChain`[Laminas\Filter\FilterChain] class are presented in table 8.16:
 
-{title="Table 8.16. Public methods of the FilterChain filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Returns value filtered through each filter in the chain. Filters are run in the order in which they were added to the chain (FIFO). |
-|--------------------------------|---------------------------------------------------------------|
 | `setOptions($options)`         | Sets options.                                                 |
-|--------------------------------|---------------------------------------------------------------|
 | `attach($callback, $priority)` | Attaches an existing filter instance (or a callback function) to the chain. |
-|------------------------------------|---------------------------------------------------------------|
 | `attachByName($name, $options, $priority)` | Instantiates the filter by class name or alias and inserts it into the chain. |
-|--------------------------------|---------------------------------------------------------------|
 | `merge($filterChain)`          | Merges the filter chain with another filter chain.            |
-|--------------------------------|---------------------------------------------------------------|
 | `getFilters()`                 | Returns all the attached filters.                             |
-|--------------------------------|---------------------------------------------------------------|
 | `count()`                      | Returns the count of attached filters.                        |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.16. Public methods of the FilterChain filter
 
 An example filter chain is shown in figure 8.4. It consists of the @`StringTrim` filter followed by
 the @`StripTags` filter, which is then followed by the @`StripNewlines` filter.
@@ -1167,20 +1054,15 @@ algorithm to the data.
 
 The public methods provided by the @`Callback`[Laminas\Filter\Callback] filter are listed in table 8.17.
 
-{title="Table 8.17. Public methods of the Callback filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Executes a callback function as a filter.                     |
-|--------------------------------|---------------------------------------------------------------|
 | `setCallback($callback)`       | Sets a new callback for this filter.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `getCallback()`                | Returns callback set for the filter.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `setCallbackParams($params)`   | Sets parameters for the callback.                             |
-|--------------------------------|---------------------------------------------------------------|
 | `getCallbackParams()`          | Gets parameters for the callback.                             |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.17. Public methods of the Callback filter
 
 As you can see from the table, the @`Callback`[Laminas\Filter\Callback] filter provides the `setCallback()` and `setCallbackParams()`
 methods that can be used to set the callback function (or the callback class method) and,
@@ -1350,18 +1232,14 @@ the phone filtering algorithm we used with the @`Callback`[Laminas\Filter\Callba
 
 We plan to have the following methods in our `PhoneFilter` filter class (see table 8.18):
 
-{title="Table 8.18. Public methods of the PhoneFilter filter"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructor - accepts an optional argument `$options`, which is needed to set filter options at once. |
-|--------------------------------|---------------------------------------------------------------|
 | `setFormat($format)`           | Sets the phone format option.                                 |
-|--------------------------------|---------------------------------------------------------------|
 | `getFormat()`                  | Returns the phone format option.                              |
-|--------------------------------|---------------------------------------------------------------|
 | `filter($value)`               | Runs the phone filter.                                        |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 8.18. Public methods of the PhoneFilter filter
 
 To start, create the *PhoneFilter.php* file in the *Filter* directory under
 the module's source directory [^phone_filter_service]. Put the following code

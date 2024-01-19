@@ -13,13 +13,10 @@ All code discussed in this chapter is part of this sample application.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Permissions\Rbac`        | Provides RBAC container implementation.                       |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Cache`                   | Provides functionality for storing data in cache.             |
-|--------------------------------|---------------------------------------------------------------|
 
 ## Get Role Demo Sample from GitHub
 
@@ -66,18 +63,14 @@ php composer.phar require laminas/laminas-permissions-rbac
 A *role* is a group of users. For example, in a Blog application, there may be the following roles:
 Viewer, Author, Editor, and Administrator.
 
-{title="Table 17.1. Example roles in a Blog website"}
-|--------------------------------|---------------------------------------------------------------|
 | *Role Name*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `Viewer`                       | Can read any post and can do nothing else.                    |
-|--------------------------------|---------------------------------------------------------------|
 | `Author`                       | Can view posts plus create a post, edit it and finally publish it. |
-|--------------------------------|---------------------------------------------------------------|
 | `Editor`                       | Can view posts plus edit and publish any post.                |
-|--------------------------------|---------------------------------------------------------------|
 | `Administrator`                | Can do anything a Viewer and Editor can do plus delete posts. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 17.1. Example roles in a Blog website
 
 A *user* may be assigned a role or several roles at once. For example, user John may be a Viewer
 and Editor at the same time.
@@ -92,22 +85,16 @@ Editor and Author roles would inherit permissions from the Viewer role.
 A role may be assigned with several *permissions*. A permission is a single typical action in the system. Here are several examples
 of permissions in a Blog website:
 
-{title="Table 17.2. Example permissions in a Blog website"}
-|--------------------------------|---------------------------------------------------------------|
 | *Permission Name*              | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `post.view`                    | View any post.                                                |
-|--------------------------------|---------------------------------------------------------------|
 | `post.edit`                    | Edit any post.                                                |
-|--------------------------------|---------------------------------------------------------------|
 | `post.own.edit`                | Edit only owned posts.                                        |
-|--------------------------------|---------------------------------------------------------------|
 | `post.publish`                 | Publish any post.                                             |
-|--------------------------------|---------------------------------------------------------------|
 | `post.own.publish`             | Publish only owned post.                                      |
-|--------------------------------|---------------------------------------------------------------|
 | `post.delete`                  | Delete any post.                                              |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 17.2. Example permissions in a Blog website
 
 For example, the Viewer role would be assigned the `post.view` permission. The Editor role would be assigned
 the `post.edit` and `post.publish` permissions. The Author role would be assigned with
@@ -184,20 +171,15 @@ for our Role Demo sample, we will have only the following simple default roles: 
 
 We will have the following default permissions:
 
-{title="Table 17.3. Default permissions in the Role Demo website"}
-|--------------------------------|---------------------------------------------------------------|
 | *Permission Name*              | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `user.manage`                  | Manage users (add/edit/delete).                               |
-|--------------------------------|---------------------------------------------------------------|
 | `role.manage`                  | Manage roles (add/edit/delete).                               |
-|--------------------------------|---------------------------------------------------------------|
 | `permission.manage`            | Manage permissions (add/edit/delete).                         |
-|--------------------------------|---------------------------------------------------------------|
 | `profile.any.view`             | View any user profile in the system.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `profile.own.view`             | View own profile.                                             |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 17.3. Default permissions in the Role Demo website
 
 The first three permissions will allow Administrator to manage users, roles and permissions via user interface.
 
@@ -889,22 +871,16 @@ In the Role Demo sample, we will create a convenient user interface for managing
 The role management will be implemented inside the `RoleController` controller living in the
 `User\Controller` namespace. The action methods of the `RoleController` are listed in table 17.4:
 
-{title="Table 17.4. Actions of the RoleController controller"}
-|--------------------------------|---------------------------------------------------------------|
 | *Action Name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `addAction()`                  | Allows to add a new role.                                     |
-|--------------------------------|---------------------------------------------------------------|
 | `deleteAction()`               | Deletes an existing role.                                     |
-|--------------------------------|---------------------------------------------------------------|
 | `editAction()`                 | Allows to edit an existing role.                              |
-|--------------------------------|---------------------------------------------------------------|
 | `editPermissionsAction()`      | Allows to assign permissions to a role.                       |
-|--------------------------------|---------------------------------------------------------------|
 | `indexAction()`                | Displays the list of existing roles.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `viewAction()`                 | Displays the details of a role.                               |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 17.4. Actions of the RoleController controller
 
 The `RoleController` works in pair with the `RoleManager` service which lives in `User\Service` namespace.
 
@@ -934,20 +910,15 @@ It will be useful if you plan to add new permissions or remove existing ones.
 The permission management will be implemented inside the `PermissionController` controller living in the
 `User\Controller` namespace. The action methods of the `PermissionController` are listed in table 17.5:
 
-{title="Table 17.5. Actions of the PermissionController controller"}
-|--------------------------------|---------------------------------------------------------------|
 | *Action Name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `addAction()`                  | Allows to add a new permission.                               |
-|--------------------------------|---------------------------------------------------------------|
 | `deleteAction()`               | Deletes an existing permission.                               |
-|--------------------------------|---------------------------------------------------------------|
 | `editAction()`                 | Allows to edit an existing permission.                        |
-|--------------------------------|---------------------------------------------------------------|
 | `indexAction()`                | Displays the list of existing permissions.                    |
-|--------------------------------|---------------------------------------------------------------|
 | `viewAction()`                 | Displays the details of a permission.                         |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 17.5. Actions of the PermissionController controller
 
 The `PermissionController` works in pair with the `PermissionManager` service which
 lives in `User\Service` namespace.
@@ -1273,7 +1244,7 @@ allowed to access some web page.
 
 Add the following route to the *module.config.php* file of the *User* module:
 
-~~~
+~~~php
 return [
     'router' => [
         'routes' => [
@@ -1294,7 +1265,7 @@ return [
 
 Then add the `notAuthorizedAction()` method to the `AuthController` in the `User` module:
 
-~~~
+~~~php
 /**
  * Displays the "Not Authorized" page.
  */
@@ -1309,7 +1280,7 @@ public function notAuthorizedAction()
 Finally, add the *not-authorized.phtml* view template file under the *user/auth* directory under the *User* module's
 *view* directory:
 
-~~~
+~~~php
 <?php
 $this->headTitle("Not Authorized");
 ?>

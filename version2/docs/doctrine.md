@@ -1275,20 +1275,15 @@ $entityManager = $container->get('doctrine.entitymanager.orm_default');
 
 The most used methods provided by the `EntityManager` class are listed in table 12.4 below.
 
-{title="Table 12.4. Methods of the EntityManager"}
-|------------------------------------|--------------------------------------------------|
 | *Method*                           | *Description*                                    |
 |------------------------------------|--------------------------------------------------|
 | `persist($entity)`                 | Places new entity into entity manager (makes it managed). |
-|------------------------------------|--------------------------------------------------|
 | `remove($entity)`                  | Removes an entity from database.      |
-|------------------------------------|--------------------------------------------------|
 | `flush()`                          | Flushes all changes to objects that have been queued up to now to the database. |
-|------------------------------------|--------------------------------------------------|
 | `createQuery($dql)`                | Creates a new Query object.                      |
-|------------------------------------|--------------------------------------------------|
 | `getRepository($entityName)`       | Gets the repository for an entity class.         |
-|------------------------------------|--------------------------------------------------|
+
+Table 12.4. Methods of the EntityManager
 
 Let's review the methods from table 12.4.
 
@@ -1346,20 +1341,15 @@ entity's fields with the data.
 
 The most used methods provided by the `EntityRepository` class are listed in table 12.5.
 
-{title="Table 12.5. Methods of the EntityRepository"}
-|------------------------------------|--------------------------------------------------|
 | *Method*                           | *Description*                                    |
 |------------------------------------|--------------------------------------------------|
 | `findAll()`                        | Finds all entities in the repository.            |
-|------------------------------------|--------------------------------------------------|
 | `find($id)`                        | Finds an entity by its identifier.               |
-|------------------------------------|--------------------------------------------------|
 | `findBy($criteria, $orderBy, $limit, $offset)` | Finds entities by a set of criteria. |
-|------------------------------------|--------------------------------------------------|
 | `findOneBy($criteria, $orderBy)`    | Finds a single entity by a set of criteria.     |
-|------------------------------------|--------------------------------------------------|
 | `createQueryBuilder($alias)`       | Creates a new QueryBuilder instance that is prepopulated for this entity name.      |
-|------------------------------------|--------------------------------------------------|
+
+Table 12.5. Methods of the EntityRepository
 
 The `findAll()` method gets all entities from repository. For simple example of its usage, look below:
 
@@ -3248,22 +3238,16 @@ php composer.phar require laminas/laminas-paginator
 
 The @`Laminas\Paginator` component provides the @`Paginator` class. Its most useful methods are listed in table 12.6:
 
-{title="Table 12.6. Methods of Laminas Paginator class"}
-|------------------------------------|----------------------------------------------------|
 | *Method*                           | *Description*                                      |
 |------------------------------------|----------------------------------------------------|
 | `setDefaultScrollingStyle($scrollingStyle = 'Sliding')`  | Sets scrolling style.        |
-|------------------------------------|----------------------------------------------------|
 | `setDefaultItemCountPerPage($count)` | Sets maximum count of results per page.          |
-|------------------------------------|----------------------------------------------------|
 | `setCurrentPageNumber($pageNumber)` | Sets current page number. |
-|------------------------------------|----------------------------------------------------|
 | `count()` | Retuns number of pages.        |
-|------------------------------------|----------------------------------------------------|
 | `getTotalItemCount()`  | Returns total number of results.    |
-|------------------------------------|----------------------------------------------------|
 | `getCurrentItems()` | Gets items on the current page. |
-|------------------------------------|----------------------------------------------------|
+
+Table 12.6. Methods of Laminas Paginator class
 
 The @`Paginator` class is very generic and doesn't know the underlying
 data model, so you need to have an adapter which provides the data to paginator. The *DoctrineORMModule* module

@@ -10,18 +10,12 @@ and refer directly to [Model-View-Controller](#mvc).
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| @`Laminas\Mvc`                     | Support of Model-View-Controller pattern. Separation of business  |
-|                                | logic from presentation.                                      |
-|--------------------------------|---------------------------------------------------------------|
+| @`Laminas\Mvc`                     | Support of Model-View-Controller pattern. Separation of business logic from presentation.           |
 | @`Laminas\ModuleManager`           | This component is responsible for loading and initializing modules of the web application. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\EventManager`            | This component implements functionality for triggering events and event handling. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\ServiceManager`          | Implements the registry of all services available in the web application. |
-|--------------------------------|---------------------------------------------------------------|
 
 ## PHP Classes
 
@@ -717,8 +711,7 @@ to make it easier for others to understand what each key means.
 > By convention, key names should be in lower case, and if the key name consists
 > of several words, the words should be separated by the underscore symbol ('_').
 
-{line-numbers=on,lang=php, title="Content of application.config.php file"}
-~~~
+~~~php
 return [
     // Retrieve list of modules used in this application.
     'modules' => require __DIR__ . '/modules.config.php',
@@ -804,8 +797,7 @@ keys in this file. For that purpose it is better to use `autoload/global.php` fi
 And let's also look inside the `modules.config.php` file. Currently, you have the following modules
 installed in your website:
 
-{line-numbers=off,lang=php, title="Content of modules.config.php file"}
-~~~
+~~~php
 return [
     'Laminas\Session',
     'Laminas\Mvc\Plugin\Prg',
@@ -892,8 +884,7 @@ In figure 3.4, you could see that the *Application* module shipped with your app
 has the *module.config.php* file, in which you put your module-specific parameters. Let's
 look at `module.config.php` file of the `Application` module:
 
-{line-numbers=off,lang=php, title="module.config.php file"}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -997,8 +988,7 @@ Each module of the web application has the *Module.php* file which is some kind
 of *entry point* for the module. This file provides the `Module` class. Below, the contents
 of skeleton application's `Module` class is presented:
 
-{line-numbers=off, lang=php, title="Contents of Module.php file"}
-~~~
+~~~php
 <?php
 namespace Application;
 
@@ -1038,39 +1028,20 @@ The standard services available through service manager are presented in table 3
 This table is incomplete, because the actual number of services registered in service manager
 may be much bigger.
 
-{title="Table 3.1. Standard services"}
-|----------------------|-----------------------------------------------------------------------|
 | Service Name         | Description                                                           |
 |----------------------|-----------------------------------------------------------------------|
 | `Application`          | Allows to retrieve the singleton of @`Laminas\Mvc\Application` class.     |
-|----------------------|-----------------------------------------------------------------------|
-| `ApplicationConfig`    | Configuration array extracted from *application.config.php* file.     |
-|----------------------|-----------------------------------------------------------------------|
-| `Config`             | Merged configuration array extracted from *module.config.php* files   |
-|                      | merged with *autoload/global.php* and *autoload/local.php*.           |
-|----------------------|-----------------------------------------------------------------------|
-| `EventManager`       | Allows to retrieve a *new* instance of @`Laminas\EventManager\EventManager` class. The  |
-|                      | event manager allows to send (trigger) events and attach event listeners. |
-|----------------------|-----------------------------------------------------------------------|
-| `SharedEventManager` | Allows to retrieve the singleton instance of @`Laminas\EventManager\SharedEventManager` class. The  |
-|                      | shared event manager allows to listen to events defined by other classes and components. |
-|----------------------|-----------------------------------------------------------------------|
-| `ModuleManager`        | Allows to retrieve the singleton of @`Laminas\ModuleManager\ModuleManager` class. The |
-|                      | module manager is responsible for loading application modules.        |
-|----------------------|-----------------------------------------------------------------------|
-| `Request`              | The singleton of @`Laminas\Http\Request` class. Represents HTTP request   |
-|                      | received from client.                                                 |
-|----------------------|-----------------------------------------------------------------------|
-| `Response`             | The singleton of @`Laminas\Http\Response` class. Represents HTTP response that  |
-|                      | will be sent to client.                                               |
-|----------------------|-----------------------------------------------------------------------|
+| `ApplicationConfig`    | Configuration array extracted from *application.config.php* file.  Merged configuration array extracted from *module.config.php* files merged with *autoload/global.php* and *autoload/local.php*.   |
+| `EventManager`       | Allows to retrieve a *new* instance of @`Laminas\EventManager\EventManager` class. The event manager allows to send (trigger) events and attach event listeners. |
+| `SharedEventManager` | Allows to retrieve the singleton instance of @`Laminas\EventManager\SharedEventManager` class. The shared event manager allows to listen to events defined by other classes and components. |
+| `ModuleManager`        | Allows to retrieve the singleton of @`Laminas\ModuleManager\ModuleManager` class. The module manager is responsible for loading application modules.        |
+| `Request`     | The singleton of @`Laminas\Http\Request` class. Represents HTTP request received from client.                 |
+| `Response`             | The singleton of @`Laminas\Http\Response` class. Represents HTTP response that will be sent to client.          |
 | `Router`               | The singleton of @`Laminas\Router\Http\TreeRouteStack`. Performs URL routing. |
-|----------------------|-----------------------------------------------------------------------|
 | `ServiceManager`       | Service manager itself.                                               |
-|----------------------|-----------------------------------------------------------------------|
-| `ViewManager`          | The singleton of @`Laminas\Mvc\View\Http\ViewManager` class. Responsible for    |
-|                      | preparing the view layer for page rendering.                               |
-|----------------------|-----------------------------------------------------------------------|
+| `ViewManager`          | The singleton of @`Laminas\Mvc\View\Http\ViewManager` class. Responsible for preparing the view layer for page rendering.        |
+
+Table 3.1. Standard services
 
 A service is typically an arbitrary PHP class, but not always. For example, when Laminas
 loads the configuration files and merges the data into nested arrays, it saves the arrays
@@ -1097,16 +1068,13 @@ registered as a service.
 The service manager defines several methods needed for locating and retrieving
 a service from the service manager (see the table 3.2 below).
 
-{title="Table 3.2. ServiceManager methods"}
-|----------------------|-----------------------------------------------------------------------|
 | Method Name          | Description                                                           |
 |----------------------|-----------------------------------------------------------------------|
 | `has($name)`         | Checks if such a service is registered.                               |
-|----------------------|-----------------------------------------------------------------------|
 | `get($name)`         | Retrieves a registered service's instance.                            |
-|----------------------|-----------------------------------------------------------------------|
 | `build($name, $options)` | Always returns a new instance of the requested service.           |
-|----------------------|-----------------------------------------------------------------------|
+
+Table 3.2. ServiceManager methods
 
 You can test if a service is registered by passing its name to the service manager's
 `has()` method. It returns a boolean `true` if the service is registered, or
@@ -1214,8 +1182,7 @@ If you are trying to register the service name which is already present, the `se
 you want to override the service with the same name (to replace it by the new one). For this purpose,
 you can use the `setAllowOverride()` method of the service manager:
 
-{line-numbers=of,lang=php}
-~~~
+~~~php
 <?php
 // Allow to replace services
 $serviceManager->setAllowOverride(true);

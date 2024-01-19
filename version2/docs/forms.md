@@ -7,19 +7,13 @@ which allows you to build forms and contains the view helpers for rendering form
 the @`Laminas\Filter`, @`Laminas\Validator` and @`Laminas\InputFilter` components which allow you to filter
 and validate user input.
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Form`                    | Contains base form model classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Filter`                  | Contains various filters classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Validator`               | Implements various validator classes.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\InputFilter`             | Implements a container for filters/validators.                |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Mail`                    | Contains E-mail sending functionality.                        |
-|--------------------------------|---------------------------------------------------------------|
 
 ## Get the Form Demo Sample from GitHub
 
@@ -73,35 +67,23 @@ corresponding field visualizations (except the "hidden" field type, which has no
 
 ![Figure 7.1. Standard HTML form fields](images/forms/standard_form_fields.png)
 
-{title="Table 7.1. Standard HTML form fields"}
-|--------------------------------|---------------------------------------------------------------|
 | *Field*                        | *Definition*                                                  |
 |--------------------------------|---------------------------------------------------------------|
 | Text input field               | `<input type="text">`                                       |
-|--------------------------------|---------------------------------------------------------------|
 | Text area                      | `<textarea rows=4></textarea>`                                |
-|--------------------------------|---------------------------------------------------------------|
 | Password                       | `<input type="password">`                                   |
-|--------------------------------|---------------------------------------------------------------|
 | Button                         | `<input type="button" value="Apply">` or                     |
 |                                | `<button type="button">Apply</button>`                        |
-|--------------------------------|---------------------------------------------------------------|
 | Submit button                  | `<input type="submit" value="Submit">`                      |
-|--------------------------------|---------------------------------------------------------------|
 | Image (graphical submit button)| `<input type="image" src="button.jpg">`                     |
-|--------------------------------|---------------------------------------------------------------|
 | Reset button                   | `<input type="reset" value="Reset">`                         |
-|--------------------------------|---------------------------------------------------------------|
 | Checkbox                       | `<input type="checkbox">Remember me</input>`                  |
-|--------------------------------|---------------------------------------------------------------|
 | Radio                          | `<input type="radio" value="Radio">Allow</input>`             |
-|--------------------------------|---------------------------------------------------------------|
 | Select                         | `<select><option>Enable</option><option>Disable</option></select>` |
-|--------------------------------|---------------------------------------------------------------|
 | File                           | `<input type="file">`                                       |
-|--------------------------------|---------------------------------------------------------------|
 | Hidden field                   | `<input type="hidden">`                                     |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 7.1. Standard HTML form fields
 
 HTML5 introduced several new form field types (listed in table 7.2); figure 7.2 contains corresponding
 field visualizations.
@@ -111,36 +93,23 @@ numbers, dates, E-mails, URLs, etc. Additionally, on form submit, the web browse
 validates that the user entered data is in a correct format, and if not the browser will
 prevent form submission and ask the user to correct the input error.
 
-{title="Table 7.2. HTML5 form fields"}
-|--------------------------------|---------------------------------------------------------------|
 | *Field*                        | *Definition*                                                  |
 |--------------------------------|---------------------------------------------------------------|
 | Color picker                   | `<input type="color">`                                      |
-|--------------------------------|---------------------------------------------------------------|
 | Date                           | `<input type="date">`                                       |
-|--------------------------------|---------------------------------------------------------------|
 | Date-time (with time zone)     | `<input type="datetime">`                                   |
-|--------------------------------|---------------------------------------------------------------|
 | Date-time (without time zone)  | `<input type="datetime-local">`                             |
-|--------------------------------|---------------------------------------------------------------|
 | E-mail address                 | `<input type="email">`                                      |
-|--------------------------------|---------------------------------------------------------------|
 | Number                         | `<input type="number">`                                     |
-|--------------------------------|---------------------------------------------------------------|
 | Time                           | `<input type="time">`                                       |
-|--------------------------------|---------------------------------------------------------------|
 | Month                          | `<input type="month">`                                      |
-|--------------------------------|---------------------------------------------------------------|
 | Week                           | `<input type="week">`                                       |
-|--------------------------------|---------------------------------------------------------------|
 | URL                            | `<input type="url">`                                        |
-|--------------------------------|---------------------------------------------------------------|
 | Range (slider)                 | `<input type="range">`                                      |
-|--------------------------------|---------------------------------------------------------------|
 | Search field                   | `<input type="search" name="googlesearch">`                 |
-|--------------------------------|---------------------------------------------------------------|
 | Telephone number               | `<input type="tel">`                                        |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 7.2. HTML5 form fields
 
 ![Figure 7.2. HTML5 form fields](images/forms/html5_form_fields.png)
 
@@ -634,88 +603,59 @@ The class inheritance diagram is shown in figure 7.11.
 Concrete form element classes extend the @`Element` base class. They are listed in tables 7.3 - 7.7.
 These classes live in the @`Laminas\Form\Element`[Laminas\Form] namespace.
 
-{title="Table 7.3. Form elements compatible with HTML 4"}
-|--------------------------------|---------------------------------------------------------------|
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Button`                       | Button.                                                       |
-|--------------------------------|---------------------------------------------------------------|
 | @`Checkbox`[Laminas\Form\Element\Checkbox]                     | Check box.                                                    |
-|--------------------------------|---------------------------------------------------------------|
 | @`File`[Laminas\Form\Element\File]                         | File field.                                                   |
-|--------------------------------|---------------------------------------------------------------|
 | @`Hidden`                       | Hidden field.                                                 |
-|--------------------------------|---------------------------------------------------------------|
 | @`Image`[Laminas\Form\Element\Image]                        | Image field.                                                  |
-|--------------------------------|---------------------------------------------------------------|
 | @`Password`[Laminas\Form\Element\Password]                     | Password field.                                               |
-|--------------------------------|---------------------------------------------------------------|
 | @`Radio`                        | Radio button.                                                 |
-|--------------------------------|---------------------------------------------------------------|
 | @`Select`[Laminas\Form\Element\Select]                       | Dropdown list.                                                |
-|--------------------------------|---------------------------------------------------------------|
 | @`Submit`                       | Submit button.                                                |
-|--------------------------------|---------------------------------------------------------------|
-| @`Text`[Laminas\Form\Element\Text]                         | General-purpose text input field.                             |
-|--------------------------------|---------------------------------------------------------------|
+| @`Text`[Laminas\Form\Element\Text]        | General-purpose text input field.                             |
 | @`Textarea`                     | Multi-line text area.                                         |
-|--------------------------------|---------------------------------------------------------------|
 
-{title="Table 7.4. Form elements compatible with HTML 5"}
-|--------------------------------|---------------------------------------------------------------|
+Table 7.3. Form elements compatible with HTML 4
+
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Color`                        | Color picker.                                                 |
-|--------------------------------|---------------------------------------------------------------|
 | @`Date`[Laminas\Form\Element\Date]                         | Date picker.                                                  |
-|--------------------------------|---------------------------------------------------------------|
 | @`DateTime`[Laminas\Form\Element\DateTime]                     | Date & time (with time zone).                                 |
-|--------------------------------|---------------------------------------------------------------|
 | @`DateTimeLocal`                | Date & time (without time zone).                              |
-|--------------------------------|---------------------------------------------------------------|
 | @`Email`                        | E-mail field.                                                 |
-|--------------------------------|---------------------------------------------------------------|
 | @`Month`                        | Month input field.                                            |
-|--------------------------------|---------------------------------------------------------------|
 | @`Number`[Laminas\Form\Element\Number]                       | A text input field accepting numbers.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Time`[Laminas\Form\Element\Time]                         | Text input field for entering time.                           |
-|--------------------------------|---------------------------------------------------------------|
 | @`Url`[Laminas\Form\Element\Url]                          | Text input field for entering an URL.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Week`                         | Text input field for entering days of week.                   |
-|--------------------------------|---------------------------------------------------------------|
 | @`Range`[Laminas\Form\Element\Range]                        | Range field (slider).                                         |
-|--------------------------------|---------------------------------------------------------------|
 
-{title="Table 7.5. Compound fields"}
-|--------------------------------|---------------------------------------------------------------|
+Table 7.4. Form elements compatible with HTML 5
+
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`MultiCheckbox`                | A group of related check boxes.                               |
-|--------------------------------|---------------------------------------------------------------|
-| @`DateTimeSelect`[Laminas\Form\Element\DateTimeSelect]               | Date & time select.                                           |
-|--------------------------------|---------------------------------------------------------------|
+| @`DateTimeSelect`[Laminas\Form\Element\DateTimeSelect]               | Date & time select.                   |
 | @`DateSelect`[Laminas\Form\Element\DateSelect]                   | Date select.                                                  |
-|--------------------------------|---------------------------------------------------------------|
 | @`MonthSelect`[Laminas\Form\Element\MonthSelect]                  | Month select.                                                 |
-|--------------------------------|---------------------------------------------------------------|
 
-{title="Table 7.6. Security Form Elements"}
-|--------------------------------|---------------------------------------------------------------|
+Table 7.5. Compound fields
+
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Captcha`                      | Human check image.                                            |
-|--------------------------------|---------------------------------------------------------------|
 | @`Csrf`[Laminas\Form\Element\Csrf]                         | Cross-site request forgery prevention.                        |
-|--------------------------------|---------------------------------------------------------------|
 
-{title="Table 7.7. Other Form Elements"}
-|--------------------------------|---------------------------------------------------------------|
+Table 7.6. Security Form Elements
+
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Collection`[Laminas\Form\Element\Collection]                   | Element collection.                                           |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 7.7. Other Form Elements
 
 In the tables above, you can see that the laminas-provided form elements have direct mapping on HTML4
 and HTML5 input fields (discussed in the beginning of this chapter).
@@ -748,24 +688,17 @@ an array of objects to the form.
 The methods inherited by the @`Form`[Laminas\Form\Form] base class from the @`Fieldset` class are used to
 add elements (and fieldsets) to the form model. These methods are summarized in the table 7.8.
 
-{title="Table 7.8. Methods provided by the Fieldset class"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | `add($elementOrFieldset, $flags)`| Attaches an element (or fieldset).                            |
-|----------------------------------|---------------------------------------------------------------|
 | `has($elementOrFieldset)`        | Checks whether certain element is attached.                   |
-|----------------------------------|---------------------------------------------------------------|
 | `get($elementOrFieldset)`        | Retrieves the given element (or fieldset) by name.            |
-|----------------------------------|---------------------------------------------------------------|
 | `getElements()`                  | Retrieves all attached elements.                              |
-|----------------------------------|---------------------------------------------------------------|
 | `getFieldsets()`                 | Retrieves all attached fieldsets.                             |
-|----------------------------------|---------------------------------------------------------------|
 | `count()`                        | Return the count of attached elements/fieldsets.              |
-|----------------------------------|---------------------------------------------------------------|
 | `remove($elementOrFieldset)`     | Removes the element (or fieldset).                            |
-|----------------------------------|---------------------------------------------------------------|
+
+Table 7.8. Methods provided by the Fieldset class
 
 Particularly, we are interested in the `add()` method which is used to attach
 an element to a form. The `add()` method takes two arguments: the first one (named `$elementOrFieldset`)
@@ -825,50 +758,30 @@ For example, in line 20, we set the "id" attribute with the `setAttribute()` met
 the (most important) methods of the @`Element` base class which can be used for
 configuring a form element are presented in table 7.9.
 
-{title="Table 7.9. Methods provided by the Element class"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | `setName($name)`                 | Sets element's name.                                          |
-|----------------------------------|---------------------------------------------------------------|
 | `getName()`                      | Retrieves element's name.                                     |
-|----------------------------------|---------------------------------------------------------------|
 | `setOptions($options)`           | Sets options.                                                 |
-|----------------------------------|---------------------------------------------------------------|
 | `getOptions($options)`           | Retrieves options.                                            |
-|----------------------------------|---------------------------------------------------------------|
 | `getOption($option)`             | Retrieves the given option.                                   |
-|----------------------------------|---------------------------------------------------------------|
 | `setAttribute($key, $value)`     | Sets a single element attribute.                               |
-|----------------------------------|---------------------------------------------------------------|
 | `getAttribute($key)`             | Retrieves a single element attribute.                          |
-|----------------------------------|---------------------------------------------------------------|
 | `removeAttribute($key)`          | Removes an attribute.                                         |
-|----------------------------------|---------------------------------------------------------------|
 | `hasAttribute($key)`             | Checks whether such an attribute presents.                    |
-|----------------------------------|---------------------------------------------------------------|
 | `setAttributes($arrayOrTraversable)`| Sets a group of attributes.                                |
-|----------------------------------|---------------------------------------------------------------|
 | `getAttributes()`                | Retrieves all attributes at once.                              |
-|----------------------------------|---------------------------------------------------------------|
 | `clearAttributes()`              | Removes all attributes at once.                               |
-|----------------------------------|---------------------------------------------------------------|
 | `setValue()`                     | Sets the element value.                                         |
-|----------------------------------|---------------------------------------------------------------|
 | `getValue()`                     | Retrieves the element value.                                    |
-|----------------------------------|---------------------------------------------------------------|
 | `setLabel()`                     | Sets the label used for this element.                           |
-|----------------------------------|---------------------------------------------------------------|
 | `getLabel()`                     | Retrieves the label string used for this element.              |
-|----------------------------------|---------------------------------------------------------------|
 | `setLabelAttributes()`           | Sets the attributes to use with the label.                     |
-|----------------------------------|---------------------------------------------------------------|
 | `getLabelAttributes()`           | Gets the attributes to use with the label.                    |
-|----------------------------------|---------------------------------------------------------------|
 | `setLabelOptions()`              | Sets label specific options.                                  |
-|----------------------------------|---------------------------------------------------------------|
 | `getLabelOptions()`              | Retrieves label specific options.                             |
-|----------------------------------|---------------------------------------------------------------|
+
+Table 7.9. Methods provided by the Element class
 
 ### Method 2: Using Array Specification
 
@@ -1347,21 +1260,15 @@ an iterative process (schematically illustrated by figure 7.18):
 
 The @`Form`[Laminas\Form\Form] base class provides several methods for accomplishing these (see table 7.11).
 
-{title="Table 7.11. Methods provided by the Form base class"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `setData($data)`               | Sets form data for validation.                                |
-|----------------------------------|---------------------------------------------------------------|
 | `getData($flag)`               | Retrieves the validated data.                                 |
-|----------------------------------|---------------------------------------------------------------|
 | `isValid()`                    | Validates the form.                                           |
-|----------------------------------|---------------------------------------------------------------|
 | `hasValidated()`               | Check if the form has been validated.                         |
-|----------------------------------|---------------------------------------------------------------|
-| `getMessages($elementName = null)`| Returns a list of validation failure messages, if any,     |
-|                                | for a single element or for all form elements.                |
-|--------------------------------|---------------------------------------------------------------|
+| `getMessages($elementName = null)`| Returns a list of validation failure messages, if any, for a single element or for all form elements.     |
+
+Table 7.11. Methods provided by the Form base class
 
 So, a generic form usage workflow is the following:
 
@@ -1743,12 +1650,11 @@ Before rendering, it is required that you call the `prepare()` method on the for
 instance (see table 7.12). If you forget to call this method, there may be undesired
 effects.
 
-{title="Table 7.12. Methods provided by the Form base class"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `prepare()`                    | Ensures the form state is ready for use.                      |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 7.12. Methods provided by the Form base class
 
 The `prepare()` method does the following form model preparations:
 
@@ -1782,100 +1688,62 @@ the view helpers can be divided into the following categories:
 * *Other view helpers.* In this category, we can put the view helper classes designed for rendering
   laminas-specific fields, like @`FormMultiCheckbox`, @`FormCaptcha`, etc.
 
-{title="Table 7.13. View helpers designed for using with forms"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | *Generic helpers*                |                                                               |
-|----------------------------------|---------------------------------------------------------------|
-| @`Form`[Laminas\Form\View\Helper\Form]                           | Renders the entire form and all its elements.                 |
-|----------------------------------|---------------------------------------------------------------|
+| @`Form`[Laminas\Form\View\Helper\Form]      | Renders the entire form and all its elements.                 |
 | @`FormElement`                    | Renders a generic form element.                               |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormElementErrors`              | Renders validation errors for a form element.                 |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormRow`                        | Renders the label, the field and validation errors.           |
-|----------------------------------|---------------------------------------------------------------|
 
-{title="Table 7.14. HTML 4 field helpers"}
-|----------------------------------|---------------------------------------------------------------|
+Table 7.13. View helpers designed for using with forms
+
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | @`FormButton`                     | Renders the `<button>` form field.                            |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormCheckbox`                   | Renders the `<input type="checkbox">` field.                  |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormFile`                       | Renders the `<input type="file">` form field.                 |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormHidden`                     | Renders the `<input type="hidden">` form field.               |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormInput`                      | Renders an `<input>` form field.                              |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormImage`                      | Renders the `<input type="image">` form field.                |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormLabel`                      | Renders the `<label>` tag.                                    |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormPassword`                   | Renders the `<input type="password">` form field.             |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormRadio`                      | Renders the `<input type="radio">` form field.                |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormReset`                      | Renders the `<input type="reset">` form field.                |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormSelect`                     | Renders the `<select>` dropdown field.                        |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormSubmit`                     | Renders the `<input type="submit">` form field.               |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormText`                       | Renders the `<input type="text">` form field.                 |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormTextarea`                   | Renders the `<textarea>` multi-line text field.               |
-|----------------------------------|---------------------------------------------------------------|
 
+Table 7.14. HTML 4 field helpers
 
-{title="Table 7.15. HTML 5 field helpers"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | @`FormColor`                      | Renders the `<input type="color">` HTML5 form field.          |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormDate`                       | Renders the `<input type="date">` HTML5 form field.           |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormDateTime`                   | Renders the `<input type="date">` HTML5 form field.           |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormDateTimeLocal`              | Renders the `<input type="datetime-local">` HTML5 form field. |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormEmail`                      | Renders the `<input type="email">` HTML5 form field.          |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormMonth`                      | Renders the `<input type="month">` HTML5 form field.          |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormNumber`                     | Renders the `<input type="number">` HTML5 form field.         |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormRange`                      | Renders the `<input type="range">` HTML5 form field.          |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormTel`                        | Renders the `<input type="tel">` HTML5 form field.            |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormTime`                       | Renders the `<input type="time">` HTML5 form field.           |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormUrl`                        | Renders the `<input type="url">` HTML5 form field.            |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormWeek`                       | Renders the `<input type="week">` HTML5 form field.           |
-|----------------------------------|---------------------------------------------------------------|
 
-{title="Table 7.16. Other helpers"}
-|----------------------------------|---------------------------------------------------------------|
+Table 7.15. HTML 5 field helpers
+
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | @`FormCaptcha`                    | Renders the CAPTCHA security field.                           |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormDateSelect`                 | Renders the date select field.                                |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormDateTimeSelect`             | Renders the datetime select field.                            |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormMonthSelect`                | Renders the month select field.                               |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormMultiCheckbox`              | Renders the multi checkbox field.                             |
-|----------------------------------|---------------------------------------------------------------|
 | @`FormCollection`                 | Renders the collection of elements.                           |
-|----------------------------------|---------------------------------------------------------------|
+
+Table 7.16. Other helpers
 
 In the next sections, we will provide an overview of several frequently used form view helpers
 and their usage examples.
@@ -1888,15 +1756,12 @@ you are able to produce HTML markup for text fields, buttons, dropdown lists and
 
 The methods provided by this view helper are listed in table 7.17.
 
-{title="Table 7.17. Methods provided by the FormElement view helper"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | `render($element)`               | PHP magic method which renders the given form field.          |
-|----------------------------------|---------------------------------------------------------------|
-| `__invoke($element)`             | PHP magic method which renders the given form field           |
-|                                  | (the effect is the same as `render()`).                       |
-|----------------------------------|---------------------------------------------------------------|
+| `__invoke($element)`             | PHP magic method which renders the given form field (the effect is the same as `render()`).      |
+
+Table 7.17. Methods provided by the FormElement view helper
 
 As you can see, there are two methods doing the same thing:
 
@@ -1978,24 +1843,17 @@ it's label, and validation errors. With this class, you are able to render these
 in a single step. This helper is flexibly configurable, so you can apply a different
 decoration to the form row. The methods of this view helper class are listed in table 7.18.
 
-{title="Table 7.18. Methods provided by the FormRow view helper"}
-|----------------------------------------|---------------------------------------------------------|
 | *Method name*                          | *Description*                                           |
 |----------------------------------------|---------------------------------------------------------|
 | `render($element)`                     | Renders the form row.                                   |
-|----------------------------------------|---------------------------------------------------------|
 | `__invoke($element, $labelPosition, $renderErrors, $partial)` | Renders the form row (convenience wrapper). |
-|----------------------------------------|---------------------------------------------------------|
 | `setInputErrorClass($inputErrorClass)` | Sets input error CSS class.                             |
-|----------------------------------------|---------------------------------------------------------|
 | `setLabelAttributes($labelAttributes)` | Sets label attributes.                                  |
-|----------------------------------------|---------------------------------------------------------|
 | `setLabelPosition($labelPosition)`     | Sets label position (before or after the field).        |
-|----------------------------------------|---------------------------------------------------------|
 | `setRenderErrors($renderErrors)`       | Set if the errors are rendered by this helper.          |
-|----------------------------------------|---------------------------------------------------------|
 | `setPartial($partial)`                 | Set a partial view script to use for rendering the row. |
-|----------------------------------------|---------------------------------------------------------|
+
+Table 7.18. Methods provided by the FormRow view helper
 
 An example of using the @`FormRow` view helper is presented below:
 
@@ -2026,19 +1884,14 @@ and the closing `</form>` tag. But its major purpose is to render the entire for
 all of its fields with a single line of code. Public methods of the `Form`[Laminas\Form\View\Helper\Form] view helper
 class are summarized in table 7.19.
 
-{title="Table 7.19. Methods provided by the Form view helper"}
-|----------------------------------|---------------------------------------------------------------|
 | *Method name*                    | *Description*                                                 |
 |----------------------------------|---------------------------------------------------------------|
 | `render($form)`                  | Renders the entire form and all its elements.                 |
-|----------------------------------|---------------------------------------------------------------|
-| `__invoke($form)`                | PHP magic method which renders the entire form and all its    |
-|                                  | elements (the effect is the same as `render()`).              |
-|----------------------------------|---------------------------------------------------------------|
+| `__invoke($form)`                | PHP magic method which renders the entire form and all its elements (the effect is the same as `render()`).   |
 | `openTag($form)`                 | Renders the opening `<form>` tag.                             |
-|----------------------------------|---------------------------------------------------------------|
 | `closeTag()`                     | Renders the closing `</form>` tag.                            |
-|----------------------------------|---------------------------------------------------------------|
+
+Table 7.19. Methods provided by the Form view helper
 
 You can render the whole form with the help of the @`Form`[Laminas\Form\Form]'s `render()` method as follows:
 

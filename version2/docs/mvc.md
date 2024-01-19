@@ -6,15 +6,11 @@ The goal of this is to allow for code reusability and separation of concerns.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Mvc`                     | Support of MVC pattern. Implements base controller classes, controller plugins, etc. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\View`                    | Implements the functionality for variable containers, rendering a web page and common view helpers. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Http`                    | Implements a wrapper around HTTP request and response.        |
-|--------------------------------|---------------------------------------------------------------|
 
 ## Get the Hello World Example from GitHub
 
@@ -161,21 +157,13 @@ contains action methods for site-wide web pages (table 4.1). For example, you wo
 "index" action for the *Home* page, "about" action for *About* page,
 "contactUs" action for the *Contact Us* page and possibly other actions.
 
-{title="Table 4.1. Index controller's typical actions"}
-|------------------------------------|--------------------------------------------------|
 | *Action Method*                    | *Description*                                    |
 |------------------------------------|--------------------------------------------------|
-| `IndexController::indexAction()`   | The "index" action displays the Home page of your|
-|                                    | site.                                            |
-|------------------------------------|--------------------------------------------------|
-| `IndexController::aboutAction()`   | The "about" action displays the About page of    |
-|                                    | the site. The About page contains contact and    |
-|                                    | copyright information.                           |
-|------------------------------------|--------------------------------------------------|
-| `IndexController::contactUsAction()`| The "contactUs" action displays the Contact Us   |
-|                                    | page of the site. The Contact Us page displays   |
-|                                    | the form for contacting site authors.            |
-|------------------------------------|--------------------------------------------------|
+| `IndexController::indexAction()`   | The "index" action displays the Home page of your site.       |
+| `IndexController::aboutAction()`   | The "about" action displays the About page of the site. The About page contains contact and  copyright information.    |
+| `IndexController::contactUsAction()`| The "contactUs" action displays the Contact Us page of the site. The Contact Us page displays the form for contacting site authors. |
+
+Table 4.1. Index controller's typical actions
 
 ### Base Controller Class
 
@@ -187,31 +175,17 @@ In figure 4.4, the class inheritance diagram is presented.
 The @`AbstractActionController`[Laminas\Mvc\Controller\AbstractActionController] provides you with several useful methods you can use
 in your controller classes. Table 4.2 provides you with a brief summary of the methods:
 
-{title="Table 4.2. AbstractActionController's useful methods"}
-|----------------------------------|--------------------------------------------------------|
 | *Method Name*                    | *Description*                                          |
 |----------------------------------|--------------------------------------------------------|
-| `getRequest()`                   | Retrieves the @`Laminas\Http\Request` object, which is the |
-|                                  | representation of HTTP request data.                   |
-|----------------------------------|--------------------------------------------------------|
-| `getResponse()`                  | Retrieves the @`Laminas\Http\PhpEnvironment\Response` object|
-|                                  | allowing to set data of HTTP response.                 |
-|----------------------------------|--------------------------------------------------------|
-| `getEventManager()`              | Returns the @`Laminas\EventManager\EventManager` object,   |
-|                                  | allowing to trigger events and listen to events.       |
-|----------------------------------|--------------------------------------------------------|
-| `getEvent()`                     | Returns the @`Laminas\Mvc\MvcEvent` object, which represents|
-|                                  | the event the controller responds to.                  |
-|----------------------------------|--------------------------------------------------------|
-| `getPluginManager()`             | Returns the @`Laminas\Mvc\Controller\PluginManager` object,|
-|                                  | which can be used for registering controller plugins.  |
-|----------------------------------|--------------------------------------------------------|
-| `plugin($name, $options)`        | This method allows to access certain controller plugin |
-|                                  | with the given name.                                   |
-|----------------------------------|--------------------------------------------------------|
-| `__call($method, $params)`       | Allows to call a plugin indirectly using the PHP `__call` |
-|                                  | magic method.                                          |
-|----------------------------------|--------------------------------------------------------|
+| `getRequest()`                   | Retrieves the @`Laminas\Http\Request` object, which is the representation of HTTP request data.     |
+| `getResponse()`                  | Retrieves the @`Laminas\Http\PhpEnvironment\Response` object allowing to set data of HTTP response.                 |
+| `getEventManager()`              | Returns the @`Laminas\EventManager\EventManager` object,   allowing to trigger events and listen to events.       |
+| `getEvent()`                     | Returns the @`Laminas\Mvc\MvcEvent` object, which represents the event the controller responds to.                  |
+| `getPluginManager()`             | Returns the @`Laminas\Mvc\Controller\PluginManager` object, which can be used for registering controller plugins.  |
+| `plugin($name, $options)`        | This method allows to access certain controller plugin with the given name.             |
+| `__call($method, $params)`       | Allows to call a plugin indirectly using the PHP `__call` magic method.                 |
+
+Table 4.2. AbstractActionController's useful methods
 
 As you can see from the table above, the base controller class provides you with access to HTTP request
 and response data, and provides you with the access to the event manager.
@@ -235,47 +209,25 @@ The code above returns the instance of @`Laminas\Http\Request` class, containing
 request data. In table 4.3, you can find the most widely used methods of the @`Request`[Laminas\Http\Request] class together
 with their brief description.
 
-{title="Table 4.3. Methods of `Laminas\Http\Request` class."}
-|----------------------------------------|------------------------------------------------------|
 | *Method Name*                          | *Description*                                        |
 |----------------------------------------|------------------------------------------------------|
 | `isGet()`                              | Checks if this is a GET request.                     |
-|----------------------------------------|------------------------------------------------------|
 | `isPost()`                             | Checks if this is a POST request.                    |
-|----------------------------------------|------------------------------------------------------|
 | `isXmlHttpRequest()`                   | Checks if this request is an AJAX request.           |
-|----------------------------------------|------------------------------------------------------|
 | `isFlashRequest()`                     | Check if this request is a Flash request.            |
-|----------------------------------------|------------------------------------------------------|
 | `getMethod()`                          | Returns the method for this request.                 |
-|----------------------------------------|------------------------------------------------------|
 | `getUriString()`                       | Returns the URI for this request object as a string. |
-|----------------------------------------|------------------------------------------------------|
-| `getQuery($name, $default)`            | Returns the query parameter by name, or all query parameters. |
-|                                        | If a parameter is not found, returns the `$default` value.|
-|----------------------------------------|------------------------------------------------------|
-| `getPost($name, $default)`             | Returns the parameter container responsible for post |
-|                                        | parameters or a single post parameter.               |
-|----------------------------------------|------------------------------------------------------|
+| `getQuery($name, $default)`            | Returns the query parameter by name, or all query parameters. If a parameter is not found, returns the `$default` value.|
+| `getPost($name, $default)`             | Returns the parameter container responsible for post parameters or a single post parameter.               |
 | `getCookie()`                          | Returns the Cookie header.                           |
-|----------------------------------------|------------------------------------------------------|
-| `getFiles($name, $default)`            | Returns the parameter container responsible for file |
-|                                        | parameters or a single file.                         |
-|----------------------------------------|------------------------------------------------------|
-| `getHeaders($name, $default)`          | Returns the header container responsible for headers |
-|                                        | or all headers of a certain name/type.               |
-|----------------------------------------|------------------------------------------------------|
-| `getHeader($name, $default)`           | Returns a header by `$name`. If a header is not found,   |
-|                                        | returns the `$default` value.                        |
-|----------------------------------------|------------------------------------------------------|
-| `renderRequestLine()`                  | Returns the formatted request line (first line) for  |
-|                                        | this HTTP request.                                   |
-|----------------------------------------|------------------------------------------------------|
-| `fromString($string)`                  | A static method that produces a Request object from a|
-|                                        | well-formed Http Request string                      |
-|----------------------------------------|------------------------------------------------------|
+| `getFiles($name, $default)`            | Returns the parameter container responsible for file parameters or a single file.                         |
+| `getHeaders($name, $default)`          | Returns the header container responsible for headers or all headers of a certain name/type.               |
+| `getHeader($name, $default)`           | Returns a header by `$name`. If a header is not found, returns the `$default` value.                        |
+| `renderRequestLine()`                  | Returns the formatted request line (first line) for this HTTP request.                                   |
+| `fromString($string)`                  | A static method that produces a Request object from a well-formed Http Request string                      |
 | `toString()`                           | Returns the raw HTTP request as a string.            |
-|----------------------------------------|------------------------------------------------------|
+
+Table 4.3. Methods of `Laminas\Http\Request` class.
 
 ## Retrieving GET and POST Variables
 
@@ -310,46 +262,28 @@ with the help of `getResponse()` method provided by the @`AbstractActionControll
 The `getResponse()` method returns the instance of @`Laminas\Http\PhpEnvironment\Response` class.
 Table 4.4 contains the most important methods of this class:
 
-{title="Table 4.4. Methods of Laminas\Http\PhpEnvironment\Response class."}
-|----------------------------------------|--------------------------------------------------------|
 | *Method Name*                          | *Description*                                          |
 |----------------------------------------|--------------------------------------------------------|
 | `fromString($string)`                  | Populate response object from string.                  |
-|----------------------------------------|--------------------------------------------------------|
 | `toString()`                           | Renders entire response as HTTP response string.       |
-|----------------------------------------|--------------------------------------------------------|
 | `setStatusCode($code)`                 | Sets HTTP status code and (optionally) message.        |
-|----------------------------------------|--------------------------------------------------------|
 | `getStatusCode()`                      | Retrieves HTTP status code.                            |
-|----------------------------------------|--------------------------------------------------------|
 | `setReasonPhrase($reasonPhrase)`       | Sets the HTTP status message.                          |
-|----------------------------------------|--------------------------------------------------------|
 | `getReasonPhrase()`                    | Gets HTTP status message.                              |
-|----------------------------------------|--------------------------------------------------------|
 | `isForbidden()`                        | Checks if the response code is 403 Forbidden.          |
-|----------------------------------------|--------------------------------------------------------|
 | `isNotFound()`                         | Checks if the status code indicates the resource is not found (404 status code). |
-|----------------------------------------|--------------------------------------------------------|
 | `isOk()`                               | Checks whether the response is successful.             |
-|----------------------------------------|--------------------------------------------------------|
 | `isServerError()`                      | Checks if the response is 5xx status code.             |
-|----------------------------------------|--------------------------------------------------------|
 | `isRedirect()`                         | Checks whether the response is 303 Redirect.           |
-|----------------------------------------|--------------------------------------------------------|
 | `isSuccess()`                          | Checks whether the response is 200 Successful.         |
-|----------------------------------------|--------------------------------------------------------|
 | `setHeaders(Headers $headers)`         | Allows to set response headers.                        |
-|----------------------------------------|--------------------------------------------------------|
 | `getHeaders()`                         | Returns the list of response headers.                  |
-|----------------------------------------|--------------------------------------------------------|
 | `getCookie()`                          | Retrieves Cookie header.                               |
-|----------------------------------------|--------------------------------------------------------|
 | `setContent($value)`                   | Sets raw response content.                             |
-|----------------------------------------|--------------------------------------------------------|
 | `getContent()`                         | Returns raw response content.                          |
-|----------------------------------------|--------------------------------------------------------|
 | `getBody()`                            | Gets and decodes the content of the response.          |
-|----------------------------------------|--------------------------------------------------------|
+
+Table 4.4. Methods of Laminas\Http\PhpEnvironment\Response class.
 
 For example, use the following code to set 404 status code for the response:
 
@@ -412,22 +346,15 @@ The @`ViewModel`[Laminas\View\Model\ViewModel] class provides several methods th
 set variables to @`ViewModel`[Laminas\View\Model\ViewModel] and retrieve variables from it. The table 4.5
 provides the methods summary:
 
-{title="Table 4.5. Methods of the ViewModel class"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
-| `getVariable($name, $default)` | Returns a variable by name (or default value if the variable  |
-|                                | does not exist).                                              |
-|--------------------------------|---------------------------------------------------------------|
+| `getVariable($name, $default)` | Returns a variable by name (or default value if the variable does not exist).        |
 | `setVariable($name, $value)`   | Sets a variable.                                              |
-|--------------------------------|---------------------------------------------------------------|
-| `setVariables($variables, $overwrite)`|  Sets a group of variables, optionally overwriting the |
-|                                | existing ones.                                                |
-|--------------------------------|---------------------------------------------------------------|
+| `setVariables($variables, $overwrite)`|  Sets a group of variables, optionally overwriting the existing ones.            |
 | `getVariables()`               | Returns all variables as an array.                            |
-|--------------------------------|---------------------------------------------------------------|
 | `clearVariables()`             | Removes all variables.                                        |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 4.5. Methods of the ViewModel class
 
 ## Expressing Error Conditions
 
@@ -654,33 +581,18 @@ A *controller plugin* is a class which extends the functionality of *all control
 There are several standard controller plugins available out of the box (table 4.6), and we've already used one of
 them (the @`Params` plugin) in one of our previous examples.
 
-{title="Table 4.6. Standard Controller Plugins"}
-|------------------------------------------|------------------------------------------------------|
 | *Standard Plugin Class*                  | *Description*                                        |
 |------------------------------------------|------------------------------------------------------|
-| @`Params`                                 | Allows to retrieve variables from HTTP request,      |
-|                                          | including GET and POST variables.                    |
-|------------------------------------------|------------------------------------------------------|
-| @`Url`[Laminas\Mvc\Controller\Plugin\Url]                                    | Allows to generate absolute or relative URLs         |
-|                                          | from inside controllers.                             |
-|------------------------------------------|------------------------------------------------------|
-| @`Layout`[Laminas\Mvc\Controller\Plugin\Layout]                                 | Gives access to layout view model for passing data to|
-|                                          | layout template.                                     |
-|------------------------------------------|------------------------------------------------------|
-| @`Identity`[Laminas\Mvc\Plugin\Identity\Identity]                               | Returns the identity of the user who has logged into the |
-|                                          | website.                                            |
-|------------------------------------------|------------------------------------------------------|
-| @`FlashMessenger`[Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger]                         | Allows to define "flash" messages which are stored in|
-|                                          | session and can be displayed on a different web page.|
-|------------------------------------------|------------------------------------------------------|
-| @`Redirect`[Laminas\Mvc\Controller\Plugin\Redirect]                               | Allows to redirect the request to another controller's |
-|                                          | action method.                                       |
-|------------------------------------------|------------------------------------------------------|
-| @`PostRedirectGet`[Laminas\Mvc\Plugin\Prg\PostRedirectGet]                        | Redirects the POST request, converting all POST variables |
-|                                          | to GET ones.                                         |
-|------------------------------------------|------------------------------------------------------|
-| @`FilePostRedirectGet`[Laminas\Mvc\Plugin\FilePrg\FilePostRedirectGet]                    | Redirects the POST request, preserving uploaded files.|
-|------------------------------------------|------------------------------------------------------|
+| @`Params`                                 | Allows to retrieve variables from HTTP request, including GET and POST variables.                    |
+| @`Url`[Laminas\Mvc\Controller\Plugin\Url]           | Allows to generate absolute or relative URLs from inside controllers.                             |
+| @`Layout`[Laminas\Mvc\Controller\Plugin\Layout]     | Gives access to layout view model for passing data to layout template.           |
+| @`Identity`[Laminas\Mvc\Plugin\Identity\Identity]     | Returns the identity of the user who has logged into the  website.             |
+| @`FlashMessenger`[Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger]   | Allows to define "flash" messages which are stored in session and can be displayed on a different web page.|
+| @`Redirect`[Laminas\Mvc\Controller\Plugin\Redirect]   | Allows to redirect the request to another controller's action method.       |
+| @`PostRedirectGet`[Laminas\Mvc\Plugin\Prg\PostRedirectGet]     | Redirects the POST request, converting all POST variables to GET ones.       |
+| @`FilePostRedirectGet`[Laminas\Mvc\Plugin\FilePrg\FilePostRedirectGet]      | Redirects the POST request, preserving uploaded files.|
+
+Table 4.6. Standard Controller Plugins
 
 Inside of the controller's action method, you access a plugin in the following way:
 
@@ -866,42 +778,23 @@ You can invoke view helpers from any view template. With view helpers, you can c
 Laminas provides many standard view helpers out of the box. In the table 4.7, some of them are
 presented with a brief description:
 
-{title="Table 4.7. Standard View Helpers"}
-|------------------------------------------|------------------------------------------------------|
 | *Standard Plugin Class*                  | *Description*                                        |
 |------------------------------------------|------------------------------------------------------|
-| @`BasePath`                               | Allows to retrieve the base path to the web application, |
-|                                          | which is the absolute path to `APP_DIR`.             |
-|------------------------------------------|------------------------------------------------------|
-| @`Url`[Laminas\View\Helper\Url]                                    | Allows to generate absolute or relative URL addresses|
-|                                          | from inside view templates.                          |
-|------------------------------------------|------------------------------------------------------|
+| @`BasePath`     | Allows to retrieve the base path to the web application, which is the absolute path to `APP_DIR`.             |
+| @`Url`[Laminas\View\Helper\Url]        | Allows to generate absolute or relative URL addresses from inside view templates.                          |
 | @`ServerUrl`                              | Retrieves the current request's URL.                 |
-|------------------------------------------|------------------------------------------------------|
-| @`Doctype`                                | Helper for setting and retrieving the doctype HTML element |
-|                                          | of the web page.                                     |
-|------------------------------------------|------------------------------------------------------|
-| @`HeadTitle`                              | Helper for setting the title HTML element            |
-|                                          | of the web page.                                     |
-|------------------------------------------|------------------------------------------------------|
+| @`Doctype`      | Helper for setting and retrieving the doctype HTML element of the web page.                                     |
+| @`HeadTitle`                              | Helper for setting the title HTML element of the web page.                                     |
 | @`HtmlList`                               | Helper for generating ordered and unordered HTML lists. |
-|------------------------------------------|------------------------------------------------------|
-| @`ViewModel`[Laminas\View\Helper\ViewModel]                              | Helper for storing and retrieving the view model     |
-|------------------------------------------|------------------------------------------------------|
-| @`Layout`[Laminas\View\Helper\Layout]                                 | Retrieves the layout template view.                  |
-|------------------------------------------|------------------------------------------------------|
+| @`ViewModel`[Laminas\View\Helper\ViewModel]          | Helper for storing and retrieving the view model     |
+| @`Layout`[Laminas\View\Helper\Layout]            | Retrieves the layout template view.                  |
 | @`Partial`                                | Allows to render a "partial" view template.          |
-|------------------------------------------|------------------------------------------------------|
-| @`InlineScript`                           | Helper for setting and retrieving script elements for|
-|                                          | inclusion in HTML body section.                      |
-|------------------------------------------|------------------------------------------------------|
+| @`InlineScript`                           | Helper for setting and retrieving script elements for inclusion in HTML body section.                      |
 | @`Identity`[Laminas\View\Helper\Identity]                               | View helper to retrieve the authenticated user's identity. |
-|------------------------------------------|------------------------------------------------------|
-| @`FlashMessenger`[Laminas\View\Helper\FlashMessenger]                         | Allows to retrieve the "flash" messages stored in    |
-|                                          | session.                                             |
-|------------------------------------------|------------------------------------------------------|
+| @`FlashMessenger`[Laminas\View\Helper\FlashMessenger]            | Allows to retrieve the "flash" messages stored in session.        |
 | @`EscapeHtml`                             | Allows to escape a variable outputted to a web page. |
-|------------------------------------------|------------------------------------------------------|
+
+Table 4.7. Standard View Helpers
 
 To demonstrate the usage of a view helper, below we will show how to set a title for a web page.
 Typically, it is required to give a different title per each web page. You can do this
@@ -947,14 +840,12 @@ Actually the @`ViewModel`[Laminas\View\Model\ViewModel] class is more than just 
 allows to specify which view template should be used for page rendering. The summary
 of methods provided for this purpose is shown in table 4.8.
 
-{title="Table 4.8. Methods of the ViewModel class for setting and retrieving the view template name"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `setTemplate()`                | Sets the view template name.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `getTemplate()`                | Returns the view template name.                               |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 4.8. Methods of the ViewModel class for setting and retrieving the view template name
 
 To set the view template name, you use the `setTemplate()` method. The `getTemplate()` method
 returns the view template name currently set for the view model.
@@ -1317,21 +1208,15 @@ In Laminas Framework, there is no single `Model` directory for storing the model
 assume. Instead, by convention, models are further subdivided into the following principal types, and each type is
 stored in its own subdirectory (see table 4.9):
 
-{title="Table 4.9. Model Types and their Location"}
-|--------------------------------|----------------------------------------------------------|
 | *Model Type*                   | *Directory*                                              |
 |--------------------------------|----------------------------------------------------------|
 | Entities                       | `APP_DIR/module/Application/src/Entity`                  |
-|--------------------------------|----------------------------------------------------------|
 | Repositories                   | `APP_DIR/module/Application/src/Repository`              |
-|--------------------------------|----------------------------------------------------------|
 | Value Objects                  | `APP_DIR/module/Application/src/ValueObject`             |
-|--------------------------------|----------------------------------------------------------|
 | Services                       | `APP_DIR/module/Application/src/Service`                 |
-|--------------------------------|----------------------------------------------------------|
-| Factories                      | In `Factory` subdirectory under each model type directory.|
-|                                | For example, controller factories would be stored in `APP_DIR/module/Application/src/Controller/Factory`     |
-|--------------------------------|----------------------------------------------------------|
+| Factories                      | In `Factory` subdirectory under each model type directory. For example, controller factories would be stored in `APP_DIR/module/Application/src/Controller/Factory`     |
+
+Table 4.9. Model Types and their Location
 
 > Separation of models into different types make it easier to design your business logic domain.
 > This is also called the "Domain Driven Design" (or shortly, DDD). The person who proposed DDD was Eric Evans

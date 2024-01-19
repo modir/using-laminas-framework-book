@@ -7,13 +7,10 @@ Routing is implemented as a part of @`Laminas\Router` component.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Router`                  | Implements support of routing.                                |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Barcode`                 | Auxiliary component implementing barcodes.                    |
-|--------------------------------|---------------------------------------------------------------|
 
 ## URL Structure
 
@@ -53,22 +50,16 @@ and "http://localhost/about" URL to `IndexController::aboutAction()` method.
 There are several standard route types provided by Laminas Framework (shown in table 5.1).
 These route types are implemented as classes living in the @`Laminas\Router\Http`[Laminas\Router] namespace.
 
-{title="Table 5.1. Route Types"}
-|--------------------------------|---------------------------------------------------------------|
 | *Route Type*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | *Literal*                      | Exact matching against the path part of a URL.                |
-|--------------------------------|---------------------------------------------------------------|
 | *Segment*                      | Matching against a path segment (or several segments) of a URL. |
-|--------------------------------|---------------------------------------------------------------|
 | *Regex*                        | Matching the path part of a URL against a regular expression template.|
-|--------------------------------|---------------------------------------------------------------|
 | *Hostname*                     | Matching the host name against some criteria.                 |
-|--------------------------------|---------------------------------------------------------------|
 | *Scheme*                       | Matching URL scheme against some criteria.                    |
-|--------------------------------|---------------------------------------------------------------|
 | *Method*                       | Matching an HTTP method (e.g. GET, POST, etc.) against some criteria. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 5.1. Route Types
 
 Each route type in the table above (except the *Method* type) may be matched against a specific part
 (or several parts) of a URL. The *Method* route type is matched against the HTTP method (either GET
@@ -79,18 +70,14 @@ or POST) retrieved from HTTP request.
 Routes may be combined with the help of "aggregate" route types (shown in table 5.2).
 The compound route types allow to define arbitrarily complex URL mapping rules.
 
-{title="Table 5.2. Aggregate Route Types"}
-|--------------------------------|---------------------------------------------------------------|
 | *Route Type*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | *SimpleRouteStack*             | Aggregates different route types in a list with priorities.   |
-|--------------------------------|---------------------------------------------------------------|
 | *TreeRouteStack*               | Aggregates different route types in a tree-like structure.    |
-|--------------------------------|---------------------------------------------------------------|
 | *Part*                         | Aggregates different route types in a subtree.                |
-|--------------------------------|---------------------------------------------------------------|
 | *Chain*                        | Aggregates different route types in a chain (degenerated subtree). |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 5.2. Aggregate Route Types
 
 The @`TreeRouteStack`[Laminas\Router\Http\TreeRouteStack] and @`SimpleRouteStack`[Laminas\Router\SimpleRouteStack] are used as the "top-level" route types.
 The *SimpleRouteStack* allows to organize different routes in a priority list.
@@ -801,16 +788,13 @@ On route match, the router class internally creates an instance of @`Laminas\Rou
 providing the methods for extracting the matched route name and parameters extracted from route.
 The useful methods of the @`RouteMatch`[Laminas\Router\RouteMatch] class are listed in table 5.3:
 
-{title="Table 5.3. Laminas\Router\RouteMatch class methods"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method Name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `getMatchedRouteName()`        | Gets the name of matched route.                               |
-|--------------------------------|---------------------------------------------------------------|
 | `getParams()`                  | Get all parameters.                                           |
-|--------------------------------|---------------------------------------------------------------|
 | `getParam($name, $default)`    | Get a specific parameter.                                     |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 5.3. Laminas\Router\RouteMatch class methods
 
 > In most cases, it will be sufficient to use the @`Params` controller plugin, but alternatively
 > you can use the @`RouteMatch`[Laminas\Router\RouteMatch] object for accomplishing the same task.
@@ -1076,18 +1060,14 @@ administrators, not programmers.
 We know that every route class must implement the @`Laminas\Router\Http\RouteInterface` interface.
 The methods of this interface are presented in table 5.4:
 
-{title="Table 5.4. RouteInterface methods"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method Name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `factory($options)`            | Static method for creation of the route class.                |
-|--------------------------------|---------------------------------------------------------------|
 | `match($request)`              | Method which performs match against the HTTP request data.    |
-|--------------------------------|---------------------------------------------------------------|
 | `assemble($params, $options)`  | Method for generating URL by route parameters.                |
-|--------------------------------|---------------------------------------------------------------|
 | `getAssembledParams()`         | Method for retrieving parameters that were utilized for URL generation. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 5.4. RouteInterface methods
 
 The static `factory()` method is used by the Laminas router (@`TreeRouteStack`[Laminas\Router\Http\TreeRouteStack] or @`SimpleRouteStack`[Laminas\Router\SimpleRouteStack])
 for instantiating the route class. The router passes the `options` array an argument for the

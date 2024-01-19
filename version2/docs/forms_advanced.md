@@ -7,19 +7,13 @@ form elements (CAPTCHA and CSRF), and so on.
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Captcha`                 | Implements various CAPTCHA algorithms.                        |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Form`                    | Contains base form model classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Filter`                  | Contains various filters classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Validator`               | Implements various validator classes.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\InputFilter`             | Implements a container for filters/validators.                |
-|--------------------------------|---------------------------------------------------------------|
 
 ## Form Security Elements
 

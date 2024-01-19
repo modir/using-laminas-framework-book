@@ -6,17 +6,12 @@ complete working Image Gallery example showing how to upload images to a web ser
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Form`                    | Contains base form model classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Filter`                  | Contains various filters classes.                             |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Validator`               | Implements various validator classes.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\InputFilter`             | Implements a container for filters/validators.                |
-|--------------------------------|---------------------------------------------------------------|
 
 ## About HTTP File Uploads
 
@@ -263,48 +258,29 @@ you may need to check that:
 For doing the checks like above, Laminas provides a number of useful file validators (listed in table 10.1).
 Those validator classes belong to @`Laminas\Validator` component and live in @`Laminas\Validator\File`[Laminas\Validator] namespace.
 
-{title="Table 10.1. Standard File Validators"}
-|---------------------|------------------|---------------------------------------------------------------|
 | *Class name*        | *Short alias*    | *Description*                                                 |
 |---------------------|------------------|---------------------------------------------------------------|
 | @`Count`             | `FileCount`      | Checks whether the file count is in a given range (min, max). |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`WordCount`         | `FileWordCount`  | Calculates the number of words in a file and checks whether it lies in a given range. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Upload`            | `FileUpload`     | Performs security checks ensuring that all given files were really uploaded through HTTP POST and there were no upload errors. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`UploadFile`        | `FileUploadFile` | Performs security checks ensuring that a file really was uploaded through HTTP POST and there were no upload errors.  |
-|----------------------------------------|---------------------------------------------------------------|
 | @`Size`              | `FileSize`       | Checks whether the file size lies in a given range.  |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`FilesSize`         | `FileFilesSize`  | Checks that the summary size of all given files lies in a given range. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Extension`         | `FileExtension`  | Checks that the extension of a file belongs to a set of allowed extensions. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`ExcludeExtension`  | `FileExcludeExtension` | Checks that the extension of a file DOES NOT belong to a set of extensions. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`MimeType`          | `FileMimeType`   | Checks that the MIME type of a file belongs to the list of allowed MIME types. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`ExcludeMimeType`   | `FileExcludeMimeType` | Checks that the MIME type of a file DOES NOT belong to the list of MIME types. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`IsImage`           | `FileIsImage`    | Checks that the file is a graphical image (JPEG, PNG, GIF, etc.) |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`ImageSize`         | `FileImageSize`  | Checks that the image file's dimensions lie in a given range. |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Exists`            | `FileExists`     | Checks whether the file exists on disk.                       |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`NotExists`         | `FileNotExists`   | Checks whether the file doesn't exist on disk.               |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`IsCompressed`      | `FileIsCompressed` | Checks that the file is an archive (ZIP, TAR, etc.)         |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Hash`[Laminas\Validator\File\Hash]              | `FileHash`       | Checks that the file content matches the given hash(es).      |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Crc32`             | `FileCrc32`      | Checks that the file content has the given CRC32 check sum.   |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Sha1`              | `FileSha1`       | Checks that the file content has the given SHA-1 hash.         |
-|---------------------|------------------|---------------------------------------------------------------|
 | @`Md5`               | `FileMd5`        | Checks that the file content has the given MD5 hash.          |
-|---------------------|------------------|---------------------------------------------------------------|
+
+Table 10.1. Standard File Validators
 
 As you can see from the table above, file validators may be roughly divided in the following groups:
 
@@ -329,22 +305,16 @@ code example later in this chapter.
 Laminas Framework provides several filters intended for "transforming" file fields. Those filter
 classes (listed in table 10.2) belong to @`Laminas\Filter` component and live in @`Laminas\Filter\File`[Laminas\Filter] namespace.
 
-{title="Table 10.2. Standard File Filters"}
-|-----------------|---------------|---------------------------------------------------------------|
 | *Class name*    | *Short alias* | *Description*                                                 |
 |-----------------|---------------|---------------------------------------------------------------|
 | @`Rename`        | `FileRename`  | Renames/moves an arbitrary file.                              |
-|-----------------|---------------|---------------------------------------------------------------|
 | @`RenameUpload`  | `FileRenameUpload` | Renames/moves the uploaded file with security checks.    |
-|-----------------|---------------|---------------------------------------------------------------|
 | @`Encrypt`[Laminas\Filter\File\Encrypt]       | `FileEncrypt` | Encrypts a given file and stores the encrypted file content.  |
-|-----------------|---------------|---------------------------------------------------------------|
 | @`Decrypt`[Laminas\Filter\File\Decrypt]       | `FileDecrypt` | Decrypts a given file and stores the decrypted file content.  |
-|-----------------|---------------|---------------------------------------------------------------|
 | @`LowerCase`     | `FileLowerCase`| Converts file content to lower case letters.                  |
-|-----------------|---------------|---------------------------------------------------------------|
 | @`UpperCase`     | `FileUpperCase`| Converts file content to upper case letters.                  |
-|-----------------|---------------|---------------------------------------------------------------|
+
+Table 10.2. Standard File Filters
 
 From the table, you can see that filters can be divided into the following groups:
 
@@ -742,22 +712,16 @@ register this service in the service manager component of the web application.
 
 The `ImageManager` service class will have the following public methods (listed in table 10.3):
 
-{title="Table 10.3. Public methods of the ImageManager class."}
-|---------------------------------|------------------------------------------------------------------|
 | *Method*                        | *Description*                                                    |
 |---------------------------------|------------------------------------------------------------------|
 | `getSaveToDir()`                | Returns path to the directory where we save the image files.     |
-|---------------------------------|------------------------------------------------------------------|
 | `getSavedFiles()`               | Returns the array of saved file names.                           |
-|---------------------------------|------------------------------------------------------------------|
 | `getImagePathByName($fileName)` | Returns the path to the saved image file.                        |
-|---------------------------------|------------------------------------------------------------------|
 | `getImageFileInfo($filePath)`   | Retrieves the file information (size, MIME type) by image path.  |
-|---------------------------------|------------------------------------------------------------------|
 | `getImageFileContent($filePath)`| Returns the image file content. On error, returns boolean false. |
-|---------------------------------|------------------------------------------------------------------|
 | `resizeImage($filePath, $desiredWidth)` | Resizes the image, keeping its aspect ratio.             |
-|---------------------------------|------------------------------------------------------------------|
+
+Table 10.3. Public methods of the ImageManager class.
 
 > In fact, we could put the code we plan to add into the service into the controller actions, but that
 > would make the controller fat and poorly testable. By introducing the service class, we improve
@@ -976,18 +940,14 @@ return [
 For the *Image Gallery* example, we will create the `ImageController` controller class. The controller
 will have the following action methods (listed in table 10.4):
 
-{title="Table 10.4. Action methods of the ImageController class."}
-|---------------------------------|------------------------------------------------------------------|
 | *Action Method*                 | *Description*                                                    |
 |---------------------------------|------------------------------------------------------------------|
 | `__construct()`                 | Will allow to inject `ImageManager` dependency into the controller. |
-|---------------------------------|------------------------------------------------------------------|
 | `uploadAction()`                | Shows the image upload page allowing to upload a single image.   |
-|---------------------------------|------------------------------------------------------------------|
 | `indexAction()`                 | Displays the image gallery page with the list of uploaded images.|
-|---------------------------------|------------------------------------------------------------------|
 | `fileAction()`                  | Provides an ability to download a full-size image or a small thumbnail for an image. |
-|---------------------------------|------------------------------------------------------------------|
+
+Table 10.4. Action methods of the ImageController class.
 
 To start, create the *ImageController.php* file in the *Application/Controller* directory under
 the module's source directory. Put the following stub code into the file:

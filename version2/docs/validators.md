@@ -12,13 +12,10 @@ for correctness, and return a boolean result telling whether the data is correct
 
 Laminas components covered in this chapter:
 
-|--------------------------------|---------------------------------------------------------------|
 | *Component*                    | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`Laminas\Validator`               | Implements various validator classes.                         |
-|--------------------------------|---------------------------------------------------------------|
 | @`Laminas\InputFilter`             | Implements a container for filters/validators.                |
-|--------------------------------|---------------------------------------------------------------|
 
 ## About Validators
 
@@ -75,64 +72,37 @@ table, they can be roughly divided into several groups:
  * validators for checking if a numerical value lies in a given range (less than, greater than, between, etc.);
  * validators working as "proxies" to other validators (@`ValidatorChain`[Laminas\Validator\ValidatorChain], @`StaticValidator` and @`Callback`[Laminas\Validator\Callback]).
 
-{title="Table 9.1. Standard validators"}
-|--------------------------------|---------------------------------------------------------------|
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | @`EmailAddress`[Laminas\Validator\EmailAddress]                 | Returns boolean `true` if the value is a valid E-mail address; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Hostname`[Laminas\Validator\Hostname]                     | Checks whether the value is a valid host name.                |
-|--------------------------------|---------------------------------------------------------------|
 | @`Barcode`[Laminas\Validator\Barcode]                      | Returns boolean `true` if and only if the value contains a valid barcode.  |
-|--------------------------------|---------------------------------------------------------------|
 | @`CreditCard`                   | Returns `true` if and only if the value follows the common format of credit card number (Luhn algorithm, mod-10 checksum). |
-|--------------------------------|---------------------------------------------------------------|
 | @`Iban`                         | Returns `true` if the value is a valid International Bank Account Number (IBAN); otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Isbn`                         | Returns boolean `true` if and only if value is a valid International Standard Book Number (ISBN). |
-|--------------------------------|---------------------------------------------------------------|
 | @`Ip`                           | Returns `true` if value is a valid IP address; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Uri`[Laminas\Validator\Uri]                          | Returns `true` if and only if the value is an Uniform Resource Identifier (URI). |
-|--------------------------------|---------------------------------------------------------------|
 | @`Between`[Laminas\Validator\Between]                      | Returns `true` if the value lies in certain range; otherwise returns `false`.   |
-|--------------------------------|---------------------------------------------------------------|
 | @`LessThan`                     | Returns boolean `true` if the value is less than certain number; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | @`GreaterThan`                  | Returns `true` if and only if value is greater than certain number.|
-|--------------------------------|---------------------------------------------------------------|
 | @`Identical`                    | Returns boolean `true` if the value matches a given token.          |
-|--------------------------------|---------------------------------------------------------------|
 | @`Step`                         | Checks whether the value is a scalar and a valid step value.  |
-|--------------------------------|---------------------------------------------------------------|
-| @`Csrf`[Laminas\Validator\Csrf]                         | This validator checks if the provided token matches the one previously generated and stored in a PHP session. |
-|--------------------------------|---------------------------------------------------------------|
+| @`Csrf`[Laminas\Validator\Csrf]        | This validator checks if the provided token matches the one previously generated and stored in a PHP session. |
 | @`Date`[Laminas\Validator\Date]                         | Returns `true` if value is a valid date of the certain format.|
-|--------------------------------|---------------------------------------------------------------|
 | @`DateStep`                     | Returns boolean `true` if a date is within a valid step.              |
-|--------------------------------|---------------------------------------------------------------|
 | @`InArray`                      | Returns `true` if value is contained in the given array; otherwise returns `false`.|
-|--------------------------------|---------------------------------------------------------------|
 | @`Digits`[Laminas\Validator\Digits]                       | Returns boolean `true` if and only if `$value` only contains digit characters.|
-|--------------------------------|---------------------------------------------------------------|
 | @`Hex`                          | Returns `true` if and only if value contains only hexadecimal digit characters.|
-|--------------------------------|---------------------------------------------------------------|
 | @`IsInstanceOf`                 | Returns `true` if value is instance of certain class; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | @`NotEmpty`                     | Returns `true` if value is not an empty value.    |
-|--------------------------------|---------------------------------------------------------------|
 | @`Regex`[Laminas\Validator\Regex]                        | Returns `true` if value matches against given pattern; otherwise returns `false`.|
-|--------------------------------|---------------------------------------------------------------|
 | @`StringLength`                 | Returns `true` if the string length lies within given range. |
-|--------------------------------|---------------------------------------------------------------|
 | @`Explode`                      | Splits the given value in parts and returns `true` if all parts pass the given check. |
-|--------------------------------|---------------------------------------------------------------|
 | @`StaticValidator`              | This validator allows to execute another validator without explicitly instantiating it. |
-|--------------------------------|---------------------------------------------------------------|
-| @`Callback`[Laminas\Validator\Callback]                     | This validator allows to execute a custom validation algorithm through the user-provided callback function. |
-|--------------------------------|---------------------------------------------------------------|
+| @`Callback`[Laminas\Validator\Callback]      | This validator allows to execute a custom validation algorithm through the user-provided callback function. |
 | @`ValidatorChain`[Laminas\Validator\ValidatorChain]               | Wrapper validator allowing to organize several validators in a chain. Attached validators are run in the order in which they were added to the chain (FIFO).|
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.1. Standard validators
 
 ## Validator Behaviour in Case of Invalid or Unacceptable Data
 
@@ -204,40 +174,25 @@ in the "name@example.com" E-mail address, "name" is the local part, and "example
 
 The methods provided by the @`EmailAddress` validator are listed in table 9.2:
 
-{title="Table 9.2. Public methods of the EmailAddress validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options allowing to configure it. |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` if the value is a valid E-mail address according to RFC-2822; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `useDomainCheck($domain)`      | Tells the validator to check the host name part for correctness. |
-|--------------------------------|---------------------------------------------------------------|
 | `getDomainCheck()`             | Returns `true` if host name part check is enabled.            |
-|--------------------------------|---------------------------------------------------------------|
 | `setHostnameValidator($hostnameValidator)` | Attaches the validator to use for checking host name part of the E-mail address.  |
-|--------------------------------|---------------------------------------------------------------|
 | `getHostnameValidator()`       | Returns the validator used for checking host name part of the E-mail address.  |
-|--------------------------------|---------------------------------------------------------------|
 | `setAllow($allow)`             | Sets the allowed types of host names to be used in an E-mail address. |
-|--------------------------------|---------------------------------------------------------------|
 | `getAllow()`                   | Returns the allowed types of host names.                      |
-|--------------------------------|---------------------------------------------------------------|
 | `useMxCheck($mx)`              | Sets whether to perform the check for a valid MX record via DNS service.   |
-|--------------------------------|---------------------------------------------------------------|
 | `getMxCheck($mx)`              | Returns `true` if MX check mode is enabled.                   |
-|--------------------------------|---------------------------------------------------------------|
 | `useDeepMxCheck($deep)`        | Sets whether to use deep validation for MX records.           |
-|--------------------------------|---------------------------------------------------------------|
 | `getDeepMxCheck()`             | Returns `true` if the deep MX check mode is enabled; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `isMxSupported()`              | Returns `true` if MX checking via `getmxrr()` PHP function is supported in the system; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMXRecord()`                | After validation, returns the found MX record information.    |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.2. Public methods of the EmailAddress validator
 
 As you can see from the table, the @`EmailAddress` validator, additionally to the
 `isValid()` and `getMessages()` methods, provides the constructor method to which
@@ -482,18 +437,14 @@ it returns `false`. On failure, error messages can be extracted with the validat
 
 Public methods provided by the @`Ip` validator are listed in table 9.3:
 
-{title="Table 9.3. Public methods of the Ip validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` if and only if value is a valid IP address.    |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setOptions($options)`         | Sets validator options.                                       |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.3. Public methods of the Ip validator
 
 The `setOptions()` method provides an ability to set allowed types of IP addresses:
 
@@ -543,32 +494,21 @@ allowed host name types. The types are:
 
 The public methods provided by the validator are listed in table 9.4:
 
-{title="Table 9.4. Public methods of the Hostname validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` when the value is a valid host name; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setIpValidator($ipValidator)` | Optionally, allows to set own IP address validator.           |
-|--------------------------------|---------------------------------------------------------------|
 | `getIpValidator()`             | Retrieves attached IP address validator.                      |
-|--------------------------------|---------------------------------------------------------------|
 | `setAllow()`                   | Defines the type(s) of host names which are allowed.          |
-|--------------------------------|---------------------------------------------------------------|
 | `getAllow()`                   | Returns allowed host names types.                             |
-|--------------------------------|---------------------------------------------------------------|
 | `useIdnCheck()`                | Defines if Internationalized Domain Names (IDN) check is enabled. This option defaults to `true`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getIdnCheck()`                | Returns `true` if IDN check is enabled.                       |
-|--------------------------------|---------------------------------------------------------------|
 | `useTldCheck()`                | Defines if Top Level Domain (TLD) check is enabled. This option defaults to `true`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getTldCheck()`                | Returns `true` if TLD check is enabled.                       |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.4. Public methods of the Hostname validator
 
 You can set which host name types are allowed with the `setAllow()` method. It accepts
 a combination of the following constants:
@@ -633,28 +573,19 @@ extracted with the validator's `getMessages()` method.
 
 The public methods provided by the @`Uri`[Laminas\Validator\Uri] validator are listed in table 9.5:
 
-{title="Table 9.5. Public methods of the Uri validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` when the value is a valid URI; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setUriHandler($uriHandler)`   | Sets the URI handler object for this validator.               |
-|--------------------------------|---------------------------------------------------------------|
 | `getUriHandler()`              | Retrieves the URI handler object.                             |
-|--------------------------------|---------------------------------------------------------------|
 | `setAllowAbsolute($allowAbsolute)`| Tells the validator whether absolute URIs are accepted.    |
-|--------------------------------|---------------------------------------------------------------|
 | `getAllowAbsolute()`           | Returns `true` if absolute URIs are accepted.                 |
-|--------------------------------|---------------------------------------------------------------|
 | `setAllowRelative($allowRelative)`| Tells the validator whether relative URIs are accepted.    |
-|--------------------------------|---------------------------------------------------------------|
 | `getAllowRelative()`           |  Returns `true` if relative URIs are accepted.                |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.5. Public methods of the Uri validator
 
 Internally, the @`Uri`[Laminas\Validator\Uri] validator uses so called *URI handler object*, which is responsible for
 parsing an URI string. By default, @`Laminas\Uri\Uri` class is used as the URI handler. (You can set your
@@ -693,20 +624,15 @@ in a given format. On failure, error messages can be extracted with the validato
 
 Public methods provided by the @`Date`[Laminas\Validator\Date] validator are listed in table 9.6:
 
-{title="Table 9.6. Public methods of the Date validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` when the value is a string containing a date in expected format; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setFormat($format)`           | Sets an acceptable date format.                               |
-|--------------------------------|---------------------------------------------------------------|
 | `getFormat()`                  | Retrieves the expected format.                                |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.6. Public methods of the Date validator
 
 To set the expected date format, you can use the `setFormat()` method.
 
@@ -739,20 +665,15 @@ On failure, error messages can be extracted with the validator's
 
 The public methods provided by the @`Regex`[Laminas\Validator\Regex] validator are listed in table 9.7:
 
-{title="Table 9.7. Public methods of the Regex validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns true if and only if `$value` matches the given regular expression pattern. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setPattern($pattern)`         | Sets the regular expression pattern.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `getPattern()`                 | Retrieves the regular expression pattern.                     |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.7. Public methods of the Regex validator
 
 The `setPattern()` method allows to set the regular expression to match against.
 
@@ -791,57 +712,38 @@ ensure required elements have values associated with them.
 
 The public methods provided by the @`NotEmpty` validator are listed in table 9.8:
 
-{title="Table 9.8. Public methods of the NotEmpty validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns true if and only if `$value` is not an empty value.   |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setType($type)`               | Set the value types that to consider as empty values.         |
-|--------------------------------|---------------------------------------------------------------|
 | `getType()`                    | Returns the types.                                            |
-|--------------------------------|---------------------------------------------------------------|
 | `getDefaultType()`             | Returns the default types.                                    |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.8. Public methods of the NotEmpty validator
 
 The `setType()` method specifies which variable types to consider as an empty value. This method accepts the
 single argument `$type` which can be either an OR combination of the constants listed in table 9.9, or an
 array containing the literal equivalents of those constants.
 
-{title="Table 9.9. Type constants"}
-|----------------------|--------------------|----------------------|----------------------------------------|
 | *Constant*           | *Numeric Value*    | *Literal Equivalent* | *Description*                          |
 |----------------------|--------------------|----------------------|----------------------------------------|
 | `BOOLEAN`            | 1                  | "boolean"            | Consider boolean `false` as an empty value. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `INTEGER`            | 2                  | "integer"            | Consider integer 0 as an empty value.  |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `FLOAT`              | 4                  | "float"              | Consider float 0.0 as an empty value.  |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `STRING`             | 8                  | "string"             | Consider empty string '' as an empty value.|
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `ZERO`               | 16                 | "zero"               | Consider string containing the single character zero ('0') as an empty value. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `EMPTY_ARRAY`        | 32                 | "array"              | Consider an empty array as an empty value. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `NULL`               | 64                 | "null"               | Consider `null` as an empty value.     |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `PHP`                | 127                | "php"                | Consider the value empty if the `empty()` PHP function would return `true` on it. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `SPACE`              | 128                | "space"              | Consider a string which contains only white spaces as an empty value. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `OBJECT`             | 256                | "object"             | Returns `true`. `false` will be returned when object is not allowed but an object is given. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `OBJECT_STRING`      | 512                | "objectstring"       | Returns `false` when an object is given and it's `__toString()` method returns an empty string. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `OBJECT_COUNT`       | 1024               | "objectcount"        | Returns `false` when an object is given, it has an `Countable` interface and it's count is 0. |
-|----------------------|--------------------|----------------------|----------------------------------------|
 | `ALL`                | 2047               | "all"                | Consider all above types as empty values.   |
-|----------------------|--------------------|----------------------|----------------------------------------|
+
+Table 9.9. Type constants
 
 Below, a code example demonstrating the usage of the @`NotEmpty` validator is provided.
 
@@ -868,28 +770,19 @@ The @`Between`[Laminas\Validator\Between] validator checks whether a number lies
 
 The public methods provided by the @`Between`[Laminas\Validator\Between] validator are listed in table 9.10:
 
-{title="Table 9.10. Public methods of the Between validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns true if and only if value's length is within the given range. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setMin($min)`                 | Sets the minimum limit.                                       |
-|--------------------------------|---------------------------------------------------------------|
 | `getMin()`                     | Retrieves the minimum limit.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `setMax($max)`                 | Sets the maximum limit.                                       |
-|--------------------------------|---------------------------------------------------------------|
 | `getMax()`                     | Retrieves the maximum limit.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `setInclusive($inclusive)`     | Sets whether to compare if the value lies in the given boundaries inclusively. |
-|--------------------------------|---------------------------------------------------------------|
 | `getInclusive()`               | Returns the inclusive option.                                 |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.10. Public methods of the Between validator
 
 The range can be set with the `setMin()` and `setMax()` methods.
 
@@ -923,28 +816,19 @@ $isValid4 = $validator->isValid(15); // returns false (value is too big).
 The @`InArray` validator checks whether the input value belongs to the given array of values.
 The public methods provided by the @`InArray` validator are listed in table 9.11:
 
-{title="Table 9.11. Public methods of the InArray validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns true if and only if value belongs to the given array. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setHaystack($haystack)`       | Sets the array to search in.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `getHaystack()`                | Returns the array of allowed values.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `setStrict($strict)`           | Sets strict comparison mode.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `getStrict()`                  | Whether strict comparison mode enabled?                       |
-|--------------------------------|---------------------------------------------------------------|
 | `setRecursive($recursive)`     | Tells the validator to search recursively.                    |
-|--------------------------------|---------------------------------------------------------------|
 | `getRecursive()`               | Whether the recursive search is enabled?                      |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.11. Public methods of the InArray validator
 
 The `setHaystack()` method allows to set the array of allowed values. The `isValid()` method will
 search through this array for the presence of the input `$value`.
@@ -987,28 +871,19 @@ no greater than the `max` option (when the `max` option is not null).
 
 The public methods provided by the @`StringLength` validator are listed in table 9.12:
 
-{title="Table 9.12. Public methods of the StringLength validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructs the validator. Accepts the list of options.        |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns true if and only if value's length is within the given range. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setMin($min)`                 | Sets the minimum limit.                                       |
-|--------------------------------|---------------------------------------------------------------|
 | `getMin()`                     | Retrieves the minimum limit.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `setMax($max)`                 | Sets the maximum limit.                                       |
-|--------------------------------|---------------------------------------------------------------|
 | `getMax()`                     | Retrieves the maximum limit.                                  |
-|--------------------------------|---------------------------------------------------------------|
 | `setEncoding($encoding)`       | Sets a new encoding to use.                                   |
-|--------------------------------|---------------------------------------------------------------|
 | `getEncoding()`                | Retrieves the encoding.                                       |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.12. Public methods of the StringLength validator
 
 By default, the @`StringLength` validator considers any string length as valid.
 Use the `setMin()` and/or `setMax()` methods to set lower and upper limits for the allowable string
@@ -1054,28 +929,19 @@ such a compound validator is run, the input value is passed to all validators in
 
 Public methods provided by the @`ValidatorChain`[Laminas\Validator\ValidatorChain] class are presented in table 9.13:
 
-{title="Table 9.13. Public methods of the ValidatorChain validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` if all validators in the chain return `true`.  |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | Returns the array of validation error messages.               |
-|--------------------------------|---------------------------------------------------------------|
 | `getValidators()`              | Returns the array of validators in the chain.                 |
-|--------------------------------|---------------------------------------------------------------|
 | `count()`                      | Returns count of validators in the chain.                     |
-|--------------------------------|---------------------------------------------------------------|
 | `attach($validator, $breakChainOnFailure)` | Attaches a validator to the end of the chain.     |
-|--------------------------------|---------------------------------------------------------------|
 | `prependValidator($validator, $breakChainOnFailure)` | Adds a validator to the beginning of the chain. |
-|--------------------------------|---------------------------------------------------------------|
 | `attachByName($name, $options, $breakChainOnFailure)` | Use the plugin manager to add a validator by name. |
-|--------------------------------|---------------------------------------------------------------|
 | `prependByName($name, $options, $breakChainOnFailure)` | Use the plugin manager to prepend a validator by name. |
-|--------------------------------|---------------------------------------------------------------|
 | `merge($validatorChain)`       | Merge the validator chain with the one given in parameter. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.13. Public methods of the ValidatorChain validator
 
 An example validator chain is shown in figure 9.2. It consists of the @`NotEmpty` validator followed by
 the @`StringLength` validator, which in turn is followed by the @`Date`[Laminas\Validator\Date] validator. When this chain is
@@ -1107,22 +973,16 @@ The @`Callback`[Laminas\Validator\Callback] validator can be a wrapper for your 
 be useful when a standard validator is not suitable, and you need to apply your own checking
 algorithm to the data. The public methods provided by the @`Callback`[Laminas\Validator\Callback] validator are listed in table 9.14.
 
-{title="Table 9.14. Public methods of the Callback validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Class name*                   | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `isValid($value, $context)`    | Executes a callback function as a validator.                  |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
 | `setCallback($callback)`       | Sets a new callback for this filter.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `getCallback()`                | Returns callback set for the filter.                          |
-|--------------------------------|---------------------------------------------------------------|
 | `setCallbackOptions($options)` | Sets options for the callback.                                |
-|--------------------------------|---------------------------------------------------------------|
 | `getCallbackOptions()`         | Get parameters for the callback.                              |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.14. Public methods of the Callback validator
 
 As you can see from the table, the @`Callback`[Laminas\Validator\Callback] validator provides the `setCallback()` and `setCallbackOptions()`
 methods that can be used to set the callback function or class method and (optionally) pass it one or several
@@ -1242,20 +1102,15 @@ the phone validation algorithm we used with the @`Callback`[Laminas\Validator\Ca
 
 We plan to have the following methods in our `PhoneValidator` validator class (see table 9.15):
 
-{title="Table 9.15. Public methods of the Callback validator"}
-|--------------------------------|---------------------------------------------------------------|
 | *Method name*                  | *Description*                                                 |
 |--------------------------------|---------------------------------------------------------------|
 | `__construct($options)`        | Constructor. Accepts an optional argument `$options` which is needed to set validator options at once. |
-|--------------------------------|---------------------------------------------------------------|
 | `setFormat($format)`           | Sets the phone format option.                                 |
-|--------------------------------|---------------------------------------------------------------|
 | `getFormat()`                  | Returns the phone format option.                              |
-|--------------------------------|---------------------------------------------------------------|
 | `isValid($value)`              | Returns `true` when the value is a valid phone number; otherwise returns `false`. |
-|--------------------------------|---------------------------------------------------------------|
 | `getMessages()`                | If validation failed, this method will return an array of error messages. |
-|--------------------------------|---------------------------------------------------------------|
+
+Table 9.15. Public methods of the Callback validator
 
 For the `PhoneValidator`, we will have three possible error messages:
 

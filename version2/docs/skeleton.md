@@ -489,19 +489,13 @@ files, so `mod_rewrite` returns the requested file paths. The URL in the third e
 points to a non-existent file `htpasswd` (which may be a symptom of a hacker attack),
 and based on our rewrite rules, the engine returns `index.php` file.
 
-{title="Table 2.1. URL rewrite examples"}
-|-------------------------------------|-----------------------------------------|
 | **Requested URL**                   | **Rewritten URL**                       |
 |-------------------------------------|-----------------------------------------|
-| `http://localhost/index.php`        | File exists; return the local file      |
-|                                     | `APP_DIR/public/index.php`              |
-|-------------------------------------|-----------------------------------------|
-| `http://localhost/css/bootstrap.css`| File exists; return the local file      |
-|                                     | `APP_DIR/public/css/bootstrap.css`      |
-|-------------------------------------|-----------------------------------------|
-| `http://localhost/htpasswd`         | File does not exist; return             |
-|                                     | `APP_DIR/public/index.php` instead.     |
-|-------------------------------------|-----------------------------------------|
+| `http://localhost/index.php`        | File exists; return the local file `APP_DIR/public/index.php`              |
+| `http://localhost/css/bootstrap.css`| File exists; return the local file `APP_DIR/public/css/bootstrap.css`      |
+| `http://localhost/htpasswd`         | File does not exist; return `APP_DIR/public/index.php` instead.     |
+
+Table 2.1. URL rewrite examples
 
 ## Blocking Access to the Website by IP Address
 
@@ -683,34 +677,20 @@ versions of the package are acceptable. For example, "^5.6" means that we can in
 versions greater than "5.6", but lower than "6.0" (that we can install only those packages that do not break
 backward compatibility). In table 2.2, possible ways of specifying acceptable versions are presented:
 
-{title="Table 2.2. Package Version Definitions"}
-|-------------------------|----------------------------------------------------------------------------|
 | *Definition Example*    | *Description*                                                              |
 |-------------------------|----------------------------------------------------------------------------|
 | 3.0.1                   | Exact version. In this example, only the version 3.0.1 can be installed.   |
-|-------------------------|----------------------------------------------------------------------------|
 | >=3.0.1                 | Greater or equal version can be installed (3.0.1, 3.2.1, etc.)             |
-|-------------------------|----------------------------------------------------------------------------|
 | >3.0.1                  | Greater version can be installed (3.0.2 etc.)                              |
-|-------------------------|----------------------------------------------------------------------------|
 | <=3.0.1                 | Lower or equal version can be installed (1.0, 1.5, 2.0.0 etc.)             |
-|-------------------------|----------------------------------------------------------------------------|
 | <3.0.1                  | Lower version can be installed (1.0, 1.1, 1.9, etc.)                       |
-|-------------------------|----------------------------------------------------------------------------|
 | !=3.0.1                 | All versions except this version can be installed.                         |
-|-------------------------|----------------------------------------------------------------------------|
 | >=3.0,<3.1.0            | Any version belonging to this range of versions can be installed.          |
-|-------------------------|----------------------------------------------------------------------------|
-| 3.*                     | Any version having major number equal to 3 can be installed (minor number  |
-|                         | can be any).                                                               |
-|-------------------------|----------------------------------------------------------------------------|
-| ~3.0                    | Any version starting from 3.0, but lower than the next major version       |
-|                         | (equivalent to >=3.0,<4.0).                                                |
-|-------------------------|----------------------------------------------------------------------------|
-| ^3.0                    | Any version starting from 3.0, but lower than the next major version       |
-|                         | (equivalent to >=3.0,<4.0). Similar to `~3.0`, but it sticks closer to     |
-|                         | semantic versioning, and will always allow non-breaking updates.           |
-|-------------------------|----------------------------------------------------------------------------|
+| 3.*                     | Any version having major number equal to 3 can be installed (minor number can be any).          |
+| ~3.0                    | Any version starting from 3.0, but lower than the next major version (equivalent to >=3.0,<4.0).         |
+| ^3.0                    | Any version starting from 3.0, but lower than the next major version (equivalent to >=3.0,<4.0). Similar to `~3.0`, but it sticks closer to semantic versioning, and will always allow non-breaking updates.           |
+
+Table 2.2. Package Version Definitions
 
 ### Installing and Updating Packages
 
@@ -766,16 +746,13 @@ Composer can be used to require some functionality to present on your system. Yo
 how we require "php:^5.6". PHP package is a virtual package representing PHP itself. You can also
 require other stuff, like PHP extensions (see table 2.3 below).
 
-{title="Table 2.3. Virtual Composer Packages"}
-|------------------------------------------------------------------------------------------------------|
 | *Definition Example*    | *Description*                                                              |
 |------------------------------------------------------------------------------------------------------|
 | "php":"^5.6"            | Require PHP version greater or equal than 5.6, but lower than 6.0.         |
-|------------------------------------------------------------------------------------------------------|
 | ext-dom, ext-pdo-mysql  | Require PHP DOM and PDO MySQL extensions                                   |
-|------------------------------------------------------------------------------------------------------|
 | lib-openssl             | Require OpenSSL library                                                    |
-|------------------------------------------------------------------------------------------------------|
+
+Table 2.3. Virtual Composer Packages
 
 You can use `php composer.phar show --platform` command to display a list of available virtual packages
 for your machine.
